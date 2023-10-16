@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id
 class Question(
     @Id
     var id: Long = 0,
-    var
 ) : BaseEntity() {
 
 }
