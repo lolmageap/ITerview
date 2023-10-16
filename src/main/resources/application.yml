@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: gpt-interview
+  r2dbc:
+    url: r2dbc:pool:mysql://localhost:3306/interview
+    username: user
+    password: 1234
+
+server:
+  port: 8901
+
+api-key: your-open-ai-api-key
