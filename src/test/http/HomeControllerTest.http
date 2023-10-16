@@ -1,0 +1,7 @@
+###
+POST localhost:8901
+Content-Type: application/json
+
+{
+  "question" : "kotlin이 java보다 사용률이 높아질까?"
+}
