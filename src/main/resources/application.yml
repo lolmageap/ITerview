@@ -10,3 +10,9 @@ server:
   port: 8901
 
 api-key: your-open-ai-api-key
+
+jwt:
+  header: Authorization
+  secret: your-secret-jwt-key
+  token-validity-in-seconds: 10800
+  refresh-token-validity-in-seconds: 86400
