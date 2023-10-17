@@ -1,7 +1,6 @@
 package cherhy.jung.gptinterview.domain.user
 
 import cherhy.jung.gptinterview.util.BaseDeleteEntity
-import gangnam.sft.corruptedargument.domain.user.UserRole
 import jakarta.persistence.Entity
 import org.hibernate.annotations.SQLDelete
 import java.time.LocalDate
@@ -18,7 +17,7 @@ class User(
     var role: UserRole = UserRole.MEMBER
         get() = role
 
-    fun update(name: String, birth: LocalDate?){
+    fun update(name: String){
         this.name = name
     }
 
