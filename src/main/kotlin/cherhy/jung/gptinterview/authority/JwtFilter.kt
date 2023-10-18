@@ -15,7 +15,9 @@ import java.io.IOException
 
 class JwtFilter(private val tokenProvider: TokenProvider) : GenericFilterBean() {
 
-    private val AUTHORIZATION_HEADER = "Authorization"
+    companion object {
+        const val AUTHORIZATION_HEADER = "Authorization"
+    }
 
     @Throws(IOException::class, ServletException::class)
     override fun doFilter(servletRequest: ServletRequest, servletResponse: ServletResponse?, filterChain: FilterChain) {
