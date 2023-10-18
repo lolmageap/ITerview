@@ -44,14 +44,13 @@ class TokenProvider(
         this.key = SecretKeySpec(secret.toByteArray(), "HmacSHA256")
     }
 
-    fun createToken(authentication: Authentication): String? {
-        val authorities = authentication.authorities.joinToString(",") { it.authority }
+    fun createToken(authUser: AuthUser): String {
         val now = Date().time
         val validity = Date(now + tokenValidityInMilliseconds)
 
         val claimsSet = JWTClaimsSet.Builder()
-            .subject(authentication.name)
-            .claim(AUTHORITIES_KEY, authorities)
+            .subject(authUser.username)
+            .claim(AUTHORITIES_KEY, authUser.authorities.toString())
             .expirationTime(validity)
             .build()
 
@@ -83,37 +82,35 @@ class TokenProvider(
 
     fun validateToken(token: String?): Boolean {
         return try {
-                val signedJWT = SignedJWT.parse(token)
-                val verifier: JWSVerifier = MACVerifier(key)
+            val signedJWT = SignedJWT.parse(token)
+            val verifier: JWSVerifier = MACVerifier(key)
 
-                if (signedJWT.verify(verifier)) {
-                    val claims: JWTClaimsSet = signedJWT.jwtClaimsSet
-                    true
-                } else {
-                    log.info("validateToken = {}", token)
-                    false
-                }
-
-            } catch (e: JOSEException) {
-                log.info("JWT 토큰이 만료되었습니다, detail: {}", e.toString())
-                false
-            } catch (e: IllegalArgumentException) {
-                log.info("JWT 토큰이 잘못되었습니다.")
-                false
-            } catch (e: RuntimeException) {
-                log.info("JWT 토큰이 만료되었습니다, detail: {}", e.toString())
+            if (signedJWT.verify(verifier)) {
+                val claims: JWTClaimsSet = signedJWT.jwtClaimsSet
+                true
+            } else {
+                log.info("validateToken = {}", token)
                 false
             }
+        } catch (e: JOSEException) {
+            log.info("JWT 토큰이 만료되었습니다, detail: {}", e.toString())
+            false
+        } catch (e: IllegalArgumentException) {
+            log.info("JWT 토큰이 잘못되었습니다.")
+            false
+        } catch (e: RuntimeException) {
+            log.info("JWT 토큰이 만료되었습니다, detail: {}", e.toString())
+            false
+        }
     }
 
-    fun createRefreshToken(authentication: Authentication): String {
-        val authorities = authentication.authorities.joinToString(",") { it.authority }
+    fun createRefreshToken(authUser: AuthUser): String {
         val now = Date().time
         val validity = Date(now + refreshTokenValidityInMilliseconds)
 
         val claimsSet = JWTClaimsSet.Builder()
-            .subject(authentication.name)
-            .claim(AUTHORITIES_KEY, authorities)
+            .subject(authUser.username)
+            .claim(AUTHORITIES_KEY, authUser.authorities.toString())
             .expirationTime(validity)
             .build()
 
@@ -122,4 +119,5 @@ class TokenProvider(
             serialize()
         }
     }
+
 }
