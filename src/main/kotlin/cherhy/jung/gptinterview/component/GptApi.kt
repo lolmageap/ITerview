@@ -19,7 +19,7 @@ class GptApi(
 //    temperature 는 생성된 텍스트의 다양성을 조절
 //    max tokens 는 생성된 텍스트의 최대 길이를 제한
 
-    suspend fun generateText(prompt: String, temperature: Float = 0.5f, maxTokens: Int = 524): String? {
+    fun generateText(prompt: String, temperature: Float = 0.5f, maxTokens: Int = 524): String? {
         val headers = HttpHeaders()
         headers.contentType = MediaType.APPLICATION_JSON
         headers.set("Authorization", "Bearer $API_KEY")
