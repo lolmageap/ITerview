@@ -3,7 +3,6 @@ package cherhy.jung.gptinterview.domain.user
 import cherhy.jung.gptinterview.util.BaseDeleteEntity
 import jakarta.persistence.Entity
 import org.hibernate.annotations.SQLDelete
-import java.time.LocalDate
 
 
 @Entity
