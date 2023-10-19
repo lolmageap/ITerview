@@ -71,7 +71,8 @@ class TokenProvider(
 
 //          // OAuth 로그인 할 때
 //            val user: User = userRepository.findByProviderId(claims.subject)
-            val user = userRepository.findByEmail(claims.subject) ?: throw NotFoundException(Domain.USER)
+            val user = userRepository.findByEmail(claims.subject)
+                ?: throw NotFoundException(Domain.USER)
 
             val authUser = AuthUser(user)
             return UsernamePasswordAuthenticationToken(authUser, token, authorities)
