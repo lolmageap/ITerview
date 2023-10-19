@@ -44,6 +44,7 @@ class AuthUserService(
             .first().replace("ROLE_", "")
 
         val jwt = tokenProvider.createToken(authUser)
+        val refreshToken = tokenProvider.createRefreshToken(authUser)
 
         val httpHeaders = HttpHeaders()
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer $jwt")
