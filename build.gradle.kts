@@ -21,17 +21,27 @@ repositories {
 }
 
 dependencies {
+    // log
     implementation("io.github.microutils:kotlin-logging:3.0.5")
+
+    // web
     implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // database
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
     implementation(group = "com.linecorp.kotlin-jdsl", name = "spring-data-kotlin-jdsl-starter", version = "2.0.4.RELEASE")
+
+    // default
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
+    // documentation
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
+
+    // validation
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
     // authority
@@ -39,13 +49,13 @@ dependencies {
     implementation("org.springframework.security:spring-security-core")
     implementation("com.nimbusds:nimbus-jose-jwt:9.13")
 
+    // docker compose
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 
-    runtimeOnly("com.h2database:h2")
+    // mysql
     runtimeOnly("com.mysql:mysql-connector-j")
-    runtimeOnly("io.asyncer:r2dbc-mysql")
-    runtimeOnly("io.r2dbc:r2dbc-h2")
 
+    // test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("io.kotest:kotest-runner-junit5:5.7.2")
