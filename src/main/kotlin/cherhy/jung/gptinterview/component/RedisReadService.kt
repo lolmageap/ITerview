@@ -7,8 +7,7 @@ import org.springframework.data.redis.core.RedisTemplate
 class RedisReadService(
     private val redisTemplate: RedisTemplate<String, Any>,
 ) {
-    fun getJwtToken(userId: Long): String? {
-        val key = "user:$userId:token"
-        return redisTemplate.opsForValue().get(key) as? String
+    fun getJwtToken(accessToken: String): String? {
+        return redisTemplate.opsForValue().get("accessToken: $accessToken") as? String
     }
 }
