@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/authority")
-class AuthorityController(private val authUserService: AuthUserService) {
+class AuthorityController(private val authCustomerService: AuthCustomerService) {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/sign-in")
-    fun signIn(@RequestBody signInRequest: SignInRequest) = authUserService.signIn(signInRequest.toUserRequest())
+    fun signIn(@RequestBody signInRequest: SignInRequest) = authCustomerService.signIn(signInRequest.toCustomerRequest())
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/sign-up")
-    fun signUp(@RequestBody signUpRequest: SignUpRequest) = authUserService.signUp(signUpRequest.toUserRequest())
+    fun signUp(@RequestBody signUpRequest: SignUpRequest) = authCustomerService.signUp(signUpRequest.toCustomerRequest())
 
     @PostMapping("/sign-out")
     fun signOut() {}

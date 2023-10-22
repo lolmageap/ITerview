@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.authority
 
-import cherhy.jung.gptinterview.domain.user.UserRequest
+import cherhy.jung.gptinterview.domain.customer.CustomerRequest
 import java.util.UUID
 
 data class SignInRequest(
@@ -8,8 +8,8 @@ data class SignInRequest(
     val password: String,
 )
 
-fun SignInRequest.toUserRequest() : UserRequest {
-    return UserRequest(
+fun SignInRequest.toCustomerRequest() : CustomerRequest {
+    return CustomerRequest(
         name = UUID.randomUUID().toString().substring(0, 12),
         password = this.password,
         email = this.email,
@@ -26,8 +26,8 @@ data class SignUpRequest(
     }
 }
 
-fun SignUpRequest.toUserRequest() : UserRequest {
-    return UserRequest(
+fun SignUpRequest.toCustomerRequest() : CustomerRequest {
+    return CustomerRequest(
         name = UUID.randomUUID().toString().substring(0, 12),
         password = this.password,
         email = this.email,

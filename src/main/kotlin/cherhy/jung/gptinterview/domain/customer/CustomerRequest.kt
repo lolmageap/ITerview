@@ -1,6 +1,6 @@
-package cherhy.jung.gptinterview.domain.user
+package cherhy.jung.gptinterview.domain.customer
 
-data class UserRequest(
+data class CustomerRequest(
     val name: String,
     val email: String,
     var password: String,
@@ -10,4 +10,4 @@ data class UserRequest(
     }
 }
 
-fun UserRequest.toUser(): User = User(name, email, password)
+fun CustomerRequest.toCustomer(): Customer = Customer(name, email, password)
