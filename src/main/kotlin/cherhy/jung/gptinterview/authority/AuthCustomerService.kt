@@ -1,9 +1,9 @@
 package cherhy.jung.gptinterview.authority
 
 import cherhy.jung.gptinterview.component.RedisWriteService
-import cherhy.jung.gptinterview.domain.user.UserRepository
-import cherhy.jung.gptinterview.domain.user.UserRequest
-import cherhy.jung.gptinterview.domain.user.toUser
+import cherhy.jung.gptinterview.domain.customer.CustomerRepository
+import cherhy.jung.gptinterview.domain.customer.CustomerRequest
+import cherhy.jung.gptinterview.domain.customer.toCustomer
 import cherhy.jung.gptinterview.exception.Domain
 import cherhy.jung.gptinterview.exception.ExistException
 import cherhy.jung.gptinterview.exception.NotFoundException
@@ -12,15 +12,16 @@ import org.springframework.http.HttpHeaders
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.core.Authentication
-import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
-class AuthUserService(
-    private val userRepository: UserRepository,
+@Transactional
+class AuthCustomerService(
+    private val customerRepository: CustomerRepository,
     private val tokenProvider: TokenProvider,
     private val passwordEncoder: BCryptPasswordEncoder,
     private val authenticationManagerBuilder: AuthenticationManagerBuilder,
@@ -28,41 +29,39 @@ class AuthUserService(
 ): UserDetailsService {
 
     override fun loadUserByUsername(username: String): UserDetails {
-        return userRepository.findByEmail(username)
-            ?.let { AuthUser(it) }
-            ?: throw NotFoundException(Domain.USER)
+        return customerRepository.findByEmail(username)
+            ?.let { AuthCustomer(it) }
+            ?: throw NotFoundException(Domain.CUSTOMER)
     }
 
-    fun signIn(userRequest: UserRequest): TokenResponse {
-        val authenticationToken = UsernamePasswordAuthenticationToken(userRequest.email, userRequest.password)
+    fun signIn(customerRequest: CustomerRequest): TokenResponse {
+        val authenticationToken = UsernamePasswordAuthenticationToken(customerRequest.email, customerRequest.password)
         val authentication: Authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken)
 
-        val authUser = authentication.principal as AuthUser
+        val authCustomer = authentication.principal as AuthCustomer
 
         val role = authentication.authorities
-            .map { g: GrantedAuthority? -> g?.authority ?: throw IllegalStateException()}
-            .first().replace("ROLE_", "")
+            .map { it?.authority ?: throw IllegalStateException() }
 
-        val jwt = tokenProvider.createToken(authUser)
-        val refreshToken = tokenProvider.createRefreshToken(authUser)
+        val jwt = tokenProvider.createToken(authCustomer)
+        val refreshToken = tokenProvider.createRefreshToken(authCustomer)
 
         val httpHeaders = HttpHeaders()
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer $jwt")
 
-        redisWriteService.addJwtToken(authUser.userId, jwt)
-
-        return TokenResponse(jwt, role, authUser.userId)
+        redisWriteService.addJwtToken(jwt, refreshToken)
+        return TokenResponse(jwt, role, authCustomer.customerId)
     }
 
-    fun signUp(userRequest: UserRequest) {
-        duplicationEmailCheck(userRequest.email)
-        val encodedPassword = passwordEncoder.encode(userRequest.password)
-        userRequest.changePassword(encodedPassword)
-        userRepository.save( userRequest.toUser() )
+    fun signUp(customerRequest: CustomerRequest) {
+        duplicationEmailCheck(customerRequest.email)
+        val encodedPassword = passwordEncoder.encode(customerRequest.password)
+        customerRequest.changePassword(encodedPassword)
+        customerRepository.save( customerRequest.toCustomer() )
     }
 
     fun duplicationEmailCheck(email: String) {
-        val exists = userRepository.existsByEmail(email)
+        val exists = customerRepository.existsByEmail(email)
         if (exists) throw ExistException(Property.EMAIL)
     }
 
