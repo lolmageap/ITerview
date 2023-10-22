@@ -2,6 +2,7 @@ package cherhy.jung.gptinterview.domain.customer
 
 import cherhy.jung.gptinterview.util.BaseDeleteEntity
 import jakarta.persistence.Entity
+import jakarta.persistence.OneToMany
 import org.hibernate.annotations.SQLDelete
 
 
@@ -11,10 +12,13 @@ class Customer(
     var name: String,
     val email: String,
     var password: String,
+    val token: String,
 ) : BaseDeleteEntity() {
 
-    var role: CustomerRole = CustomerRole.MEMBER
-        get() = role
+    @OneToMany
+    var customerAuthorities: List<CustomerAuthority> = mutableListOf(
+        CustomerAuthority(CustomerRole.MEMBER)
+    )
 
     fun update(name: String){
         this.name = name
