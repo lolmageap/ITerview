@@ -31,10 +31,10 @@ class TokenProvider(
     private val secret: String,
 
     @Value("\${jwt.token-validity-in-seconds}")
-    private val tokenValidityInMilliseconds: Long,
+    private val tokenValidityInMilliseconds: String,
 
     @Value("\${jwt.refresh-token-validity-in-seconds")
-    private val refreshTokenValidityInMilliseconds: Long,
+    private val refreshTokenValidityInMilliseconds: String,
 ) : InitializingBean {
 
     private lateinit var key: SecretKey
@@ -48,7 +48,7 @@ class TokenProvider(
 
     fun createToken(authCustomer: AuthCustomer): String {
         val now = Date().time
-        val validity = Date(now + tokenValidityInMilliseconds)
+        val validity = Date(now + tokenValidityInMilliseconds.toLong())
 
         val claimsSet = JWTClaimsSet.Builder()
             .subject(authCustomer.username)
@@ -87,7 +87,7 @@ class TokenProvider(
             val verifier: JWSVerifier = MACVerifier(key)
 
             if (signedJWT.verify(verifier)) {
-                val claims: JWTClaimsSet = signedJWT.jwtClaimsSet
+//                val claims: JWTClaimsSet = signedJWT.jwtClaimsSet
                 true
             } else {
                 log.info("validateToken = {}", token)
@@ -107,7 +107,7 @@ class TokenProvider(
 
     fun createRefreshToken(authCustomer: AuthCustomer): String {
         val now = Date().time
-        val validity = Date(now + refreshTokenValidityInMilliseconds)
+        val validity = Date(now + refreshTokenValidityInMilliseconds.toLong())
 
         val claimsSet = JWTClaimsSet.Builder()
             .subject(authCustomer.username)

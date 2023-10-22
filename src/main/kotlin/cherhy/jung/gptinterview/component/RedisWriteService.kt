@@ -10,12 +10,12 @@ class RedisWriteService(
     private val redisTemplate: RedisTemplate<String, Any>,
 
     @Value("\${jwt.refresh-token-validity-in-seconds")
-    private val refreshTokenValidityInMilliseconds: Long,
+    private val refreshTokenValidityInMilliseconds: String,
 ) {
 
     fun addJwtToken(accessToken: String, refreshToken: String) {
         redisTemplate.opsForValue().set(accessToken, refreshToken)
-        redisTemplate.expire("accessToken: $accessToken", refreshTokenValidityInMilliseconds, TimeUnit.MILLISECONDS)
+        redisTemplate.expire("accessToken: $accessToken", refreshTokenValidityInMilliseconds.toLong(), TimeUnit.MILLISECONDS)
     }
 
     fun deleteJwtToken(accessToken: String) {
