@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.authority
 
-import cherhy.jung.gptinterview.domain.user.UserRepository
+import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.exception.Domain
 import cherhy.jung.gptinterview.exception.NotFoundException
 import cherhy.jung.gptinterview.util.log
@@ -25,7 +25,7 @@ import javax.crypto.spec.SecretKeySpec
 
 @Component
 class TokenProvider(
-    private val userRepository: UserRepository,
+    private val customerRepository: CustomerRepository,
 
     @Value("\${jwt.secret}")
     private val secret: String,
@@ -38,19 +38,21 @@ class TokenProvider(
 ) : InitializingBean {
 
     private lateinit var key: SecretKey
-    private val AUTHORITIES_KEY = "auth"
+    companion object{
+        private const val AUTHORITIES_KEY = "auth"
+    }
 
     override fun afterPropertiesSet() {
         this.key = SecretKeySpec(secret.toByteArray(), "HmacSHA256")
     }
 
-    fun createToken(authUser: AuthUser): String {
+    fun createToken(authCustomer: AuthCustomer): String {
         val now = Date().time
         val validity = Date(now + tokenValidityInMilliseconds)
 
         val claimsSet = JWTClaimsSet.Builder()
-            .subject(authUser.username)
-            .claim(AUTHORITIES_KEY, authUser.authorities.toString())
+            .subject(authCustomer.username)
+            .claim(AUTHORITIES_KEY, authCustomer.authorities.toString())
             .expirationTime(validity)
             .build()
 
@@ -60,7 +62,7 @@ class TokenProvider(
         }
     }
 
-    fun getAuthentication(token: String?): Authentication? {
+    fun getAuthentication(token: String): Authentication? {
         val signedJWT = SignedJWT.parse(token)
 
         if (signedJWT.verify(MACVerifier(key))) {
@@ -69,19 +71,17 @@ class TokenProvider(
                 .map { role -> SimpleGrantedAuthority(role) }
                 .toList()
 
-//          // OAuth 로그인 할 때
-//            val user: User = userRepository.findByProviderId(claims.subject)
-            val user = userRepository.findByEmail(claims.subject)
-                ?: throw NotFoundException(Domain.USER)
+            val customer = customerRepository.findByEmail(claims.subject)
+                ?: throw NotFoundException(Domain.CUSTOMER)
 
-            val authUser = AuthUser(user)
-            return UsernamePasswordAuthenticationToken(authUser, token, authorities)
-        } else throw IllegalArgumentException("Invalid JWT token")
+            val authCustomer = AuthCustomer(customer)
+            return UsernamePasswordAuthenticationToken(authCustomer, token, authorities)
+        }
 
-        return null
+        throw IllegalArgumentException("Invalid JWT token")
     }
 
-    fun validateToken(token: String?): Boolean {
+    fun validateToken(token: String): Boolean {
         return try {
             val signedJWT = SignedJWT.parse(token)
             val verifier: JWSVerifier = MACVerifier(key)
@@ -105,13 +105,13 @@ class TokenProvider(
         }
     }
 
-    fun createRefreshToken(authUser: AuthUser): String {
+    fun createRefreshToken(authCustomer: AuthCustomer): String {
         val now = Date().time
         val validity = Date(now + refreshTokenValidityInMilliseconds)
 
         val claimsSet = JWTClaimsSet.Builder()
-            .subject(authUser.username)
-            .claim(AUTHORITIES_KEY, authUser.authorities.toString())
+            .subject(authCustomer.username)
+            .claim(AUTHORITIES_KEY, authCustomer.authorities.toString())
             .expirationTime(validity)
             .build()
 
