@@ -9,8 +9,17 @@ class AuthCustomer(private val customer: Customer): UserDetails {
 
     val customerId = customer.id
 
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority> =
-        mutableListOf<GrantedAuthority>( SimpleGrantedAuthority("ROLE_" + customer.role.toString()) )
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
+        val authorities = mutableListOf<GrantedAuthority>()
+
+        customer.customerAuthorities.forEach {
+            val grantedAuthority = SimpleGrantedAuthority("ROLE_$it")
+            authorities.add(grantedAuthority)
+        }
+
+        return authorities
+    }
+
 
     override fun getPassword(): String  = customer.password
 
