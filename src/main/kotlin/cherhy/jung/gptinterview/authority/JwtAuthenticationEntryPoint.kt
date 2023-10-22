@@ -1,19 +1,21 @@
 package cherhy.jung.gptinterview.authority
 
-import org.springframework.http.HttpStatus
-import org.springframework.security.access.AccessDeniedException
-import org.springframework.security.web.server.authorization.ServerAccessDeniedHandler
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
+import org.springframework.security.core.AuthenticationException
+import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.stereotype.Component
-import org.springframework.web.server.ServerWebExchange
-import reactor.core.publisher.Mono
 import java.io.IOException
 
 @Component
-class JwtAuthenticationEntryPoint : ServerAccessDeniedHandler {
+class JwtAuthenticationEntryPoint : AuthenticationEntryPoint {
     @Throws(IOException::class)
-    override fun handle(exchange: ServerWebExchange, e: AccessDeniedException): Mono<Void> {
-        return Mono.fromRunnable {
-            exchange.response.statusCode = HttpStatus.UNAUTHORIZED
-        }
+    override fun commence(
+        request: HttpServletRequest?,
+        response: HttpServletResponse?,
+        authException: AuthenticationException?
+    ) {
+        response?.sendError(HttpServletResponse.SC_UNAUTHORIZED);
     }
+
 }
