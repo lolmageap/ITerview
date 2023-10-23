@@ -8,6 +8,9 @@ data class CustomerRequest(
     val email: String,
     var password: String,
 ) {
+
+    val salt: String = generateSalt()
+
     fun changePassword(password: String) {
         this.password = password
     }
@@ -18,6 +21,16 @@ data class CustomerRequest(
         return "$now-$uuid"
     }
 
+    private fun generateSalt(): String {
+        return UUID.randomUUID().toString().replace("-", "")
+    }
+
 }
 
-fun CustomerRequest.toCustomer(): Customer = Customer(name, email, password, generateToken())
+fun CustomerRequest.toCustomer(): Customer = Customer(
+    name = name,
+    email = email,
+    password = password,
+    token = generateToken(),
+    salt = salt,
+)
