@@ -1,10 +1,13 @@
 package cherhy.jung.gptinterview.domain.customer
 
-import cherhy.jung.gptinterview.util.BaseEntity
-import jakarta.persistence.Entity
+import jakarta.persistence.*
 
 
 @Entity
 class CustomerAuthority(
-    role: CustomerRole
-) : BaseEntity()
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = 0,
+    @Enumerated(EnumType.STRING)
+    val role: CustomerRole,
+)
