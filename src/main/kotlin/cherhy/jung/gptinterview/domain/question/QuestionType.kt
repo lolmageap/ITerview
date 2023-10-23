@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.domain
+package cherhy.jung.gptinterview.domain.question
 
 enum class QuestionType(private val text: String) {
     DATABASE("데이터베이스"),

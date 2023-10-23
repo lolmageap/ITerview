@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.domain
+package cherhy.jung.gptinterview.domain.question
 
 enum class ProgramingType(private val text: String) {
     JAVA("자바"),

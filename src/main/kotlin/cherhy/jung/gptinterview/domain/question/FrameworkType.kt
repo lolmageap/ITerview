@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.domain
+package cherhy.jung.gptinterview.domain.question
 
 enum class FrameworkType(private val language: ProgramingType) {
     SPRING(ProgramingType.JAVA),
