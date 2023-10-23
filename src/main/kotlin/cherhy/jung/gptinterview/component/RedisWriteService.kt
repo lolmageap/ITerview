@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 class RedisWriteService(
     private val redisTemplate: RedisTemplate<String, Any>,
 
-    @Value("\${jwt.refresh-token-validity-in-seconds")
+    @Value("\${jwt.refresh-token-validity-in-seconds}")
     private val refreshTokenValidityInMilliseconds: String,
 ) {
 

@@ -33,7 +33,7 @@ class TokenProvider(
     @Value("\${jwt.token-validity-in-seconds}")
     private val tokenValidityInMilliseconds: String,
 
-    @Value("\${jwt.refresh-token-validity-in-seconds")
+    @Value("\${jwt.refresh-token-validity-in-seconds}")
     private val refreshTokenValidityInMilliseconds: String,
 ) : InitializingBean {
 
@@ -67,8 +67,9 @@ class TokenProvider(
 
         if (signedJWT.verify(MACVerifier(key))) {
             val claims = signedJWT.jwtClaimsSet
-            val authorities: Collection<GrantedAuthority> = claims.getStringClaim(AUTHORITIES_KEY).split(",")
-                .map { role -> SimpleGrantedAuthority(role) }
+            val authorities: Collection<GrantedAuthority> = claims.getStringClaim(AUTHORITIES_KEY)
+                .split(",")
+                .map(::SimpleGrantedAuthority)
                 .toList()
 
             val customer = customerRepository.findByEmail(claims.subject)
@@ -86,13 +87,8 @@ class TokenProvider(
             val signedJWT = SignedJWT.parse(token)
             val verifier: JWSVerifier = MACVerifier(key)
 
-            if (signedJWT.verify(verifier)) {
-//                val claims: JWTClaimsSet = signedJWT.jwtClaimsSet
-                true
-            } else {
-                log.info("validateToken = {}", token)
-                false
-            }
+            signedJWT.verify(verifier)
+            true
         } catch (e: JOSEException) {
             log.info("JWT 토큰이 만료되었습니다, detail: {}", e.toString())
             false
