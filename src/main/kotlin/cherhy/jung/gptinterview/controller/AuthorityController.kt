@@ -1,6 +1,7 @@
 package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.authority.*
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -14,11 +15,11 @@ class AuthorityController(private val authCustomerService: AuthCustomerService) 
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/sign-in")
-    fun signIn(@RequestBody signInRequest: SignInRequest) = authCustomerService.signIn(signInRequest.toCustomerRequest())
+    fun signIn(@Valid @RequestBody signInRequest: SignInRequest) = authCustomerService.signIn(signInRequest.toCustomerRequest())
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/sign-up")
-    fun signUp(@RequestBody signUpRequest: SignUpRequest) = authCustomerService.signUp(signUpRequest.toCustomerRequest())
+    fun signUp(@Valid @RequestBody signUpRequest: SignUpRequest) = authCustomerService.signUp(signUpRequest.toCustomerRequest())
 
     @PostMapping("/sign-out")
     fun signOut() {}

@@ -1,9 +1,11 @@
 package cherhy.jung.gptinterview.authority
 
 import cherhy.jung.gptinterview.domain.customer.CustomerRequest
+import jakarta.validation.constraints.Email
 import java.util.UUID
 
 data class SignInRequest(
+    @field:Email
     val email: String,
     val password: String,
 )
@@ -17,6 +19,7 @@ fun SignInRequest.toCustomerRequest() : CustomerRequest {
 }
 
 data class SignUpRequest(
+    @field:Email
     val email: String,
     var password: String,
     val confirmPassword: String,
