@@ -8,8 +8,8 @@ services:
       - discovery.type=single-node
       - xpack.security.enabled=false
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "9199:9200"
+      - "9299:9300"
 
   mysql:
     image: mysql:latest
@@ -19,12 +19,12 @@ services:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: interview
     ports:
-      - "3306:3306"
+      - "3501:3306"
   redis_container:
     image: redis:latest
     container_name: redis_dev
     ports:
-      - 6379:6379
+      - "6397:6379"
     volumes:
       - ./redis/data:/data
       - ./redis/conf/redis.conf:/usr/local/conf/redis.conf
