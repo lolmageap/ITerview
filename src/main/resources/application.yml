@@ -3,7 +3,7 @@ spring:
     name: gpt-interview
 
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/interview
+    url: jdbc:mysql://mysql:3306/interview
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -26,6 +26,6 @@ api-key: your-open-ai-api-key
 
 jwt:
   header: Authorization
-  secret: your-secret-jwt-key
+  secret: aW5jaGVvbi1hbmQtYnVjaGVvbi1sZWFmeS1wcm9qZWN0LWphdmEtc3ByaW5nLWJhY2tlbmQtcmVhY3QtYW5kLXR5cGVzcGlyLWZyb250ZW5kLWp3dC1zZWNyZXQta2V5
   token-validity-in-seconds: 10800
   refresh-token-validity-in-seconds: 86400
