@@ -30,14 +30,17 @@ class AuthCustomerService(
 
     override fun loadUserByUsername(username: String): UserDetails {
         return customerRepository.findByEmail(username)
-            ?.let { AuthCustomer(it) }
+            ?. let { AuthCustomer(it) }
             ?: throw NotFoundException(Domain.CUSTOMER)
     }
 
     fun signIn(customerRequest: CustomerRequest): TokenResponse {
-        val authenticationToken = UsernamePasswordAuthenticationToken(customerRequest.email, customerRequest.password)
-        val authentication: Authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken)
+        val salt = customerRepository.findByEmail(customerRequest.email)
+            ?. let { it.salt }
+            ?: throw NotFoundException(Domain.CUSTOMER)
 
+        val authenticationToken = UsernamePasswordAuthenticationToken(customerRequest.email, customerRequest.password + salt)
+        val authentication: Authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken)
         val authCustomer = authentication.principal as AuthCustomer
 
         val role = authentication.authorities
@@ -50,12 +53,12 @@ class AuthCustomerService(
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer $jwt")
 
         redisWriteService.addJwtToken(jwt, refreshToken)
-        return TokenResponse(jwt, role, authCustomer.customerId)
+        return TokenResponse(jwt, role, authCustomer.token)
     }
 
     fun signUp(customerRequest: CustomerRequest) {
         duplicationEmailCheck(customerRequest.email)
-        val encodedPassword = passwordEncoder.encode(customerRequest.password)
+        val encodedPassword = passwordEncoder.encode(customerRequest.password + customerRequest.salt)
         customerRequest.changePassword(encodedPassword)
         customerRepository.save( customerRequest.toCustomer() )
     }
