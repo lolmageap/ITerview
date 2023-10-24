@@ -19,3 +19,5 @@
 5. terminal에서 ' docker-compose up ' 명령어를 실행한다.
 6. application을 실행시킨다.
 
+## 질문 메뉴 설계 예시
+![image](https://github.com/lolmageap/interview-gpt/assets/96738163/5feaad31-adf4-4371-8866-2d7bd477206f)
