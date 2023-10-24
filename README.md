@@ -20,4 +20,4 @@
 6. application을 실행시킨다.
 
 ## 질문 메뉴 설계 예시
-![image](https://github.com/lolmageap/interview-gpt/assets/96738163/5feaad31-adf4-4371-8866-2d7bd477206f)
+![image](https://github.com/lolmageap/interview-gpt/assets/96738163/bd10c43d-0c25-4a00-ab71-41c5fb9402f5)
