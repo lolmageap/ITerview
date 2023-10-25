@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController
 class GptController(private val gptApi: GptApi) {
 
     @PostMapping
-    fun get(@RequestBody question: String) = gptApi.generateText(question)
+    fun postAndGet(@RequestBody question: String) = gptApi.generateText(question)
 
 }
