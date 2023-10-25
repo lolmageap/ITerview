@@ -116,10 +116,13 @@ INSERT INTO question (id, created_at, modified_at, title, token, question_type, 
 VALUES (0, NOW(), NOW(), '쓰레싱(Thrashing)이란 무엇이며 어떤 상황에서 발생하나요?', SUBSTRING(UUID(), 1, 12), 'OS', 4);
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level) 
-VALUES (0, NOW(), NOW(), '트랩(Trap)과 인터럽트(Interrupt)의 차이를 설명해주세요.', SUBSTRING(UUID(), 1, 12), 'OS', 2);
+VALUES (0, NOW(), NOW(), '인터럽트(Interrupt)란 무엇인가요?', SUBSTRING(UUID(), 1, 12), 'OS', 2);
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level) 
 VALUES (0, NOW(), NOW(), '파일 디스크립터(File Descriptor)가 무엇인가요?', SUBSTRING(UUID(), 1, 12), 'OS', 2);
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), '스레드의 상호 배제(Mutual Exclusion)가 무엇이며 왜 필요한가요?', SUBSTRING(UUID(), 1, 12), 'OS', 4);
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level) 
 VALUES (0, NOW(), NOW(), '스택 오버플로우(Stack Overflow)가 무엇이며 어떻게 발생하나요?', SUBSTRING(UUID(), 1, 12), 'OS', 2);
@@ -134,7 +137,7 @@ INSERT INTO question (id, created_at, modified_at, title, token, question_type, 
 VALUES (0, NOW(), NOW(), '프로세스의 우선순위를 어떻게 정할 수 있나요?', SUBSTRING(UUID(), 1, 12), 'OS', 3);
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level) 
-VALUES (0, NOW(), NOW(), '소프트웨어 인터럽트(Software Interrupt)와 하드웨어 인터럽트(Hardware Interrupt)의 차이를 설명해주세요.', SUBSTRING(UUID(), 1, 12), 'OS', 4);
+VALUES (0, NOW(), NOW(), '소프트웨어 인터럽트(Software Interrupt)와 하드웨어 인터럽트(Hardware Interrupt)의 차이를 설명해주세요.', SUBSTRING(UUID(), 1, 12), 'OS', 5);
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level) 
 VALUES (0, NOW(), NOW(), '프로세스의 우선순위를 어떻게 조절할 수 있나요?', SUBSTRING(UUID(), 1, 12), 'OS', 4);
