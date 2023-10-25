@@ -13,6 +13,8 @@ class Question(
     val questionType: QuestionType,
 
     val token: String,
+
+    val level: Int,
 ) : BaseEntity() {
 
 }
