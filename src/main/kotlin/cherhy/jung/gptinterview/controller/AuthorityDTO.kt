@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.authority
+package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.domain.customer.CustomerRequest
 import jakarta.validation.constraints.Email
