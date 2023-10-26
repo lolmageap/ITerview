@@ -11,8 +11,7 @@ enum class ProgramingType() {
     KOTLIN,
     PYTHON,
     SWIFT,
-    HTML,
+    CSS,
     GO,
     PHP,
-    OTHER,
 }

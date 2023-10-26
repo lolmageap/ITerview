@@ -3,10 +3,9 @@ package cherhy.jung.gptinterview.domain.question
 // 1:1 == Question : QuestionType
 enum class FrameworkType() {
     SPRING,
-    VIEW,
     REACT,
-    ANGULAR,
     EXPRESS,
+    NEXT,
     NEST,
     DJANGO,
     FLASK,
@@ -14,5 +13,4 @@ enum class FrameworkType() {
     UNITY,
     DOTNET,
     LARAVEL,
-    OTHER,
 }

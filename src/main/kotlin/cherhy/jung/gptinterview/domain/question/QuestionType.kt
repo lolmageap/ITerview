@@ -14,4 +14,3 @@ enum class QuestionType() {
     PROGRAMING,
     FRAMEWORK,
 }
-
