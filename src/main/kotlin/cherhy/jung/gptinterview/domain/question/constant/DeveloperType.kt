@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.domain.question
+package cherhy.jung.gptinterview.domain.question.constant
 
 // N:M == Question : DeveloperType
 enum class DeveloperType() {

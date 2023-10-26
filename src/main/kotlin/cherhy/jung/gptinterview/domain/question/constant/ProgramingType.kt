@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.domain.question
+package cherhy.jung.gptinterview.domain.question.constant
 
 // 1:1 == Question : ProgramingType
 enum class ProgramingType() {
