@@ -1,7 +1,6 @@
 package cherhy.jung.gptinterview.domain.customer
 
-import java.time.LocalDate
-import java.util.UUID
+import cherhy.jung.gptinterview.util.Generator
 
 data class CustomerRequest(
     val name: String,
@@ -9,20 +8,10 @@ data class CustomerRequest(
     var password: String,
 ) {
 
-    val salt: String = generateSalt()
+    val salt: String = Generator.generateSalt()
 
     fun changePassword(password: String) {
         this.password = password
-    }
-
-    fun generateToken(): String {
-        val now = LocalDate.now().toString().replace("-", "")
-        val uuid = UUID.randomUUID().toString().replace("-", "")
-        return "$now-$uuid"
-    }
-
-    private fun generateSalt(): String {
-        return UUID.randomUUID().toString().replace("-", "")
     }
 
 }
@@ -31,6 +20,6 @@ fun CustomerRequest.toCustomer(): Customer = Customer(
     name = name,
     email = email,
     password = password,
-    token = generateToken(),
+    token = Generator.generateToken(),
     salt = salt,
 )
