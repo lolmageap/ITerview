@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.authority
 
-import cherhy.jung.gptinterview.component.RedisReadService
+import cherhy.jung.gptinterview.dependency.RedisReadService
 import jakarta.servlet.FilterChain
 import jakarta.servlet.ServletException
 import jakarta.servlet.ServletRequest

@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.component
+package cherhy.jung.gptinterview.dependency
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity

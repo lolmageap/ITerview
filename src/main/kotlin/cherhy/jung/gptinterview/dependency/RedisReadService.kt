@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.component
+package cherhy.jung.gptinterview.dependency
 
 import cherhy.jung.gptinterview.annotation.ReadService
 import org.springframework.data.redis.core.RedisTemplate

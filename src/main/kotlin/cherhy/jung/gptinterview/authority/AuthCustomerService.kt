@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.authority
 
-import cherhy.jung.gptinterview.component.RedisWriteService
+import cherhy.jung.gptinterview.dependency.RedisWriteService
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.domain.customer.CustomerRequest
 import cherhy.jung.gptinterview.domain.customer.toCustomer
