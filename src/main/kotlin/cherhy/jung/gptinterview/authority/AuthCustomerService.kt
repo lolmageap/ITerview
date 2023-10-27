@@ -4,7 +4,7 @@ import cherhy.jung.gptinterview.component.RedisWriteService
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.domain.customer.CustomerRequest
 import cherhy.jung.gptinterview.domain.customer.toCustomer
-import cherhy.jung.gptinterview.exception.Domain
+import cherhy.jung.gptinterview.exception.DomainName
 import cherhy.jung.gptinterview.exception.ExistException
 import cherhy.jung.gptinterview.exception.NotFoundException
 import cherhy.jung.gptinterview.exception.Property
@@ -31,13 +31,13 @@ class AuthCustomerService(
     override fun loadUserByUsername(username: String): UserDetails {
         return customerRepository.findByEmail(username)
             ?. let { AuthCustomer(it) }
-            ?: throw NotFoundException(Domain.CUSTOMER)
+            ?: throw NotFoundException(DomainName.CUSTOMER)
     }
 
     fun signIn(customerRequest: CustomerRequest): TokenResponse {
         val salt = customerRepository.findByEmail(customerRequest.email)
             ?. let { it.salt }
-            ?: throw NotFoundException(Domain.CUSTOMER)
+            ?: throw NotFoundException(DomainName.CUSTOMER)
 
         val authenticationToken = UsernamePasswordAuthenticationToken(customerRequest.email, customerRequest.password + salt)
         val authentication: Authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken)

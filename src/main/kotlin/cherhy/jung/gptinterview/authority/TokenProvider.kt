@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.authority
 
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
-import cherhy.jung.gptinterview.exception.Domain
+import cherhy.jung.gptinterview.exception.DomainName
 import cherhy.jung.gptinterview.exception.NotFoundException
 import cherhy.jung.gptinterview.util.log
 import com.nimbusds.jose.JOSEException
@@ -73,7 +73,7 @@ class TokenProvider(
                 .toList()
 
             val customer = customerRepository.findByEmail(claims.subject)
-                ?: throw NotFoundException(Domain.CUSTOMER)
+                ?: throw NotFoundException(DomainName.CUSTOMER)
 
             val authCustomer = AuthCustomer(customer)
             return UsernamePasswordAuthenticationToken(authCustomer, token, authorities)
