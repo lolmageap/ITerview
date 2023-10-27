@@ -10,4 +10,5 @@ import jakarta.persistence.Enumerated
 class FrameworkMenu(
     @Enumerated(EnumType.STRING)
     val frameworkType: FrameworkType,
-) : BaseEntity()
+    id: Long = 0,
+) : BaseEntity(id)

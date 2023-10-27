@@ -25,15 +25,15 @@ internal class InitQuestion(
         fun init() {
             questionMenuRepository.saveAll(
                 mutableListOf(
-                    QuestionMenu(QuestionType.DATABASE),
-                    QuestionMenu(QuestionType.NETWORK),
-                    QuestionMenu(QuestionType.DESIGN_PATTERN),
-                    QuestionMenu(QuestionType.TEST),
-                    QuestionMenu(QuestionType.OS),
-                    QuestionMenu(QuestionType.STRUCTURE),
-                    QuestionMenu(QuestionType.VCS),
-                    QuestionMenu(QuestionType.PROGRAMING),
-                    QuestionMenu(QuestionType.FRAMEWORK),
+                    QuestionMenu(QuestionType.DATABASE, id = 1),
+                    QuestionMenu(QuestionType.NETWORK, id = 2),
+                    QuestionMenu(QuestionType.DESIGN_PATTERN, id = 3),
+                    QuestionMenu(QuestionType.TEST, id = 4),
+                    QuestionMenu(QuestionType.OS, id = 5),
+                    QuestionMenu(QuestionType.STRUCTURE, id = 6),
+                    QuestionMenu(QuestionType.VCS, id = 7),
+                    QuestionMenu(QuestionType.PROGRAMING, id = 8),
+                    QuestionMenu(QuestionType.FRAMEWORK, id = 9),
                 )
             )
         }

@@ -26,17 +26,17 @@ internal class InitFramework(
         fun init() {
             frameworkRepository.saveAll(
                 mutableListOf(
-                    FrameworkMenu(FrameworkType.SPRING),
-                    FrameworkMenu(FrameworkType.REACT),
-                    FrameworkMenu(FrameworkType.EXPRESS),
-                    FrameworkMenu(FrameworkType.NEXT),
-                    FrameworkMenu(FrameworkType.NEST),
-                    FrameworkMenu(FrameworkType.DJANGO),
-                    FrameworkMenu(FrameworkType.FLASK),
-                    FrameworkMenu(FrameworkType.FAST_API),
-                    FrameworkMenu(FrameworkType.UNITY),
-                    FrameworkMenu(FrameworkType.DOTNET),
-                    FrameworkMenu(FrameworkType.LARAVEL),
+                    FrameworkMenu(FrameworkType.SPRING, id = 1),
+                    FrameworkMenu(FrameworkType.REACT, id = 2),
+                    FrameworkMenu(FrameworkType.EXPRESS, id = 3),
+                    FrameworkMenu(FrameworkType.NEXT, id = 4),
+                    FrameworkMenu(FrameworkType.NEST, id = 5),
+                    FrameworkMenu(FrameworkType.DJANGO, id = 6),
+                    FrameworkMenu(FrameworkType.FLASK, id = 7),
+                    FrameworkMenu(FrameworkType.FAST_API, id = 8),
+                    FrameworkMenu(FrameworkType.UNITY, id = 9),
+                    FrameworkMenu(FrameworkType.DOTNET, id = 10),
+                    FrameworkMenu(FrameworkType.LARAVEL, id = 11),
                 )
             )
         }

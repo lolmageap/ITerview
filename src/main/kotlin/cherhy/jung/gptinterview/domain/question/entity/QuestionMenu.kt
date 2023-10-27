@@ -11,5 +11,6 @@ class QuestionMenu(
 
     @Enumerated(EnumType.STRING)
     val questionType: QuestionType,
+    id: Long = 0,
 
 ) : BaseEntity()
