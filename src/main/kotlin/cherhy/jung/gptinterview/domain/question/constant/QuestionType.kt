@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.domain.question
+package cherhy.jung.gptinterview.domain.question.constant
 
 // 1:1 == Question : QuestionType, require
 // N:M == QuestionType : DeveloperType
@@ -14,4 +14,3 @@ enum class QuestionType() {
     PROGRAMING,
     FRAMEWORK,
 }
-
