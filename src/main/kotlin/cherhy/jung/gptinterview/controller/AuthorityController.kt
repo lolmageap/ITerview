@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/authority")
-class AuthorityController(private val authCustomerService: AuthCustomerService) {
+class AuthorityController(
+    private val authCustomerService: AuthCustomerService,
+) {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/sign-in")
-    fun signIn(@Valid @RequestBody signInRequest: SignInRequest) = authCustomerService.signIn(signInRequest.toCustomerRequest())
+    fun signIn(@Valid @RequestBody signInRequest: SignInRequest) =
+        authCustomerService.signIn(signInRequest.toCustomerRequest())
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/sign-up")
-    fun signUp(@Valid @RequestBody signUpRequest: SignUpRequest) = authCustomerService.signUp(signUpRequest.toCustomerRequest())
+    fun signUp(@Valid @RequestBody signUpRequest: SignUpRequest) =
+        authCustomerService.signUp(signUpRequest.toCustomerRequest())
 
     @PostMapping("/sign-out")
     fun signOut() {}

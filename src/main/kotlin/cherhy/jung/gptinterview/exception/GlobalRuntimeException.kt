@@ -2,15 +2,12 @@ package cherhy.jung.gptinterview.exception
 
 import java.util.concurrent.ConcurrentHashMap
 
-abstract class GlobalRuntimeException(message: String? = null) : RuntimeException() {
-
-
-    private val validation: MutableMap<String, String> = ConcurrentHashMap()
+abstract class GlobalRuntimeException(
+    message: String? = null,
+    private val validation: MutableMap<String, String> = ConcurrentHashMap(),
+) : RuntimeException() {
 
     override val message: String? = message
-
-    abstract val code: Int
-
 
     open fun addValidation(fieldName: String, message: String) {
         validation[fieldName] = message

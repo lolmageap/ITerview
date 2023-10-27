@@ -13,8 +13,11 @@ import org.springframework.web.client.RestTemplate
 class GptApi(
     @Value("\${api-key}")
     private val API_KEY: String,
-    private val ENDPOINT: String = "https://api.openai.com/v1/completions",
 ) {
+
+    companion object {
+        private const val ENDPOINT: String = "https://api.openai.com/v1/completions"
+    }
 
 //    temperature 는 생성된 텍스트의 다양성을 조절
 //    max tokens 는 생성된 텍스트의 최대 길이를 제한

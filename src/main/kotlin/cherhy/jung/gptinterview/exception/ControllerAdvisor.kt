@@ -1,53 +1,52 @@
 package cherhy.jung.gptinterview.exception
 
-import org.springframework.http.ResponseEntity
+import org.springframework.http.HttpStatus
 import org.springframework.validation.FieldError
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import java.lang.IllegalArgumentException
 
 
 @RestControllerAdvice
 class ControllerAdvisor {
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException::class)
-    fun methodArgumentNotValidException(e: MethodArgumentNotValidException): ResponseEntity<Map<String, String?>>? {
-        val error = e.allErrors
+    fun methodArgumentNotValidException(e: MethodArgumentNotValidException): Map<String, String?> {
+        return e.allErrors
             .filterIsInstance<FieldError>()
             .associate { it.field to it.defaultMessage }
-
-        return ResponseEntity.badRequest().body(error)
     }
 
+    @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(ExistException::class)
-    fun existException(e: ExistException): ResponseEntity<Any> {
-        val response = ClientResponse.fail(e.message)
-        return ResponseEntity.status(e.code).body(response)
+    fun existException(e: ExistException): ClientResponse<Any> {
+        return ClientResponse.fail(e.message)
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException::class)
-    fun notFoundException(e: NotFoundException): ResponseEntity<Any> {
-        val response = ClientResponse.fail(e.message)
-        return ResponseEntity.status(e.code).body(response)
+    fun notFoundException(e: NotFoundException): ClientResponse<Any> {
+        return ClientResponse.fail(e.message)
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalArgumentException::class)
-    fun illegalArgumentException(e: IllegalArgumentException): ResponseEntity<Any> {
-        val response = ClientResponse.fail(e.message)
-        return ResponseEntity.status(801).body(response)
+    fun illegalArgumentException(e: IllegalArgumentException): ClientResponse<Any> {
+        return ClientResponse.fail(e.message)
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalStateException::class)
-    fun illegalStateException(e: IllegalStateException): ResponseEntity<Any> {
-        val response = ClientResponse.fail(e.message)
-        return ResponseEntity.status(746).body(response)
+    fun illegalStateException(e: IllegalStateException): ClientResponse<Any> {
+        return ClientResponse.fail(e.message)
     }
 
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(GlobalRuntimeException::class)
-    fun removeFailedException(e: GlobalRuntimeException): ResponseEntity<Any> {
-        val response = ClientResponse.fail(e.message)
-        return ResponseEntity.status(500).body(response)
+    fun removeFailedException(e: GlobalRuntimeException): ClientResponse<Any> {
+        return ClientResponse.fail(e.message)
     }
 
 }

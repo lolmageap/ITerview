@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class QuestionController(
-    private val questionReadService: QuestionReadService
+    private val questionReadService: QuestionReadService,
 ) {
 
     @PostMapping
