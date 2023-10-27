@@ -9,8 +9,6 @@ import jakarta.persistence.Enumerated
 @Entity
 class QuestionMenu(
 
-    val questionId: Long,
-
     @Enumerated(EnumType.STRING)
     val questionType: QuestionType,
 
