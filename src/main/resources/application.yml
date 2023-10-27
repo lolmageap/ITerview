@@ -24,7 +24,10 @@ spring:
   sql:
     init:
       mode: always
-      data-locations: classpath:sql/*.sql
+      data-locations:
+        - classpath:sql/*.sql
+        - classpath:sql/framework/*.sql
+        - classpath:sql/programing/*.sql
 
 server:
   port: 8901
