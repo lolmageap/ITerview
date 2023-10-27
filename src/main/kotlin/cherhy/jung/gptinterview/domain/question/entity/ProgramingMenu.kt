@@ -11,5 +11,6 @@ class ProgramingMenu(
 
     @Enumerated(EnumType.STRING)
     val programingType: ProgramingType,
+    id: Long = 0,
 
-) : BaseEntity()
+) : BaseEntity(id = id)
