@@ -10,7 +10,7 @@ class GptController(
     private val gptApi: GptApi,
     ) {
 
-    @PostMapping
+    @PostMapping("/")
     fun postAndGet(@RequestBody question: String) = gptApi.generateText(question)
 
 }
