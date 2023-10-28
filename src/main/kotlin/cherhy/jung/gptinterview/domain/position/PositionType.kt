@@ -1,7 +1,7 @@
-package cherhy.jung.gptinterview.domain.question.constant
+package cherhy.jung.gptinterview.domain.position
 
 // N:M == Question : DeveloperType
-enum class DeveloperType() {
+enum class PositionType() {
     GAME,
     DATA_ANALYSIS,
     DATA_ENGINEER,
@@ -14,5 +14,4 @@ enum class DeveloperType() {
     AI,
     BLOCKCHAIN,
     DBA,
-    OTHER,
 }
