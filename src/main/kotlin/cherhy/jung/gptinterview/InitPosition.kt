@@ -12,6 +12,7 @@ internal class InitPosition(
     private val initPositionService: InitPositionService,
     ) {
 
+    // question type과 연관관계 설정 init 해야함
     @PostConstruct
     fun init() {
         initPositionService.init()
