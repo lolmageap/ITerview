@@ -1,17 +1,18 @@
-package cherhy.jung.gptinterview.domain.question.entity
+package cherhy.jung.gptinterview.domain.position
 
+import cherhy.jung.gptinterview.domain.question.entity.QuestionMenu
 import cherhy.jung.gptinterview.util.BaseEntity
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.ManyToOne
 
 @Entity
-class ProgramingMapping(
+class PositionMapping(
 
     @ManyToOne(fetch = FetchType.LAZY)
-    val question: Question,
+    val questionMenu: QuestionMenu,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    val programingMenu: ProgramingMenu,
+    val positionMenu: PositionMenu,
 
 ) : BaseEntity()
