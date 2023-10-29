@@ -31,7 +31,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
-    implementation(group = "com.linecorp.kotlin-jdsl", name = "spring-data-kotlin-jdsl-starter", version = "2.0.4.RELEASE")
+    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+    kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
 
     // default
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
