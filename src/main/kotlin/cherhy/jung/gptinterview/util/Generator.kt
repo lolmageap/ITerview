@@ -7,7 +7,7 @@ object Generator {
 
     fun generateToken(): String {
         val now = LocalDate.now().toString().replace("-", "")
-        val uuid = UUID.randomUUID().toString().replace("-", "")
+        val uuid = UUID.randomUUID().toString().replace("-", "").substring(0, 12)
         return "$now-$uuid"
     }
 
