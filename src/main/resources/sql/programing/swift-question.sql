@@ -3,7 +3,7 @@ VALUES (0, NOW(), NOW(), 'Swift 언어의 특징은 무엇인가요?', SUBSTRING
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -11,7 +11,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 옵셔널(Optional)이란 무엇인가요?
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -19,7 +19,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 가드(guard) 문의 개념과 사용 방�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -27,7 +27,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 클로저(Closure)의 개념과 사용 방
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -35,7 +35,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 프로토콜(Protocol)의 개념과 사용
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -43,7 +43,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 제네릭(Generic)의 개념과 사용 방
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -51,7 +51,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 에러 처리(Error Handling)를 어떻게
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -59,7 +59,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 타입 추론(Type Inference)이란 무엇
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -67,7 +67,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 클래스(Class)와 구조체(Struct)의 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -75,7 +75,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 익스텐션(Extension)의 개념과 사�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -83,7 +83,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 프로퍼티 옵저버(Property Observer)�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -91,7 +91,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 ARC(Automatic Reference Counting)란 무�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -99,7 +99,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 튜플(Tuple)의 개념과 사용 방법�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -107,7 +107,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 옵셔널 체이닝(Optional Chaining)과 
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -115,7 +115,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 키-값 코딩(Key-Value Coding)과 키-�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -123,7 +123,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 데코더(Decoder)와 인코더(Encoder)�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -131,7 +131,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 메모리 관리에 대해 설명해주세
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -139,7 +139,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 값 타입(Value Type)과 참조 타입(Re
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -147,7 +147,7 @@ VALUES (0, NOW(), NOW(), 'Swift에서 동기(Synchronous)와 비동기(Asynchron
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -155,5 +155,5 @@ VALUES (0, NOW(), NOW(), 'Swift에서 GCD(Grand Central Dispatch)란 무엇인�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SWIFT', NOW(), NOW());

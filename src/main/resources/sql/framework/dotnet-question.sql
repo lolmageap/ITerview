@@ -3,7 +3,7 @@ VALUES (0, NOW(), NOW(), '.Net 프레임 워크 란 무엇입니까?', SUBSTRING
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -11,7 +11,7 @@ VALUES (0, NOW(), NOW(), '.Net의 중요한 구성 요소는 무엇입니까?', 
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -19,7 +19,7 @@ VALUES (0, NOW(), NOW(), 'CTS 란 무엇입니까?', SUBSTRING(UUID(), 1, 8), 'F
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -27,7 +27,7 @@ VALUES (0, NOW(), NOW(), 'CLR이란 무엇입니까?', SUBSTRING(UUID(), 1, 8), 
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -35,7 +35,7 @@ VALUES (0, NOW(), NOW(), 'CLS 란 무엇입니까?', SUBSTRING(UUID(), 1, 8), 'F
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -43,7 +43,7 @@ VALUES (0, NOW(), NOW(), 'JIT 란?', SUBSTRING(UUID(), 1, 8), 'FRAMEWORK', 2);
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -51,7 +51,7 @@ VALUES (0, NOW(), NOW(), 'MSIL이란 무엇입니까?', SUBSTRING(UUID(), 1, 8),
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -59,7 +59,7 @@ VALUES (0, NOW(), NOW(), '관리 코드와 비 관리 코드는 무엇을 의미
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -67,7 +67,7 @@ VALUES (0, NOW(), NOW(), '매니지드 코드는 어떻게 실행 되나요?', S
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -75,7 +75,7 @@ VALUES (0, NOW(), NOW(), 'ASP .Net이란 무엇입니까?', SUBSTRING(UUID(), 1,
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -83,7 +83,7 @@ VALUES (0, NOW(), NOW(), 'ASP .Net의 상태 관리를 설명하십시오.', SUB
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -91,7 +91,7 @@ VALUES (0, NOW(), NOW(), '어셈블리 란 무엇입니까? 어셈블리에는 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -99,7 +99,7 @@ VALUES (0, NOW(), NOW(), '어셈블리의 다른 부분을 설명하십시오.',
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -107,7 +107,7 @@ VALUES (0, NOW(), NOW(), 'EXE와 DLL은 무엇입니까?', SUBSTRING(UUID(), 1, 
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -115,7 +115,7 @@ VALUES (0, NOW(), NOW(), '캐싱이란 무엇입니까?', SUBSTRING(UUID(), 1, 8
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -123,7 +123,7 @@ VALUES (0, NOW(), NOW(), 'MVC 란 무엇입니까?', SUBSTRING(UUID(), 1, 8), 'F
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -131,7 +131,7 @@ VALUES (0, NOW(), NOW(), '함수와 저장 프로 시저의 차이점은 무엇�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -139,7 +139,7 @@ VALUES (0, NOW(), NOW(), 'CAS (코드 액세스 보안)를 설명하십시오.',
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -147,7 +147,7 @@ VALUES (0, NOW(), NOW(), 'GAC 란?', SUBSTRING(UUID(), 1, 8), 'FRAMEWORK', 2);
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -155,7 +155,7 @@ VALUES (0, NOW(), NOW(), '세계화와 현지화는 무엇을 의미합니까?',
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -163,7 +163,7 @@ VALUES (0, NOW(), NOW(), '가비지 콜렉터 란 무엇입니까?', SUBSTRING(U
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -171,7 +171,7 @@ VALUES (0, NOW(), NOW(), 'using 이라는 키워드는 네임스페이스를 링
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -179,7 +179,7 @@ VALUES (0, NOW(), NOW(), '3-Tier 기반의 프로젝트는 무엇인지 그리�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -187,7 +187,7 @@ VALUES (0, NOW(), NOW(), '메모리 단편화를 해결할수있는 기법은 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -195,7 +195,7 @@ VALUES (0, NOW(), NOW(), '소멸자에 virtual을 쓰는이유는 무엇인가�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -203,7 +203,7 @@ VALUES (0, NOW(), NOW(), '포함과 상속의 차이점은 무엇인가요?', SU
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -211,5 +211,5 @@ VALUES (0, NOW(), NOW(), 'STL에서 erase와 remove의 차이점은 무엇인가
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO framework_menu (id, question_id, framework_type, created_at, modified_at)
+INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'DOTNET', NOW(), NOW());

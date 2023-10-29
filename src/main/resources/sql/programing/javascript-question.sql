@@ -3,7 +3,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트(Javascript)란 무엇인가요?', S
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -11,7 +11,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트의 특징은 무엇인가요?', SUB
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -19,7 +19,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 변수의 유효 범위(scope
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -27,7 +27,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 호이스팅(hoisting)이란 
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -35,7 +35,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 클로저(closure)의 개념�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -43,7 +43,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 콜백(callback) 함수의 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -51,7 +51,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 프로토타입(prototype)의
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -59,7 +59,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 비동기(asynchronous) 처�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -67,7 +67,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 동기(synchronous)와 비동
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -75,7 +75,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 Promise의 개념과 사용 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -83,7 +83,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 async/await 키워드의 역�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -91,7 +91,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 이벤트 위임(event delega
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -99,7 +99,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 클라이언트 사이드 스
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -107,7 +107,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 AJAX의 개념과 사용 방�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -115,7 +115,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 RESTful API와 fetch API의 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -123,7 +123,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 모듈(module)의 개념과 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -131,7 +131,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 ES6(ES2015)의 주요 기능�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -139,7 +139,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 화살표 함수(arrow functi
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -147,7 +147,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 객체(object)와 배열(arra
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -155,7 +155,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 객체의 속성(property)과
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -163,7 +163,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 동적 타이핑(dynamic typi
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -171,7 +171,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 스코프 체인(scope chain)
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -179,7 +179,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 클로저의 활용 예시를
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -187,7 +187,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 생성자 함수(constructor 
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -195,7 +195,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 프로미스 체이닝(promis
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -203,7 +203,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 디바운스(debounce)와 쓰
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -211,7 +211,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 이터레이터(iterator)와 
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -219,7 +219,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 프록시(proxy)의 개념과
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -227,7 +227,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 모듈 번들러(module bundl
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -235,7 +235,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 자료구조 중 Set과 Map�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -243,7 +243,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 비동기 처리를 위한 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -251,7 +251,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 이벤트 버블링(event bub
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -259,7 +259,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 프로토타입 체인(protot
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -267,7 +267,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 프로토타입 상속(protot
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -275,7 +275,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 실행 컨텍스트(execution
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -283,7 +283,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 스코프(scope)와 클로저
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -291,7 +291,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 비동기 처리를 위한 Pr
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -299,7 +299,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 이벤트 핸들러(event han
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -307,7 +307,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 객체의 프로퍼티(proper
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -315,7 +315,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 객체의 프로퍼티(proper
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -323,7 +323,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 프로토타입(prototype)을
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -331,7 +331,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 클로저(closure)를 사용�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -339,7 +339,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 자료형의 종류와 typeof
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -347,7 +347,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 NaN과 null, undefined의 차
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -355,7 +355,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 동등 비교(==)와 일치 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -363,7 +363,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 클로저(closure)를 사용�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -371,7 +371,7 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 프로퍼티 어트리뷰트(
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -379,5 +379,5 @@ VALUES (0, NOW(), NOW(), '자바스크립트에서 스코프(scope)와 실행 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());

@@ -3,7 +3,7 @@ VALUES (0, NOW(), NOW(), 'C 언어란 무엇인가요?', SUBSTRING(UUID(), 1, 8)
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -11,7 +11,7 @@ VALUES (0, NOW(), NOW(), 'C 언어의 특징은 무엇인가요?', SUBSTRING(UUI
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -19,7 +19,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 변수와 상수의 차이점은 무엇
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -27,7 +27,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 포인터(pointer)의 역할은 무엇�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -35,7 +35,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 배열(array)과 포인터의 관계는
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -43,7 +43,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 구조체(structure)와 공용체(union
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -51,7 +51,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 함수(function)와 프로시저(proced
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -59,7 +59,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 재귀 함수(recursive function)의 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -67,7 +67,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 전역 변수와 지역 변수의 차�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -75,7 +75,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 메모리 할당과 해제의 방법은
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -83,7 +83,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 포인터와 배열의 관계를 설명
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -91,7 +91,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 문자열(string)과 문자(character)�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -99,7 +99,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 파일 입출력(file I/O)을 어떻게
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -107,7 +107,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 구조체(structure)와 포인터의 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -115,7 +115,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 동적 할당(dynamic allocation)의 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -123,7 +123,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 enum과 define의 차이점은 무엇�
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -131,7 +131,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 비트 연산자(bitwise operator)를 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -139,7 +139,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 함수 포인터(function pointer)의 �
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -147,7 +147,7 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 메모리 누수(memory leak)가 발생
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
@@ -155,5 +155,5 @@ VALUES (0, NOW(), NOW(), 'C 언어에서 포인터와 메모리 주소의 관계
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
-INSERT INTO programing_menu (id, question_id, programing_type, created_at, modified_at)
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'C', NOW(), NOW());
