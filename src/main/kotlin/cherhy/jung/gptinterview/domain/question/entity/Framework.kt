@@ -8,7 +8,7 @@ import jakarta.persistence.Enumerated
 import jakarta.persistence.OneToOne
 
 @Entity
-class FrameworkMenu(
+class Framework(
 
     @OneToOne
     val question: Question,
