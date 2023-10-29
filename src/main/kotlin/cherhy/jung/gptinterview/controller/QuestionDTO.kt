@@ -7,6 +7,7 @@ data class QuestionResponse(
     val token: String,
     val detail: String,
     val type: QuestionType,
+    val level: Int,
 ) {
     companion object {
         fun of(questionResponseS: QuestionResponseS): QuestionResponse {
@@ -14,6 +15,7 @@ data class QuestionResponse(
                 token = questionResponseS.token,
                 detail = questionResponseS.detail,
                 type = questionResponseS.type,
+                level = questionResponseS.level,
             )
         }
     }
