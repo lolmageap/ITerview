@@ -23,6 +23,14 @@ spring:
   sql:
     init:
       mode: always
+      data-locations:
+        - classpath:sql/*.sql
+        - classpath:sql/framework/*.sql
+        - classpath:sql/programing/*.sql
+
+logging:
+  level:
+    org.springframework.jdbc.datasource.init.ScriptUtils: DEBUG
 
 server:
   port: 8901
