@@ -18,6 +18,4 @@ class Question(
     val token: String,
 
     val level: Int,
-) : BaseEntity() {
-
-}
+) : BaseEntity()
