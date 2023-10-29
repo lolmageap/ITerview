@@ -9,10 +9,16 @@ import org.hibernate.annotations.SQLDelete
 @SQLDelete(sql = "update customer set deleted = true where id = ?")
 class Customer(
     var name: String,
+
     val email: String,
+
     var password: String,
+
     val salt: String,
+
+    @Column(unique = true)
     val token: String,
+
 ) : BaseDeleteEntity() {
 
     @JoinColumn(name = "customer_id")
