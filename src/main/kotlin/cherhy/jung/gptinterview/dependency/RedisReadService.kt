@@ -10,4 +10,11 @@ class RedisReadService(
     fun getJwtToken(accessToken: String): String? {
         return redisTemplate.opsForValue().get("accessToken: $accessToken") as? String
     }
+
+    fun getQuestionTokens(customerId: Long): MutableList<String> =
+        redisTemplate.opsForList()
+            .range("questionToken:$customerId", 0, -1)
+            ?.map { it.toString() }?.toMutableList()
+            ?: mutableListOf()
+
 }

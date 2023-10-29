@@ -13,13 +13,16 @@ class RedisWriteService(
     private val refreshTokenValidityInMilliseconds: String,
 ) {
 
-    fun addJwtToken(accessToken: String, refreshToken: String) {
+    fun addJwtToken(accessToken: String, refreshToken: String): Unit {
         redisTemplate.opsForValue().set(accessToken, refreshToken)
         redisTemplate.expire("accessToken: $accessToken", refreshTokenValidityInMilliseconds.toLong(), TimeUnit.MILLISECONDS)
     }
 
-    fun deleteJwtToken(accessToken: String) {
+    fun deleteJwtToken(accessToken: String) =
         redisTemplate.delete("accessToken: $accessToken")
-    }
+
+
+    fun addQuestionToken(customerId: Long, questionToken: String) =
+        redisTemplate.opsForList().rightPush("questionToken: $customerId", questionToken)
 
 }
