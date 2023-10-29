@@ -15,7 +15,7 @@ class QuestionController(
 ) {
 
     @GetMapping
-    fun getRandomQuestion() = questionReadService.getQuestion()
+    fun getRandomQuestion() = questionReadService.getQuestion().let(QuestionResponse::of)
 
     @GetMapping("/{question-type}")
     fun getQuestionByQuestionType(@PathVariable(name = "question-type") questionType: QuestionType) = "질문타입"
