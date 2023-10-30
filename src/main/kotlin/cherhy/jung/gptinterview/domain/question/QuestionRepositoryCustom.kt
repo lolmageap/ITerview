@@ -10,48 +10,59 @@ import cherhy.jung.gptinterview.domain.question.entity.Question
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 interface QuestionRepositoryCustom {
-    fun findByQuestionType(questionType: QuestionType): MutableList<Question>
-    fun findByProgramingType(programingType: ProgramingType): MutableList<Question>
-    fun findByFrameworkType(frameworkType: FrameworkType): MutableList<Question>
+    fun findByQuestionType(questionType: QuestionType, questionTokens: MutableList<String>): MutableList<Question>
+    fun findByProgramingType(programingType: ProgramingType, questionTokens: MutableList<String>): MutableList<Question>
+    fun findByFrameworkType(frameworkType: FrameworkType, questionTokens: MutableList<String>): MutableList<Question>
 }
 
-class QuestionRepositoryCustomImpl: QuestionRepositoryCustom, QuerydslRepositorySupport(Question::class.java)  {
+class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositorySupport(Question::class.java) {
 
-    override fun findByQuestionType(questionType: QuestionType): MutableList<Question> {
-        return from(question)
+    override fun findByQuestionType(
+        questionType: QuestionType,
+        questionTokens: MutableList<String>,
+    ): MutableList<Question> =
+        from(question)
             .where(
-                question.questionType.eq(questionType)
+                question.questionType.eq(questionType),
+                question.token.notIn(questionTokens),
             )
             .fetch()
             .also {
                 it.shuffle()
             }
-    }
 
-    override fun findByProgramingType(programingType: ProgramingType): MutableList<Question> {
-        return from(programing)
+
+    override fun findByProgramingType(
+        programingType: ProgramingType,
+        questionTokens: MutableList<String>,
+    ): MutableList<Question> =
+        from(programing)
             .join(programing.question, question)
             .where(
-                programing.programingType.eq(programingType)
+                programing.programingType.eq(programingType),
+                question.token.notIn(questionTokens),
             )
             .select(programing.question)
             .fetch()
             .also {
                 it.shuffle()
             }
-    }
 
-    override fun findByFrameworkType(frameworkType: FrameworkType): MutableList<Question> {
-        return from(framework)
+
+    override fun findByFrameworkType(
+        frameworkType: FrameworkType,
+        questionTokens: MutableList<String>,
+    ): MutableList<Question> =
+        from(framework)
             .join(framework.question, question)
             .where(
-                framework.frameworkType.eq(frameworkType)
+                framework.frameworkType.eq(frameworkType),
+                question.token.notIn(questionTokens),
             )
             .select(question)
             .fetch()
             .also {
                 it.shuffle()
             }
-    }
 
 }
