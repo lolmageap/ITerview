@@ -13,9 +13,9 @@ class RedisReadService(
         return redisTemplate.opsForValue().get(ACCESS_TOKEN + accessToken) as? String
     }
 
-    fun getQuestionTokens(customerId: Long): MutableList<String> =
+    fun getQuestionTokens(customerId: Long, start: Long = 0, end: Long = -1): MutableList<String> =
         redisTemplate.opsForList()
-            .range(QUESTION_TOKEN + customerId, 0, -1)
+            .range(QUESTION_TOKEN + customerId, start, end)
             ?.map { it.toString() }?.toMutableList()
             ?: mutableListOf()
 
