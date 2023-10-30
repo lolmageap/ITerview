@@ -5,6 +5,7 @@ import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseS
+import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.exception.DomainName.*
 import cherhy.jung.gptinterview.exception.NotFoundException
 
@@ -38,5 +39,9 @@ class QuestionReadService(
                 it.let(QuestionResponseS::of)
             }
             ?: throw NotFoundException(QUESTION)
+
+    fun getQuestionHistories(questionTokens: MutableList<String>): List<QuestionResponseS> =
+        questionRepository.findByTokensIn(questionTokens)
+            .map(QuestionResponseS::of)
 }
 

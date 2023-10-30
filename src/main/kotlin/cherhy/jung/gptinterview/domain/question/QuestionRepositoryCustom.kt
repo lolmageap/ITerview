@@ -13,6 +13,7 @@ interface QuestionRepositoryCustom {
     fun findByQuestionType(questionType: QuestionType, questionTokens: MutableList<String>): MutableList<Question>
     fun findByProgramingType(programingType: ProgramingType, questionTokens: MutableList<String>): MutableList<Question>
     fun findByFrameworkType(frameworkType: FrameworkType, questionTokens: MutableList<String>): MutableList<Question>
+    fun findByTokensIn(questionTokens: MutableList<String>): List<Question>
 }
 
 class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositorySupport(Question::class.java) {
@@ -64,5 +65,16 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
             .also {
                 it.shuffle()
             }
+
+    override fun findByTokensIn(questionTokens: MutableList<String>): List<Question> =
+        from(question)
+            .where(
+                question.token.`in`(questionTokens),
+            )
+            .fetch()
+            .sortedBy {
+                questionTokens.indexOf(it.token)
+            }
+            .reversed()
 
 }
