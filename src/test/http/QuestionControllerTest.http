@@ -1,19 +1,24 @@
 ###
 GET localhost:8901/question
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImV4cCI6MTY5ODY2NjczOSwiYXV0aCI6IltST0xFX01FTUJFUl0ifQ.v8Buo2XTpXlxn-JcTFzadTec25WBFrPylt5tcG9YRB4
 
 ###
 GET localhost:8901/question/DATABASE
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImV4cCI6MTY5ODY2NjczOSwiYXV0aCI6IltST0xFX01FTUJFUl0ifQ.v8Buo2XTpXlxn-JcTFzadTec25WBFrPylt5tcG9YRB4
 
 ###
 GET localhost:8901/question/PROGRAMING/JAVA
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImV4cCI6MTY5ODY2NjczOSwiYXV0aCI6IltST0xFX01FTUJFUl0ifQ.v8Buo2XTpXlxn-JcTFzadTec25WBFrPylt5tcG9YRB4
 
 ###
 GET localhost:8901/question/FRAMEWORK/SPRING
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImV4cCI6MTY5ODY2NjczOSwiYXV0aCI6IltST0xFX01FTUJFUl0ifQ.v8Buo2XTpXlxn-JcTFzadTec25WBFrPylt5tcG9YRB4
 
 ###
 GET localhost:8901/question/position/BACKEND
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImV4cCI6MTY5ODY2NjczOSwiYXV0aCI6IltST0xFX01FTUJFUl0ifQ.v8Buo2XTpXlxn-JcTFzadTec25WBFrPylt5tcG9YRB4
