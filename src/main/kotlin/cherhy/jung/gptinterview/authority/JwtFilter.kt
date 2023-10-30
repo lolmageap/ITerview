@@ -25,14 +25,16 @@ class JwtFilter(
     @Throws(IOException::class, ServletException::class)
     override fun doFilter(servletRequest: ServletRequest, servletResponse: ServletResponse?, filterChain: FilterChain) {
         val httpServletRequest: HttpServletRequest = servletRequest as HttpServletRequest
-        val jwt: String = getResolveToken(httpServletRequest)
+        val jwt: String? = getResolveToken(httpServletRequest)
 
         val authentication: Authentication? =
-            if (tokenProvider.validateToken(jwt)) {
-                tokenProvider.getAuthentication(jwt)
-            } else {
-                val refreshToken = redisReadService.getJwtToken(jwt) ?: throw AccessDeniedException("잘못된 토큰")
-                tokenProvider.getAuthentication(refreshToken)
+            jwt?.let {
+                if (tokenProvider.validateToken(jwt)) {
+                    tokenProvider.getAuthentication(jwt)
+                } else {
+                    val refreshToken = redisReadService.getJwtToken(jwt) ?: throw AccessDeniedException("잘못된 토큰")
+                    tokenProvider.getAuthentication(refreshToken)
+                }
             }
 
         SecurityContextHolder.getContext().authentication = authentication
@@ -40,10 +42,12 @@ class JwtFilter(
     }
 
 
-    private fun getResolveToken(request: HttpServletRequest): String {
-        val bearerToken: String = request.getHeader(AUTHORIZATION_HEADER)
-        if (bearerToken.startsWith("Bearer ")) return bearerToken.substring(7)
-        else throw AccessDeniedException("잘못된 토큰")
+    private fun getResolveToken(request: HttpServletRequest): String? {
+        val bearerToken: String? = request.getHeader(AUTHORIZATION_HEADER)
+        bearerToken?.let {
+            if (bearerToken.startsWith("Bearer ")) return bearerToken.substring(7)
+            else throw AccessDeniedException("잘못된 토큰")
+        } ?: return null
     }
 
 }
