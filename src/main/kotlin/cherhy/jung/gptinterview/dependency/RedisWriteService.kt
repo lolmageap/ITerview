@@ -23,6 +23,6 @@ class RedisWriteService(
 
 
     fun addQuestionToken(customerId: Long, questionToken: String) =
-        redisTemplate.opsForList().rightPush("questionToken: $customerId", questionToken)
+        redisTemplate.opsForList().rightPush("questionToken:$customerId", questionToken)
 
 }
