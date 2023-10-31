@@ -1,7 +1,25 @@
 package cherhy.jung.gptinterview.controller
 
+import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
+import cherhy.jung.gptinterview.domain.question.constant.ProgramingType
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
+import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestS
 import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseS
+
+data class QuestionRequest(
+    val questionTypes: MutableList<QuestionType>,
+    val programingTypes: MutableList<ProgramingType>,
+    val frameworkTypes: MutableList<FrameworkType>,
+)
+
+fun QuestionRequest.toQuestionRequestS(): QuestionRequestS =
+    QuestionRequestS(
+        questionTypes = questionTypes.filterNot {
+            it == QuestionType.PROGRAMING || it == QuestionType.FRAMEWORK
+        }.toMutableList(),
+        programingTypes = programingTypes,
+        frameworkTypes = frameworkTypes,
+    )
 
 data class QuestionResponse(
     val token: String,
@@ -9,6 +27,7 @@ data class QuestionResponse(
     val type: QuestionType,
     val level: Int,
 ) {
+
     companion object {
         fun of(questionResponseS: QuestionResponseS): QuestionResponse {
             return QuestionResponse(
