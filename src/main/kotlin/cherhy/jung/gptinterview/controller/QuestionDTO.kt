@@ -13,6 +13,8 @@ data class QuestionRequest(
 )
 
 fun QuestionRequest.toQuestionRequestS(): QuestionRequestS =
+    // programingTypes 가 존재 하지 않을 때만 it == QuestionType.PROGRAMING
+    // frameworkTypes 가 존재 하지 않을 때만 it == QuestionType.FRAMEWORK
     QuestionRequestS(
         questionTypes = questionTypes.filterNot {
             it == QuestionType.PROGRAMING || it == QuestionType.FRAMEWORK
