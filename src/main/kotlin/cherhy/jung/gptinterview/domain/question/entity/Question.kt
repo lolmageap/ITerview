@@ -2,19 +2,18 @@ package cherhy.jung.gptinterview.domain.question.entity
 
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.util.BaseEntity
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.EnumType
-import jakarta.persistence.Enumerated
+import jakarta.persistence.*
 
 @Entity
+@Table(indexes = [
+    Index(name = "IDX_QUESTION_TOKEN", columnList = "token", unique = true)
+])
 class Question(
     val title: String,
 
     @Enumerated(EnumType.STRING)
     val questionType: QuestionType,
 
-    @Column(unique = true)
     val token: String,
 
     val level: Int,
