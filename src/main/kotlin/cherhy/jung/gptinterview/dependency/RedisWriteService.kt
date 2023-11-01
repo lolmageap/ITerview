@@ -15,7 +15,7 @@ class RedisWriteService(
     private val refreshTokenValidityInMilliseconds: String,
 ) {
 
-    fun addJwtToken(accessToken: String, refreshToken: String): Unit {
+    fun addJwtToken(accessToken: String, refreshToken: String) {
         redisTemplate.opsForValue().set(ACCESS_TOKEN + accessToken, refreshToken)
         redisTemplate.expire(ACCESS_TOKEN + accessToken, refreshTokenValidityInMilliseconds.toLong(), TimeUnit.MILLISECONDS)
     }
