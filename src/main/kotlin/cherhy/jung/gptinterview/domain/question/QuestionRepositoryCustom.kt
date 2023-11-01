@@ -12,18 +12,18 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 interface QuestionRepositoryCustom {
     fun findByQuestionRequestS(
         questionRequestS: QuestionRequestS,
-        questionTokens: MutableList<String>
-    ): MutableList<Question>
+        questionTokens: List<String>
+    ): List<Question>
 
-    fun findByTokensIn(questionTokens: MutableList<String>): List<Question>
+    fun findByTokensIn(questionTokens: List<String>): List<Question>
 }
 
 class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositorySupport(Question::class.java) {
 
     override fun findByQuestionRequestS(
         questionRequestS: QuestionRequestS,
-        alreadyQuestion: MutableList<String>
-    ): MutableList<Question> {
+        alreadyQuestion: List<String>
+    ): List<Question> {
         val query = from(question)
 
         return query
@@ -38,24 +38,31 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
 
     private fun conditionCheck(
         questionRequestS: QuestionRequestS,
-        alreadyQuestion: MutableList<String>,
+        alreadyQuestion: List<String>,
         ): BooleanBuilder {
-        val conditions = BooleanBuilder()
 
-        questionTypeCheck(questionRequestS)?.let { conditions.or(it) }
-        programingCheck(questionRequestS)?.let { conditions.or(it) }
-        frameworkCheck(questionRequestS)?.let { conditions.or(it) }
-        return conditions.and(question.token.notIn(alreadyQuestion))
+        return BooleanBuilder().let { condition ->
+            checkQuestionType(questionRequestS)?.let { condition.or(it) }
+            checkPrograming(questionRequestS)?.let { condition.or(it) }
+            checkFramework(questionRequestS)?.let { condition.or(it) }
+            checkLevel(questionRequestS)?.let { condition.and(it) }
+            condition.and( question.token.notIn(alreadyQuestion) )
+        }
     }
 
-    private fun questionTypeCheck(questionRequestS: QuestionRequestS): BooleanExpression? {
+    private fun checkLevel(questionRequestS: QuestionRequestS): BooleanExpression? {
+        return if (questionRequestS.levels.isNotEmpty()) {
+            question.level.`in`(questionRequestS.levels)
+        } else null
+    }
+
+    private fun checkQuestionType(questionRequestS: QuestionRequestS): BooleanExpression? {
         return if (questionRequestS.questionTypes.isNotEmpty()) {
             question.questionType.`in`(questionRequestS.questionTypes)
-        }
-        else null
+        } else null
     }
 
-    private fun programingCheck(questionRequestS: QuestionRequestS): BooleanExpression? {
+    private fun checkPrograming(questionRequestS: QuestionRequestS): BooleanExpression? {
         return if (questionRequestS.programingTypes.isNotEmpty()) {
              from(programing)
                 .join(programing.question, question)
@@ -68,7 +75,7 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
         } else null
     }
 
-    private fun frameworkCheck(questionRequestS: QuestionRequestS): BooleanExpression? {
+    private fun checkFramework(questionRequestS: QuestionRequestS): BooleanExpression? {
         return if (questionRequestS.frameworkTypes.isNotEmpty()) {
             from(framework)
                 .join(framework.question, question)
@@ -82,7 +89,7 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
     }
 
 
-    override fun findByTokensIn(alreadyQuestion: MutableList<String>): List<Question> =
+    override fun findByTokensIn(alreadyQuestion: List<String>): List<Question> =
         from(question)
             .where(
                 question.token.`in`(alreadyQuestion),

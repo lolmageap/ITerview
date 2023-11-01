@@ -11,14 +11,14 @@ class QuestionReadService(
     private val questionRepository: QuestionRepository,
 ) {
 
-    fun getQuestion(questionRequestS: QuestionRequestS, alreadyQuestion: MutableList<String>): QuestionResponseS =
+    fun getQuestion(questionRequestS: QuestionRequestS, alreadyQuestion: List<String>): QuestionResponseS =
         questionRepository.findByQuestionRequestS(questionRequestS, alreadyQuestion)
             .firstNotNullOfOrNull {
                 it.let(QuestionResponseS::of)
             }
             ?: throw NotFoundException(QUESTION)
 
-    fun getQuestionHistories(alreadyQuestion: MutableList<String>): List<QuestionResponseS> =
+    fun getQuestionHistories(alreadyQuestion: List<String>): List<QuestionResponseS> =
         questionRepository.findByTokensIn(alreadyQuestion)
             .map(QuestionResponseS::of)
 }

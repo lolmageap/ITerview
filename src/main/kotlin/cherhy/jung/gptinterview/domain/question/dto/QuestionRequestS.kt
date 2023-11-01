@@ -8,4 +8,5 @@ data class QuestionRequestS(
     val questionTypes: MutableList<QuestionType>,
     val programingTypes: MutableList<ProgramingType>,
     val frameworkTypes: MutableList<FrameworkType>,
+    val levels: MutableList<Int>,
 )

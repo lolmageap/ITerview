@@ -10,6 +10,7 @@ data class QuestionRequest(
     val questionTypes: MutableList<QuestionType>,
     val programingTypes: MutableList<ProgramingType>,
     val frameworkTypes: MutableList<FrameworkType>,
+    val levels: MutableList<Int>,
 )
 
 fun QuestionRequest.toQuestionRequestS(): QuestionRequestS =
@@ -21,6 +22,7 @@ fun QuestionRequest.toQuestionRequestS(): QuestionRequestS =
         }.toMutableList(),
         programingTypes = programingTypes,
         frameworkTypes = frameworkTypes,
+        levels = levels,
     )
 
 data class QuestionResponse(
