@@ -16,7 +16,7 @@
 
 - application을 실행하면 [InitPosition.kt](src%2Fmain%2Fkotlin%2Fcherhy%2Fjung%2Fgptinterview%2FInitPosition.kt)가 메뉴 테이블을 생성해줍니다.
 
-- 메뉴 테이블이 생성된 다음 src/main/resources/sql 경로의 질문 데이터를 생성합니다.
+- 메뉴 테이블이 생성된 다음 src/main/resources/sql 경로의 질문 데이터가 Database에 Insert 됩니다.
 
 - 회원가입시 회원의 비밀번호를 저장할 때, Rainbow Table 공격을 방지하기 위해 비밀번호는 솔팅(Salting)된 상태로 저장됩니다.
 
