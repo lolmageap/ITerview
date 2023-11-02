@@ -28,7 +28,13 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
 
         return query
             .where(
-                conditionCheck(questionRequestS, alreadyQuestion)
+                BooleanBuilder().let { condition ->
+                    checkQuestionType(questionRequestS)?.let { condition.or(it) }
+                    checkPrograming(questionRequestS)?.let { condition.or(it) }
+                    checkFramework(questionRequestS)?.let { condition.or(it) }
+                    checkLevel(questionRequestS)?.let { condition.and(it) }
+                    condition.and( question.token.notIn(alreadyQuestion) )
+                }
             )
             .fetch()
             .also {
@@ -36,21 +42,7 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
             }
     }
 
-    private fun conditionCheck(
-        questionRequestS: QuestionRequestS,
-        alreadyQuestion: List<String>,
-        ): BooleanBuilder {
-
-        return BooleanBuilder().let { condition ->
-            checkQuestionType(questionRequestS)?.let { condition.or(it) }
-            checkPrograming(questionRequestS)?.let { condition.or(it) }
-            checkFramework(questionRequestS)?.let { condition.or(it) }
-            checkLevel(questionRequestS)?.let { condition.and(it) }
-            condition.and( question.token.notIn(alreadyQuestion) )
-        }
-    }
-
-    private fun checkLevel(questionRequestS: QuestionRequestS): BooleanExpression? {
+    public fun checkLevel(questionRequestS: QuestionRequestS): BooleanExpression? {
         return if (questionRequestS.levels.isNotEmpty()) {
             question.level.`in`(questionRequestS.levels)
         } else null
