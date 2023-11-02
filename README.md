@@ -1,7 +1,7 @@
 ﻿# interview-gpt
 
 ## Stack
-- Kotlin, Redis, MySQL, JPA, QueryDSL, JAVA VERSION 17, DOCKER COMPOSE, SPRING SECURITY
+- Kotlin, Redis, MySQL, JPA, QueryDSL, Docker Compose, Spring Security, JAVA VERSION 17
 
 ## 프로젝트 실행 방식
 1. 프로젝트를 clone/fork 한다.
