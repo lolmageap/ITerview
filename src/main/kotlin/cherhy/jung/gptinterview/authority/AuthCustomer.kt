@@ -13,14 +13,9 @@ class AuthCustomer(
     val token = customer.token
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        val authorities = mutableListOf<GrantedAuthority>()
-
-        customer.customerAuthorities.forEach {
-            val grantedAuthority = SimpleGrantedAuthority("ROLE_${it.role}")
-            authorities.add(grantedAuthority)
-        }
-
-        return authorities
+        return customer.customerAuthorities.map {
+            SimpleGrantedAuthority("ROLE_${it.role}") as GrantedAuthority
+        }.toMutableList()
     }
 
 
