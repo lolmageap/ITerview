@@ -1,19 +1,29 @@
 ###
 GET localhost:8901/question
 Content-Type: application/json
+Authorization: Bearer `YOUR_JSON_WEB_TOKEN`
 
-###
-GET localhost:8901/question/DATABASE
-Content-Type: application/json
-
-###
-GET localhost:8901/question/PROGRAMING/JAVA
-Content-Type: application/json
-
-###
-GET localhost:8901/question/FRAMEWORK/SPRING
-Content-Type: application/json
+{
+  "questionTypes": [
+    "DATABASE", "NETWORK"
+  ],
+  "programingTypes": [
+    "JAVA", "KOTLIN"
+  ],
+  "frameworkTypes": [
+    "SPRING"
+  ],
+  "levels": [
+    "LEVEL1", "LEVEL3"
+  ]
+}
 
 ###
 GET localhost:8901/question/position/BACKEND
 Content-Type: application/json
+Authorization: Bearer `YOUR_JSON_WEB_TOKEN`
+
+###
+GET localhost:8901/question/history
+Content-Type: application/json
+Authorization: Bearer `YOUR_JSON_WEB_TOKEN`

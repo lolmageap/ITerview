@@ -1,6 +1,8 @@
 package cherhy.jung.gptinterview.dependency
 
 import cherhy.jung.gptinterview.annotation.WriteService
+import cherhy.jung.gptinterview.dependency.RedisKey.ACCESS_TOKEN
+import cherhy.jung.gptinterview.dependency.RedisKey.QUESTION_TOKEN
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.redis.core.RedisTemplate
 import java.util.concurrent.TimeUnit
@@ -13,16 +15,16 @@ class RedisWriteService(
     private val refreshTokenValidityInMilliseconds: String,
 ) {
 
-    fun addJwtToken(accessToken: String, refreshToken: String): Unit {
-        redisTemplate.opsForValue().set(accessToken, refreshToken)
-        redisTemplate.expire("accessToken: $accessToken", refreshTokenValidityInMilliseconds.toLong(), TimeUnit.MILLISECONDS)
+    fun addJwtToken(accessToken: String, refreshToken: String) {
+        redisTemplate.opsForValue().set(ACCESS_TOKEN + accessToken, refreshToken)
+        redisTemplate.expire(ACCESS_TOKEN + accessToken, refreshTokenValidityInMilliseconds.toLong(), TimeUnit.MILLISECONDS)
     }
 
     fun deleteJwtToken(accessToken: String) =
-        redisTemplate.delete("accessToken: $accessToken")
+        redisTemplate.delete(ACCESS_TOKEN + accessToken)
 
 
     fun addQuestionToken(customerId: Long, questionToken: String) =
-        redisTemplate.opsForList().rightPush("questionToken: $customerId", questionToken)
+        redisTemplate.opsForList().rightPush(QUESTION_TOKEN + customerId, questionToken)
 
 }
