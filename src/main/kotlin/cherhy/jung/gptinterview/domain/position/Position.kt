@@ -87,6 +87,7 @@ sealed class Position {
                         ProgramingType.`C#`,
                     ),
                 )
+
                 FRONTEND -> FrontendDeveloper(
                     questionTypes = listOf(
                         QuestionType.NETWORK,
@@ -104,6 +105,7 @@ sealed class Position {
                         ProgramingType.CSS,
                     ),
                 )
+
                 SECURITY -> InformationSecurity(
                     questionTypes = listOf(
                         QuestionType.NETWORK,
@@ -116,6 +118,7 @@ sealed class Position {
                         ProgramingType.GO,
                     ),
                 )
+
                 ANDROID -> AndroidDeveloper(
                     questionTypes = listOf(
                         QuestionType.DATABASE,
@@ -136,6 +139,7 @@ sealed class Position {
                         ProgramingType.KOTLIN,
                     ),
                 )
+
                 IOS -> IosDeveloper(
                     questionTypes = listOf(
                         QuestionType.DATABASE,
@@ -151,6 +155,7 @@ sealed class Position {
                         ProgramingType.SWIFT,
                     ),
                 )
+
                 AI -> AiDeveloper(
                     questionTypes = listOf(
                         QuestionType.DATABASE,
@@ -168,6 +173,7 @@ sealed class Position {
                         ProgramingType.JAVA,
                     ),
                 )
+
                 BLOCKCHAIN -> BlockchainDeveloper(
                     questionTypes = listOf(
                         QuestionType.DATABASE,
@@ -184,6 +190,7 @@ sealed class Position {
                         ProgramingType.GO,
                     ),
                 )
+
                 DBA -> DatabaseAdministrator(
                     questionTypes = listOf(
                         QuestionType.DATABASE,
@@ -194,70 +201,3 @@ sealed class Position {
             }
     }
 }
-
-class Gamer(
-    override val questionTypes: List<QuestionType>,
-    override val frameworkTypes: List<FrameworkType> = listOf(),
-    override val programingTypes: List<ProgramingType> = listOf(),
-) : Position()
-
-class DataAnalysis(
-    override val questionTypes: List<QuestionType>,
-    override val frameworkTypes: List<FrameworkType> = listOf(),
-    override val programingTypes: List<ProgramingType> = listOf(),
-) : Position()
-
-class DataEngineer(
-    override val questionTypes: List<QuestionType>,
-    override val frameworkTypes: List<FrameworkType> = listOf(),
-    override val programingTypes: List<ProgramingType> = listOf(),
-) : Position()
-
-class BackendDeveloper(
-    override val questionTypes: List<QuestionType>,
-    override val frameworkTypes: List<FrameworkType> = listOf(),
-    override val programingTypes: List<ProgramingType> = listOf(),
-) : Position()
-
-class FrontendDeveloper(
-    override val questionTypes: List<QuestionType>,
-    override val frameworkTypes: List<FrameworkType> = listOf(),
-    override val programingTypes: List<ProgramingType> = listOf(),
-) : Position()
-
-class InformationSecurity(
-    override val questionTypes: List<QuestionType>,
-    override val frameworkTypes: List<FrameworkType> = listOf(),
-    override val programingTypes: List<ProgramingType> = listOf(),
-) : Position()
-
-class AndroidDeveloper(
-    override val questionTypes: List<QuestionType>,
-    override val frameworkTypes: List<FrameworkType> = listOf(),
-    override val programingTypes: List<ProgramingType> = listOf(),
-) : Position()
-
-class IosDeveloper(
-    override val questionTypes: List<QuestionType>,
-    override val frameworkTypes: List<FrameworkType> = listOf(),
-    override val programingTypes: List<ProgramingType> = listOf(),
-) : Position()
-
-class AiDeveloper(
-    override val questionTypes: List<QuestionType>,
-    override val frameworkTypes: List<FrameworkType> = listOf(),
-    override val programingTypes: List<ProgramingType> = listOf(),
-) : Position()
-
-class BlockchainDeveloper(
-    override val questionTypes: List<QuestionType>,
-    override val frameworkTypes: List<FrameworkType> = listOf(),
-    override val programingTypes: List<ProgramingType> = listOf(),
-) : Position()
-
-class DatabaseAdministrator(
-    override val questionTypes: List<QuestionType>,
-    override val frameworkTypes: List<FrameworkType> = listOf(),
-    override val programingTypes: List<ProgramingType> = listOf(),
-) : Position()
-
