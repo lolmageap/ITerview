@@ -10,9 +10,8 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 internal class InitPosition(
     private val initPositionService: InitPositionService,
-    ) {
+) {
 
-    // question type과 연관관계 설정 init 해야함
     @PostConstruct
     fun init() {
         initPositionService.init()
@@ -33,11 +32,10 @@ internal class InitPosition(
                     PositionMenu(PositionType.FRONTEND, id = 5),
                     PositionMenu(PositionType.SECURITY, id = 6),
                     PositionMenu(PositionType.ANDROID, id = 7),
-                    PositionMenu(PositionType.WEB, id = 8),
-                    PositionMenu(PositionType.PUBLISHER, id = 9),
-                    PositionMenu(PositionType.AI, id = 10),
-                    PositionMenu(PositionType.BLOCKCHAIN, id = 11),
-                    PositionMenu(PositionType.DBA, id = 12),
+                    PositionMenu(PositionType.IOS, id = 8),
+                    PositionMenu(PositionType.AI, id = 9),
+                    PositionMenu(PositionType.BLOCKCHAIN, id = 10),
+                    PositionMenu(PositionType.DBA, id = 11),
                 )
             )
         }
