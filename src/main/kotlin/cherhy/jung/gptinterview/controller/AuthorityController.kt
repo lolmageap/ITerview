@@ -15,13 +15,13 @@ class AuthorityController(
     private val authCustomerService: AuthCustomerService,
 ) {
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/sign-in")
+    @ResponseStatus(HttpStatus.CREATED)
     fun signIn(@Valid @RequestBody signInRequest: SignInRequest) =
         authCustomerService.signIn(signInRequest.toCustomerRequest())
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/sign-up")
+    @ResponseStatus(HttpStatus.CREATED)
     fun signUp(@Valid @RequestBody signUpRequest: SignUpRequest) =
         authCustomerService.signUp(signUpRequest.toCustomerRequest())
 
