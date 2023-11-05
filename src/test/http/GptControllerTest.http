@@ -1,4 +1,4 @@
-###
+### 실행하기 전 먼저 로그인을 한 뒤 토큰을 입력해주세요.
 POST localhost:8901
 Content-Type: application/json
 
