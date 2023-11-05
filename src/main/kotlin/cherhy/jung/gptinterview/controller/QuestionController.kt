@@ -3,12 +3,12 @@ package cherhy.jung.gptinterview.controller
 import cherhy.jung.gptinterview.authority.AuthCustomer
 import cherhy.jung.gptinterview.dependency.RedisReadService
 import cherhy.jung.gptinterview.dependency.RedisWriteService
-import cherhy.jung.gptinterview.domain.position.PositionType
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.util.getEnd
 import cherhy.jung.gptinterview.util.getStart
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
+import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
@@ -25,6 +25,7 @@ class QuestionController(
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     fun getRandomQuestion(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @RequestBody questionRequest: QuestionRequest,
@@ -40,6 +41,7 @@ class QuestionController(
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/history")
+    @ResponseStatus(HttpStatus.OK)
     fun getQuestionHistory(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @PageableDefault(size = 20, page = 0) pageable: Pageable,
@@ -54,12 +56,5 @@ class QuestionController(
         return questionReadService.getQuestionHistories(alreadyQuestion)
             .map(QuestionResponse::of)
     }
-
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping("/position/{position-type}")
-    fun getQuestionByPositionType(
-        @PathVariable(name = "position-type") positionType: PositionType,
-        @AuthenticationPrincipal authCustomer: AuthCustomer,
-    ) = "포지션 타입"
 
 }
