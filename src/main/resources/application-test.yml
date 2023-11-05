@@ -24,6 +24,11 @@ spring:
     init:
       mode: never
 
+  data:
+    redis:
+      host: localhost
+      port: 6397
+
 server:
   port: 8901
 

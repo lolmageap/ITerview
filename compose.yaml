@@ -20,6 +20,7 @@ services:
       MYSQL_DATABASE: interview
     ports:
       - "3501:3306"
+
   redis_container:
     image: redis:latest
     container_name: redis_dev
