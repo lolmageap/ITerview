@@ -12,7 +12,7 @@ sealed class Position {
     abstract val programingTypes: List<ProgramingType>
 
     companion object{
-        fun from(positionType: PositionType): Position =
+        fun of(positionType: PositionType): Position =
             when (positionType) {
                 GAME -> Gamer(
                     questionTypes = listOf(
