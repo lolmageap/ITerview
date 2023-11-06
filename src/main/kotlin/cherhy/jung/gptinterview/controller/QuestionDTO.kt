@@ -18,19 +18,23 @@ data class QuestionRequest(
 // frameworkTypes 가 존재 하지 않을 때만 it == QuestionType.FRAMEWORK
 fun QuestionRequest.toQuestionRequestS(): QuestionRequestS =
     QuestionRequestS(
-        questionTypes = questionTypes.filterNot {
-            it == QuestionType.PROGRAMING || it == QuestionType.FRAMEWORK
-        }.toList(),
+        questionTypes = questionTypes
+            .filterNot {
+                it == QuestionType.PROGRAMING
+            }.filterNot {
+                it == QuestionType.FRAMEWORK
+            }.toList(),
+
         programingTypes = programingTypes,
         frameworkTypes = frameworkTypes,
-        levels = levels.map { it.level },
+        levels = levels,
     )
 
 data class QuestionResponse(
     val token: String,
     val detail: String,
     val type: QuestionType,
-    val level: Int,
+    val level: QuestionLevel,
 ) {
 
     companion object {

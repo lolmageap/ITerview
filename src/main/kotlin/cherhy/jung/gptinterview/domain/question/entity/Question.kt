@@ -1,5 +1,6 @@
 package cherhy.jung.gptinterview.domain.question.entity
 
+import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.util.BaseEntity
 import jakarta.persistence.*
@@ -16,5 +17,5 @@ class Question(
 
     val token: String,
 
-    val level: Int,
+    val level: QuestionLevel,
 ) : BaseEntity()
