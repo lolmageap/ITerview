@@ -25,7 +25,4 @@ class PositionController {
             .let { positions ->
                 PositionResponse.of(positions)
             }
-//        positionTypes
-//            .map(Position::of)
-//            .let(PositionResponse::of)
 }
