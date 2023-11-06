@@ -14,8 +14,6 @@ data class QuestionRequest(
     val levels: List<QuestionLevel>,
 )
 
-// programingTypes 가 존재 하지 않을 때만 it == QuestionType.PROGRAMING
-// frameworkTypes 가 존재 하지 않을 때만 it == QuestionType.FRAMEWORK
 fun QuestionRequest.toQuestionRequestS(): QuestionRequestS =
     QuestionRequestS(
         questionTypes = questionTypes
