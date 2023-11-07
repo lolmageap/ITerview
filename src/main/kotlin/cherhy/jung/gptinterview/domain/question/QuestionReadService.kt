@@ -11,6 +11,11 @@ class QuestionReadService(
     private val questionRepository: QuestionRepository,
 ) {
 
+    fun getQuestionByToken(token: String): QuestionResponseS =
+        questionRepository.findByToken(token)
+            ?.let(QuestionResponseS::of)
+            ?: throw NotFoundException(QUESTION)
+
     fun getQuestion(questionRequestS: QuestionRequestS, alreadyQuestion: List<String>): QuestionResponseS =
         questionRepository.findByQuestionRequestS(questionRequestS, alreadyQuestion)
             .firstNotNullOfOrNull {
