@@ -14,7 +14,7 @@ sealed class Position {
     companion object {
         fun of(positionType: PositionType): Position =
             when (positionType) {
-                GAME -> Gamer()
+                GAME -> GameDeveloper()
                 DATA_ANALYSIS -> DataAnalysis()
                 DATA_ENGINEER -> DataEngineer()
                 BACKEND -> BackendDeveloper()

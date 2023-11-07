@@ -4,7 +4,7 @@ import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 
-class Gamer(
+class GameDeveloper(
     override val questionTypes: List<QuestionType> = listOf(
         QuestionType.DATABASE,
         QuestionType.NETWORK,

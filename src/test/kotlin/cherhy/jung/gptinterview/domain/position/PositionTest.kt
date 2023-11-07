@@ -13,10 +13,10 @@ class PositionTest: FeatureSpec({
     feature("개발자의 타입을 인자로 받으면 스펙에 맞는 하위 클래스로 반환한다.") {
 
         scenario("GAME을 받으면 Gamer 타입의 스펙과 같아진다.") {
-            val gamer = Position.of(GAME) as Gamer
-            gamer.questionTypes shouldContainAll listOf(DATABASE, NETWORK)
-            gamer.programingTypes shouldContain `C#`
-            gamer.frameworkTypes shouldContain UNITY
+            val gameDeveloper = Position.of(GAME) as GameDeveloper
+            gameDeveloper.questionTypes shouldContainAll listOf(DATABASE, NETWORK)
+            gameDeveloper.programingTypes shouldContain `C#`
+            gameDeveloper.frameworkTypes shouldContain UNITY
         }
 
         scenario("DATA_ANALYSIS를 받으면 DataAnalysis 타입의 스펙과 같아진다.") {
