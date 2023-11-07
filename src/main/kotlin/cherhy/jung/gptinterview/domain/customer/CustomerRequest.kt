@@ -10,10 +10,6 @@ data class CustomerRequest(
 
     val salt: String = Generator.generateSalt()
 
-    fun changePassword(password: String) {
-        this.password = password
-    }
-
 }
 
 fun CustomerRequest.toCustomer(): Customer = Customer(

@@ -19,12 +19,16 @@ class Customer(
     @Column(unique = true)
     val token: String,
 
-) : BaseDeleteEntity() {
+    ) : BaseDeleteEntity() {
 
     @JoinColumn(name = "customer_id")
     @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
     var customerAuthorities: List<CustomerAuthority> = mutableListOf(
         CustomerAuthority(role = CustomerRole.MEMBER)
     )
+
+    fun changePassword(password: String) {
+        this.password = password
+    }
 
 }
