@@ -75,6 +75,7 @@ class BackendDeveloper(
         FrameworkType.FAST_API,
         FrameworkType.SPRING,
         FrameworkType.NEXT,
+        FrameworkType.EXPRESS,
         FrameworkType.LARAVEL,
         FrameworkType.DOTNET,
     ),
