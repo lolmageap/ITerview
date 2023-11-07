@@ -13,7 +13,7 @@ import io.kotest.matchers.shouldBe
 
 class PositionResponseTest : BehaviorSpec({
 
-    given("subclass가 다른 Position의 집합을 생성한다.") {
+    given("Position 클래스를 상속받은 클래스를 생성한다.") {
         val developers= listOf(
             FrontendDeveloper(
                 questionTypes = listOf(PROGRAMING),
@@ -29,10 +29,10 @@ class PositionResponseTest : BehaviorSpec({
                 programingTypes = listOf(KOTLIN),
             ),
         )
-        `when`("Position의 집합을 PositionResponse 객체로 반환한다.") {
+        `when`("상속받은 클래스들을 PositionResponse 객체로 변환한다.") {
             val positionResponse = PositionResponse.of(developers)
 
-            then("필드에 중복이 제거된 상태로 최종 값을 반환한다.") {
+            then("중복을 제거한 필드 값으로 최종 값을 반환한다.") {
                 positionResponse.questionTypes.size shouldBe 1
                 positionResponse.questionTypes shouldContain PROGRAMING
 
