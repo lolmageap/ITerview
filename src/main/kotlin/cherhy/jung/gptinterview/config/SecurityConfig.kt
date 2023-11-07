@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.config
 
-import cherhy.jung.gptinterview.authority.JwtFilter
-import cherhy.jung.gptinterview.authority.TokenProvider
+import cherhy.jung.gptinterview.jwt.JwtFilter
+import cherhy.jung.gptinterview.jwt.TokenProvider
 import cherhy.jung.gptinterview.dependency.RedisReadService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -47,7 +47,7 @@ class SecurityConfig(val jwtSecurityConfig: JwtSecurityConfig) {
 class JwtSecurityConfig(
     private val tokenProvider: TokenProvider,
     private val redisReadService: RedisReadService,
-    ) : SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity>() {
+) : SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity>() {
 
     override fun configure(http: HttpSecurity) {
         val customFilter = JwtFilter(tokenProvider, redisReadService)
