@@ -1,7 +1,9 @@
 ### 실행하기 전 먼저 로그인을 한 뒤 토큰을 입력해주세요.
-POST localhost:8901
+POST localhost:8901/answer
 Content-Type: application/json
+Authorization: Bearer `YOUR_JSON_WEB_TOKEN`
 
 {
-  "question" : "kotlin이 java보다 사용률이 높아질까?"
+  "questionToken" : "f4ec2dd7",
+  "answer" : "SQL이란 structure query language의 약자로 데이터베이스에서 원하는 데이터를 조회해올 때 사용합니다."
 }

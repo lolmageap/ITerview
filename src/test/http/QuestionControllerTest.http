@@ -19,11 +19,6 @@ Authorization: Bearer `YOUR_JSON_WEB_TOKEN`
 }
 
 ### 실행하기 전 먼저 로그인을 한 뒤 토큰을 입력해주세요.
-GET localhost:8901/question/position/BACKEND
-Content-Type: application/json
-Authorization: Bearer `YOUR_JSON_WEB_TOKEN`
-
-### 실행하기 전 먼저 로그인을 한 뒤 토큰을 입력해주세요.
 GET localhost:8901/question/history
 Content-Type: application/json
 Authorization: Bearer `YOUR_JSON_WEB_TOKEN`
