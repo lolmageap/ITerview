@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 interface QuestionRepositoryCustom {
     fun findByQuestionRequestS(
         questionRequestS: QuestionRequestS,
-        questionTokens: List<String>
+        questionTokens: List<String>,
     ): List<Question>
 
     fun findByTokensIn(questionTokens: List<String>): List<Question>
@@ -22,7 +22,7 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
 
     override fun findByQuestionRequestS(
         questionRequestS: QuestionRequestS,
-        alreadyQuestion: List<String>
+        alreadyQuestion: List<String>,
     ): List<Question> {
         val query = from(question)
 
@@ -33,7 +33,7 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
                     checkPrograming(questionRequestS)?.let { condition.or(it) }
                     checkFramework(questionRequestS)?.let { condition.or(it) }
                     checkLevel(questionRequestS)?.let { condition.and(it) }
-                    condition.and( question.token.notIn(alreadyQuestion) )
+                    condition.and(question.token.notIn(alreadyQuestion))
                 }
             )
             .fetch()
@@ -56,10 +56,11 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
 
     private fun checkPrograming(questionRequestS: QuestionRequestS): BooleanExpression? {
         return if (questionRequestS.programingTypes.isNotEmpty()) {
-             from(programing)
-                .join(programing.question, question)
+            from(programing)
+                .join(question)
+                .on(programing.questionId.eq(question.id))
                 .where(programing.programingType.`in`(questionRequestS.programingTypes))
-                .select(programing.question.id)
+                .select(programing.questionId)
                 .fetch()
                 .let {
                     question.id.`in`(it)
@@ -70,9 +71,10 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
     private fun checkFramework(questionRequestS: QuestionRequestS): BooleanExpression? {
         return if (questionRequestS.frameworkTypes.isNotEmpty()) {
             from(framework)
-                .join(framework.question, question)
+                .join(question)
+                .on(framework.questionId.eq(question.id))
                 .where(framework.frameworkType.`in`(questionRequestS.frameworkTypes))
-                .select(framework.question.id)
+                .select(framework.questionId)
                 .fetch()
                 .let {
                     question.id.`in`(it)
