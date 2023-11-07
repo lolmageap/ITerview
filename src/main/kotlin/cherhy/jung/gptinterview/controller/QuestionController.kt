@@ -6,6 +6,9 @@ import cherhy.jung.gptinterview.dependency.RedisWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.util.getEnd
 import cherhy.jung.gptinterview.util.getStart
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.Parameter
+import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
@@ -13,6 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 
+@Tag(name = "질문")
 @RestController
 @RequestMapping("/question")
 class QuestionController(
@@ -21,14 +25,13 @@ class QuestionController(
     private val redisWriteService: RedisWriteService,
 ) {
 
-    // 현재 읽기만 해도 redis 에 write 되는데 gpt api 에 답안을 제출한 문제들만 redis 에 write 할지 고민
-
     @PreAuthorize("isAuthenticated()")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "질문 받기", description = "요청에 맞게 질문을 반환한다.")
     fun getRandomQuestion(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
-        @RequestBody questionRequest: QuestionRequest,
+        @ModelAttribute questionRequest: QuestionRequest,
     ): QuestionResponse {
         val alreadyQuestion = redisReadService.getQuestionTokens(authCustomer.customerId)
 
@@ -42,9 +45,10 @@ class QuestionController(
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/history")
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "질문 내역", description = "조회했던 질문들을 확인한다.")
     fun getQuestionHistory(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
-        @PageableDefault(size = 20, page = 0) pageable: Pageable,
+        @Parameter(hidden = true) @PageableDefault(size = 20, page = 0) pageable: Pageable,
     ): List<QuestionResponse> {
 
         val alreadyQuestion = redisReadService.getQuestionTokens(
