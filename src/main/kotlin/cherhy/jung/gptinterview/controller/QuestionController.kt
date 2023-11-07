@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.controller
 
-import cherhy.jung.gptinterview.authority.AuthCustomer
+import cherhy.jung.gptinterview.domain.customer.AuthCustomer
 import cherhy.jung.gptinterview.dependency.RedisReadService
 import cherhy.jung.gptinterview.dependency.RedisWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
