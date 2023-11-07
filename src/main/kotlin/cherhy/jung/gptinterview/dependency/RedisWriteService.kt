@@ -17,7 +17,11 @@ class RedisWriteService(
 
     fun addJwtToken(accessToken: String, refreshToken: String) {
         redisTemplate.opsForValue().set(ACCESS_TOKEN + accessToken, refreshToken)
-        redisTemplate.expire(ACCESS_TOKEN + accessToken, refreshTokenValidityInMilliseconds.toLong(), TimeUnit.MILLISECONDS)
+        redisTemplate.expire(
+            ACCESS_TOKEN + accessToken,
+            refreshTokenValidityInMilliseconds.toLong(),
+            TimeUnit.MILLISECONDS
+        )
     }
 
     fun deleteJwtToken(accessToken: String) =

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Component
 @MustBeDocumented
 @Component
 annotation class UseCase(
-    @get:AliasFor(annotation = Component::class) val value: String = ""
+    @get:AliasFor(annotation = Component::class) val value: String = "",
 )

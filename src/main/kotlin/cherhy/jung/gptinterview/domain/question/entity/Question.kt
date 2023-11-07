@@ -6,9 +6,11 @@ import cherhy.jung.gptinterview.util.BaseEntity
 import jakarta.persistence.*
 
 @Entity
-@Table(indexes = [
-    Index(name = "IDX_QUESTION_TOKEN", columnList = "token", unique = true)
-])
+@Table(
+    indexes = [
+        Index(name = "IDX_QUESTION_TOKEN", columnList = "token", unique = true)
+    ]
+)
 class Question(
     val title: String,
 
@@ -17,5 +19,7 @@ class Question(
 
     val token: String,
 
+    @Enumerated(EnumType.STRING)
     val level: QuestionLevel,
-) : BaseEntity()
+
+    ) : BaseEntity()

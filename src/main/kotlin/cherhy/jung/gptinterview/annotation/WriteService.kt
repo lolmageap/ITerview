@@ -10,5 +10,5 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 @Transactional(readOnly = false)
 annotation class WriteService(
-    @get:AliasFor(annotation = Component::class) val value: String = ""
+    @get:AliasFor(annotation = Component::class) val value: String = "",
 )

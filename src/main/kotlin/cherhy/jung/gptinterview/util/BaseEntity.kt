@@ -15,7 +15,7 @@ import java.time.LocalDateTime
 abstract class BaseEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long = 0
+    var id: Long = 0,
 ) {
 
     @CreatedDate
@@ -28,7 +28,7 @@ abstract class BaseEntity(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        assert (other is BaseEntity) {"Invalid instance has passed."}
+        assert(other is BaseEntity) { "Invalid instance has passed." }
         other as BaseEntity
 
         return id == other.id

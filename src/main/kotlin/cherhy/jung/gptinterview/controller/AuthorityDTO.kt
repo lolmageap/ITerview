@@ -10,7 +10,7 @@ data class SignInRequest(
     val password: String,
 )
 
-fun SignInRequest.toCustomerRequest() : CustomerRequest {
+fun SignInRequest.toCustomerRequest(): CustomerRequest {
     return CustomerRequest(
         name = UUID.randomUUID().toString().substring(0, 12),
         password = this.password,
@@ -25,11 +25,11 @@ data class SignUpRequest(
     val confirmPassword: String,
 ) {
     init {
-        require(password == confirmPassword) {"비밀번호 재입력 오류"}
+        require(password == confirmPassword) { "비밀번호 재입력 오류" }
     }
 }
 
-fun SignUpRequest.toCustomerRequest() : CustomerRequest {
+fun SignUpRequest.toCustomerRequest(): CustomerRequest {
     return CustomerRequest(
         name = UUID.randomUUID().toString().substring(0, 12),
         password = this.password,

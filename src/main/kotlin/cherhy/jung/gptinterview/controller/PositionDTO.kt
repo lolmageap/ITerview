@@ -16,8 +16,8 @@ data class PositionResponse(
         fun of(positions: List<Position>): PositionResponse =
             PositionResponse(
                 questionTypes = positions.flatMap { it.questionTypes }.toSet(),
-                frameworkTypes = positions.flatMap { it.frameworkTypes  }.toSet(),
-                programingTypes = positions.flatMap { it.programingTypes  }.toSet(),
+                frameworkTypes = positions.flatMap { it.frameworkTypes }.toSet(),
+                programingTypes = positions.flatMap { it.programingTypes }.toSet(),
             )
     }
 }

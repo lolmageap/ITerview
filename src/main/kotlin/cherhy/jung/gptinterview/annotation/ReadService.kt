@@ -10,5 +10,5 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 @Transactional(readOnly = true)
 annotation class ReadService(
-    @get:AliasFor(annotation = Component::class) val value: String = ""
+    @get:AliasFor(annotation = Component::class) val value: String = "",
 )
