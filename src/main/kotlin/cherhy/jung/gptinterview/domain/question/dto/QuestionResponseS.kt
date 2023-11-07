@@ -5,6 +5,7 @@ import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.domain.question.entity.Question
 
 data class QuestionResponseS(
+    val id: Long,
     val token: String,
     val detail: String,
     val type: QuestionType,
@@ -13,6 +14,7 @@ data class QuestionResponseS(
     companion object {
         fun of(question: Question): QuestionResponseS {
             return QuestionResponseS(
+                id = question.id,
                 token = question.token,
                 detail = question.title,
                 type = question.questionType,
