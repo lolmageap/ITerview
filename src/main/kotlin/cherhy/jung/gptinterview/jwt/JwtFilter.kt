@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.authority
+package cherhy.jung.gptinterview.jwt
 
 import cherhy.jung.gptinterview.dependency.RedisReadService
 import jakarta.servlet.FilterChain

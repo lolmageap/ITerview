@@ -1,5 +1,6 @@
-package cherhy.jung.gptinterview.authority
+package cherhy.jung.gptinterview.jwt
 
+import cherhy.jung.gptinterview.domain.customer.AuthCustomer
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.exception.DomainName
 import cherhy.jung.gptinterview.exception.NotFoundException
@@ -38,7 +39,8 @@ class TokenProvider(
 ) : InitializingBean {
 
     private lateinit var key: SecretKey
-    companion object{
+
+    companion object {
         private const val AUTHORITIES_KEY = "auth"
     }
 

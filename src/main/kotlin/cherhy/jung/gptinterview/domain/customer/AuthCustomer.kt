@@ -1,13 +1,12 @@
-package cherhy.jung.gptinterview.authority
+package cherhy.jung.gptinterview.domain.customer
 
-import cherhy.jung.gptinterview.domain.customer.Customer
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 class AuthCustomer(
     private val customer: Customer,
-): UserDetails {
+) : UserDetails {
 
     val customerId = customer.id
     val token = customer.token
@@ -19,7 +18,7 @@ class AuthCustomer(
     }
 
 
-    override fun getPassword(): String  = customer.password
+    override fun getPassword(): String = customer.password
 
     override fun getUsername(): String = customer.email
 
