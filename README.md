@@ -1,4 +1,4 @@
-﻿# interview-gpt
+﻿# Interview Gpt
 
 ## Stack
 - Kotlin, Redis, MySQL, JPA, QueryDSL, Docker Compose, Spring Security, JAVA VERSION 17
