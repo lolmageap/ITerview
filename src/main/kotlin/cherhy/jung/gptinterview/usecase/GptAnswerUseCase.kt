@@ -31,7 +31,7 @@ class GptAnswerUseCase(
         return gptApi.generateText(questionToGpt)
             .also {
                 questionHistoryWriteService.addHistory(
-                    QuestionHistory(question.id, customer.id)
+                    QuestionHistory(question.id, customer.id, gptRequest.answer)
                 )
             }
     }

@@ -8,9 +8,9 @@ class QuestionHistoryWriteService(
     private val questionHistoryWriteService: QuestionHistoryRepository,
 ) {
 
-    fun addHistory(questionHistory: QuestionHistory) {
+    fun addHistory(questionHistory: QuestionHistory) =
         questionHistoryWriteService.save(questionHistory)
-    }
+
 
 }
 

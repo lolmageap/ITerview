@@ -10,4 +10,6 @@ class QuestionHistory(
 
     val customerId: Long,
 
+    val answer: String,
+
     ) : BaseEntity()
