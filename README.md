@@ -14,9 +14,9 @@
 ## 소개
 - 배포까지 진행할 프로젝트이며 제 3자도 자유롭게 코드를 복제하여 사용할 수 있도록 공개합니다!
 
-- 배포는 Elastic Beanstalk 으로 진행 할 예정입니다.
+- 배포는 Elastic Beanstalk 으로 진행중입니다.
 
-- 현재 질문 조회 및 개발 포지션 선택 기능 까지 구현이 완료 되었으며 Chat GPT 에게 질문을 넘기는 기능을 개발 중입니다. 
+- 현재 질문 조회 및 개발 포지션 선택 기능, Chat GPT 에게 질문을 넘기고 채점 및 피드백을 받는 기능까지 모두 개발되었습니다.
 
 - 메뉴 테이블이 생성된 다음 [src/main/resources/sql](src%2Fmain%2Fresources%2Fsql) 경로의 질문 데이터가 Database에 Insert 됩니다.
 
