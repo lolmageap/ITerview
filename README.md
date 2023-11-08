@@ -38,4 +38,4 @@
 1. 회원은 자신이 이전에 풀었던 문제를 다시 확인 할 수 있습니다.
 
 ## 질문 메뉴 설계 예시
-![image](https://github.com/lolmageap/interview-gpt/assets/96738163/60d27cd6-bfd9-4d8d-b961-10674550f709)
+![image](https://github.com/lolmageap/interview-gpt/assets/96738163/0e45929a-5d56-4e11-9935-afc5265916ed)
