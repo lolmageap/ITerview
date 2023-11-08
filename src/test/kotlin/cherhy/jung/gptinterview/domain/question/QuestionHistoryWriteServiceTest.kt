@@ -1,5 +1,6 @@
 package cherhy.jung.gptinterview.domain.question
 
+import cherhy.jung.gptinterview.IntegrationTestSupport
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
@@ -9,10 +10,8 @@ import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.findByIdOrNull
 
-@SpringBootTest
 class QuestionHistoryWriteServiceTest(
     @Autowired private val customerRepository: CustomerRepository,
     @Autowired private val questionRepository: QuestionRepository,
@@ -61,4 +60,4 @@ class QuestionHistoryWriteServiceTest(
         }
     }
 
-})
+}), IntegrationTestSupport
