@@ -22,8 +22,10 @@ class GptApi(
         private const val MAX_TOKENS: Int = 524
     }
 
-//    temperature 는 생성된 텍스트의 다양성을 조절
-//    max tokens 는 생성된 텍스트의 최대 길이를 제한
+    /**
+     *  temperature 는 생성된 텍스트의 다양성을 조절
+     *  max tokens 는 생성된 텍스트의 최대 길이를 제한
+     */
     fun generateText(prompt: String): String {
         val headers = HttpHeaders()
         headers.contentType = MediaType.APPLICATION_JSON
@@ -37,11 +39,10 @@ class GptApi(
 
         val requestEntity: HttpEntity<Map<String, Any>> = HttpEntity(requestBody, headers)
 
-        val restTemplate = RestTemplate()
-
         val response: ResponseEntity<MutableMap<*, *>> =
-            restTemplate.postForEntity(ENDPOINT, requestEntity, MutableMap::class.java)
+            RestTemplate().postForEntity(ENDPOINT, requestEntity, MutableMap::class.java)
 
+        log.info { response }
         return response.toString()
     }
 
