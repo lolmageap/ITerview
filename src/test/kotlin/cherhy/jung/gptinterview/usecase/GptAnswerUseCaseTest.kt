@@ -5,12 +5,14 @@ import cherhy.jung.gptinterview.controller.GptRequest
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
+import cherhy.jung.gptinterview.domain.customer.CustomerResponseS
 import cherhy.jung.gptinterview.domain.gpt.GptApi
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.domain.question.QuestionRepository
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
+import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseS
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
 import cherhy.jung.gptinterview.util.Generator
@@ -54,11 +56,14 @@ class GptAnswerUseCaseTest(
         )
 
         val answer = "어플리케이션 실행 시점부터 객체가 단 한개만 생성되고 값이 전역적으로 공유되는 패턴입니다."
-
         val gptRequest = GptRequest(questionToken = question.token, answer = answer)
+        val questionHistory = QuestionHistory(question.id, customer.id, answer)
 
         `when`("GPT가 채점과 피드백을 한다.") {
 
+            every { customerReadService.getCustomerById(customer.id) } returns CustomerResponseS.of(customer)
+            every { questionReadService.getQuestionByToken(question.token) } returns QuestionResponseS.of(question)
+            every { questionHistoryWriteService.addHistory(questionHistory) } returns questionHistory
             every {
                 gptApi.generateText(
                     Generator.generateQuestionToGpt(question.title, answer)
