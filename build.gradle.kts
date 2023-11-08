@@ -57,6 +57,8 @@ dependencies {
     runtimeOnly("com.mysql:mysql-connector-j")
 
     // test
+    testImplementation("com.h2database:h2")
+    testImplementation("com.ninja-squad:springmockk:4.0.2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("io.kotest:kotest-runner-junit5:5.7.2")
