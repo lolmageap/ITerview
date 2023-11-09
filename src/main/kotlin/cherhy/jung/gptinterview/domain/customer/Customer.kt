@@ -21,7 +21,7 @@ class Customer(
 
     ) : BaseDeleteEntity() {
 
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
     var customerAuthorities: List<CustomerAuthority> = mutableListOf(
         CustomerAuthority(role = CustomerRole.MEMBER)
