@@ -7,9 +7,7 @@ data class CustomerRequest(
     val email: String,
     var password: String,
 ) {
-
     val salt: String = Generator.generateSalt()
-
 }
 
 fun CustomerRequest.toCustomer(): Customer = Customer(

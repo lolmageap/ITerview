@@ -7,10 +7,7 @@ import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
 class QuestionHistoryWriteService(
     private val questionHistoryWriteService: QuestionHistoryRepository,
 ) {
-
     fun addHistory(questionHistory: QuestionHistory) =
         questionHistoryWriteService.save(questionHistory)
-
-
 }
 
