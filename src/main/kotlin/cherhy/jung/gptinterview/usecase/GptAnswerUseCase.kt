@@ -24,7 +24,7 @@ class GptAnswerUseCase(
         val question = questionReadService.getQuestionByToken(gptRequest.questionToken)
 
         val questionToGpt = Generator.generateQuestionToGpt(
-            question = question.detail,
+            question = question.title,
             answer = gptRequest.answer,
         )
 

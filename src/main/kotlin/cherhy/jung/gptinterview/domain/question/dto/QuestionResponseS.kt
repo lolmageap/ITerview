@@ -7,7 +7,7 @@ import cherhy.jung.gptinterview.domain.question.entity.Question
 data class QuestionResponseS(
     val id: Long,
     val token: String,
-    val detail: String,
+    val title: String,
     val type: QuestionType,
     val level: QuestionLevel,
 ) {
@@ -16,7 +16,7 @@ data class QuestionResponseS(
             return QuestionResponseS(
                 id = question.id,
                 token = question.token,
-                detail = question.title,
+                title = question.title,
                 type = question.questionType,
                 level = question.level,
             )

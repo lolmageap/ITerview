@@ -30,7 +30,7 @@ fun QuestionRequest.toQuestionRequestS(): QuestionRequestS =
 
 data class QuestionResponse(
     val token: String,
-    val detail: String,
+    val title: String,
     val type: QuestionType,
     val level: QuestionLevel,
 ) {
@@ -39,7 +39,7 @@ data class QuestionResponse(
         fun of(questionResponseS: QuestionResponseS): QuestionResponse {
             return QuestionResponse(
                 token = questionResponseS.token,
-                detail = questionResponseS.detail,
+                title = questionResponseS.title,
                 type = questionResponseS.type,
                 level = questionResponseS.level,
             )
