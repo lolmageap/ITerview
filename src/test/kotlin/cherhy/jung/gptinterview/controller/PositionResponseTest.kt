@@ -18,6 +18,7 @@ class PositionResponseTest : BehaviorSpec({
             FrontendDeveloper(
                 questionTypes = listOf(PROGRAMING),
                 programingTypes = listOf(JAVASCRIPT),
+                frameworkTypes = emptyList(),
             ),
             BackendDeveloper(
                 questionTypes = listOf(PROGRAMING),
@@ -27,9 +28,10 @@ class PositionResponseTest : BehaviorSpec({
             AndroidDeveloper(
                 questionTypes = listOf(PROGRAMING),
                 programingTypes = listOf(KOTLIN),
+                frameworkTypes = emptyList(),
             ),
         )
-        `when`("상속받은 클래스들을 PositionResponse 객체로 변환한다.") {
+        When("상속받은 클래스들을 PositionResponse 객체로 변환한다.") {
             val positionResponse = PositionResponse.of(developers)
 
             then("중복을 제거한 필드 값으로 최종 값을 반환한다.") {

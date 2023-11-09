@@ -1,15 +1,12 @@
 package cherhy.jung.gptinterview.usecase
 
-import cherhy.jung.gptinterview.IntegrationTestSupport
 import cherhy.jung.gptinterview.controller.GptRequest
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
-import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.domain.customer.CustomerResponseS
 import cherhy.jung.gptinterview.domain.gpt.GptApi
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
-import cherhy.jung.gptinterview.domain.question.QuestionRepository
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseS
@@ -22,8 +19,10 @@ import io.kotest.matchers.string.shouldContain
 import io.mockk.every
 import io.mockk.verify
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 
 
+@SpringBootTest
 class GptAnswerUseCaseTest(
     @Autowired private val gptAnswerUseCase: GptAnswerUseCase,
 
@@ -33,7 +32,7 @@ class GptAnswerUseCaseTest(
     @MockkBean private val questionHistoryWriteService: QuestionHistoryWriteService,
 ) : BehaviorSpec({
 
-    given("회원이 질문과 답변을 요청하면") {
+    given("회원이 질문과 답변을 요청하면 ") {
         val customer = Customer(
                 name = "정철희",
                 email = "ekxk1234@naver.com",
@@ -53,7 +52,7 @@ class GptAnswerUseCaseTest(
         val gptRequest = GptRequest(questionToken = question.token, answer = answer)
         val questionHistory = QuestionHistory(question.id, customer.id, answer)
 
-        `when`("GPT가 채점과 피드백을 한다.") {
+        When("GPT가 채점과 피드백을 하고 ") {
 
             every { customerReadService.getCustomerById(customer.id) } returns CustomerResponseS.of(customer)
             every { questionReadService.getQuestionByToken(question.token) } returns QuestionResponseS.of(question)
@@ -80,4 +79,4 @@ class GptAnswerUseCaseTest(
         }
     }
 
-}), IntegrationTestSupport
+})

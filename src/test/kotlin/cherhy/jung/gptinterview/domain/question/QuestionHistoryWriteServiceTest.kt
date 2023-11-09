@@ -1,6 +1,5 @@
 package cherhy.jung.gptinterview.domain.question
 
-import cherhy.jung.gptinterview.IntegrationTestSupport
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
@@ -10,12 +9,14 @@ import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.findByIdOrNull
 
+@SpringBootTest
 class QuestionHistoryWriteServiceTest(
+    @Autowired private val questionHistoryWriteService: QuestionHistoryWriteService,
     @Autowired private val customerRepository: CustomerRepository,
     @Autowired private val questionRepository: QuestionRepository,
-    @Autowired private val questionHistoryWriteService: QuestionHistoryWriteService,
     @Autowired private val questionHistoryRepository: QuestionHistoryRepository,
 ) : BehaviorSpec({
 
@@ -47,7 +48,7 @@ class QuestionHistoryWriteServiceTest(
                 answer = answer,
             )
 
-        `when`("질문의 내역을 저장한다.") {
+        When("질문의 내역을 저장한다.") {
             val addHistory = questionHistoryWriteService.addHistory(questionHistory)
             val result = questionHistoryRepository.findByIdOrNull(addHistory.id)!!
 
@@ -60,4 +61,4 @@ class QuestionHistoryWriteServiceTest(
         }
     }
 
-}), IntegrationTestSupport
+})
