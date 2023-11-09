@@ -26,8 +26,6 @@ import org.springframework.beans.factory.annotation.Autowired
 
 class GptAnswerUseCaseTest(
     @Autowired private val gptAnswerUseCase: GptAnswerUseCase,
-    @Autowired private val customerRepository: CustomerRepository,
-    @Autowired private val questionRepository: QuestionRepository,
 
     @MockkBean private val gptApi: GptApi,
     @MockkBean private val customerReadService: CustomerReadService,
@@ -36,24 +34,20 @@ class GptAnswerUseCaseTest(
 ) : BehaviorSpec({
 
     given("회원이 질문과 답변을 요청하면") {
-        val customer = customerRepository.save(
-            Customer(
+        val customer = Customer(
                 name = "정철희",
                 email = "ekxk1234@naver.com",
                 password = "abcd1234",
                 salt = "random",
                 token = "random",
             )
-        )
 
-        val question = questionRepository.save(
-            Question(
+        val question = Question(
                 title = "SingleTon Pattern이 무엇인가요?",
                 questionType = QuestionType.DESIGN_PATTERN,
                 token = "random",
                 level = QuestionLevel.LEVEL1,
             )
-        )
 
         val answer = "어플리케이션 실행 시점부터 객체가 단 한개만 생성되고 값이 전역적으로 공유되는 패턴입니다."
         val gptRequest = GptRequest(questionToken = question.token, answer = answer)
@@ -79,9 +73,7 @@ class GptAnswerUseCaseTest(
                 verify { customerReadService.getCustomerById(customer.id) }
                 verify { questionReadService.getQuestionByToken(question.token) }
                 verify {
-                    questionHistoryWriteService.addHistory(
-                        QuestionHistory(question.id, customer.id, gptRequest.answer)
-                    )
+                    questionHistoryWriteService.addHistory(questionHistory)
                 }
 
             }
