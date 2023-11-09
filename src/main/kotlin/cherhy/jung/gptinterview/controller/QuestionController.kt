@@ -33,9 +33,9 @@ class QuestionController(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @ModelAttribute questionRequest: QuestionRequest,
     ): QuestionResponse {
-        val alreadyQuestion = redisReadService.getQuestionTokens(authCustomer.customerId)
+        val alreadyQuestions = redisReadService.getQuestionTokens(authCustomer.customerId)
 
-        return questionReadService.getQuestion(questionRequest.toQuestionRequestS(), alreadyQuestion)
+        return questionReadService.getQuestion(questionRequest.toQuestionRequestS(), alreadyQuestions)
             .let(QuestionResponse::of)
             .also {
                 redisWriteService.addQuestionToken(authCustomer.customerId, it.token)
@@ -51,13 +51,13 @@ class QuestionController(
         @Parameter(hidden = true) @PageableDefault(size = 20, page = 0) pageable: Pageable,
     ): List<QuestionResponse> {
 
-        val alreadyQuestion = redisReadService.getQuestionTokens(
+        val alreadyQuestions = redisReadService.getQuestionTokens(
             customerId = authCustomer.customerId,
             start = pageable.getStart(),
             end = pageable.getEnd(),
         )
 
-        return questionReadService.getQuestionHistories(alreadyQuestion)
+        return questionReadService.getQuestionHistories(alreadyQuestions)
             .map(QuestionResponse::of)
     }
 

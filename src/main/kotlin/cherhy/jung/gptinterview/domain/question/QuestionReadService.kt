@@ -16,15 +16,17 @@ class QuestionReadService(
             ?.let(QuestionResponseS::of)
             ?: throw NotFoundException(QUESTION)
 
-    fun getQuestion(questionRequestS: QuestionRequestS, alreadyQuestion: List<String>): QuestionResponseS =
-        questionRepository.findByQuestionRequestS(questionRequestS, alreadyQuestion)
+    fun getQuestion(
+        questionRequestS: QuestionRequestS,
+        alreadyQuestions: List<String> = emptyList(),
+    ): QuestionResponseS =
+        questionRepository.findByQuestionRequestS(questionRequestS, alreadyQuestions)
             .firstNotNullOfOrNull {
                 it.let(QuestionResponseS::of)
             }
             ?: throw NotFoundException(QUESTION)
 
-    fun getQuestionHistories(alreadyQuestion: List<String>): List<QuestionResponseS> =
-        questionRepository.findByTokensIn(alreadyQuestion)
+    fun getQuestionHistories(alreadyQuestions: List<String>): List<QuestionResponseS> =
+        questionRepository.findByTokensIn(alreadyQuestions)
             .map(QuestionResponseS::of)
 }
-
