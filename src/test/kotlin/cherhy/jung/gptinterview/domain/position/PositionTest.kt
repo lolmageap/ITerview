@@ -9,7 +9,7 @@ import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.shouldBe
 
-class PositionTest: FeatureSpec({
+internal class PositionTest: FeatureSpec({
     feature("개발자의 타입을 인자로 받으면 스펙에 맞는 하위 클래스로 반환한다.") {
 
         scenario("GAME을 받으면 Gamer 타입의 스펙과 같아진다.") {

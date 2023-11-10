@@ -11,9 +11,9 @@ import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.shouldBe
 
-class PositionResponseTest : BehaviorSpec({
+internal class PositionResponseTest : BehaviorSpec({
 
-    given("Position 클래스를 상속받은 클래스를 생성한다.") {
+    Given("Position 클래스를 상속받은 클래스를 생성한 뒤 ") {
         val developers= listOf(
             FrontendDeveloper(
                 questionTypes = listOf(PROGRAMING),
@@ -31,10 +31,10 @@ class PositionResponseTest : BehaviorSpec({
                 frameworkTypes = emptyList(),
             ),
         )
-        When("상속받은 클래스들을 PositionResponse 객체로 변환한다.") {
+        When("PositionResponse 객체로 변환하고 ") {
             val positionResponse = PositionResponse.of(developers)
 
-            then("중복을 제거한 필드 값으로 최종 값을 반환한다.") {
+            Then("중복을 제거한 필드 값으로 최종 값을 반환한다.") {
                 positionResponse.questionTypes.size shouldBe 1
                 positionResponse.questionTypes shouldContain PROGRAMING
 

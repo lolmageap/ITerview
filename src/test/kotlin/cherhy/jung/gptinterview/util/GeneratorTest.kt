@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.string.shouldContain
 import java.time.LocalDate
 
-class GeneratorTest: StringSpec() {
+internal class GeneratorTest: StringSpec() {
     init {
         "회원의 비밀번호에 추가 될 salt 값을 추출한다." {
             val salt = Generator.generateSalt()

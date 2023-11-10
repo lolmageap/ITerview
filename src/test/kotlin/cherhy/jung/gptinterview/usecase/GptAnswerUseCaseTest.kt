@@ -23,7 +23,7 @@ import org.springframework.boot.test.context.SpringBootTest
 
 
 @SpringBootTest
-class GptAnswerUseCaseTest(
+internal class GptAnswerUseCaseTest(
     @Autowired private val gptAnswerUseCase: GptAnswerUseCase,
 
     @MockkBean private val gptApi: GptApi,
@@ -32,7 +32,7 @@ class GptAnswerUseCaseTest(
     @MockkBean private val questionHistoryWriteService: QuestionHistoryWriteService,
 ) : BehaviorSpec({
 
-    given("회원이 질문과 답변을 요청하면 ") {
+    Given("회원이 질문과 답변을 요청하면 ") {
         val customer = Customer(
                 name = "정철희",
                 email = "ekxk1234@naver.com",
@@ -65,8 +65,7 @@ class GptAnswerUseCaseTest(
 
             val feedBack = gptAnswerUseCase.requestAnswerToGpt(customerId = customer.id, gptRequest = gptRequest)
 
-            then("점수와 피드백이 정상적으로 출력되는지 검증한다.") {
-
+            Then("점수와 피드백이 정상적으로 출력되는지 검증한다.") {
                 feedBack shouldContain "점수"
                 feedBack shouldContain "피드백"
                 verify { customerReadService.getCustomerById(customer.id) }
