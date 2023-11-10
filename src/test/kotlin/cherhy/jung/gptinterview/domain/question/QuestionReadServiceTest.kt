@@ -14,6 +14,8 @@ import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.exception.NotFoundException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.core.test.TestCase
+import io.kotest.core.test.TestResult
 import io.kotest.core.test.isRootTest
 import io.kotest.matchers.collections.shouldBeOneOf
 import io.kotest.matchers.shouldBe
@@ -22,22 +24,14 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class QuestionReadServiceTest(
+internal class QuestionReadServiceTest(
     @Autowired private val questionReadService: QuestionReadService,
     @Autowired private val questionRepository: QuestionRepository,
     @Autowired private val customerRepository: CustomerRepository,
     @Autowired private val programingRepository: ProgramingRepository,
 ) : BehaviorSpec({
 
-    given("회원과 질문이 존재하고 ") {
-
-        if (testCase.isRootTest()) {
-            afterEach {
-                questionRepository.deleteAllInBatch()
-                customerRepository.deleteAllInBatch()
-                programingRepository.deleteAllInBatch()
-            }
-        }
+    Given("회원과 질문이 존재하고 ") {
 
         val customer = Customer(
             name = "정철희",
@@ -74,10 +68,9 @@ class QuestionReadServiceTest(
                 shouldThrow<NotFoundException> { questionReadService.getQuestionByToken("fail-token") }
             }
         }
-
     }
 
-    given("회원과 질문들이 존재하고 ") {
+    Given("회원과 질문들이 존재하고 ") {
 
         val customer = Customer(
             name = "정철희2",
@@ -183,4 +176,12 @@ class QuestionReadServiceTest(
         }
     }
 
-})
+}) {
+    override suspend fun afterContainer(testCase: TestCase, result: TestResult) {
+        if (testCase.isRootTest()) {
+            questionRepository.deleteAllInBatch()
+            customerRepository.deleteAllInBatch()
+            programingRepository.deleteAllInBatch()
+        }
+    }
+}

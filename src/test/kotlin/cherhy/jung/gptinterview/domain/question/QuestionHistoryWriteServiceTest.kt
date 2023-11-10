@@ -7,20 +7,23 @@ import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.core.test.TestCase
+import io.kotest.core.test.TestResult
+import io.kotest.core.test.isRootTest
 import io.kotest.matchers.shouldBe
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.findByIdOrNull
 
 @SpringBootTest
-class QuestionHistoryWriteServiceTest(
+internal class QuestionHistoryWriteServiceTest(
     @Autowired private val questionHistoryWriteService: QuestionHistoryWriteService,
     @Autowired private val customerRepository: CustomerRepository,
     @Autowired private val questionRepository: QuestionRepository,
     @Autowired private val questionHistoryRepository: QuestionHistoryRepository,
 ) : BehaviorSpec({
 
-    given("사용자와 질문, 답변, 질문 내역을 생성한다.") {
+    Given("사용자와 질문, 답변, 질문 내역을 생성 한 뒤 ") {
         val customer = customerRepository.save(
             Customer(
                 name = "정철희",
@@ -48,11 +51,11 @@ class QuestionHistoryWriteServiceTest(
                 answer = answer,
             )
 
-        When("질문의 내역을 저장한다.") {
+        When("질문의 내역을 저장하고 ") {
             val addHistory = questionHistoryWriteService.addHistory(questionHistory)
             val result = questionHistoryRepository.findByIdOrNull(addHistory.id)!!
 
-            then("질문의 내역이 저장되었는지 확인한다.") {
+            Then("확인한다.") {
                 result.questionId shouldBe customer.id
                 result.customerId shouldBe question.id
                 result.answer shouldBe answer
@@ -61,4 +64,12 @@ class QuestionHistoryWriteServiceTest(
         }
     }
 
-})
+}) {
+    override suspend fun afterContainer(testCase: TestCase, result: TestResult) {
+        if (testCase.isRootTest()) {
+            customerRepository.deleteAllInBatch()
+            questionRepository.deleteAllInBatch()
+            questionHistoryRepository.deleteAllInBatch()
+        }
+    }
+}
