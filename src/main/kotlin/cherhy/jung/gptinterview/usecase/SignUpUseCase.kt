@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.annotation.UseCase
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
-import cherhy.jung.gptinterview.domain.customer.CustomerRequest
+import cherhy.jung.gptinterview.domain.customer.CustomerRequestS
 import cherhy.jung.gptinterview.domain.customer.CustomerWriteService
 import cherhy.jung.gptinterview.domain.customer.toCustomer
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -16,10 +16,10 @@ class SignUpUseCase(
     private val passwordEncoder: BCryptPasswordEncoder,
 ) {
 
-    fun signUp(customerRequest: CustomerRequest) {
-        customerReadService.duplicationEmailCheck(customerRequest.email)
-        val encodedPassword = passwordEncoder.encode(customerRequest.password + customerRequest.salt)
-        customerWriteService.saveCustomer(customerRequest.toCustomer(), encodedPassword)
+    fun signUp(customerRequestS: CustomerRequestS) {
+        customerReadService.duplicationEmailCheck(customerRequestS.email)
+        val encodedPassword = passwordEncoder.encode(customerRequestS.password + customerRequestS.salt)
+        customerWriteService.saveCustomer(customerRequestS.toCustomer(), encodedPassword)
     }
 
 }

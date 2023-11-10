@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.controller
 
-import cherhy.jung.gptinterview.domain.customer.CustomerRequest
+import cherhy.jung.gptinterview.domain.customer.CustomerRequestS
 import jakarta.validation.constraints.Email
 import java.util.UUID
 
@@ -10,8 +10,8 @@ data class SignInRequest(
     val password: String,
 )
 
-fun SignInRequest.toCustomerRequest(): CustomerRequest {
-    return CustomerRequest(
+fun SignInRequest.toCustomerRequest(): CustomerRequestS {
+    return CustomerRequestS(
         name = UUID.randomUUID().toString().substring(0, 12),
         password = this.password,
         email = this.email,
@@ -29,8 +29,8 @@ data class SignUpRequest(
     }
 }
 
-fun SignUpRequest.toCustomerRequest(): CustomerRequest {
-    return CustomerRequest(
+fun SignUpRequest.toCustomerRequest(): CustomerRequestS {
+    return CustomerRequestS(
         name = UUID.randomUUID().toString().substring(0, 12),
         password = this.password,
         email = this.email,

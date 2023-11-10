@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.domain.customer
 
 import cherhy.jung.gptinterview.util.Generator
 
-data class CustomerRequest(
+data class CustomerRequestS(
     val name: String,
     val email: String,
     var password: String,
@@ -10,7 +10,7 @@ data class CustomerRequest(
     val salt: String = Generator.generateSalt()
 }
 
-fun CustomerRequest.toCustomer(): Customer = Customer(
+fun CustomerRequestS.toCustomer(): Customer = Customer(
     name = name,
     email = email,
     password = password,
