@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.controller
 
-import cherhy.jung.gptinterview.domain.position.Position
+import cherhy.jung.gptinterview.domain.position.PositionFactory
 import cherhy.jung.gptinterview.domain.position.PositionType
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -22,7 +22,7 @@ class PositionController {
     fun getPosition(
         @RequestParam positionTypes: List<PositionType>,
     ): PositionResponse {
-        val positions = positionTypes.map(Position::of)
+        val positions = positionTypes.map(PositionFactory::generatePosition)
         return positions.let { PositionResponse.of(it) }
     }
 
