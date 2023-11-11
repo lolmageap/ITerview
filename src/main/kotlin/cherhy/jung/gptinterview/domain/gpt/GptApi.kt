@@ -1,13 +1,12 @@
 package cherhy.jung.gptinterview.domain.gpt
 
-import cherhy.jung.gptinterview.util.log
+import cherhy.jung.gptinterview.exception.GptNotGeneratedException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
-
 import org.springframework.web.client.RestTemplate
 
 @Component
@@ -39,11 +38,14 @@ class GptApi(
 
         val requestEntity: HttpEntity<Map<String, Any>> = HttpEntity(requestBody, headers)
 
-        val response: ResponseEntity<MutableMap<*, *>> =
-            RestTemplate().postForEntity(ENDPOINT, requestEntity, MutableMap::class.java)
+        val response: ResponseEntity<GptResponseS> =
+            RestTemplate().postForEntity(ENDPOINT, requestEntity, GptResponseS::class.java)
 
-        log.info { response }
-        return response.toString()
+        val choices = response.body
+            ?.choices
+            ?: throw GptNotGeneratedException()
+
+        return choices[0].text
     }
 
 }
