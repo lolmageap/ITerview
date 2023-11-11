@@ -44,6 +44,12 @@ class ControllerAdvisor {
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(GptNotGeneratedException::class)
+    fun gptNotGeneratedException(e: GptNotGeneratedException): ClientResponse<Any> {
+        return ClientResponse.fail(e.message)
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(GlobalRuntimeException::class)
     fun removeFailedException(e: GlobalRuntimeException): ClientResponse<Any> {
         return ClientResponse.fail(e.message)
