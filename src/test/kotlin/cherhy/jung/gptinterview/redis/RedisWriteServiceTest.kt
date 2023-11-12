@@ -27,8 +27,8 @@ class RedisWriteServiceTest(
     }
 
     afterEach {
-        redisTemplate.keys("*").forEach { key ->
-            redisTemplate.delete(key)
+        redisTemplate.execute { connection ->
+            connection.flushDb()
         }
     }
 
