@@ -1,13 +1,20 @@
 package cherhy.jung.gptinterview.redis
 
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.core.test.TestCase
+import io.kotest.core.test.TestResult
+import io.kotest.core.test.isRootTest
 import io.kotest.extensions.testcontainers.perSpec
+import io.kotest.matchers.collections.shouldContain
+import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.redis.core.RedisTemplate
 import org.testcontainers.containers.GenericContainer
 
+@SpringBootTest
 class RedisReadServiceTest(
     @Autowired private val redisReadService: RedisReadService,
     @Autowired private val redisTemplate: RedisTemplate<String, Any>,
@@ -50,15 +57,33 @@ class RedisReadServiceTest(
             redisTemplate.opsForList().rightPush(RedisKey.QUESTION_TOKEN + customerId, it)
         }
 
-        When("회원의 아이디로 ") {
-
+        When("회원의 아이디만으로 ") {
+            val findQuestionTokens = redisReadService.getQuestionTokens(customerId)
 
             Then("전부 출력한다.") {
+                findQuestionTokens.size shouldBe 4
+                findQuestionTokens shouldContainAll questionTokens
+            }
+        }
 
-                questionTokens.size shouldBe 1
+        When("회원의 아이디와 범위로 ") {
+            val findQuestionTokens = redisReadService.getQuestionTokens(customerId, 0, 2)
+
+            Then("출력한다.") {
+                findQuestionTokens.size shouldBe 3
+                findQuestionTokens shouldContain "questionToken1"
+                findQuestionTokens shouldContain "questionToken2"
+                findQuestionTokens shouldContain "questionToken3"
             }
         }
     }
 
-
-})
+}) {
+    override suspend fun afterContainer(testCase: TestCase, result: TestResult) {
+        if (testCase.isRootTest()) {
+            redisTemplate.execute { connection ->
+                connection.flushDb()
+            }
+        }
+    }
+}
