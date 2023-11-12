@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.annotation.UseCase
-import cherhy.jung.gptinterview.dependency.RedisWriteService
+import cherhy.jung.gptinterview.redis.RedisWriteService
 import cherhy.jung.gptinterview.domain.customer.AuthCustomer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.CustomerRequestS

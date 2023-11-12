@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.jwt
 
-import cherhy.jung.gptinterview.dependency.RedisReadService
+import cherhy.jung.gptinterview.redis.RedisReadService
 import jakarta.servlet.FilterChain
 import jakarta.servlet.ServletException
 import jakarta.servlet.ServletRequest

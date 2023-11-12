@@ -1,8 +1,8 @@
-package cherhy.jung.gptinterview.dependency
+package cherhy.jung.gptinterview.redis
 
 import cherhy.jung.gptinterview.annotation.ReadService
-import cherhy.jung.gptinterview.dependency.RedisKey.ACCESS_TOKEN
-import cherhy.jung.gptinterview.dependency.RedisKey.QUESTION_TOKEN
+import cherhy.jung.gptinterview.redis.RedisKey.ACCESS_TOKEN
+import cherhy.jung.gptinterview.redis.RedisKey.QUESTION_TOKEN
 import org.springframework.data.redis.core.RedisTemplate
 
 @ReadService

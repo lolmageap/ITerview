@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.dependency
+package cherhy.jung.gptinterview.redis
 
 object RedisKey {
     const val ACCESS_TOKEN: String = "accessToken:"
