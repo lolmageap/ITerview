@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.controller
+package cherhy.jung.gptinterview.restcontroller
 
 import cherhy.jung.gptinterview.domain.position.Position
 import cherhy.jung.gptinterview.domain.question.constant.FrameworkType

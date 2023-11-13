@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.controller
+package cherhy.jung.gptinterview.restcontroller
 
 import cherhy.jung.gptinterview.domain.customer.AuthCustomer
 import cherhy.jung.gptinterview.usecase.GptAnswerUseCase

@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.controller
+package cherhy.jung.gptinterview.restcontroller
 
 
 data class GptRequest(

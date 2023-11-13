@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.controller
+package cherhy.jung.gptinterview.restcontroller
 
 import cherhy.jung.gptinterview.domain.question.constant.FrameworkType.SPRING
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType.JAVA
