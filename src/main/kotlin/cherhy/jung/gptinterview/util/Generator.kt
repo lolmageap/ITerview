@@ -14,7 +14,6 @@ object Generator {
     fun generateSalt(): String =
         UUID.randomUUID().toString().replace("-", "")
 
-
     fun generateQuestionToGpt(question: String, answer: String): String =
         """
             질문 : $question
