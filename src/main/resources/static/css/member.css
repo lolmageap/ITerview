@@ -480,11 +480,6 @@ table {
     --z-index-third: 4;
 }
 
-html {
-    font-size: 14px;
-    font-size: var(--default-font-size);
-}
-
 b,
 strong {
     font-weight: 700;
@@ -516,17 +511,6 @@ html {
     height: 100%;
 }
 
-body {
-    background: #000;
-    background: var(--page-background-color);
-    font-family: ulp-font, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, sans-serif;
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-weight: var(--font-default-weight);
-    -webkit-overflow-scrolling: touch;
-    overflow: auto;
-}
-
 #custom-prompt-logo {
     display: none;
 }
@@ -548,26 +532,6 @@ body._use-custom-prompt-logo .c22cb60e1 {
     background-size: cover;
 }
 
-._widget-auto-layout ._widget,
-.c57eae0c5,
-.c685718d3 {
-    min-height: 100vh;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-}
-
-._widget-auto-layout ._widget,
-.c685718d3 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-content: var(--page-background-alignment, center);
-    width: 100%;
-    padding: 80px 0;
-    padding: var(--outer-padding) 0;
-}
-
 @supports (grid-gap: 1px) {
     ._widget-auto-layout ._widget,
     .c685718d3 {
@@ -579,17 +543,11 @@ body._use-custom-prompt-logo .c22cb60e1 {
         justify-items: center;
         grid-column-gap: 160px;
         -moz-column-gap: 160px;
-        column-gap: 160px;
-        grid-column-gap: calc(var(--outer-padding) * 2);
         -moz-column-gap: calc(var(--outer-padding) * 2);
         column-gap: calc(var(--outer-padding) * 2);
         width: 100%;
-        padding: 80px;
         padding: var(--outer-padding);
         min-height: 100vh;
-        height: -webkit-fit-content;
-        height: -moz-fit-content;
-        height: fit-content;
     }
 
     .cf6e1c6d6 {
@@ -602,17 +560,6 @@ body._use-custom-prompt-logo .c22cb60e1 {
     position: relative;
     width: 400px;
     width: var(--prompt-width);
-}
-
-._widget-auto-layout .cf6e1c6d6,
-.c685718d3 .cf6e1c6d6 {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    white-space: normal;
-    background-color: none;
-    border-radius: 5px;
-    border-radius: var(--border-radius-outer);
 }
 
 .ce53f8304 {
