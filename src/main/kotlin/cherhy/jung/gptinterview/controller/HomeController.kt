@@ -18,8 +18,4 @@ class HomeController {
     @ResponseStatus(HttpStatus.OK)
     fun login(): String = "login.html"
 
-    @GetMapping("/sign-up")
-    @ResponseStatus(HttpStatus.OK)
-    fun signup(): String = "signup.html"
-
 }
