@@ -1,159 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<link href="/css/member.css" rel="stylesheet" type="text/css">
-<link href="/css/reset.css" rel="stylesheet" type="text/css">
-<style id="custom-styles-container">
-    body {
-        background: #4d4d4d;
-        font-family: ulp-font, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, sans-serif;
-    }
-
-    .c57eae0c5 {
-        background: #4d4d4d;
-    }
-
-    .cd6a2dc65 {
-        background-color: #376b8b;
-        color: white;
-    }
-
-    .cd6a2dc65 a,
-    .cd6a2dc65 a:visited {
-        color: #333c4d;
-    }
-
-</style>
-<style>
-    .no-js {
-        clip: rect(0 0 0 0);
-        clip-path: inset(50%);
-        height: 1px;
-        overflow: hidden;
-        position: absolute;
-        white-space: nowrap;
-        width: 1px;
-    }
-</style>
+<link href="/css/login.css" rel="stylesheet" type="text/css">
 <body>
-<div class="c57eae0c5 c8a262bc6">
-
-    <main class="c685718d3 login">
-        <section class="cf6e1c6d6 _prompt-box-outer cdbfcfe71">
-            <div class="ce53f8304 c3ec44865">
-                <div class="c01e01e17">
-                    <header class="cb9c57e8f ca2c9068f">
-                        <div id="custom-prompt-logo"
-                             style="width: auto !important; height: 60px !important; position: static !important; margin: auto !important; padding: 0 !important; background-color: transparent !important; background-position: center !important; background-size: contain !important; background-repeat: no-repeat !important">
-                        </div>
-                        <img class="c22cb60e1 c60e7bf39" id="prompt-logo-center" src="/images/flm_logo.png"
-                             alt="logo">
-                        <h1 class="cdc5ed3fa c03acb065">Log In</h1>
-                    </header>
-
-                    <div class="cc04c7973 c7769a816">
-                        <form method="POST" class="c078920ea c1615d59b" data-form-primary="true" action="/login-proc">
-                            <input type="hidden" name="state" value="">
-                            <div style="visibility: hidden !important; position: absolute !important"
-                                 aria-hidden="true">
-                                <button type="submit" name="action" value="default"
-                                        style="visibility: hidden !important" aria-hidden="true" tabindex="-1">
-                                    Continue
-                                </button>
-                            </div>
-                            <div class="caa93cde1 cbe6b873f">
-                                <div class="cc617ed97">
-                                    <div class="input-wrapper _input-wrapper">
-                                        <div class="ca3fd6148 cc917791e text cffdf6ed3 c22285f6b c4457bd38"
-                                             data-action-text="" data-alternate-action-text="">
-                                            <label class="ca52889fd no-js c3ddacae7 c37633cdc" for="username">
-                                                Email address
-                                            </label>
-                                            <input class="input c10744244 cf50dd0ab" inputmode="email" name="username"
-                                                   id="username" type="text" value="" required=""
-                                                   autocomplete="username" autocapitalize="none" spellcheck="false"
-                                                   autofocus="">
-                                            <div class="ca52889fd js-required c3ddacae7 c37633cdc"
-                                                 data-dynamic-label-for="username" aria-hidden="true">
-                                                Email address
-                                            </div>
-                                            <div data-lastpass-icon-root="true"
-                                                 style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
-                                            </div>
+<a href="https://front.codes/" class="logo" target="_blank">
+    <img src="https://assets.codepen.io/1462889/fcy.png" alt="">
+</a>
+<div class="section">
+    <div class="container">
+        <div class="row full-height justify-content-center">
+            <div class="col-12 text-center align-self-center py-5">
+                <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                    <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
+                    <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                    <label for="reg-log"></label>
+                    <div class="card-3d-wrap mx-auto">
+                        <div class="card-3d-wrapper">
+                            <div class="card-front">
+                                <div class="center-wrap">
+                                    <div class="section text-center">
+                                        <h4 class="mb-4 pb-3">Log In</h4>
+                                        <div class="form-group">
+                                            <input type="email" name="email" class="form-style" placeholder="Your Email" autocomplete="off">
+                                            <i class="input-icon uil uil-at"></i>
                                         </div>
-                                    </div>
-                                    <div class="input-wrapper _input-wrapper">
-                                        <div class="ca3fd6148 cc917791e password c3e233d00 c22285f6b c4457bd38"
-                                             data-action-text="" data-alternate-action-text="">
-                                            <label class="ca52889fd no-js c3ddacae7 c8adb84e4" for="password">
-                                                Password
-                                            </label>
-                                            <input class="input c10744244 cac0f2a5a" name="password" id="password"
-                                                   type="password" required="" autocomplete="current-password"
-                                                   autocapitalize="none" spellcheck="false">
-
-                                            <div class="ca52889fd js-required c3ddacae7 c8adb84e4"
-                                                 data-dynamic-label-for="password" aria-hidden="true">
-                                                Password
-                                            </div>
-
-                                            <button type="button"
-                                                    class="cf1ef5a0b ulp-button-icon c9f67a967 _button-icon"
-                                                    data-action="toggle">
-                                                    <span aria-hidden="true"
-                                                          class="password-icon-tooltip show-password-tooltip">Show
-                                                        password</span>
-                                                <span aria-hidden="true"
-                                                      class="password-icon-tooltip hide-password-tooltip hide">Hide
-                                                        password</span>
-                                                <span class="screen-reader-only password-toggle-label"
-                                                      data-label="show-password">Show password</span>
-
-                                                <span class="screen-reader-only password-toggle-label hide"
-                                                      data-label="hide-password">Hide password</span>
-
-                                                <span class="cf12e1c5c password js-required" aria-hidden="true"></span>
-                                            </button>
-                                            <div data-lastpass-icon-root="true"
-                                                 style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
-                                            </div>
+                                        <div class="form-group mt-2">
+                                            <input type="password" name="password" class="form-style" placeholder="Your Password" autocomplete="off">
+                                            <i class="input-icon uil uil-lock-alt"></i>
                                         </div>
+                                        <a href="#" class="btn mt-4">submit</a>
+                                        <p class="mb-0 mt-4 text-center"><a href="#0" class="link" style="margin-left: -130px;">Forgot your password?</a></p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="c22fea258">
-                                <button type="submit" name="action" value="default"
-                                        class="cf1ef5a0b cd6a2dc65 c9f67a967 cd5d5f1f0 cd4ac9b0d"
-                                        data-action-button-primary="true">Continue
-                                </button>
+                            <div class="card-back">
+                                <div class="center-wrap">
+                                    <div class="section text-center">
+                                        <h4 class="mb-4 pb-3">Sign Up</h4>
+                                        <div class="form-group">
+                                            <input type="text" name="email" class="form-style" placeholder="Your Email" autocomplete="off">
+                                            <i class="input-icon uil uil-user"></i>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <input type="email" name="password" class="form-style" placeholder="Your Password" autocomplete="off">
+                                            <i class="input-icon uil uil-at"></i>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <input type="password" name="confirmPassword" class="form-style" placeholder="Confirm Password" autocomplete="off">
+                                            <i class="input-icon uil uil-lock-alt"></i>
+                                        </div>
+                                        <a href="#" class="btn mt-4">submit</a>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
-                        <div class="ulp-alternate-action  _alternate-action __s16nu9">
-                            <p class="c9a7d2600 c074ca9a5">
-                                <a class="cccd81a90 cceef0df4 cce50d0e0" href="/reset-password" aria-label="">Forgot
-                                    password?</a>
-                            </p>
-                            <p class="c74028152 c8d445162 c3ffb5857">Don't have an account?
-                                <a class="cccd81a90 cce50d0e0" href="/sign-up" aria-label="">Sign up</a>
-                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-</div>
-<div data-lastpass-root="" style="position: absolute !important; top: 0px !important; left: 0px !important; height: 0px !important; width: 0px !important;">
-    <div data-lastpass-infield="true" style="position: absolute !important; top: 0px !important; left: 0px !important;"></div>
+        </div>
+    </div>
 </div>
 </body>
-<script id="client-scripts" src="/js/login-client.js" type="text/javascript"></script>
-<script defer>
-    const params = {};
-    window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, (str, key, value) => {
-            params[key] = value;
-        }
-    );
-    if (params['auth'] && params['auth'] === "fail") alert('Unregistered email or invalid password.');
-    if (params['create'] && params['create'] === "success") alert('You have successfully registered as a member. Please log in and use it.');
-</script>
 </html>
