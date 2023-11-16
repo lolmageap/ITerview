@@ -34,6 +34,8 @@ h6 span{
     padding: 0 20px;
     text-transform: uppercase;
     font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
 }
 .section{
     position: relative;
