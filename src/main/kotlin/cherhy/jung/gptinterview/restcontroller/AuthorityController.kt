@@ -32,9 +32,17 @@ class AuthorityController(
 
     @PostMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "회원가입")
-    fun signUp(@Valid @RequestBody signUpRequest: SignUpRequest): Unit =
+    @Operation(summary = "회원가입", description = "회원가입을 하고 로그인 상태가 되며 토큰을 발급 받는다.")
+    fun signUp(
+        @Valid @RequestBody signUpRequest: SignUpRequest,
+        httpServletResponse: HttpServletResponse,
+    ): TokenResponse {
         signUpUseCase.signUp(signUpRequest.toCustomerRequest())
+        return signInUseCase.signIn(signUpRequest.toCustomerRequest()).also {
+            httpServletResponse.addHeader(AUTHORIZATION_HEADER, "Bearer ${it.token}")
+        }
+    }
+
 
     @PostMapping("/sign-out")
     fun signOut() {
