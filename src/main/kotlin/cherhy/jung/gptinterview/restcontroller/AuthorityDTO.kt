@@ -25,7 +25,8 @@ data class SignUpRequest(
     val confirmPassword: String,
 ) {
     init {
-        require(password == confirmPassword) { "비밀번호 재입력 오류" }
+        require(password == confirmPassword) { "동일한 비밀번호를 입력해주세요." }
+        require(password.length > 7) { "비밀번호는 8글자 이상이어야 합니다." }
     }
 }
 
