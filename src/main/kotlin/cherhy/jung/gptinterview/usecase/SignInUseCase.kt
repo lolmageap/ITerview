@@ -1,14 +1,12 @@
 package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.annotation.UseCase
-import cherhy.jung.gptinterview.redis.RedisWriteService
 import cherhy.jung.gptinterview.domain.customer.AuthCustomer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.CustomerRequestS
-import cherhy.jung.gptinterview.jwt.JwtFilter
 import cherhy.jung.gptinterview.jwt.TokenProvider
 import cherhy.jung.gptinterview.jwt.TokenResponse
-import org.springframework.http.HttpHeaders
+import cherhy.jung.gptinterview.redis.RedisWriteService
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.core.Authentication
@@ -36,9 +34,6 @@ class SignInUseCase(
 
         val jwt = tokenProvider.createToken(authCustomer)
         val refreshToken = tokenProvider.createRefreshToken(authCustomer)
-
-        val httpHeaders = HttpHeaders()
-        httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer $jwt")
 
         redisWriteService.addJwtToken(jwt, refreshToken)
         return TokenResponse(jwt, role, authCustomer.token)

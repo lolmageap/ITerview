@@ -1,10 +1,12 @@
 package cherhy.jung.gptinterview.restcontroller
 
 import cherhy.jung.gptinterview.jwt.*
+import cherhy.jung.gptinterview.jwt.JwtFilter.Companion.AUTHORIZATION_HEADER
 import cherhy.jung.gptinterview.usecase.SignInUseCase
 import cherhy.jung.gptinterview.usecase.SignUpUseCase
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
+import jakarta.servlet.http.HttpServletResponse
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -20,8 +22,13 @@ class AuthorityController(
     @PostMapping("/sign-in")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "로그인", description = "로그인을 하고 토큰을 발급 받는다.")
-    fun signIn(@Valid @RequestBody signInRequest: SignInRequest): TokenResponse =
-        signInUseCase.signIn(signInRequest.toCustomerRequest())
+    fun signIn(
+        @Valid @RequestBody signInRequest: SignInRequest,
+        httpServletResponse: HttpServletResponse,
+    ): TokenResponse =
+        signInUseCase.signIn(signInRequest.toCustomerRequest()).also {
+            httpServletResponse.addHeader(AUTHORIZATION_HEADER, "Bearer ${it.token}")
+        }
 
     @PostMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
