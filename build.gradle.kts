@@ -56,6 +56,9 @@ dependencies {
     // mysql
     runtimeOnly("com.mysql:mysql-connector-j")
 
+    // yaml
+    implementation("org.yaml:snakeyaml")
+
     // test
     testImplementation("com.h2database:h2")
     testImplementation("com.ninja-squad:springmockk:4.0.2")
