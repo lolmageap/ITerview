@@ -1,12 +1,15 @@
 const positions = new Set()
 
 const closeTab = () => {
-    closePosition()
-    closeCategory()
-    closePrograming()
-    closeFramework()
-    document.getElementById('cbx-1').checked = false
-    document.getElementById('cbx-14').checked = false
+    const checkbox = document.getElementById('checkbox')
+    if (!checkbox.checked) {
+        closePosition()
+        closeCategory()
+        closePrograming()
+        closeFramework()
+        document.getElementById('cbx-1').checked = false
+        document.getElementById('cbx-14').checked = false
+    }
 }
 
 const showPositionAndCheck = () => {
@@ -139,7 +142,9 @@ const addPositionInSet = id => {
 
 const sendPositionToServer = async () => {
     const params = makeRequestParams(positions, 'positionTypes')
-    if (!params) { return; }
+    if (!params) {
+        return;
+    }
     const response = await fetch("/position?" + params, {
         method: "GET",
         headers: {"Content-Type": "application/json"},
