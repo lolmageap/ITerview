@@ -6,21 +6,402 @@
     <title>Interview GPT</title>
     <script src="js/index.js" defer></script>
     <link href="/css/index.css" rel="stylesheet" type="text/css">
+    <link href="/css/button.css" rel="stylesheet" type="text/css">
+    <link href="/css/checkbox.css" rel="stylesheet" type="text/css">
+    <link href="/css/nav.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="container">
     <div class="flex-header">
-        <h1>Interview GPT</h1>
-        <div class="images">
-            <img src="/image/logo.png" alt="Logo">
-        </div>
+        <h3>Interview GPT</h3>
     </div>
+    <nav>
+        <div class="navbar">
+            <div class="container nav-container">
+                <input class="checkbox" type="checkbox" name="" id=""/>
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <div class="menu-items">
+                    <li>
+                        <div class="checkbox-wrapper-45">
+                            <input onclick="showPosition()" id="cbx-1" type="checkbox"/>
+                            <label class="cbx" for="cbx-1">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span onclick="showPosition()" class="sub-menu">Position</span>
+                        </div>
+                    </li>
 
-<!--    <footer class="contact">-->
-<!--        <h2>Contact Us</h2>-->
-<!--        <p>Name: Cherhy</p>-->
-<!--        <p>Email: <a href="mailto:ekxk1234@naver.com">ekxk1234@naver.com</a></p>-->
-<!--    </footer>-->
+                    <li id="position-detail">
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-2" type="checkbox"/>
+                            <label class="cbx" for="cbx-2">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-2')">게임 개발자</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-3" type="checkbox"/>
+                            <label class="cbx" for="cbx-3">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-3')">데이터 분석가</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-4" type="checkbox"/>
+                            <label class="cbx" for="cbx-4">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-4')">데이터 분석가</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-5" type="checkbox"/>
+                            <label class="cbx" for="cbx-5">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-5')">데이터 엔지니어</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-6" type="checkbox"/>
+                            <label class="cbx" for="cbx-6">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-6')">백엔드/서버 개발자</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-7" type="checkbox"/>
+                            <label class="cbx" for="cbx-7">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-7')">프론트엔드 개발자</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-8" type="checkbox"/>
+                            <label class="cbx" for="cbx-8">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-8')">보안</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-9" type="checkbox"/>
+                            <label class="cbx" for="cbx-9">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-9')">안드로이드 개발자</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-10" type="checkbox"/>
+                            <label class="cbx" for="cbx-10">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-10')">IOS 개발자</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-11" type="checkbox"/>
+                            <label class="cbx" for="cbx-11">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-11')">AI 개발자</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-12" type="checkbox"/>
+                            <label class="cbx" for="cbx-12">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-12')">블록체인</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-13" type="checkbox"/>
+                            <label class="cbx" for="cbx-13">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-13')">데이터베이스 관리자</span>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="checkbox-wrapper-45">
+                            <input onclick="showCategory()" id="cbx-14" type="checkbox"/>
+                            <label class="cbx" for="cbx-14">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span onclick="showCategory()" class="sub-menu">Category</span>
+                        </div>
+                    </li>
+
+                    <li id="category-detail">
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-15" type="checkbox"/>
+                            <label class="cbx" for="cbx-15">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-15')">데이터베이스</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-16" type="checkbox"/>
+                            <label class="cbx" for="cbx-16">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-16')">네트워크</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-17" type="checkbox"/>
+                            <label class="cbx" for="cbx-17">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-17')">디자인 패턴</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-18" type="checkbox"/>
+                            <label class="cbx" for="cbx-18">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-18')">테스트코드</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-19" type="checkbox"/>
+                            <label class="cbx" for="cbx-19">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-19')">운영체제</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-20" type="checkbox"/>
+                            <label class="cbx" for="cbx-20">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-20')">자료구조</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-21" type="checkbox"/>
+                            <label class="cbx" for="cbx-21">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-21')">형상관리</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-22" type="checkbox"/>
+                            <label class="cbx" for="cbx-22">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-22')">프로그래밍 언어</span>
+                        </div>
+                        <div class="checkbox-wrapper-45">
+                            <input id="cbx-23" type="checkbox"/>
+                            <label class="cbx" for="cbx-23">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="sub-menu" onclick="toggleCheckbox('cbx-23')">프레임워크</span>
+                        </div>
+                    </li>
+
+                    <li id="programing-detail">
+
+                    </li>
+
+                    <li id="framework-detail">
+
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--        <div>-->
+    <!--            <button class="button-82-pushable" role="button">-->
+    <!--                <span class="button-82-shadow"></span>-->
+    <!--                <span class="button-82-edge"></span>-->
+    <!--                <span class="button-82-front text">Submit</span>-->
+    <!--            </button>-->
+    <!--        </div>-->
 </div>
 </body>
 </html>
+<script>
+
+    const showPosition = () => {
+        const list = document.getElementById('position-detail')
+        if (list.style.display == 'none') {
+            list.style.display = 'flex';
+        } else {
+            list.style.display = 'none';
+        }
+    }
+
+    const showCategory = () => {
+        const list = document.getElementById('category-detail')
+        if (list.style.display == 'none') {
+            list.style.display = 'inline';
+        } else {
+            list.style.display = 'none';
+        }
+    }
+
+    const toggleCheckbox = id => {
+        const checkbox = document.getElementById(id);
+        checkbox.checked = !checkbox.checked;
+    }
+</script>
