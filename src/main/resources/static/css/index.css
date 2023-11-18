@@ -1,7 +1,7 @@
 body {
-    background-color: #1f2029;
+    background-color: #373f47;
     font-family: 'Arial', sans-serif;
-    color: #4d194d;
+    color: #c4c3ca;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -38,13 +38,6 @@ p {
     margin-top: 20px;
     right: 0;
     position: absolute;
-}
-
-.images img {
-    width: 15%;
-    border-radius: 10px;
-    margin: 1%;
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .contact {
