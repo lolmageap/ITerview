@@ -47,7 +47,7 @@
     border-radius: 12px;
     font-size: 1.1rem;
     color: white;
-    background: hsl(345deg 100% 47%);
+    background: hsl(90.04deg 38.86% 52.75%);
     will-change: transform;
     transform: translateY(-4px);
     transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
@@ -55,8 +55,8 @@
 
 @media (min-width: 768px) {
     .button-82-front {
-        font-size: 1.25rem;
-        padding: 12px 42px;
+        font-size: 1.4rem;
+        padding: 20px 100px;
     }
 }
 
