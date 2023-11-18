@@ -2,10 +2,25 @@
     display: none;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin-left: 50px;
 }
 
 #category-detail {
     display: none;
+    margin-left: 50px;
+}
+
+#programing-detail {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 50px;
+}
+
+#framework-detail {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     margin-left: 50px;
 }
 
