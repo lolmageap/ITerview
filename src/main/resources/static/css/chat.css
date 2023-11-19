@@ -1,0 +1,31 @@
+.chat-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.message {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.question, .feedback {
+    float: left;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    clear: both;
+}
+
+.answer {
+    float: right;
+    background-color: #2196F3;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 10px;
+    clear: both;
+}
