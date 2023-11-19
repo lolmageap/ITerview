@@ -6,16 +6,22 @@
     <title>Interview GPT</title>
     <script src="js/index.js" defer></script>
     <script src="js/menu.js" defer></script>
+    <script src="js/chat.js" defer></script>
     <link href="/css/index.css" rel="stylesheet" type="text/css">
     <link href="/css/button.css" rel="stylesheet" type="text/css">
     <link href="/css/checkbox.css" rel="stylesheet" type="text/css">
     <link href="/css/nav.css" rel="stylesheet" type="text/css">
+    <link href="/css/chat.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="container">
+
+    <!--header-->
     <div class="flex-header">
         <h3>Interview GPT</h3>
     </div>
+
+    <!--navigation-->
     <nav>
         <div class="navbar">
             <div class="container nav-container">
@@ -26,7 +32,7 @@
                     <span class="line line3"></span>
                 </div>
                 <div class="menu-items">
-                    <li>
+                    <li id="position">
                         <div class="checkbox-wrapper-45">
                             <input onclick="showPosition()" id="cbx-1" type="checkbox"/>
                             <label class="cbx" for="cbx-1">
@@ -40,6 +46,7 @@
                                 </div>
                             </label>
                             <span onclick="showPositionAndCheck()" class="sub-menu">Position</span>
+                            <span class="popup">Category만 체크해줍니다</span>
                         </div>
                     </li>
 
@@ -684,6 +691,31 @@
             </div>
         </div>
     </nav>
+
+    <!--prompt-->
+    <div class="chat-container">
+        <div class="message">
+            <div class="question">
+                <h4>Question</h4>
+                <div>prompt는 어떻게 입력하나요?</div>
+            </div>
+            <div class="answer">
+                <h4>Answer</h4>
+                <div>키보드로 타자를 치면 됩니다.</div>
+            </div>
+        </div>
+
+        <div class="message">
+            <div class="feedback">
+                <h4>Feedback</h4>
+                <div>
+                    100점
+                    정답입니다.
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>
