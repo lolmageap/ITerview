@@ -1,4 +1,7 @@
 const positions = new Set()
+const questionTypes = new Set()
+const programingTypes = new Set()
+const frameworkTypes = new Set()
 
 const closeTab = () => {
     const checkbox = document.getElementById('checkbox')
@@ -7,6 +10,7 @@ const closeTab = () => {
         closeCategory()
         closePrograming()
         closeFramework()
+        removeAllTypes()
         document.getElementById('cbx-1').checked = false
         document.getElementById('cbx-14').checked = false
     }
@@ -137,6 +141,7 @@ const addPositionInSet = id => {
     openCategory()
     showPrograming()
     showFramework()
+    removeAllTypes()
     sendPositionToServer()
 }
 
@@ -151,7 +156,6 @@ const sendPositionToServer = async () => {
     });
 
     const body = await response.json()
-    console.log(body)
     await checkQuestionFromPosition(body)
 }
 
@@ -164,12 +168,15 @@ const checkQuestionFromPosition = async body => {
     const list = []
 
     body.questionTypes.forEach(value => {
+        questionTypes.add(value)
         list.push(value)
     })
     body.programingTypes.forEach(value => {
+        programingTypes.add(value)
         list.push(value)
     })
     body.frameworkTypes.forEach(value => {
+        frameworkTypes.add(value)
         list.push(value)
     })
     await checkAllQuestions(list)
@@ -182,4 +189,10 @@ const checkAllQuestions = async list => {
             checkbox.checked = true;
         }
     });
+}
+
+const removeAllTypes = () => {
+    questionTypes.clear()
+    programingTypes.clear()
+    frameworkTypes.clear()
 }
