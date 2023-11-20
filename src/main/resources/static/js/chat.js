@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const toggleChatContainer = checkbox => {
     const chatContainer = document.querySelector('.chat-container');
-
+    chatContainer.style.transition = 'opacity 0.5s ease-in-out';
     chatContainer.style.opacity = checkbox.checked ? 0 : 1;
     chatContainer.style.visibility = checkbox.checked ? 'hidden' : 'visible';
 
