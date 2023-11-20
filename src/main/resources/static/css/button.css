@@ -88,3 +88,57 @@
 .button-82-pushable:focus:not(:focus-visible) {
     outline: none;
 }
+
+#inputField, #submitBtn {
+    display: none;
+}
+
+.submit-container {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    left: 50%;
+    bottom: 10%;
+    transform: translate(-50%, -10%);
+    width: 70%;
+    justify-content: center;
+}
+
+#inputField {
+    width: 60%;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgb(142, 142, 160);
+    font-size: 17px;
+    outline: none;
+    padding: 0.5rem 1.2rem;
+    line-height: 1.5;
+    resize: none;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+#inputField::-webkit-scrollbar {
+    width: 10px;
+}
+
+#inputField::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#inputField::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#inputField::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#inputField {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}
