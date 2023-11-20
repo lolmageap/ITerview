@@ -7,6 +7,7 @@
     <script src="js/index.js" defer></script>
     <script src="js/menu.js" defer></script>
     <script src="js/chat.js" defer></script>
+    <script src="js/button.js" defer></script>
     <link href="/css/index.css" rel="stylesheet" type="text/css">
     <link href="/css/button.css" rel="stylesheet" type="text/css">
     <link href="/css/checkbox.css" rel="stylesheet" type="text/css">
@@ -681,7 +682,8 @@
                         </div>
                     </li>
                     <li>
-                        <button class="button-82-pushable" role="button" id="position-submit" onclick="toggleCheckbox('checkbox')">
+                        <button class="button-82-pushable" role="button" id="position-submit"
+                                onclick="toggleCheckbox('checkbox')">
                             <span class="button-82-shadow"></span>
                             <span class="button-82-edge"></span>
                             <span class="button-82-front text">Submit</span>
@@ -716,6 +718,22 @@
         </div>
     </div>
 
+    <div class="submit-container">
+        <textarea id="inputField" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"
+                  placeholder="답을 입력해주세요" class="submit-input"></textarea>
+
+        <button id="submitBtn" onclick="handleSubmit()" class="button-82-pushable" role="button">
+            <span class="button-82-shadow"></span>
+            <span class="button-82-edge"></span>
+            <span class="button-82-front text" style="background: hsl(14.37deg 38.86% 52.75%) !important;">답안 제출</span>
+        </button>
+
+        <button id="sendBtn" onclick="handleSend()" class="button-82-pushable" role="button">
+            <span class="button-82-shadow"></span>
+            <span class="button-82-edge"></span>
+            <span class="button-82-front text">질문 요청</span>
+        </button>
+    </div>
 </div>
 </body>
 </html>
