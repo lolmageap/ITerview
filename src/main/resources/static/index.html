@@ -33,6 +33,8 @@
                     <span class="line line3"></span>
                 </div>
                 <div class="menu-items">
+
+                    <!--position-->
                     <li id="position">
                         <div class="checkbox-wrapper-45">
                             <input onclick="showPosition()" id="cbx-1" type="checkbox"/>
@@ -51,6 +53,7 @@
                         </div>
                     </li>
 
+                    <!--position detail-->
                     <li id="position-detail">
                         <div class="checkbox-wrapper-45">
                             <input id="cbx-2" type="checkbox" name="GAME" onclick="addPositionInSet('cbx-2')"/>
@@ -208,6 +211,7 @@
                         </div>
                     </li>
 
+                    <!--category-->
                     <li>
                         <div class="checkbox-wrapper-45">
                             <input onclick="showCategory()" id="cbx-14" type="checkbox"/>
@@ -227,7 +231,7 @@
 
                     <li id="category-detail">
                         <div class="checkbox-wrapper-45">
-                            <input id="cbx-15" type="checkbox" name="DATABASE"/>
+                            <input id="cbx-15" type="checkbox" onclick="addSetToQuestion(this)" name="DATABASE"/>
                             <label class="cbx" for="cbx-15">
                                 <div class="flip">
                                     <div class="front"></div>
@@ -238,10 +242,10 @@
                                     </div>
                                 </div>
                             </label>
-                            <span class="sub-menu" onclick="toggleCheckbox('cbx-15')">데이터베이스</span>
+                            <span class="sub-menu" name="DATABASE" onclick="addSetToQuestionAndToggle(this, 'cbx-15')">데이터베이스</span>
                         </div>
                         <div class="checkbox-wrapper-45">
-                            <input id="cbx-16" type="checkbox" name="NETWORK"/>
+                            <input id="cbx-16" type="checkbox" onclick="addSetToQuestion(this)" name="NETWORK"/>
                             <label class="cbx" for="cbx-16">
                                 <div class="flip">
                                     <div class="front"></div>
@@ -252,10 +256,10 @@
                                     </div>
                                 </div>
                             </label>
-                            <span class="sub-menu" onclick="toggleCheckbox('cbx-16')">네트워크</span>
+                            <span class="sub-menu" name="NETWORK" onclick="addSetToQuestionAndToggle(this, 'cbx-16')">네트워크</span>
                         </div>
                         <div class="checkbox-wrapper-45">
-                            <input id="cbx-17" type="checkbox" name="DESIGN_PATTERN"/>
+                            <input id="cbx-17" type="checkbox" onclick="addSetToQuestion(this)" name="DESIGN_PATTERN"/>
                             <label class="cbx" for="cbx-17">
                                 <div class="flip">
                                     <div class="front"></div>
@@ -266,10 +270,10 @@
                                     </div>
                                 </div>
                             </label>
-                            <span class="sub-menu" onclick="toggleCheckbox('cbx-17')">디자인 패턴</span>
+                            <span class="sub-menu" name="DESIGN_PATTERN" onclick="addSetToQuestionAndToggle(this, 'cbx-17')">디자인 패턴</span>
                         </div>
                         <div class="checkbox-wrapper-45">
-                            <input id="cbx-18" type="checkbox" name="TEST"/>
+                            <input id="cbx-18" type="checkbox" onclick="addSetToQuestion(this)" name="TEST"/>
                             <label class="cbx" for="cbx-18">
                                 <div class="flip">
                                     <div class="front"></div>
@@ -280,10 +284,10 @@
                                     </div>
                                 </div>
                             </label>
-                            <span class="sub-menu" onclick="toggleCheckbox('cbx-18')">테스트코드</span>
+                            <span class="sub-menu" name="TEST" onclick="addSetToQuestionAndToggle(this, 'cbx-18')">테스트코드</span>
                         </div>
                         <div class="checkbox-wrapper-45">
-                            <input id="cbx-19" type="checkbox" name="OS"/>
+                            <input id="cbx-19" type="checkbox" onclick="addSetToQuestion(this)" name="OS"/>
                             <label class="cbx" for="cbx-19">
                                 <div class="flip">
                                     <div class="front"></div>
@@ -294,10 +298,10 @@
                                     </div>
                                 </div>
                             </label>
-                            <span class="sub-menu" onclick="toggleCheckbox('cbx-19')">운영체제</span>
+                            <span class="sub-menu" name="OS" onclick="addSetToQuestionAndToggle(this, 'cbx-19')">운영체제</span>
                         </div>
                         <div class="checkbox-wrapper-45">
-                            <input id="cbx-20" type="checkbox" name="STRUCTURE"/>
+                            <input id="cbx-20" type="checkbox" onclick="addSetToQuestion(this)" name="STRUCTURE"/>
                             <label class="cbx" for="cbx-20">
                                 <div class="flip">
                                     <div class="front"></div>
@@ -308,10 +312,10 @@
                                     </div>
                                 </div>
                             </label>
-                            <span class="sub-menu" onclick="toggleCheckbox('cbx-20')">자료구조</span>
+                            <span class="sub-menu" name="STRUCTURE" onclick="addSetToQuestionAndToggle(this, 'cbx-20')">자료구조</span>
                         </div>
                         <div class="checkbox-wrapper-45">
-                            <input id="cbx-21" type="checkbox" name="VCS"/>
+                            <input id="cbx-21" type="checkbox" onclick="addSetToQuestion(this)" name="VCS"/>
                             <label class="cbx" for="cbx-21">
                                 <div class="flip">
                                     <div class="front"></div>
@@ -322,8 +326,10 @@
                                     </div>
                                 </div>
                             </label>
-                            <span class="sub-menu" onclick="toggleCheckbox('cbx-21')">형상관리</span>
+                            <span class="sub-menu" name="VCS" onclick="addSetToQuestionAndToggle(this, 'cbx-21')">형상관리</span>
                         </div>
+
+                        <!--programing-->
                         <div class="checkbox-wrapper-45">
                             <input id="cbx-22" type="checkbox" name="PROGRAMING" onclick="showPrograming()"/>
                             <label class="cbx" for="cbx-22">
@@ -338,9 +344,10 @@
                             </label>
                             <span class="sub-menu" onclick="showProgramingAndCheck()">프로그래밍 언어</span>
                         </div>
+
                         <div id="programing-detail">
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-24" type="checkbox" name="C++"/>
+                                <input id="cbx-24" type="checkbox" onclick="addSetToPrograming(this)" name="C++"/>
                                 <label class="cbx" for="cbx-24">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -351,10 +358,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-24')">C++</span>
+                                <span class="sub-menu" name="C++" onclick="addSetToProgramingAndToggle(this, 'cbx-24')">C++</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-25" type="checkbox" name="C#"/>
+                                <input id="cbx-25" type="checkbox" onclick="addSetToPrograming(this)" name="C#"/>
                                 <label class="cbx" for="cbx-25">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -365,10 +372,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-25')">C#</span>
+                                <span class="sub-menu" name="C#" onclick="addSetToProgramingAndToggle(this, 'cbx-25')">C#</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-26" type="checkbox" name="C"/>
+                                <input id="cbx-26" type="checkbox" onclick="addSetToPrograming(this)" name="C"/>
                                 <label class="cbx" for="cbx-26">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -379,10 +386,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-26')">C</span>
+                                <span class="sub-menu" name="C" onclick="addSetToProgramingAndToggle(this, 'cbx-26')">C</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-27" type="checkbox" name="JAVA"/>
+                                <input id="cbx-27" type="checkbox" onclick="addSetToPrograming(this)" name="JAVA"/>
                                 <label class="cbx" for="cbx-27">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -393,10 +400,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-27')">JAVA</span>
+                                <span class="sub-menu" name="JAVA" onclick="addSetToProgramingAndToggle(this, 'cbx-27')">JAVA</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-28" type="checkbox" name="JAVASCRIPT"/>
+                                <input id="cbx-28" type="checkbox" onclick="addSetToPrograming(this)" name="JAVASCRIPT"/>
                                 <label class="cbx" for="cbx-28">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -407,10 +414,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-28')">JAVASCRIPT</span>
+                                <span class="sub-menu" name="JAVASCRIPT" onclick="addSetToProgramingAndToggle(this, 'cbx-28')">JAVASCRIPT</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-29" type="checkbox" name="RUST"/>
+                                <input id="cbx-29" type="checkbox" onclick="addSetToPrograming(this)" name="RUST"/>
                                 <label class="cbx" for="cbx-29">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -421,10 +428,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-29')">RUST</span>
+                                <span class="sub-menu" name="RUST" onclick="addSetToProgramingAndToggle(this, 'cbx-29')">RUST</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-30" type="checkbox" name="KOTLIN"/>
+                                <input id="cbx-30" type="checkbox" onclick="addSetToPrograming(this)" name="KOTLIN"/>
                                 <label class="cbx" for="cbx-30">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -435,10 +442,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-30')">KOTLIN</span>
+                                <span class="sub-menu" name="KOTLIN" onclick="addSetToProgramingAndToggle(this, 'cbx-30')">KOTLIN</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-31" type="checkbox" name="PYTHON"/>
+                                <input id="cbx-31" type="checkbox" onclick="addSetToPrograming(this)" name="PYTHON"/>
                                 <label class="cbx" for="cbx-31">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -449,10 +456,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-31')">PYTHON</span>
+                                <span class="sub-menu" name="PYTHON" onclick="addSetToProgramingAndToggle(this, 'cbx-31')">PYTHON</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-32" type="checkbox" name="SWIFT"/>
+                                <input id="cbx-32" type="checkbox" onclick="addSetToPrograming(this)" name="SWIFT"/>
                                 <label class="cbx" for="cbx-32">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -463,10 +470,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-32')">SWIFT</span>
+                                <span class="sub-menu" name="SWIFT" onclick="addSetToProgramingAndToggle(this, 'cbx-32')">SWIFT</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-33" type="checkbox" name="CSS"/>
+                                <input id="cbx-33" type="checkbox" onclick="addSetToPrograming(this)" name="CSS"/>
                                 <label class="cbx" for="cbx-33">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -477,10 +484,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-33')">CSS</span>
+                                <span class="sub-menu" name="CSS" onclick="addSetToProgramingAndToggle(this, 'cbx-33')">CSS</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-34" type="checkbox" name="GO"/>
+                                <input id="cbx-34" type="checkbox" onclick="addSetToPrograming(this)" name="GO"/>
                                 <label class="cbx" for="cbx-34">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -491,10 +498,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-34')">GO</span>
+                                <span class="sub-menu" name="GO" onclick="addSetToProgramingAndToggle(this, 'cbx-34')">GO</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-35" type="checkbox" name="PHP"/>
+                                <input id="cbx-35" type="checkbox" onclick="addSetToPrograming(this)" name="PHP"/>
                                 <label class="cbx" for="cbx-35">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -505,12 +512,13 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-35')">PHP</span>
+                                <span class="sub-menu" name="PHP" onclick="addSetToProgramingAndToggle(this, 'cbx-35')">PHP</span>
                             </div>
                         </div>
 
+                        <!--framework-->
                         <div class="checkbox-wrapper-45">
-                            <input id="cbx-23" type="checkbox" name="FRAMEWORK"/>
+                            <input id="cbx-23" type="checkbox" onclick="showFramework()" name="FRAMEWORK"/>
                             <label class="cbx" for="cbx-23">
                                 <div class="flip">
                                     <div class="front"></div>
@@ -526,7 +534,7 @@
 
                         <div id="framework-detail">
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-36" type="checkbox" name="SPRING"/>
+                                <input id="cbx-36" type="checkbox" onclick="addSetToFramework(this)" name="SPRING"/>
                                 <label class="cbx" for="cbx-36">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -537,10 +545,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-36')">SPRING</span>
+                                <span class="sub-menu" name="SPRING" onclick="addSetToFrameworkAndToggle(this, 'cbx-36')">SPRING</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-37" type="checkbox" name="REACT"/>
+                                <input id="cbx-37" type="checkbox" onclick="addSetToFramework(this)" name="REACT"/>
                                 <label class="cbx" for="cbx-37">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -551,10 +559,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-37')">REACT</span>
+                                <span class="sub-menu" name="REACT" onclick="addSetToFrameworkAndToggle(this, 'cbx-37')">REACT</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-38" type="checkbox" name="EXPRESS"/>
+                                <input id="cbx-38" type="checkbox" onclick="addSetToFramework(this)" name="EXPRESS"/>
                                 <label class="cbx" for="cbx-38">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -565,10 +573,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-38')">EXPRESS</span>
+                                <span class="sub-menu" name="EXPRESS" onclick="addSetToFrameworkAndToggle(this, 'cbx-38')">EXPRESS</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-39" type="checkbox" name="NEXT"/>
+                                <input id="cbx-39" type="checkbox" onclick="addSetToFramework(this)" name="NEXT"/>
                                 <label class="cbx" for="cbx-39">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -579,10 +587,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-39')">NEXT</span>
+                                <span class="sub-menu" name="NEXT" onclick="addSetToFrameworkAndToggle(this, 'cbx-39')">NEXT</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-40" type="checkbox" name="NEST"/>
+                                <input id="cbx-40" type="checkbox" onclick="addSetToFramework(this)" name="NEST"/>
                                 <label class="cbx" for="cbx-40">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -593,10 +601,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-40')">NEST</span>
+                                <span class="sub-menu" name="NEST" onclick="addSetToFrameworkAndToggle(this, 'cbx-40')">NEST</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-41" type="checkbox" name="DJANGO"/>
+                                <input id="cbx-41" type="checkbox" onclick="addSetToFramework(this)" name="DJANGO"/>
                                 <label class="cbx" for="cbx-41">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -607,10 +615,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-41')">DJANGO</span>
+                                <span class="sub-menu" name="DJANGO" onclick="addSetToFrameworkAndToggle(this, 'cbx-41')">DJANGO</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-42" type="checkbox" name="FLASK"/>
+                                <input id="cbx-42" type="checkbox" onclick="addSetToFramework(this)" name="FLASK"/>
                                 <label class="cbx" for="cbx-42">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -621,10 +629,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-42')">FLASK</span>
+                                <span class="sub-menu" name="FLASK" onclick="addSetToFrameworkAndToggle(this, 'cbx-42')">FLASK</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-43" type="checkbox" name="FAST_API"/>
+                                <input id="cbx-43" type="checkbox" onclick="addSetToFramework(this)" name="FAST_API"/>
                                 <label class="cbx" for="cbx-43">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -635,10 +643,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-43')">FAST_API</span>
+                                <span class="sub-menu" name="FAST_API" onclick="addSetToFrameworkAndToggle(this, 'cbx-43')">FAST_API</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-44" type="checkbox" name="UNITY"/>
+                                <input id="cbx-44" type="checkbox" onclick="addSetToFramework(this)" name="UNITY"/>
                                 <label class="cbx" for="cbx-44">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -649,10 +657,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-44')">UNITY</span>
+                                <span class="sub-menu" name="UNITY" onclick="addSetToFrameworkAndToggle(this, 'cbx-44')">UNITY</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-45" type="checkbox" name="DOTNET"/>
+                                <input id="cbx-45" type="checkbox" onclick="addSetToFramework(this)" name="DOTNET"/>
                                 <label class="cbx" for="cbx-45">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -663,10 +671,10 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-45')">.NET</span>
+                                <span class="sub-menu" name="DOTNET" onclick="addSetToFrameworkAndToggle(this, 'cbx-45')">.NET</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-46" type="checkbox" name="LARAVEL"/>
+                                <input id="cbx-46" type="checkbox" onclick="addSetToFramework(this)" name="LARAVEL"/>
                                 <label class="cbx" for="cbx-46">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -677,10 +685,80 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" onclick="toggleCheckbox('cbx-46')">LARAVEL</span>
+                                <span class="sub-menu" name="LARAVEL" onclick="addSetToFrameworkAndToggle(this, 'cbx-46')">LARAVEL</span>
                             </div>
                         </div>
                     </li>
+
+                    <!--Level-->
+                    <li>
+                        <div>
+                            <div class="checkbox-wrapper-45">
+                                <input id="cbx-47" type="checkbox" onclick="showLevel()" name="LEVEL"/>
+                                <label class="cbx" for="cbx-47">
+                                    <div class="flip">
+                                        <div class="front"></div>
+                                        <div class="back">
+                                            <svg width="16" height="14" viewBox="0 0 16 14">
+                                                <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </label>
+                                <span class="sub-menu" onclick="showLevelAndCheck()">Level</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div id="level-detail">
+                            <div class="checkbox-wrapper-45">
+                                <input id="cbx-48" type="checkbox" onclick="addSetToLevel(this)" name="LEVEL1"/>
+                                <label class="cbx" for="cbx-48">
+                                    <div class="flip">
+                                        <div class="front"></div>
+                                        <div class="back">
+                                            <svg width="16" height="14" viewBox="0 0 16 14">
+                                                <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </label>
+                                <span class="sub-menu" name="LEVEL1" onclick="addSetToLevelAndToggle(this, 'cbx-48')">LEVEL 1</span>
+                            </div>
+
+                            <div class="checkbox-wrapper-45">
+                                <input id="cbx-49" type="checkbox" onclick="addSetToLevel(this)" name="LEVEL2"/>
+                                <label class="cbx" for="cbx-49">
+                                    <div class="flip">
+                                        <div class="front"></div>
+                                        <div class="back">
+                                            <svg width="16" height="14" viewBox="0 0 16 14">
+                                                <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </label>
+                                <span class="sub-menu" name="LEVEL2" onclick="addSetToLevelAndToggle(this, 'cbx-49')">LEVEL 2</span>
+                            </div>
+
+                            <div class="checkbox-wrapper-45">
+                                <input id="cbx-50" type="checkbox" onclick="addSetToLevel(this)" name="LEVEL3"/>
+                                <label class="cbx" for="cbx-50">
+                                    <div class="flip">
+                                        <div class="front"></div>
+                                        <div class="back">
+                                            <svg width="16" height="14" viewBox="0 0 16 14">
+                                                <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </label>
+                                <span class="sub-menu" name="LEVEL3" onclick="addSetToLevelAndToggle(this, 'cbx-50')">LEVEL 3</span>
+                            </div>
+                        </div>
+                    </li>
+
                     <li>
                         <button class="button-82-pushable" role="button" id="position-submit"
                                 onclick="toggleCheckbox('checkbox')">
