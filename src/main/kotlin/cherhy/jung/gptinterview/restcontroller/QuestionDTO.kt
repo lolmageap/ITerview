@@ -8,10 +8,10 @@ import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestS
 import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseS
 
 data class QuestionRequest(
-    val questionTypes: List<QuestionType>,
-    val programingTypes: List<ProgramingType>,
-    val frameworkTypes: List<FrameworkType>,
-    val levels: List<QuestionLevel>,
+    val questionTypes: List<QuestionType> = emptyList(),
+    val programingTypes: List<ProgramingType> = emptyList(),
+    val frameworkTypes: List<FrameworkType> = emptyList(),
+    val levels: List<QuestionLevel> = emptyList(),
 )
 
 fun QuestionRequest.toQuestionRequestS(): QuestionRequestS =
