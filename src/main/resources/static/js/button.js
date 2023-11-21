@@ -11,7 +11,7 @@ const handleSubmit = async () => {
             submitBtn.style.display = 'none'
             sendBtn.style.display = 'inline-block'
 
-            createAnimatedMessage(inputField.value, "answer")
+            await createAnimatedMessage(inputField.value, "answer")
 
             const response = await fetch("/answer", {
                 method: "POST",
@@ -27,9 +27,8 @@ const handleSubmit = async () => {
 
             const json = await response.json()
             const {score, feedback} = json
-            const feedbackText = `${score}점
-            ${feedback}`
-            createAnimatedMessage(feedbackText, "feedback")
+            const feedbackText = `${score}점 \n ${feedback}`
+            await createAnimatedMessage(feedbackText, "feedback")
         } else {
             location.href = '/login'
         }
@@ -68,7 +67,7 @@ const handleSend = async () => {
         })
 
         const json = await response.json()
-        createAnimatedMessage(json.title, "question")
+        await createAnimatedMessage(json.title, "question")
         questionToken = json.token
         if (response.status == 403 || response.status == 401) {
             location.href = '/login'
@@ -78,7 +77,7 @@ const handleSend = async () => {
     }
 }
 
-const createAnimatedMessage = (text, type) => {
+const createAnimatedMessage = async (text, type) => {
     const messageContainer = document.createElement("div")
     messageContainer.classList.add("message")
 
@@ -89,7 +88,7 @@ const createAnimatedMessage = (text, type) => {
     header.textContent = type.charAt(0).toUpperCase() + type.slice(1)
 
     const animationTarget = document.createElement("div")
-    animationTarget.textContent = text
+    animationTarget.textContent = text.replace(/\n/g, '<br>')
     animationTarget.id = "animationTarget"
 
     contentContainer.appendChild(header)
