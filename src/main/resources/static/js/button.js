@@ -25,8 +25,9 @@ const handleSend = async () => {
     const questions = makeRequestParams(questionTypes, "questionTypes")
     const programing = makeRequestParams(programingTypes, "programingTypes")
     const frameworks = makeRequestParams(frameworkTypes, "frameworkTypes")
+    const level = makeRequestParams(levels, "levels")
 
-    const queryParams = [questions, programing, frameworks]
+    const queryParams = [questions, programing, frameworks, level]
         .map(param => param === '' ? param : param + '&')
         .join('')
         .slice(0, -1)
@@ -42,9 +43,12 @@ const handleSend = async () => {
             },
         })
 
-        const json = response.json()
+        const json = await response.json()
+        console.log(json)
         if (response.status == 403 || response.status == 401) {
             location.href = '/login'
         }
+    } else {
+        location.href = '/login'
     }
 }
