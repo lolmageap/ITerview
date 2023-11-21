@@ -26,8 +26,9 @@ const handleSubmit = async () => {
             })
 
             const json = await response.json()
-            const { score, feedback } = json
-            const feedbackText = `${score}점\n${feedback}`
+            const {score, feedback} = json
+            const feedbackText = `${score}점
+            ${feedback}`
             createAnimatedMessage(feedbackText, "feedback")
         } else {
             location.href = '/login'
