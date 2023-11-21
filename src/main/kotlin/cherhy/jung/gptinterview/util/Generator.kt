@@ -25,8 +25,8 @@ object Generator {
             그리고 아래 양식에 맞게 점수와 피드백을 작성해줘
             
             {
-                점수 : 
-                피드백 : 
+                "score" : ,
+                "feedback" : 
             }
         """.trimIndent()
 
