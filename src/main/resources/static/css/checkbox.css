@@ -24,6 +24,13 @@
     margin-left: 50px;
 }
 
+#level-detail {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 50px;
+}
+
 .checkbox-wrapper-45 {
     position: relative;
     margin-right: 20px;
