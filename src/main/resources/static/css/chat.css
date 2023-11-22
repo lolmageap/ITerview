@@ -3,6 +3,10 @@
     margin: 20px auto;
     overflow: hidden;
     transition: opacity 0.5s ease;
+    overflow-y: auto;
+    height: 600px;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
 }
 
 .message {
@@ -30,4 +34,23 @@
     margin-left: 10px;
     clear: both;
     width: 60%;
+    margin-right: 20px;
+}
+
+.chat-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.chat-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
