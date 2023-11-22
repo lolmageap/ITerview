@@ -117,9 +117,7 @@ const createAnimatedMessage = async (text, type) => {
 
 const afterChatFunction = async () => {
     const chatContainer = document.querySelector('.chat-container');
-
     const lastMessage = chatContainer.lastElementChild;
-
     lastMessage.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
