@@ -12,6 +12,7 @@ const handleSubmit = async () => {
             sendBtn.style.display = 'inline-block'
 
             await createAnimatedMessage(inputField.value, "answer")
+            await disableButton('sendBtn')
 
             const response = await fetch("/answer", {
                 method: "POST",
@@ -24,6 +25,7 @@ const handleSubmit = async () => {
                     answer: inputField.value
                 })
             })
+            await enableButton('sendBtn', 'handleSend()')
 
             const json = await response.json()
             const {score, feedback} = json
@@ -58,6 +60,7 @@ const handleSend = async () => {
 
     if (getCookie() !== '') {
         const url = "/question" + (queryParams !== '' ? '?' + queryParams : '')
+        console.log(url)
         const response = await fetch(url, {
             method: "GET",
             headers: {
@@ -67,7 +70,9 @@ const handleSend = async () => {
         })
 
         const json = await response.json()
+        await disableButton('submitBtn')
         await createAnimatedMessage(json.title, "question")
+        await enableButton('submitBtn', 'handleSubmit()')
         questionToken = json.token
         if (response.status == 403 || response.status == 401) {
             location.href = '/login'
@@ -104,6 +109,32 @@ const createAnimatedMessage = async (text, type) => {
 
         if (currentIndex > text.length) {
             clearInterval(animationInterval)
+            afterChatFunction()
         }
     }, 20)
+}
+
+
+const afterChatFunction = async () => {
+    const chatContainer = document.querySelector('.chat-container');
+
+    const lastMessage = chatContainer.lastElementChild;
+
+    lastMessage.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+const disableButton = async btn => {
+    const submitBtn = document.getElementById(btn);
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.removeAttribute('onclick');
+    }
+}
+
+const enableButton = async (btn, fun) => {
+    const submitBtn = document.getElementById(btn);
+    if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.setAttribute('onclick', fun);
+    }
 }
