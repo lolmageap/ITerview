@@ -4,14 +4,14 @@ const programingTypes = new Set()
 const frameworkTypes = new Set()
 const levels = new Set()
 
-const closeTab = () => {
+const closeTab = async () => {
     const checkbox = document.getElementById('checkbox')
     if (!checkbox.checked) {
-        closePosition()
-        closeCategory()
-        closeLevel()
-        closePrograming()
-        closeFramework()
+        await closePosition()
+        await closeCategory()
+        await closeLevel()
+        await closePrograming()
+        await closeFramework()
         removeAllTypes()
         document.getElementById('cbx-1').checked = false
         document.getElementById('cbx-14').checked = false
@@ -19,42 +19,42 @@ const closeTab = () => {
     }
 }
 
-const showPositionAndCheck = () => {
-    showPosition()
+const showPositionAndCheck = async () => {
+    await showPosition()
     toggleCheckbox('cbx-1')
 }
 
-const showPosition = () => {
+const showPosition = async () => {
     const list = document.getElementById('position-detail')
     if (list.style.display === '' || list.style.display === 'none') {
         list.style.display = 'flex'
     } else {
-        closePosition()
+        await closePosition()
     }
 }
 
-const closePosition = () => {
+const closePosition = async () => {
     const list = document.getElementById('position-detail')
     list.style.display = 'none'
-    uncheckChildren('position-detail')
+    await uncheckChildren('position-detail')
     positions.clear()
 }
 
-const closeCategory = () => {
+const closeCategory = async () => {
     const list = document.getElementById('category-detail')
     list.style.display = 'none'
-    uncheckChildren('category-detail')
+    await uncheckChildren('category-detail')
 }
 
-const closeLevel = () => {
+const closeLevel = async () => {
     const list = document.getElementById('level-detail')
     list.style.display = 'none'
-    uncheckChildren('level-detail')
+    await uncheckChildren('level-detail')
     levels.clear()
 }
 
-const showCategoryAndCheck = () => {
-    showCategory()
+const showCategoryAndCheck = async () => {
+    await showCategory()
     toggleCheckbox('cbx-14')
 }
 
@@ -65,14 +65,14 @@ const openCategory = () => {
     checkbox.checked = true
 }
 
-const showCategory = () => {
+const showCategory = async () => {
     const list = document.getElementById('category-detail')
     if (list.style.display === '' || list.style.display === 'none') {
         list.style.display = 'inline'
     } else {
-        closeCategory()
-        closePrograming()
-        closeFramework()
+        await closeCategory()
+        await closePrograming()
+        await closeFramework()
     }
 }
 
@@ -83,59 +83,64 @@ const openProgramingAndFramework = () => {
     programing.style.display = 'flex'
 }
 
-const showProgramingAndCheck = () => {
-    showPrograming()
+const uncheckProgramingAndFramework = async () => {
+    await uncheckChildren('framework-detail')
+    await uncheckChildren('programing-detail')
+}
+
+const showProgramingAndCheck = async () => {
+    await showPrograming()
     toggleCheckbox('cbx-22')
 }
 
-const showFrameworkAndCheck = () => {
-    showFramework()
+const showFrameworkAndCheck = async () => {
+    await showFramework()
     toggleCheckbox('cbx-23')
 }
 
-const showLevelAndCheck = () => {
-    showLevel()
+const showLevelAndCheck = async () => {
+    await showLevel()
     toggleCheckbox('cbx-47')
 }
 
-const showPrograming = () => {
+const showPrograming = async () => {
     const list = document.getElementById('programing-detail')
     if (list.style.display === '' || list.style.display === 'none') {
         list.style.display = 'flex'
     } else {
-        closePrograming()
+        await closePrograming()
         programingTypes.clear()
     }
 }
 
-const closePrograming = () => {
+const closePrograming = async () => {
     const list = document.getElementById('programing-detail')
     list.style.display = 'none'
-    uncheckChildren('programing-detail')
+    await uncheckChildren('programing-detail')
 }
 
-const showFramework = () => {
+const showFramework = async () => {
     const list = document.getElementById('framework-detail')
     if (list.style.display === '' || list.style.display === 'none') {
         list.style.display = 'flex'
     } else {
-        closeFramework()
+        await closeFramework()
     }
 }
 
-const showLevel = () => {
+const showLevel = async () => {
     const list = document.getElementById('level-detail')
     if (list.style.display === '' || list.style.display === 'none') {
         list.style.display = 'flex'
     } else {
-        closeLevel()
+        await closeLevel()
     }
 }
 
-const closeFramework = () => {
+const closeFramework = async () => {
     const list = document.getElementById('framework-detail')
     list.style.display = 'none'
-    uncheckChildren('framework-detail')
+    await uncheckChildren('framework-detail')
     frameworkTypes.clear()
 }
 
@@ -154,12 +159,12 @@ const uncheckChildren = async id => {
     });
 }
 
-const checkQuestions = id => {
+const checkQuestions = async id => {
     toggleCheckbox(id)
-    addPositionInSet(id)
+    await addPositionInSet(id)
 }
 
-const addPositionInSet = id => {
+const addPositionInSet = async id => {
     const checkbox = document.getElementById(id)
     const type = checkbox.name
     const status = checkbox.checked
@@ -167,14 +172,15 @@ const addPositionInSet = id => {
     if (status) {
         positions.add(type)
     } else {
-        uncheckChildren('category-detail')
+        await uncheckChildren('category-detail')
         positions.delete(type)
     }
 
     openCategory()
     openProgramingAndFramework()
+    await uncheckProgramingAndFramework()
     removeAllTypes()
-    sendPositionToServer()
+    await sendPositionToServer()
 }
 
 const sendPositionToServer = async () => {
