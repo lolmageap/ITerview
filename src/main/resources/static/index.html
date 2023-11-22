@@ -13,8 +13,22 @@
     <link href="/css/checkbox.css" rel="stylesheet" type="text/css">
     <link href="/css/nav.css" rel="stylesheet" type="text/css">
     <link href="/css/chat.css" rel="stylesheet" type="text/css">
+    <link href="/css/history.css" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
+<div class="history">
+    <ul>
+        <li>
+            <span>SingleTon Pattern이 무엇인가요?</span>
+        </li>
+    </ul>
+</div>
 <div class="container">
 
     <!--header-->
@@ -270,7 +284,8 @@
                                     </div>
                                 </div>
                             </label>
-                            <span class="sub-menu" name="DESIGN_PATTERN" onclick="addSetToQuestionAndToggle(this, 'cbx-17')">디자인 패턴</span>
+                            <span class="sub-menu" name="DESIGN_PATTERN"
+                                  onclick="addSetToQuestionAndToggle(this, 'cbx-17')">디자인 패턴</span>
                         </div>
                         <div class="checkbox-wrapper-45">
                             <input id="cbx-18" type="checkbox" onclick="addSetToQuestion(this)" name="TEST"/>
@@ -284,7 +299,8 @@
                                     </div>
                                 </div>
                             </label>
-                            <span class="sub-menu" name="TEST" onclick="addSetToQuestionAndToggle(this, 'cbx-18')">테스트코드</span>
+                            <span class="sub-menu" name="TEST"
+                                  onclick="addSetToQuestionAndToggle(this, 'cbx-18')">테스트코드</span>
                         </div>
                         <div class="checkbox-wrapper-45">
                             <input id="cbx-19" type="checkbox" onclick="addSetToQuestion(this)" name="OS"/>
@@ -298,7 +314,8 @@
                                     </div>
                                 </div>
                             </label>
-                            <span class="sub-menu" name="OS" onclick="addSetToQuestionAndToggle(this, 'cbx-19')">운영체제</span>
+                            <span class="sub-menu" name="OS"
+                                  onclick="addSetToQuestionAndToggle(this, 'cbx-19')">운영체제</span>
                         </div>
                         <div class="checkbox-wrapper-45">
                             <input id="cbx-20" type="checkbox" onclick="addSetToQuestion(this)" name="STRUCTURE"/>
@@ -326,7 +343,8 @@
                                     </div>
                                 </div>
                             </label>
-                            <span class="sub-menu" name="VCS" onclick="addSetToQuestionAndToggle(this, 'cbx-21')">형상관리</span>
+                            <span class="sub-menu" name="VCS"
+                                  onclick="addSetToQuestionAndToggle(this, 'cbx-21')">형상관리</span>
                         </div>
 
                         <!--programing-->
@@ -386,7 +404,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="C" onclick="addSetToProgramingAndToggle(this, 'cbx-26')">C</span>
+                                <span class="sub-menu" name="C"
+                                      onclick="addSetToProgramingAndToggle(this, 'cbx-26')">C</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-27" type="checkbox" onclick="addSetToPrograming(this)" name="JAVA"/>
@@ -400,10 +419,12 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="JAVA" onclick="addSetToProgramingAndToggle(this, 'cbx-27')">JAVA</span>
+                                <span class="sub-menu" name="JAVA"
+                                      onclick="addSetToProgramingAndToggle(this, 'cbx-27')">JAVA</span>
                             </div>
                             <div class="checkbox-wrapper-45">
-                                <input id="cbx-28" type="checkbox" onclick="addSetToPrograming(this)" name="JAVASCRIPT"/>
+                                <input id="cbx-28" type="checkbox" onclick="addSetToPrograming(this)"
+                                       name="JAVASCRIPT"/>
                                 <label class="cbx" for="cbx-28">
                                     <div class="flip">
                                         <div class="front"></div>
@@ -414,7 +435,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="JAVASCRIPT" onclick="addSetToProgramingAndToggle(this, 'cbx-28')">JAVASCRIPT</span>
+                                <span class="sub-menu" name="JAVASCRIPT"
+                                      onclick="addSetToProgramingAndToggle(this, 'cbx-28')">JAVASCRIPT</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-29" type="checkbox" onclick="addSetToPrograming(this)" name="RUST"/>
@@ -428,7 +450,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="RUST" onclick="addSetToProgramingAndToggle(this, 'cbx-29')">RUST</span>
+                                <span class="sub-menu" name="RUST"
+                                      onclick="addSetToProgramingAndToggle(this, 'cbx-29')">RUST</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-30" type="checkbox" onclick="addSetToPrograming(this)" name="KOTLIN"/>
@@ -442,7 +465,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="KOTLIN" onclick="addSetToProgramingAndToggle(this, 'cbx-30')">KOTLIN</span>
+                                <span class="sub-menu" name="KOTLIN"
+                                      onclick="addSetToProgramingAndToggle(this, 'cbx-30')">KOTLIN</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-31" type="checkbox" onclick="addSetToPrograming(this)" name="PYTHON"/>
@@ -456,7 +480,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="PYTHON" onclick="addSetToProgramingAndToggle(this, 'cbx-31')">PYTHON</span>
+                                <span class="sub-menu" name="PYTHON"
+                                      onclick="addSetToProgramingAndToggle(this, 'cbx-31')">PYTHON</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-32" type="checkbox" onclick="addSetToPrograming(this)" name="SWIFT"/>
@@ -470,7 +495,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="SWIFT" onclick="addSetToProgramingAndToggle(this, 'cbx-32')">SWIFT</span>
+                                <span class="sub-menu" name="SWIFT"
+                                      onclick="addSetToProgramingAndToggle(this, 'cbx-32')">SWIFT</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-33" type="checkbox" onclick="addSetToPrograming(this)" name="CSS"/>
@@ -545,7 +571,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="SPRING" onclick="addSetToFrameworkAndToggle(this, 'cbx-36')">SPRING</span>
+                                <span class="sub-menu" name="SPRING"
+                                      onclick="addSetToFrameworkAndToggle(this, 'cbx-36')">SPRING</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-37" type="checkbox" onclick="addSetToFramework(this)" name="REACT"/>
@@ -559,7 +586,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="REACT" onclick="addSetToFrameworkAndToggle(this, 'cbx-37')">REACT</span>
+                                <span class="sub-menu" name="REACT"
+                                      onclick="addSetToFrameworkAndToggle(this, 'cbx-37')">REACT</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-38" type="checkbox" onclick="addSetToFramework(this)" name="EXPRESS"/>
@@ -573,7 +601,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="EXPRESS" onclick="addSetToFrameworkAndToggle(this, 'cbx-38')">EXPRESS</span>
+                                <span class="sub-menu" name="EXPRESS"
+                                      onclick="addSetToFrameworkAndToggle(this, 'cbx-38')">EXPRESS</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-39" type="checkbox" onclick="addSetToFramework(this)" name="NEXT"/>
@@ -615,7 +644,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="DJANGO" onclick="addSetToFrameworkAndToggle(this, 'cbx-41')">DJANGO</span>
+                                <span class="sub-menu" name="DJANGO"
+                                      onclick="addSetToFrameworkAndToggle(this, 'cbx-41')">DJANGO</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-42" type="checkbox" onclick="addSetToFramework(this)" name="FLASK"/>
@@ -629,7 +659,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="FLASK" onclick="addSetToFrameworkAndToggle(this, 'cbx-42')">FLASK</span>
+                                <span class="sub-menu" name="FLASK"
+                                      onclick="addSetToFrameworkAndToggle(this, 'cbx-42')">FLASK</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-43" type="checkbox" onclick="addSetToFramework(this)" name="FAST_API"/>
@@ -643,7 +674,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="FAST_API" onclick="addSetToFrameworkAndToggle(this, 'cbx-43')">FAST_API</span>
+                                <span class="sub-menu" name="FAST_API"
+                                      onclick="addSetToFrameworkAndToggle(this, 'cbx-43')">FAST_API</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-44" type="checkbox" onclick="addSetToFramework(this)" name="UNITY"/>
@@ -657,7 +689,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="UNITY" onclick="addSetToFrameworkAndToggle(this, 'cbx-44')">UNITY</span>
+                                <span class="sub-menu" name="UNITY"
+                                      onclick="addSetToFrameworkAndToggle(this, 'cbx-44')">UNITY</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-45" type="checkbox" onclick="addSetToFramework(this)" name="DOTNET"/>
@@ -671,7 +704,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="DOTNET" onclick="addSetToFrameworkAndToggle(this, 'cbx-45')">.NET</span>
+                                <span class="sub-menu" name="DOTNET"
+                                      onclick="addSetToFrameworkAndToggle(this, 'cbx-45')">.NET</span>
                             </div>
                             <div class="checkbox-wrapper-45">
                                 <input id="cbx-46" type="checkbox" onclick="addSetToFramework(this)" name="LARAVEL"/>
@@ -685,7 +719,8 @@
                                         </div>
                                     </div>
                                 </label>
-                                <span class="sub-menu" name="LARAVEL" onclick="addSetToFrameworkAndToggle(this, 'cbx-46')">LARAVEL</span>
+                                <span class="sub-menu" name="LARAVEL"
+                                      onclick="addSetToFrameworkAndToggle(this, 'cbx-46')">LARAVEL</span>
                             </div>
                         </div>
                     </li>
@@ -792,6 +827,11 @@
             <span class="button-82-front text">질문 요청</span>
         </button>
     </div>
+</div>
+<div style="width: 400px;">
+    <button type="button">
+        <span>다음 문제</span>
+    </button>
 </div>
 </body>
 </html>
