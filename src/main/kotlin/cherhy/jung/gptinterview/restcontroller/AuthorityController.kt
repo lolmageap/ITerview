@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 
 @Tag(name = "회원")
 @RestController
-@RequestMapping("/authority")
+@RequestMapping("/authorities")
 class AuthorityController(
     private val signInUseCase: SignInUseCase,
     private val signUpUseCase: SignUpUseCase,

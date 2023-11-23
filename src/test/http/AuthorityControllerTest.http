@@ -1,5 +1,5 @@
 ### 회원가입을 먼저 진행해주세요.
-POST localhost:8901/authority/sign-up
+POST localhost:8901/authorities/sign-up
 Content-Type: application/json
 
 {
@@ -10,7 +10,7 @@ Content-Type: application/json
 
 
 ### 실행하기 전 먼저 회원가입을 진행해주세요.
-POST localhost:8901/authority/sign-in
+POST localhost:8901/authorities/sign-in
 Content-Type: application/json
 
 {

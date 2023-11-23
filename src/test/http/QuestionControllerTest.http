@@ -1,5 +1,5 @@
 ### 실행하기 전 먼저 로그인을 한 뒤 토큰을 입력해주세요.
-GET localhost:8901/question?
+GET localhost:8901/questions?
     questionTypes=DATABASE&questionTypes=NETWORK
     &programingTypes=JAVA&programingTypes=KOTLIN
     &frameworkTypes=SPRING&levels=LEVEL1
@@ -7,6 +7,6 @@ Content-Type: application/json
 Authorization: Bearer `YOUR_JSON_WEB_TOKEN`
 
 ### 실행하기 전 먼저 로그인을 한 뒤 토큰을 입력해주세요.
-GET localhost:8901/question/history
+GET localhost:8901/questions/histories
 Content-Type: application/json
 Authorization: Bearer `YOUR_JSON_WEB_TOKEN`

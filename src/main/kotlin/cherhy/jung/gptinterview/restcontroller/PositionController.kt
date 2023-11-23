@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @Tag(name = "포지션")
 @RestController
-@RequestMapping("/position")
+@RequestMapping("/positions")
 class PositionController {
 
     @GetMapping

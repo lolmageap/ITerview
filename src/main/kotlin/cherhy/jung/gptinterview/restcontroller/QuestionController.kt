@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*
 
 @Tag(name = "질문")
 @RestController
-@RequestMapping("/question")
+@RequestMapping("/questions")
 class QuestionController(
     private val questionReadService: QuestionReadService,
     private val redisReadService: RedisReadService,
@@ -43,7 +43,7 @@ class QuestionController(
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/history")
+    @GetMapping("/histories")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "질문 내역", description = "조회했던 질문들을 확인한다.")
     fun getQuestionHistory(
