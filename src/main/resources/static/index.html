@@ -8,6 +8,7 @@
     <script src="js/menu.js" defer></script>
     <script src="js/show.js" defer></script>
     <script src="js/button.js" defer></script>
+    <script src="js/history.js" defer></script>
     <link href="/css/index.css" rel="stylesheet" type="text/css">
     <link href="/css/button.css" rel="stylesheet" type="text/css">
     <link href="/css/checkbox.css" rel="stylesheet" type="text/css">
@@ -22,13 +23,12 @@
     </style>
 </head>
 <body>
+<!--history-->
 <div class="history">
-    <ul>
-        <li>
-            <span>SingleTon Pattern이 무엇인가요?</span>
-        </li>
-    </ul>
+    <ul id="histories"></ul>
 </div>
+
+<!--main-->
 <div class="container">
 
     <!--header-->
@@ -828,6 +828,8 @@
         </button>
     </div>
 </div>
+
+<!--next button-->
 <div style="width: 400px;">
     <button type="button">
         <span>다음 문제</span>
@@ -835,3 +837,12 @@
 </div>
 </body>
 </html>
+<script>
+    const historiesElement = document.getElementById('histories')
+
+    window.onload = async () => {
+        if (getCookie() !== '') {
+            await createHistories()
+        }
+    }
+</script>
