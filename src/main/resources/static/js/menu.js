@@ -188,13 +188,13 @@ const sendPositionToServer = async () => {
     if (!params) {
         return;
     }
-    const response = await fetch("/position?" + params, {
+    const response = await fetch("/positions?" + params, {
         method: "GET",
         headers: {"Content-Type": "application/json"},
     });
 
-    const body = await response.json()
-    await checkQuestionFromPosition(body)
+    const data = await response.json()
+    await checkQuestionFromPosition(data)
 }
 
 const makeRequestParams = (set, key) => {

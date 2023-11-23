@@ -7,7 +7,7 @@ const login = async () => {
         return;
     }
 
-    const response = await fetch("/authority/sign-in", {
+    const response = await fetch("/authorities/sign-in", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({'email': email, 'password': password})
@@ -26,7 +26,7 @@ const signup = async () => {
         return;
     }
 
-    const response = await fetch("/authority/sign-up", {
+    const response = await fetch("/authorities/sign-up", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({'email': email, 'password': password, 'confirmPassword': confirmPassword})
