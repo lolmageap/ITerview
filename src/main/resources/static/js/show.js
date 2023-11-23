@@ -5,11 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     checkbox.addEventListener('change', function () {
         toggleChatContainer(checkbox)
         toggleSubmitContainer(checkbox)
+        toggleHistories(checkbox)
     })
 
     submit.addEventListener('click', function () {
         toggleChatContainer(checkbox)
         toggleSubmitContainer(checkbox)
+        toggleHistories(checkbox)
     })
 })
 
@@ -46,4 +48,12 @@ const toggleSubmitContainer = checkbox => {
     submitContainer.offsetHeight
     submitContainer.style.opacity = checkbox.checked ? 0 : 1
 }
+
+const toggleHistories = checkbox => {
+    historiesElement.style.display = checkbox.checked ? 'none' : 'block'
+}
+
+// const toggleNextButton = checkbox => {
+//     nextButton.style.display = checkbox.checked ? 'none' : 'block'
+// }
 
