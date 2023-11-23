@@ -14,7 +14,7 @@ const handleSubmit = async () => {
             await createAnimatedMessage(inputField.value, "answer")
             await disableButton('sendBtn')
 
-            const response = await fetch("/answer", {
+            const response = await fetch("/answers", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -27,9 +27,9 @@ const handleSubmit = async () => {
             })
             await enableButton('sendBtn', 'handleSend()')
 
-            const json = await response.json()
-            const {score, feedback} = json
-            const feedbackText = `${score}점 \n ${feedback}`
+            const data = await response.json()
+            const {score, feedback} = data
+            const feedbackText = `${score}점 <br> ${feedback}`
             await createAnimatedMessage(feedbackText, "feedback")
         } else {
             location.href = '/login'
@@ -43,7 +43,6 @@ const handleSend = async () => {
     const sendBtn = document.getElementById('sendBtn')
 
     sendBtn.style.display = 'none'
-
     inputField.style.display = 'inline-block'
     submitBtn.style.display = 'inline-block'
 
@@ -59,8 +58,7 @@ const handleSend = async () => {
         .slice(0, -1)
 
     if (getCookie() !== '') {
-        const url = "/question" + (queryParams !== '' ? '?' + queryParams : '')
-        console.log(url)
+        const url = "/questions" + (queryParams !== '' ? '?' + queryParams : '')
         const response = await fetch(url, {
             method: "GET",
             headers: {
@@ -69,11 +67,11 @@ const handleSend = async () => {
             },
         })
 
-        const json = await response.json()
+        const data = await response.json()
         await disableButton('submitBtn')
-        await createAnimatedMessage(json.title, "question")
+        await createAnimatedMessage(data.title, "question")
         await enableButton('submitBtn', 'handleSubmit()')
-        questionToken = json.token
+        questionToken = data.token
         if (response.status == 403 || response.status == 401) {
             location.href = '/login'
         }
@@ -93,7 +91,7 @@ const createAnimatedMessage = async (text, type) => {
     header.textContent = type.charAt(0).toUpperCase() + type.slice(1)
 
     const animationTarget = document.createElement("div")
-    animationTarget.textContent = text.replace(/\n/g, '<br>')
+    animationTarget.textContent = text
     animationTarget.id = "animationTarget"
 
     contentContainer.appendChild(header)
