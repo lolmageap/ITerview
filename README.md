@@ -26,7 +26,7 @@
 
 - 로그인은 JWT 로 구현이 되어있으며 OAuth2 로그인은 구현 예정입니다.
 
-- 뷰 페이지는 구현 예정이며 API 스펙은 어플리케이션 실행 후 Swagger UI : http://localhost:8901/swagger-ui/index.html 를 통해 확인하실 수 있습니다.
+- 뷰 페이지는 구현 중이며 API 스펙은 어플리케이션 실행 후 Swagger UI : http://localhost:8901/swagger-ui/index.html 를 통해 확인하실 수 있습니다.
 
 ### 정책
 1. 사용자는 자신의 개발 포지션을 선택할 수 있습니다.
