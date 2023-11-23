@@ -1,6 +1,7 @@
 package cherhy.jung.gptinterview.domain.question.entity
 
 import cherhy.jung.gptinterview.util.BaseEntity
+import cherhy.jung.gptinterview.util.Generator
 import jakarta.persistence.Entity
 
 @Entity
@@ -11,5 +12,9 @@ class QuestionHistory(
     val customerId: Long,
 
     val answer: String,
+
+    val feedback: String,
+
+    val token: String = Generator.generateToken(),
 
     ) : BaseEntity()
