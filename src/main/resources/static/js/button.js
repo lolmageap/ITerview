@@ -91,7 +91,7 @@ const createAnimatedMessage = async (text, type) => {
     header.textContent = type.charAt(0).toUpperCase() + type.slice(1)
 
     const animationTarget = document.createElement("div")
-    animationTarget.textContent = text
+    animationTarget.innerHTML = text
     animationTarget.id = "animationTarget"
 
     contentContainer.appendChild(header)
