@@ -1,15 +1,17 @@
 let questionToken;
+const inputField = document.getElementById('inputField')
+const submitBtn = document.getElementById('submitBtn')
+const sendBtn = document.getElementById('sendBtn')
+const next = document.getElementById('next')
 
 const handleSubmit = async () => {
-    const inputField = document.getElementById('inputField')
-    const submitBtn = document.getElementById('submitBtn')
-    const sendBtn = document.getElementById('sendBtn')
 
     if (inputField.value.trim() !== '') {
         if (getCookie() !== '') {
             inputField.style.display = 'none'
             submitBtn.style.display = 'none'
             sendBtn.style.display = 'inline-block'
+            next.style.display = 'none'
 
             await createAnimatedMessage(inputField.value, "answer")
             await disableButton('sendBtn')
@@ -29,7 +31,7 @@ const handleSubmit = async () => {
 
             const data = await response.json()
             const {score, feedback} = data
-            const feedbackText = `${score}점 <br> ${feedback}`
+            const feedbackText = `${score}점, ${feedback}`
             await createAnimatedMessage(feedbackText, "feedback")
         } else {
             location.href = '/login'
@@ -38,13 +40,10 @@ const handleSubmit = async () => {
 }
 
 const handleSend = async () => {
-    const inputField = document.getElementById('inputField')
-    const submitBtn = document.getElementById('submitBtn')
-    const sendBtn = document.getElementById('sendBtn')
-
     sendBtn.style.display = 'none'
     inputField.style.display = 'inline-block'
     submitBtn.style.display = 'inline-block'
+    next.style.display = 'inline-block'
 
     inputField.value = ''
     const questions = makeRequestParams(questionTypes, "questionTypes")
@@ -68,13 +67,17 @@ const handleSend = async () => {
         })
 
         const data = await response.json()
+        if (response.status == 403 || response.status == 401) {
+            location.href = '/login'
+        } else if (response.status === 404) {
+            await hasNotQuestions(data.message)
+            return;
+        }
+
         await disableButton('submitBtn')
         await createAnimatedMessage(data.title, "question")
         await enableButton('submitBtn', 'handleSubmit()')
         questionToken = data.token
-        if (response.status == 403 || response.status == 401) {
-            location.href = '/login'
-        }
     } else {
         location.href = '/login'
     }
@@ -133,4 +136,13 @@ const enableButton = async (btn, fun) => {
         submitBtn.disabled = false;
         submitBtn.setAttribute('onclick', fun);
     }
+}
+
+const hasNotQuestions = async message => {
+    inputField.style.display = 'none'
+    submitBtn.style.display = 'none'
+    sendBtn.style.display = 'inline-block'
+    next.style.display = 'none'
+
+    await createAnimatedMessage(message, "feedback")
 }
