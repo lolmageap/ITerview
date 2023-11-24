@@ -156,7 +156,7 @@ const uncheckChildren = async id => {
         if (checkbox.checked) {
             checkbox.checked = !checkbox.checked
         }
-    });
+    })
 }
 
 const checkQuestions = async id => {
@@ -186,20 +186,20 @@ const addPositionInSet = async id => {
 const sendPositionToServer = async () => {
     const params = makeRequestParams(positions, 'positionTypes')
     if (!params) {
-        return;
+        return
     }
     const response = await fetch("/positions?" + params, {
         method: "GET",
         headers: {"Content-Type": "application/json"},
-    });
+    })
 
     const data = await response.json()
     await checkQuestionFromPosition(data)
 }
 
 const makeRequestParams = (set, key) => {
-    const encodedValues = Array.from(set).map(value => encodeURIComponent(value));
-    return encodedValues.map(value => key + '=' + value).join('&');
+    const encodedValues = Array.from(set).map(value => encodeURIComponent(value))
+    return encodedValues.map(value => key + '=' + value).join('&')
 }
 
 const checkQuestionFromPosition = async body => {
@@ -222,11 +222,11 @@ const checkQuestionFromPosition = async body => {
 
 const checkAllQuestions = async list => {
     list.forEach(value => {
-        const checkbox = document.querySelector(`input[name="${value}"]`);
+        const checkbox = document.querySelector(`input[name="${value}"]`)
         if (checkbox) {
-            checkbox.checked = true;
+            checkbox.checked = true
         }
-    });
+    })
 }
 
 const removeAllTypes = () => {
@@ -242,7 +242,7 @@ const addSetToQuestionAndToggle = (box, id) => {
 }
 
 const addSetToQuestion = box => {
-    const name = box.getAttribute("name");
+    const name = box.getAttribute("name")
     if (questionTypes.has(name)) {
         questionTypes.delete(name)
     } else {
@@ -256,7 +256,7 @@ const addSetToProgramingAndToggle = (box, id) => {
 }
 
 const addSetToPrograming = box => {
-    const name = box.getAttribute("name");
+    const name = box.getAttribute("name")
     if (programingTypes.has(name)) {
         programingTypes.delete(name)
     } else {
@@ -270,7 +270,7 @@ const addSetToFrameworkAndToggle = (box, id) => {
 }
 
 const addSetToFramework = box => {
-    const name = box.getAttribute("name");
+    const name = box.getAttribute("name")
     if (frameworkTypes.has(name)) {
         frameworkTypes.delete(name)
     } else {
@@ -284,7 +284,7 @@ const addSetToLevelAndToggle = (box, id) => {
 }
 
 const addSetToLevel = box => {
-    const name = box.getAttribute("name");
+    const name = box.getAttribute("name")
     if (levels.has(name)) {
         levels.delete(name)
     } else {

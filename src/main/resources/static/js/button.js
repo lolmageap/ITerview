@@ -117,24 +117,24 @@ const createAnimatedMessage = async (text, type) => {
 
 
 const afterChatFunction = async () => {
-    const chatContainer = document.querySelector('.chat-container');
-    const lastMessage = chatContainer.lastElementChild;
-    lastMessage.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    const chatContainer = document.querySelector('.chat-container')
+    const lastMessage = chatContainer.lastElementChild
+    lastMessage.scrollIntoView({ behavior: 'smooth', block: 'end' })
 }
 
 const disableButton = async btn => {
-    const submitBtn = document.getElementById(btn);
+    const submitBtn = document.getElementById(btn)
     if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.removeAttribute('onclick');
+        submitBtn.disabled = true
+        submitBtn.removeAttribute('onclick')
     }
 }
 
 const enableButton = async (btn, fun) => {
-    const submitBtn = document.getElementById(btn);
+    const submitBtn = document.getElementById(btn)
     if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.setAttribute('onclick', fun);
+        submitBtn.disabled = false
+        submitBtn.setAttribute('onclick', fun)
     }
 }
 

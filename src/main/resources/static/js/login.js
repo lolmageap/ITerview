@@ -3,7 +3,7 @@ const login = async () => {
     const password = document.getElementById('loginPassword').value
 
     if (!email || !password) {
-        alert("모든 필수 항목을 입력해주세요.");
+        alert("모든 필수 항목을 입력해주세요.")
         return;
     }
 
@@ -11,9 +11,9 @@ const login = async () => {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({'email': email, 'password': password})
-    });
+    })
 
-    await setCookie(response);
+    await setCookie(response)
 }
 
 const signup = async () => {
@@ -30,32 +30,32 @@ const signup = async () => {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({'email': email, 'password': password, 'confirmPassword': confirmPassword})
-    });
+    })
 
-    await setCookie(response);
+    await setCookie(response)
 }
 
 const setCookie = async response => {
     if (response.status == 201) {
         const authorization = response.headers.get("Authorization")
         if (authorization) {
-            document.cookie = `Authorization=${authorization}; path=/`;
+            document.cookie = `Authorization=${authorization}; path=/`
             location.href = '/'
         } else {
-            console.error("Authorization 헤더가 응답에 없습니다. 로그인에 실패했을 수 있습니다.");
+            console.error("Authorization 헤더가 응답에 없습니다. 로그인에 실패했을 수 있습니다.")
         }
     } else {
-        let data = await response.json();
+        let data = await response.json()
         alert(data.message)
     }
 }
 
 const check = () => {
-    const checkbox = document.getElementById('reg-log');
-    checkbox.checked = true;
+    const checkbox = document.getElementById('reg-log')
+    checkbox.checked = true
 }
 
 const uncheck = () => {
-    const checkbox = document.getElementById('reg-log');
-    checkbox.checked = false;
+    const checkbox = document.getElementById('reg-log')
+    checkbox.checked = false
 }

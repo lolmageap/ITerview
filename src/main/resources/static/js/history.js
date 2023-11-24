@@ -44,7 +44,7 @@ const switchChatContainer = async data => {
     await createAnimatedMessage(data.question, "question")
     await createAnimatedMessage(data.answer, "answer")
 
-    const { score, feedback } = JSON.parse(data.feedback);
+    const { score, feedback } = JSON.parse(data.feedback)
     const feedbackText = `${score}점, ${feedback}`
     await createAnimatedMessage(feedbackText, "feedback")
 }
