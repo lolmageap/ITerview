@@ -40,9 +40,11 @@ const getHistory = async token => {
 }
 
 const switchChatContainer = async data => {
-    console.log(data)
     document.querySelector('.chat-container').innerHTML = ''
     await createAnimatedMessage(data.question, "question")
     await createAnimatedMessage(data.answer, "answer")
-    await createAnimatedMessage(data.feedback, "feedback")
+
+    const { score, feedback } = JSON.parse(data.feedback);
+    const feedbackText = `${score}점, ${feedback}`
+    await createAnimatedMessage(feedbackText, "feedback")
 }
