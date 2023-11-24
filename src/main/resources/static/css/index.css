@@ -47,7 +47,11 @@ p {
 }
 
 a {
-    color: #4d194d;
+    margin-top: 10px;
+    font-weight: bold;
+    padding: 10px;
+    display: inline-block;
+    color: #ffffff;
     text-decoration: none;
 }
 
