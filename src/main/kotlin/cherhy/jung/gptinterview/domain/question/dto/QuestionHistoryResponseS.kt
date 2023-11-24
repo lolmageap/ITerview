@@ -17,7 +17,7 @@ data class QuestionHistoryResponseS(
                 token = responseR.token,
                 question = responseR.question,
                 answer = responseR.answer,
-                feedback = responseR.answer,
+                feedback = responseR.feedback,
                 type = responseR.type,
                 level = responseR.level,
             )
