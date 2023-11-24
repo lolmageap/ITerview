@@ -6,12 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleChatContainer(checkbox)
         toggleSubmitContainer(checkbox)
         toggleHistories(checkbox)
+        toggleNextButton(checkbox)
     })
 
     submit.addEventListener('click', function () {
         toggleChatContainer(checkbox)
         toggleSubmitContainer(checkbox)
         toggleHistories(checkbox)
+        toggleNextButton(checkbox)
     })
 })
 
@@ -53,7 +55,8 @@ const toggleHistories = checkbox => {
     historiesElement.style.display = checkbox.checked ? 'none' : 'block'
 }
 
-// const toggleNextButton = checkbox => {
-//     nextButton.style.display = checkbox.checked ? 'none' : 'block'
-// }
+const toggleNextButton = checkbox => {
+    const nextButton = document.getElementById('next')
+    nextButton.style.display = checkbox.checked ? 'none' : 'block'
+}
 
