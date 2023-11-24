@@ -12,7 +12,9 @@ class QuestionHistory(
     val customerId: Long,
 
     val answer: String,
-
+    
+    @Lob
+    @Column(columnDefinition = "TEXT")
     val feedback: String,
 
     val token: String = Generator.generateToken(),
