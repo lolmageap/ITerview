@@ -831,16 +831,39 @@
 
 <!--next button-->
 <div style="width: 400px;">
-    <button class="next" id="next" onclick="handleSend()">&#8250;</button>`
+    <div id="login"></div>
+    <button class="next" id="next" onclick="handleSend()">&#8250;</button>
 </div>
 </body>
 </html>
 <script>
     const historiesElement = document.getElementById('histories')
+    const loginBlock = document.getElementById('login')
 
     window.onload = async () => {
         if (getCookie() !== '') {
+            await createLogoutBlock()
             await createHistories()
+        } else {
+            await createLoginBlock()
         }
     }
+
+    const createLoginBlock = async () => {
+        const loginLink = document.createElement('a')
+        loginLink.id = 'login'
+        loginLink.href = '/login'
+        loginLink.textContent = '로그인'
+        loginBlock.appendChild(loginLink)
+    }
+
+    const createLogoutBlock = async () => {
+        const logoutLink = document.createElement('a')
+        logoutLink.id = 'logout'
+        logoutLink.href = '/'
+        logoutLink.onclick = clearCookie
+        logoutLink.textContent = '로그아웃'
+        loginBlock.appendChild(logoutLink)
+    }
+
 </script>
