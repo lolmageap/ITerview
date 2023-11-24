@@ -48,7 +48,7 @@ class QuestionController(
     @Operation(summary = "질문 내역", description = "조회했던 질문들을 확인한다.")
     fun getQuestionHistory(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
-        @Parameter(hidden = true) @PageableDefault(size = 20, page = 0) pageable: Pageable,
+        @Parameter(hidden = true) @PageableDefault(size = 15, page = 0) pageable: Pageable,
     ): List<QuestionResponse> {
 
         val alreadyQuestions = redisReadService.getQuestionTokens(
