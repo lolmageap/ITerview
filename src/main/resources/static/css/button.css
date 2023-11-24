@@ -89,7 +89,7 @@
     outline: none;
 }
 
-#inputField, #submitBtn {
+#inputField, #submitBtn, #next {
     display: none;
 }
 
@@ -141,4 +141,27 @@
 #inputField {
     scrollbar-width: thin;
     scrollbar-color: #888 #f1f1f1;
+}
+
+.next {
+    border: none;
+    padding: 1px 18px 4px 21px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    color: white;
+    position: absolute;
+    top: 40%;
+    font-size: 40px;
+}
+
+.next:hover {
+    background-color: #555;
+    color: white;
 }
