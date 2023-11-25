@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleSubmitContainer(checkbox)
         toggleHistories(checkbox)
         toggleNextButton(checkbox)
+        removeIntroduce()
     })
 
     submit.addEventListener('click', function () {
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleSubmitContainer(checkbox)
         toggleHistories(checkbox)
         toggleNextButton(checkbox)
+        removeIntroduce()
     })
 })
 
@@ -60,3 +62,7 @@ const toggleNextButton = checkbox => {
     nextButton.style.display = checkbox.checked ? 'none' : 'block'
 }
 
+const removeIntroduce = () => {
+    const introduce = document.getElementById('introduce')
+    introduce.style.display = 'none'
+}
