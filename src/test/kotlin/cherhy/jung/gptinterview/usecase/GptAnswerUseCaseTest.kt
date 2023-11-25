@@ -49,8 +49,9 @@ internal class GptAnswerUseCaseTest(
             )
 
         val answer = "어플리케이션 실행 시점부터 객체가 단 한개만 생성되고 값이 전역적으로 공유되는 패턴입니다."
+        val feedback = "score : 10, feedback : 완벽한 정답이기에 피드백 할 것이 없습니다."
         val gptRequest = GptRequest(questionToken = question.token, answer = answer)
-        val questionHistory = QuestionHistory(question.id, customer.id, answer)
+        val questionHistory = QuestionHistory(question.id, customer.id, answer, feedback)
 
         When("GPT가 채점과 피드백을 하고 ") {
 
@@ -61,13 +62,13 @@ internal class GptAnswerUseCaseTest(
                 gptApi.generateText(
                     Generator.generateQuestionToGpt(question.title, answer)
                 )
-            } returns "점수 : 10, 피드백 : 완벽한 정답이기에 피드백 할 것이 없습니다."
+            } returns feedback
 
             val feedBack = gptAnswerUseCase.requestAnswerToGpt(customerId = customer.id, gptRequest = gptRequest)
 
             Then("점수와 피드백이 정상적으로 출력되는지 검증한다.") {
-                feedBack shouldContain "점수"
-                feedBack shouldContain "피드백"
+                feedBack shouldContain "score"
+                feedBack shouldContain "feedback"
                 verify { customerReadService.getCustomerById(customer.id) }
                 verify { questionReadService.getQuestionByToken(question.token) }
                 verify {
