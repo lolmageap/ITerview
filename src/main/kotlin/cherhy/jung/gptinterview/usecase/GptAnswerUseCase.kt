@@ -1,13 +1,14 @@
 package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.annotation.UseCase
-import cherhy.jung.gptinterview.restcontroller.GptRequest
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.gpt.GptApi
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
+import cherhy.jung.gptinterview.restcontroller.GptRequest
 import cherhy.jung.gptinterview.util.Generator
+import cherhy.jung.gptinterview.util.Validator
 import org.springframework.transaction.annotation.Transactional
 
 @UseCase
@@ -29,15 +30,39 @@ class GptAnswerUseCase(
         )
 
         return gptApi.generateText(questionToGpt)
-            .also { feedback ->
+            .let { feedback ->
+                val modifiedFeedback = Validator.validateJsonFormat(feedback)
+
                 questionHistoryWriteService.addHistory(
                     QuestionHistory(
                         questionId = question.id,
                         customerId = customer.id,
                         answer = gptRequest.answer,
-                        feedback = feedback,
+                        feedback = modifiedFeedback,
                     )
                 )
+                modifiedFeedback
+            }
+    }
+
+    fun requestOnlyAnswerKeyToGpt(customerId: Long, token: String): String {
+        val customer = customerReadService.getCustomerById(customerId)
+        val question = questionReadService.getQuestionByToken(token)
+
+        val questionToGpt = Generator.generateAnswerKeyToGpt(question.title)
+
+        return gptApi.generateText(questionToGpt)
+            .let { feedback ->
+                val modifiedFeedback = Validator.validateJsonFormat(feedback)
+
+                questionHistoryWriteService.addHistory(
+                    QuestionHistory(
+                        questionId = question.id,
+                        customerId = customer.id,
+                        feedback = modifiedFeedback,
+                    )
+                )
+                modifiedFeedback
             }
     }
 
