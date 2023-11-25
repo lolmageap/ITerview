@@ -5,45 +5,63 @@ const sendBtn = document.getElementById('sendBtn')
 const next = document.getElementById('next')
 
 const handleSubmit = async () => {
+    if (getCookie() === '') {
+        location.href = '/login'
+    }
 
-    if (inputField.value.trim() !== '') {
-        if (getCookie() !== '') {
-            inputField.style.display = 'none'
-            submitBtn.style.display = 'none'
-            sendBtn.style.display = 'inline-block'
-            next.style.display = 'none'
+    const boolean = inputField.value.includes("정답을 가르쳐줘")
 
-            await createAnimatedMessage(inputField.value, "answer")
+    if (inputField.value.trim() === '' || boolean) {
+        const confirms = confirm('답을 입력하지 않았습니다. 정답을 확인 하시겠습니까?')
+
+        if (confirms) {
+            hideQuestionField()
+            await createAnimatedMessage("정답을 가르쳐줘", "answer")
             await disableButton('sendBtn')
 
-            const response = await fetch("/answers", {
-                method: "POST",
+            const response = await fetch("/answers/" + questionToken, {
+                method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": getCookie()
-                },
-                body: JSON.stringify({
-                    questionToken: questionToken,
-                    answer: inputField.value
-                })
+                }
             })
             await enableButton('sendBtn', 'handleSend()')
 
             const data = await response.json()
-            const {score, feedback} = data
-            const feedbackText = `${score}점, ${feedback}`
-            await createAnimatedMessage(feedbackText, "feedback")
+            const {answer} = data
+            await createAnimatedMessage(answer, "feedback")
         } else {
-            location.href = '/login'
+            return
         }
+    } else {
+        hideQuestionField()
+        await createAnimatedMessage(inputField.value, "answer")
+        await disableButton('sendBtn')
+
+        const response = await fetch("/answers", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": getCookie()
+            },
+            body: JSON.stringify({
+                questionToken: questionToken,
+                answer: inputField.value
+            })
+        })
+        await enableButton('sendBtn', 'handleSend()')
+
+        const data = await response.json()
+        const {score, feedback} = data
+        const feedbackText = `${score}점, ${feedback}`
+        await createAnimatedMessage(feedbackText, "feedback")
     }
 }
 
 const handleSend = async () => {
-    sendBtn.style.display = 'none'
-    inputField.style.display = 'inline-block'
-    submitBtn.style.display = 'inline-block'
-    next.style.display = 'inline-block'
+    hideAnswerField()
+    removeIntroduce()
 
     inputField.value = ''
     const questions = makeRequestParams(questionTypes, "questionTypes")
@@ -119,7 +137,7 @@ const createAnimatedMessage = async (text, type) => {
 const afterChatFunction = async () => {
     const chatContainer = document.querySelector('.chat-container')
     const lastMessage = chatContainer.lastElementChild
-    lastMessage.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    lastMessage.scrollIntoView({behavior: 'smooth', block: 'end'})
 }
 
 const disableButton = async btn => {
@@ -138,11 +156,21 @@ const enableButton = async (btn, fun) => {
     }
 }
 
-const hasNotQuestions = async message => {
+const hideQuestionField = () => {
     inputField.style.display = 'none'
     submitBtn.style.display = 'none'
     sendBtn.style.display = 'inline-block'
     next.style.display = 'none'
+}
 
+const hideAnswerField = () => {
+    sendBtn.style.display = 'none'
+    inputField.style.display = 'inline-block'
+    submitBtn.style.display = 'inline-block'
+    next.style.display = 'inline-block'
+}
+
+const hasNotQuestions = async message => {
+    hideQuestionField()
     await createAnimatedMessage(message, "feedback")
 }
