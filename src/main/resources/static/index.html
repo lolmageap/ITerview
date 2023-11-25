@@ -17,6 +17,7 @@
     <link href="/css/history.css" rel="stylesheet" type="text/css">
     <style>
         body {
+            overflow: hidden;
             display: flex;
             justify-content: center;
         }
@@ -30,6 +31,7 @@
 
 <!--main-->
 <div class="container">
+    <div id="introduce">기술 면접 문제를 풀고 피드백을 받아보세요.</div>
 
     <!--header-->
     <div class="flex-header">
@@ -813,7 +815,7 @@
     <!--button-->
     <div class="submit-container">
         <textarea id="inputField" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"
-                  placeholder="답을 입력해주세요" class="submit-input"></textarea>
+                  placeholder="답을 입력해주세요. 아무것도 입력하지 않는다면 정답만 확인 할 수 있습니다." class="submit-input"></textarea>
 
         <button id="submitBtn" onclick="handleSubmit()" class="button-82-pushable" role="button">
             <span class="button-82-shadow"></span>
