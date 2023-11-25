@@ -13,7 +13,9 @@ class QuestionHistory(
 
     val customerId: Long,
 
-    val answer: String,
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    val answer: String = "정답을 가르쳐줘",
     
     @Lob
     @Column(columnDefinition = "TEXT")
