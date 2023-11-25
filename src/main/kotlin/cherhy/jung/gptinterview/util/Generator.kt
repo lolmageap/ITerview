@@ -31,5 +31,15 @@ object Generator {
             }
         """.trimIndent()
 
+    fun generateAnswerKeyToGpt(question: String): String =
+        """
+            질문 : $question
+            
+            위 질문에 대해 정확하고 상세하게 아래 양식에 맞춰서 답안을 작성해줘
+            
+            {
+                "answer" : 
+            }
+        """.trimIndent()
 
 }
