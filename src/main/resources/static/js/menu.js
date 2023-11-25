@@ -6,6 +6,12 @@ const levels = new Set()
 
 const closeTab = async () => {
     const checkbox = document.getElementById('checkbox')
+
+    if(getCookie() === '') {
+        checkbox.checked = !checkbox.checked
+        location.href = '/login'
+    }
+
     if (!checkbox.checked) {
         await closePosition()
         await closeCategory()
