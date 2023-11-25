@@ -27,6 +27,7 @@ const getHistories = async () => {
 }
 
 const getHistory = async token => {
+    removeIntroduce()
     const response = await fetch(`/answers/histories/${token}`, {
         method: "GET",
         headers: {
@@ -44,7 +45,11 @@ const switchChatContainer = async data => {
     await createAnimatedMessage(data.question, "question")
     await createAnimatedMessage(data.answer, "answer")
 
-    const { score, feedback } = JSON.parse(data.feedback)
-    const feedbackText = `${score}점, ${feedback}`
-    await createAnimatedMessage(feedbackText, "feedback")
+    const {score, feedback, answer} = JSON.parse(data.feedback)
+    if (answer) {
+        await createAnimatedMessage(answer, "feedback")
+    } else {
+        const feedbackText = `${score}점, ${feedback}`
+        await createAnimatedMessage(feedbackText, "feedback")
+    }
 }
