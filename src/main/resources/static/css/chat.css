@@ -23,6 +23,7 @@
     margin-right: 10px;
     clear: both;
     width: 60%;
+    white-space: pre-line;
 }
 
 .answer {
@@ -35,6 +36,7 @@
     clear: both;
     width: 60%;
     margin-right: 20px;
+    white-space: pre-line;
 }
 
 .chat-container::-webkit-scrollbar {
