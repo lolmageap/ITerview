@@ -44,11 +44,13 @@ internal class QuestionHistoryWriteServiceTest(
         )
 
         val answer = "어플리케이션 실행 시점부터 객체가 단 한개만 생성되고 값이 전역적으로 공유되는 패턴입니다."
+        val feedback = "{ score: 100점, feedback: 완벽한 정답입니다.}"
 
         val questionHistory = QuestionHistory(
                 questionId = question.id,
                 customerId = customer.id,
                 answer = answer,
+                feedback = feedback,
             )
 
         When("질문의 내역을 저장하고 ") {
@@ -59,6 +61,7 @@ internal class QuestionHistoryWriteServiceTest(
                 result.questionId shouldBe customer.id
                 result.customerId shouldBe question.id
                 result.answer shouldBe answer
+                result.feedback shouldBe feedback
             }
 
         }
