@@ -33,7 +33,7 @@ class GptController(
         @PathVariable token: String,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
     ): String =
-        gptAnswerUseCase.requestOnlyFeedbackToGpt(authCustomer.customerId, token)
+        gptAnswerUseCase.requestOnlyAnswerKeyToGpt(authCustomer.customerId, token)
 
 
 }
