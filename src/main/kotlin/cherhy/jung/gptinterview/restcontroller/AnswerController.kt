@@ -25,7 +25,7 @@ class AnswerController(
     @Operation(summary = "답변 내역", description = "풀었던 질문들을 확인한다.")
     fun getAnswerHistories(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
-        @Parameter(hidden = true) @PageableDefault(size = 20, page = 0) pageable: Pageable,
+        @Parameter(hidden = true) @PageableDefault(size = 15, page = 0) pageable: Pageable,
     ): List<AnswerResponse> =
         questionHistoryReadService.getAllQuestionHistories(authCustomer.customerId, pageable)
             .map(AnswerResponse::of)
