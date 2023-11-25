@@ -7,3 +7,8 @@ Authorization: Bearer `YOUR_JSON_WEB_TOKEN`
   "questionToken" : "f4ec2dd7",
   "answer" : "SQL이란 structure query language의 약자로 데이터베이스에서 원하는 데이터를 조회해올 때 사용합니다."
 }
+
+### 실행하기 전 먼저 로그인을 한 뒤 토큰을 입력해주세요.
+GET localhost:8901/answers/{{token}}
+Content-Type: application/json
+Authorization: Bearer `YOUR_JSON_WEB_TOKEN`
