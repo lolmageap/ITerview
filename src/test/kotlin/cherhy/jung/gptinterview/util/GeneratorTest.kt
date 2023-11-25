@@ -24,9 +24,16 @@ internal class GeneratorTest: StringSpec() {
             val questionToGpt = Generator.generateQuestionToGpt(question, answer)
             questionToGpt shouldContain question
             questionToGpt shouldContain answer
-            questionToGpt shouldContain "점수"
-            questionToGpt shouldContain "피드백"
+            questionToGpt shouldContain "score"
+            questionToGpt shouldContain "feedback"
 
+        }
+        "개발 관련 문제를 받고 답안은 받지 못했을 때 GPT에게 질문할 양식으로 만들어준다." {
+            val question = "ACID에 대해 설명해주세요."
+
+            val questionToGpt = Generator.generateAnswerKeyToGpt(question)
+            questionToGpt shouldContain question
+            questionToGpt shouldContain "answer"
         }
     }
 }
