@@ -73,7 +73,7 @@ h6 span{
     color: #ffeba7;
     background-color: #102770;
     font-family: 'unicons';
-    content: '\eb4f';
+    content: '\01F511';
     z-index: 20;
     top: -10px;
     left: -10px;
@@ -117,7 +117,7 @@ h6 span{
     background-size: 300%;
     position: absolute;
     border-radius: 6px;
-    left: 0;
+    left: 5%;
     top: 0;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
