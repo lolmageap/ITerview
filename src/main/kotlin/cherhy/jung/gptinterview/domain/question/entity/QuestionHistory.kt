@@ -15,7 +15,7 @@ class QuestionHistory(
 
     @Lob
     @Column(columnDefinition = "TEXT")
-    val answer: String = "정답을 가르쳐줘",
+    val answer: String,
     
     @Lob
     @Column(columnDefinition = "TEXT")
