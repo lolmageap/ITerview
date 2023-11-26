@@ -175,7 +175,7 @@ INSERT INTO framework (id, question_id, framework_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'SPRING', NOW(), NOW());
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), 'Spring Boot를 사용하는 장점은 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'FRAMEWORK', 'LEVEL2');
+VALUES (0, NOW(), NOW(), 'Spring Boot의 장점은 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'FRAMEWORK', 'LEVEL2');
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
