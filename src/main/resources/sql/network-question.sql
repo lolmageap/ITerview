@@ -117,3 +117,6 @@ VALUES (0, NOW(), NOW(), '멀티캐스트(Multicast)와 유니캐스트(Unicast)
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
 VALUES (0, NOW(), NOW(), 'ICMP(Internet Control Message Protocol)에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'NETWORK', 'LEVEL3');
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'web 서버와 was 차이에 대해 설명해주세요', SUBSTRING(UUID(), 1, 8), 'NETWORK', 'LEVEL2');

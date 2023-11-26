@@ -231,3 +231,6 @@ VALUES (0, NOW(), NOW(), '데이터베이스에서의 로드 테스트(Load Test
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
 VALUES (0, NOW(), NOW(), '데이터베이스에서의 풀(Full)과 풀드라이버(Pool Driver)에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'DATABASE', 'LEVEL3');
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), '데이터베이스에서 커넥션풀이란 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'DATABASE', 'LEVEL1');

@@ -397,3 +397,99 @@ SET @last_id_in_question = LAST_INSERT_ID();
 
 INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
 VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Java에서 jdk와 jre차이점에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
+VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Java에서 컴파일 과정에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL3');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
+VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Java에서 인터프리터와 JIT 컴파일러에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
+VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Java에서 call by value , call by reference에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
+VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Java에서 클래스는 무엇이고 객체는 무엇인가요', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
+VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Java에서 원시타입과 참조타입의 차이에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
+VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Java에서 String, StringBuilder, StringBuffer 각각의 차이에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
+VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Java에서 new String()과 리터럴의 차이에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
+VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Java에서 try-with-resource에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL3');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
+VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Java에서 Optional에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
+VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Java에서 Stream Api란 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
+VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Java에서 바이트 코드란 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, modified_at)
+VALUES (0, @last_id_in_question, 'JAVA', NOW(), NOW());

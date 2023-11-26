@@ -147,3 +147,9 @@ VALUES (0, NOW(), NOW(), '책임 연쇄(Chain of Responsibility) 패턴이 무�
 
 INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
 VALUES (0, NOW(), NOW(), '스테이트(State) 패턴을 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'DESIGN_PATTERN', 'LEVEL3');
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'SOLID(객체지향 5대원칙)에 대해서 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'DESIGN_PATTERN', 'LEVEL3');
+
+INSERT INTO question (id, created_at, modified_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'OOP에 대해 설명해주세요', SUBSTRING(UUID(), 1, 8), 'DESIGN_PATTERN', 'LEVEL1');
