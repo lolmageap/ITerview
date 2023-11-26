@@ -1,16 +1,7 @@
 const createHistories = async () => {
     let data = await getHistories()
-
     data.forEach(item => {
-        const listItem = document.createElement('li')
-
-        const spanElement = document.createElement('span')
-        spanElement.id = item.token
-        spanElement.textContent = item.question
-        spanElement.onclick = () => getHistory(item.token)
-
-        listItem.appendChild(spanElement)
-        historiesElement.appendChild(listItem)
+        createHistory(item);
     })
 }
 
@@ -28,6 +19,7 @@ const getHistories = async () => {
 
 const getHistory = async token => {
     removeIntroduce()
+    hideAnswerField()
     const response = await fetch(`/answers/histories/${token}`, {
         method: "GET",
         headers: {
@@ -53,3 +45,33 @@ const switchChatContainer = async data => {
         await createAnimatedMessage(feedbackText, "feedback")
     }
 }
+
+const addHistory = item => {
+    const listItem = document.createElement('li')
+
+    const spanElement = document.createElement('span')
+    spanElement.id = item.token
+    spanElement.textContent = item.question
+    spanElement.onclick = () => getHistory(item.token)
+
+    listItem.appendChild(spanElement)
+    historiesElement.insertBefore(listItem, historiesElement.firstChild)
+    removeOldestHistory()
+}
+
+const createHistory = item => {
+    const listItem = document.createElement('li')
+
+    const spanElement = document.createElement('span')
+    spanElement.id = item.token
+    spanElement.textContent = item.question
+    spanElement.onclick = () => getHistory(item.token)
+
+    listItem.appendChild(spanElement)
+    historiesElement.appendChild(listItem)
+}
+
+const removeOldestHistory = () => {
+    const lastListItem = historiesElement.lastElementChild;
+    lastListItem.remove();
+};
