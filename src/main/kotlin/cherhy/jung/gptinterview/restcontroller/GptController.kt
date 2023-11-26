@@ -2,6 +2,7 @@ package cherhy.jung.gptinterview.restcontroller
 
 import cherhy.jung.gptinterview.domain.customer.AuthCustomer
 import cherhy.jung.gptinterview.usecase.GptAnswerUseCase
+import cherhy.jung.gptinterview.util.log
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
@@ -22,18 +23,19 @@ class GptController(
     fun requestAnswer(
         @RequestBody gptRequest: GptRequest,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
-    ): String =
+    ): GptResponse =
         gptAnswerUseCase.requestAnswerToGpt(authCustomer.customerId, gptRequest)
+            .let(GptResponse::of)
 
     @GetMapping("/answers/{token}")
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "답변 하기", description = "질문을 풀고 답안을 제출한 뒤 점수 및 피드백을 받는다.")
+    @Operation(summary = "답안 요청", description = "질문을 풀지 않고 모범 답안을 받는다.")
     fun getOnlyFeedback(
         @PathVariable token: String,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
-    ): String =
+    ): GptResponse =
         gptAnswerUseCase.requestOnlyAnswerKeyToGpt(authCustomer.customerId, token)
-
+            .let(GptResponse::of)
 
 }
