@@ -37,31 +37,28 @@ const switchChatContainer = async data => {
     await createAnimatedMessage(data.question, "question")
     await createAnimatedMessage(data.answer, "answer")
 
-    const {score, feedback, answer} = JSON.parse(data.feedback)
+    const {feedback, answer} = JSON.parse(data.feedback)
     if (answer) {
         await createAnimatedMessage(answer, "feedback")
     } else {
-        const feedbackText = `${score}점, ${feedback}`
-        await createAnimatedMessage(feedbackText, "feedback")
+        await createAnimatedMessage(feedback, "feedback")
     }
 }
 
 const addHistory = item => {
     const listItem = document.createElement('li')
-
     const spanElement = document.createElement('span')
     spanElement.id = item.token
     spanElement.textContent = item.question
     spanElement.onclick = () => getHistory(item.token)
 
     listItem.appendChild(spanElement)
-    historiesElement.insertBefore(listItem, historiesElement.firstChild)
+    historiesElement.insertBefore(listItem, historiesElement.firstChild || null)
     removeOldestHistory()
 }
 
 const createHistory = item => {
     const listItem = document.createElement('li')
-
     const spanElement = document.createElement('span')
     spanElement.id = item.token
     spanElement.textContent = item.question
@@ -72,6 +69,8 @@ const createHistory = item => {
 }
 
 const removeOldestHistory = () => {
-    const lastListItem = historiesElement.lastElementChild;
-    lastListItem.remove();
+    if (historiesElement.children.length > 15) {
+        const lastListItem = historiesElement.lastElementChild;
+        lastListItem.remove();
+    }
 };
