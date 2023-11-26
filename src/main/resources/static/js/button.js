@@ -78,9 +78,9 @@ const handleSubmit = async () => {
 
         const data = await response.json()
 
-        const {score, feedback} = JSON.parse(data.body)
+        const {feedback} = JSON.parse(data.body)
         const historyToken = data.token
-        const feedbackText = `${score}점, ${feedback}`
+        const feedbackText = feedback
 
         addHistory( {question: questionTitle, token: historyToken} )
         await createAnimatedMessage(feedbackText, "feedback", enableButton.bind(null, 'submitBtn', handleSubmit))
@@ -157,12 +157,12 @@ const createAnimatedMessage = async (text, type, callback) => {
     const animationInterval = setInterval(() => {
         animationTarget.textContent = text.slice(0, currentIndex)
         currentIndex++
+        afterChatFunction()
 
         if (currentIndex > text.length) {
-            clearInterval(animationInterval)
-            afterChatFunction()
+            clearInterval(animationInterval);
             if (callback) {
-                callback()
+                callback();
             }
         }
     }, 20)
