@@ -3,9 +3,11 @@ package cherhy.jung.gptinterview.util
 object Validator {
 
     fun validateJsonFormat(feedback: String): String =
-        if (feedback.endsWith("}")) {
+        if (feedback.trim().endsWith("}")) {
             feedback
-        } else if (feedback.endsWith("\"\n") || feedback.endsWith("\"")) {
+        } else if (feedback.trim().endsWith("\"\n")) {
+            feedback.plus("}")
+        } else if (feedback.trim().endsWith("\"")) {
             feedback.plus("}")
         } else {
             feedback.plus("\"}")
