@@ -1,10 +1,29 @@
 let questionToken;
+let questionTitle;
 const inputField = document.getElementById('inputField')
 const submitBtn = document.getElementById('submitBtn')
 const sendBtn = document.getElementById('sendBtn')
 const next = document.getElementById('next')
+const loading = document.getElementById('loading-container')
+let debounceTimer = null
+
+const checkNestedRequest = () => {
+    if (debounceTimer !== null) {
+        return true
+    }
+
+    debounceTimer = setTimeout(() => {
+        debounceTimer = null
+    }, 1000)
+
+    return false
+}
 
 const handleSubmit = async () => {
+    if (checkNestedRequest()) {
+        return
+    }
+
     if (getCookie() === '') {
         location.href = '/login'
     }
@@ -15,7 +34,8 @@ const handleSubmit = async () => {
         const confirms = confirm('답을 입력하지 않았습니다. 정답을 확인 하시겠습니까?')
 
         if (confirms) {
-            hideQuestionField()
+            loading.style.display = 'block'
+            hideAnswerField()
             await createAnimatedMessage("정답을 가르쳐줘", "answer")
             await disableButton('sendBtn')
 
@@ -29,13 +49,17 @@ const handleSubmit = async () => {
             await enableButton('sendBtn', 'handleSend()')
 
             const data = await response.json()
-            const {answer} = data
-            await createAnimatedMessage(answer, "feedback")
+            const {answer} = JSON.parse(data.body)
+
+            const historyToken = data.token
+            addHistory( {question: questionTitle, token: historyToken} )
+            await createAnimatedMessage(answer, "feedback", enableButton.bind(null, 'submitBtn', handleSubmit))
         } else {
             return
         }
     } else {
-        hideQuestionField()
+        loading.style.display = 'block'
+        hideAnswerField()
         await createAnimatedMessage(inputField.value, "answer")
         await disableButton('sendBtn')
 
@@ -53,14 +77,21 @@ const handleSubmit = async () => {
         await enableButton('sendBtn', 'handleSend()')
 
         const data = await response.json()
-        const {score, feedback} = data
+
+        const {score, feedback} = JSON.parse(data.body)
+        const historyToken = data.token
         const feedbackText = `${score}점, ${feedback}`
-        await createAnimatedMessage(feedbackText, "feedback")
+
+        addHistory( {question: questionTitle, token: historyToken} )
+        await createAnimatedMessage(feedbackText, "feedback", enableButton.bind(null, 'submitBtn', handleSubmit))
     }
+
+    loading.style.display = 'none'
 }
 
 const handleSend = async () => {
-    hideAnswerField()
+    checkNestedRequest()
+    hideQuestionField()
     removeIntroduce()
 
     inputField.value = ''
@@ -96,12 +127,13 @@ const handleSend = async () => {
         await createAnimatedMessage(data.title, "question")
         await enableButton('submitBtn', 'handleSubmit()')
         questionToken = data.token
+        questionTitle = data.title
     } else {
         location.href = '/login'
     }
 }
 
-const createAnimatedMessage = async (text, type) => {
+const createAnimatedMessage = async (text, type, callback) => {
     const messageContainer = document.createElement("div")
     messageContainer.classList.add("message")
 
@@ -129,6 +161,9 @@ const createAnimatedMessage = async (text, type) => {
         if (currentIndex > text.length) {
             clearInterval(animationInterval)
             afterChatFunction()
+            if (callback) {
+                callback()
+            }
         }
     }, 20)
 }
@@ -156,14 +191,14 @@ const enableButton = async (btn, fun) => {
     }
 }
 
-const hideQuestionField = () => {
+const hideAnswerField = () => {
     inputField.style.display = 'none'
     submitBtn.style.display = 'none'
     sendBtn.style.display = 'inline-block'
     next.style.display = 'none'
 }
 
-const hideAnswerField = () => {
+const hideQuestionField = () => {
     sendBtn.style.display = 'none'
     inputField.style.display = 'inline-block'
     submitBtn.style.display = 'inline-block'
@@ -171,6 +206,27 @@ const hideAnswerField = () => {
 }
 
 const hasNotQuestions = async message => {
-    hideQuestionField()
+    hideAnswerField()
     await createAnimatedMessage(message, "feedback")
+}
+
+const resizeTextarea = () => {
+    inputField.style.height = ''
+    inputField.style.height = inputField.scrollHeight + 'px'
+}
+
+const handleKeyPress = async (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        inputField.value = inputField.value.trim()
+        await handleSubmit()
+    } else if (event.key === 'Enter' && event.shiftKey) {
+        const cursorPos = inputField.selectionStart
+        const textBeforeCursor = inputField.value.substring(0, cursorPos)
+        const textAfterCursor = inputField.value.substring(cursorPos)
+
+        inputField.value = textBeforeCursor + '\n' + textAfterCursor
+
+        resizeTextarea()
+        event.preventDefault()
+    }
 }

@@ -26,13 +26,24 @@ const signup = async () => {
         return;
     }
 
-    const response = await fetch("/authorities/sign-up", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({'email': email, 'password': password, 'confirmPassword': confirmPassword})
-    })
+    const signupButton = document.getElementById('signup-button')
+    signupButton.onclick = null
 
-    await setCookie(response)
+    try {
+        const response = await fetch("/authorities/sign-up", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({'email': email, 'password': password, 'confirmPassword': confirmPassword})
+        })
+
+        await setCookie(response)
+    } catch (error) {
+        console.error("Error during signup:", error)
+    } finally {
+        setTimeout(() => {
+            signupButton.onclick = signup
+        }, 2000)
+    }
 }
 
 const setCookie = async response => {
