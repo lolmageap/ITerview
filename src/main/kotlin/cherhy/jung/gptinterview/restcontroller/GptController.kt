@@ -2,7 +2,6 @@ package cherhy.jung.gptinterview.restcontroller
 
 import cherhy.jung.gptinterview.domain.customer.AuthCustomer
 import cherhy.jung.gptinterview.usecase.GptAnswerUseCase
-import cherhy.jung.gptinterview.util.log
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
