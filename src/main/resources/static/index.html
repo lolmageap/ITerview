@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interview GPT</title>
+    <title>ITerview.</title>
     <script src="js/index.js" defer></script>
     <script src="js/menu.js" defer></script>
     <script src="js/show.js" defer></script>
     <script src="js/button.js" defer></script>
     <script src="js/history.js" defer></script>
     <link href="/css/index.css" rel="stylesheet" type="text/css">
+    <link href="/css/load.css" rel="stylesheet" type="text/css">
     <link href="/css/button.css" rel="stylesheet" type="text/css">
     <link href="/css/checkbox.css" rel="stylesheet" type="text/css">
     <link href="/css/nav.css" rel="stylesheet" type="text/css">
@@ -35,7 +36,7 @@
 
     <!--header-->
     <div class="flex-header">
-        <h3>Interview GPT</h3>
+        <h3>ITerview</h3>
     </div>
 
     <!--navigation-->
@@ -809,12 +810,16 @@
         </div>
     </nav>
 
+    <div id="loading-container">
+        <div class="loading-bar"></div>
+    </div>
+
     <!--prompt-->
     <div class="chat-container"></div>
 
     <!--button-->
     <div class="submit-container">
-        <textarea id="inputField" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"
+        <textarea id="inputField"  oninput="resizeTextarea()" onkeydown="handleKeyPress(event)"
                   placeholder="답을 입력해주세요. 아무것도 입력하지 않는다면 정답만 확인 할 수 있습니다." class="submit-input"></textarea>
 
         <button id="submitBtn" onclick="handleSubmit()" class="button-82-pushable" role="button">
