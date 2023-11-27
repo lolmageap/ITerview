@@ -17,7 +17,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: interview
+      MYSQL_DATABASE: iterview
     ports:
       - "3501:3306"
 
