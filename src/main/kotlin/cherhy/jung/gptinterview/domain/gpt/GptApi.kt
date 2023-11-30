@@ -1,6 +1,7 @@
 package cherhy.jung.gptinterview.domain.gpt
 
 import cherhy.jung.gptinterview.exception.GptNotGeneratedException
+import cherhy.jung.gptinterview.util.Validator
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
@@ -45,7 +46,8 @@ class GptApi(
             ?.choices
             ?: throw GptNotGeneratedException()
 
-        return choices[0].text
+        val feedback = choices[0].text
+        return Validator.validateJsonFormat(feedback)
     }
 
 }
