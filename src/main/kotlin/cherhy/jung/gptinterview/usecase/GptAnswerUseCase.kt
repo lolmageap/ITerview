@@ -6,13 +6,11 @@ import cherhy.jung.gptinterview.domain.gpt.GptApi
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryRequestS
+import cherhy.jung.gptinterview.domain.question.dto.toQuestionHistory
 import cherhy.jung.gptinterview.restcontroller.GptRequest
 import cherhy.jung.gptinterview.util.Generator
-import cherhy.jung.gptinterview.util.Validator
-import org.springframework.transaction.annotation.Transactional
 
 @UseCase
-@Transactional
 class GptAnswerUseCase(
     private val gptApi: GptApi,
     private val customerReadService: CustomerReadService,
@@ -23,15 +21,11 @@ class GptAnswerUseCase(
     fun requestAnswerToGpt(customerId: Long, gptRequest: GptRequest): GptResponseS {
         val customer = customerReadService.getCustomerById(customerId)
         val question = questionReadService.getQuestionByToken(gptRequest.questionToken)
-        val questionToGpt = Generator.generateQuestionToGpt(
-            question = question.title,
-            answer = gptRequest.answer,
-        )
+        val questionToGpt = Generator.generateQuestionToGpt(question.title, gptRequest.answer)
         val feedback = gptApi.generateText(questionToGpt)
-        val modifiedFeedback = Validator.validateJsonFormat(feedback)
-        val questionHistory = QuestionHistoryRequestS(question.id, customer.id, modifiedFeedback, gptRequest.answer)
-        val history = questionHistoryWriteService.addHistory(questionHistory)
-        return GptResponseS(history, modifiedFeedback)
+        val questionHistory = QuestionHistoryRequestS.of(question.id, customer.id, feedback, gptRequest.answer)
+        val history = questionHistoryWriteService.addHistory(questionHistory.toQuestionHistory())
+        return GptResponseS(history.token, feedback)
     }
 
     fun requestOnlyAnswerKeyToGpt(customerId: Long, token: String): GptResponseS {
@@ -39,10 +33,9 @@ class GptAnswerUseCase(
         val question = questionReadService.getQuestionByToken(token)
         val questionToGpt = Generator.generateAnswerKeyToGpt(question.title)
         val feedback = gptApi.generateText(questionToGpt)
-        val modifiedFeedback = Validator.validateJsonFormat(feedback)
-        val questionHistory = QuestionHistoryRequestS(question.id, customer.id, modifiedFeedback)
-        val history = questionHistoryWriteService.addHistory(questionHistory)
-        return GptResponseS(history, modifiedFeedback)
+        val questionHistory = QuestionHistoryRequestS.of(question.id, customer.id, feedback)
+        val history = questionHistoryWriteService.addHistory(questionHistory.toQuestionHistory())
+        return GptResponseS(history.token, feedback)
     }
 
 }
