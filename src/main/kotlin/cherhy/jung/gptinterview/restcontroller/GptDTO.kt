@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.restcontroller
 
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
-import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryResponseS
+import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryInfoS
 import cherhy.jung.gptinterview.usecase.GptResponseS
 
 
@@ -20,7 +20,7 @@ data class AnswerResponse(
     val level: QuestionLevel,
 ) {
     companion object {
-        fun of(responseS: QuestionHistoryResponseS): AnswerResponse =
+        fun of(responseS: QuestionHistoryInfoS): AnswerResponse =
             AnswerResponse(
                 token = responseS.token,
                 question = responseS.question,
