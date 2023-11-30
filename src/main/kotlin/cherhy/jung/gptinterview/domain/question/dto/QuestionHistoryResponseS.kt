@@ -1,25 +1,24 @@
 package cherhy.jung.gptinterview.domain.question.dto
 
-import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
-import cherhy.jung.gptinterview.domain.question.constant.QuestionType
+import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
 
 data class QuestionHistoryResponseS(
     val token: String,
-    val question: String,
+    val questionId: Long,
     val answer: String,
     val feedback: String,
-    val type: QuestionType,
-    val level: QuestionLevel,
+    val createdAt: String,
+    val modifiedAt: String,
 ) {
     companion object {
-        fun of(responseR: QuestionHistoryResponseR): QuestionHistoryResponseS {
+        fun of(questionHistory: QuestionHistory): QuestionHistoryResponseS {
             return QuestionHistoryResponseS(
-                token = responseR.token,
-                question = responseR.question,
-                answer = responseR.answer,
-                feedback = responseR.feedback,
-                type = responseR.type,
-                level = responseR.level,
+                token = questionHistory.token,
+                questionId = questionHistory.questionId,
+                answer = questionHistory.answer,
+                feedback = questionHistory.feedback,
+                createdAt = questionHistory.createdAt.toString(),
+                modifiedAt = questionHistory.modifiedAt.toString(),
             )
         }
     }
