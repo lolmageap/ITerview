@@ -8,7 +8,10 @@ import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
+import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryRequestS
+import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryResponseS
 import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseS
+import cherhy.jung.gptinterview.domain.question.dto.toQuestionHistory
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.restcontroller.GptRequest
 import cherhy.jung.gptinterview.util.Generator
@@ -51,16 +54,20 @@ internal class GptAnswerUseCaseTest(
         val feedback = "score : 10, feedback : 완벽한 정답이기에 피드백 할 것이 없습니다."
         val gptRequest = GptRequest(questionToken = question.token, answer = answer)
 
+        val historyRequest = QuestionHistoryRequestS.of(question.id, customer.id, answer, feedback)
+        val history = historyRequest.toQuestionHistory()
+        val historyResponse = QuestionHistoryResponseS.of(history)
+
         When("GPT가 채점과 피드백을 하고 ") {
 
             every { customerReadService.getCustomerById(customer.id) } returns CustomerResponseS.of(customer)
             every { questionReadService.getQuestionByToken(question.token) } returns QuestionResponseS.of(question)
-            every { questionHistoryWriteService.addHistory(question.id, customer.id, answer, feedback) } returns "token"
             every {
                 gptApi.generateText(
                     Generator.generateQuestionToGpt(question.title, answer)
                 )
             } returns feedback
+            every { questionHistoryWriteService.addHistory(history) } returns historyResponse
 
             val feedBack = gptAnswerUseCase.requestAnswerToGpt(customerId = customer.id, gptRequest = gptRequest)
 
@@ -70,7 +77,7 @@ internal class GptAnswerUseCaseTest(
                 verify { customerReadService.getCustomerById(customer.id) }
                 verify { questionReadService.getQuestionByToken(question.token) }
                 verify {
-                    questionHistoryWriteService.addHistory(question.id, customer.id, answer, feedback)
+                    questionHistoryWriteService.addHistory(history)
                 }
 
             }

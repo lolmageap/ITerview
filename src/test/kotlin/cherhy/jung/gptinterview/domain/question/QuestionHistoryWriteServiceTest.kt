@@ -4,8 +4,9 @@ import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
+import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryRequestS
+import cherhy.jung.gptinterview.domain.question.dto.toQuestionHistory
 import cherhy.jung.gptinterview.domain.question.entity.Question
-import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
@@ -44,14 +45,16 @@ internal class QuestionHistoryWriteServiceTest(
 
         val answer = "어플리케이션 실행 시점부터 객체가 단 한개만 생성되고 값이 전역적으로 공유되는 패턴입니다."
         val feedback = "{ score: 100점, feedback: 완벽한 정답입니다.}"
+        val historyRequest = QuestionHistoryRequestS.of(
+            questionId = question.id,
+            customerId = customer.id,
+            answer = answer,
+            feedback = feedback,
+        )
+        val history = historyRequest.toQuestionHistory()
 
         When("질문의 내역을 저장하고 ") {
-            val addHistory = questionHistoryWriteService.addHistory(
-                questionId = question.id,
-                customerId = customer.id,
-                answer = answer,
-                feedback = feedback,
-            )
+            val addHistory = questionHistoryWriteService.addHistory(history)
 
             Then("반환된 토큰을 확인한다.") {
                 addHistory shouldNotBe null
