@@ -10,10 +10,8 @@ import cherhy.jung.gptinterview.redis.RedisWriteService
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.core.Authentication
-import org.springframework.transaction.annotation.Transactional
 
 @UseCase
-@Transactional
 class SignInUseCase(
     private val customerReadService: CustomerReadService,
     private val tokenProvider: TokenProvider,

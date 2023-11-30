@@ -6,10 +6,8 @@ import cherhy.jung.gptinterview.domain.customer.CustomerRequestS
 import cherhy.jung.gptinterview.domain.customer.CustomerWriteService
 import cherhy.jung.gptinterview.domain.customer.toCustomer
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.transaction.annotation.Transactional
 
 @UseCase
-@Transactional
 class SignUpUseCase(
     private val customerReadService: CustomerReadService,
     private val customerWriteService: CustomerWriteService,
