@@ -1,13 +1,12 @@
 spring:
   application:
-    name: gpt-interview
+    name: iterview
 
   datasource:
-    url: jdbc:mysql://mysql:3501/interview
+    url: jdbc:mysql://mysql:3501/iterview
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
     hibernate:
       ddl-auto: create
@@ -32,7 +31,7 @@ spring:
   data:
     redis:
       host: localhost
-      port: 6397
+      port: 6379
 
 logging:
   level:
@@ -45,6 +44,6 @@ api-key: your-open-ai-api-key
 
 jwt:
   header: Authorization
-  secret: aW5jaGVvbi1hbmQtYnVjaGVvbi1sZWFmeS1wcm9qZWN0LWphdmEtc3ByaW5nLWJhY2tlbmQtcmVhY3QtYW5kLXR5cGVzcGlyLWZyb250ZW5kLWp3dC1zZWNyZXQta2V5
+  secret: your-secret-jwt-key
   token-validity-in-seconds: 10800
   refresh-token-validity-in-seconds: 86400
