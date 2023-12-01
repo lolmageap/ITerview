@@ -15,7 +15,7 @@ class SignUpUseCase(
 ) {
 
     fun signUp(customerRequestS: CustomerRequestS) {
-        customerReadService.duplicationEmailCheck(customerRequestS.email)
+        customerReadService.checkDuplicatedEmail(customerRequestS.email)
         val encodedPassword = passwordEncoder.encode(customerRequestS.password + customerRequestS.salt)
         customerWriteService.saveCustomer(customerRequestS.toCustomer(), encodedPassword)
     }
