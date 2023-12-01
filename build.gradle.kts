@@ -51,6 +51,9 @@ dependencies {
     implementation("org.springframework.security:spring-security-core")
     implementation("com.nimbusds:nimbus-jose-jwt:9.13")
 
+    // mail
+    implementation("org.springframework.boot:spring-boot-starter-mail:3.1.4")
+
     // docker compose
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 
