@@ -45,4 +45,14 @@ object Generator {
             }
         """.trimIndent()
 
+    fun createCertificate(): String =
+        StringBuffer()
+            .apply {
+                for (i in 0..5) {
+                    append(
+                        Random().nextInt(10)
+                    )
+                }
+            }.toString()
+
 }
