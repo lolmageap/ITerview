@@ -2,6 +2,8 @@ package cherhy.jung.gptinterview.restcontroller
 
 import cherhy.jung.gptinterview.jwt.*
 import cherhy.jung.gptinterview.jwt.JwtFilter.Companion.AUTHORIZATION_HEADER
+import cherhy.jung.gptinterview.redis.RedisReadService
+import cherhy.jung.gptinterview.usecase.SendMailUseCase
 import cherhy.jung.gptinterview.usecase.SignInUseCase
 import cherhy.jung.gptinterview.usecase.SignUpUseCase
 import io.swagger.v3.oas.annotations.Operation
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.*
 class AuthorityController(
     private val signInUseCase: SignInUseCase,
     private val signUpUseCase: SignUpUseCase,
+    private val sendMailUseCase: SendMailUseCase,
+    private val redisReadService: RedisReadService,
 ) {
 
     @PostMapping("/sign-in")
@@ -43,9 +47,14 @@ class AuthorityController(
         }
     }
 
+    @PostMapping("/certificates")
+    fun sendCertificate(@RequestBody email: String) {
+        sendMailUseCase.sendCertificate(email)
+    }
 
-    @PostMapping("/sign-out")
-    fun signOut() {
+    @GetMapping("/certificates")
+    fun getCertificate(@RequestParam certificate: String) {
+        redisReadService.getCertificate(certificate)
     }
 
 }
