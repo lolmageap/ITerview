@@ -1,5 +1,8 @@
 package cherhy.jung.gptinterview.redis
 
+import cherhy.jung.gptinterview.exception.NotFoundException
+import cherhy.jung.gptinterview.redis.RedisKey.CERTIFICATE
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
@@ -74,6 +77,28 @@ class RedisReadServiceTest(
                 findQuestionTokens shouldContain "questionToken1"
                 findQuestionTokens shouldContain "questionToken2"
                 findQuestionTokens shouldContain "questionToken3"
+            }
+        }
+    }
+
+    Given("이메일과 인증번호를 저장하고 ") {
+        val email = "ekxk1234@naver.com"
+        val certificateNumber = "123456"
+        redisTemplate.opsForValue().set(CERTIFICATE + email, certificateNumber)
+
+        When("인증번호와 이메일을 정상 입력하면 ") {
+            Then("성공한다.") {
+                redisReadService.checkCertificate(email, certificateNumber)
+            }
+        }
+
+        When("인증번호가 잘못 입력되면 ") {
+            val notFoundNumber = "000000"
+
+            Then("exception 이 발생한다.") {
+                shouldThrow<NotFoundException> {
+                    redisReadService.checkCertificate(email, notFoundNumber)
+                }
             }
         }
     }
