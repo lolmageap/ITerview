@@ -20,4 +20,8 @@ class SendMailUseCase(
         redisWriteService.addCertificate(email, certificate)
     }
 
+    fun sendResetPassword(email: String, resetPassword: String) {
+        mailComponent.sendPasswordMessage(email, resetPassword)
+    }
+
 }
