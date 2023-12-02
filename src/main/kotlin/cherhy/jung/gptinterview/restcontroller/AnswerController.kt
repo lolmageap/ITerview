@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
-import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.OK
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
@@ -21,7 +21,7 @@ class AnswerController(
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/histories")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(OK)
     @Operation(summary = "답변 내역", description = "풀었던 질문들을 확인한다.")
     fun getAnswerHistories(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
@@ -32,7 +32,7 @@ class AnswerController(
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/histories/{token}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(OK)
     @Operation(summary = "답변 내역", description = "풀었던 질문의 답변 내용을 포함하여 조회한다.")
     fun getAnswerHistory(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
