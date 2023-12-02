@@ -1,6 +1,7 @@
 package cherhy.jung.gptinterview.redis
 
 import cherhy.jung.gptinterview.redis.RedisKey.ACCESS_TOKEN
+import cherhy.jung.gptinterview.redis.RedisKey.CERTIFICATE
 import cherhy.jung.gptinterview.redis.RedisKey.QUESTION_TOKEN
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.extensions.testcontainers.perSpec
@@ -60,6 +61,21 @@ class RedisWriteServiceTest(
 
                 questionTokens.size shouldBe 1
                 questionTokens[0] shouldBe questionToken
+            }
+        }
+    }
+
+    Given("이메일과 인증번호를 ") {
+        val email = "ekxk1234@naver.com"
+        val certificateNumber = "123456"
+
+        When("메모리에 저장하고 ") {
+            redisWriteService.addCertificate(email, certificateNumber)
+
+            Then("이메일로 조회 한 뒤 인증번호를 확인한다.") {
+                val result = redisTemplate.opsForValue().get(CERTIFICATE + email) as String
+                result shouldNotBe null
+                result shouldBe certificateNumber
             }
         }
     }
