@@ -29,9 +29,9 @@ class RedisWriteService(
         redisTemplate.opsForList().rightPush(QUESTION_TOKEN + customerId, questionToken)
 
     fun addCertificate(email: String, certificate: String) {
-        redisTemplate.opsForValue().set(CERTIFICATE + certificate, email)
+        redisTemplate.opsForValue().set(CERTIFICATE + email, certificate)
         redisTemplate.expire(
-            CERTIFICATE + certificate,
+            CERTIFICATE + email,
             180,
             TimeUnit.SECONDS
         )
