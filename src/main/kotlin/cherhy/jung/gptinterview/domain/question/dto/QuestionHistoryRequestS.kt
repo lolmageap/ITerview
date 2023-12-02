@@ -9,11 +9,13 @@ data class QuestionHistoryRequestS(
     val answer: String,
 ) {
     companion object {
+        private const val DEFAULT_ANSWER = "정답을 가르쳐줘"
+
         fun of(
             questionId: Long,
             customerId: Long,
             feedback: String,
-            answer: String = "정답을 가르쳐줘",
+            answer: String = DEFAULT_ANSWER,
         ): QuestionHistoryRequestS =
             QuestionHistoryRequestS(
                 questionId = questionId,
