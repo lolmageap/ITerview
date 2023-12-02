@@ -4,7 +4,7 @@ import cherhy.jung.gptinterview.domain.customer.AuthCustomer
 import cherhy.jung.gptinterview.usecase.GptAnswerUseCase
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
-import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.CREATED
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
@@ -17,7 +17,7 @@ class GptController(
 
     @PostMapping("/answers")
     @PreAuthorize("isAuthenticated()")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(CREATED)
     @Operation(summary = "답변 하기", description = "질문을 풀고 답안을 제출한 뒤 점수 및 피드백을 받는다.")
     fun requestAnswer(
         @RequestBody gptRequest: GptRequest,
@@ -28,7 +28,7 @@ class GptController(
 
     @GetMapping("/answers/{token}")
     @PreAuthorize("isAuthenticated()")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(CREATED)
     @Operation(summary = "답안 요청", description = "질문을 풀지 않고 모범 답안을 받는다.")
     fun getOnlyFeedback(
         @PathVariable token: String,
