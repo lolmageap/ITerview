@@ -27,7 +27,7 @@ class Customer(
         CustomerAuthority(role = CustomerRole.MEMBER)
     )
 
-    fun changePassword(password: String) {
+    fun editPassword(password: String) {
         this.password = password
     }
 
