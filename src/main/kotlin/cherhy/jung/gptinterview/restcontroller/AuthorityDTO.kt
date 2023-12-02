@@ -45,6 +45,7 @@ data class EditPasswordRequest(
 ) {
     init {
         require(originalPassword != editPassword) { "현재 비밀번호와 변경하려는 비밀번호가 일치합니다." }
+        require(editPassword.length > 7) { "비밀번호는 8글자 이상이어야 합니다." }
     }
 }
 
