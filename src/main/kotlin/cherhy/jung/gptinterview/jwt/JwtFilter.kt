@@ -32,7 +32,7 @@ class JwtFilter(
                 if (tokenProvider.validateToken(jwt)) {
                     tokenProvider.getAuthentication(jwt)
                 } else {
-                    val refreshToken = redisReadService.getJwtToken(jwt) ?: throw AccessDeniedException("잘못된 토큰")
+                    val refreshToken = redisReadService.getJwtToken(jwt)
                     tokenProvider.getAuthentication(refreshToken)
                 }
             }
