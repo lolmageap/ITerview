@@ -18,22 +18,22 @@ class EditPasswordUseCase(
 
     fun resetPassword(email: String): String {
         val customer = customerReadService.getCustomerByEmail(email)
-        return Generator.generateRandomPassword().also {newPassword ->
+        return Generator.generateRandomPassword().also { newPassword ->
             changePassword(newPassword, customer)
         }
     }
 
     fun editPassword(customerId: Long, editPasswordRequestS: EditPasswordRequestS) {
         val customer = customerReadService.getCustomerById(customerId)
-        matchPassword(editPasswordRequestS, customer)
+        matchPassword(editPasswordRequestS.originalPassword, customer)
         changePassword(editPasswordRequestS.editPassword, customer)
     }
 
     private fun matchPassword(
-        editPasswordRequestS: EditPasswordRequestS,
-        customer: CustomerResponseS
+        password: String,
+        customer: CustomerResponseS,
     ) {
-        val requestPassword = editPasswordRequestS.originalPassword + customer.salt
+        val requestPassword = password + customer.salt
         val encodedPassword = bCryptPasswordEncoder.encode(requestPassword)
         val isMatched = bCryptPasswordEncoder.matches(encodedPassword, customer.password)
         if (!isMatched) throw BadCredentialsException("password not match")
@@ -41,7 +41,7 @@ class EditPasswordUseCase(
 
     private fun changePassword(
         editPassword: String,
-        customer: CustomerResponseS
+        customer: CustomerResponseS,
     ) {
         val newPassword = bCryptPasswordEncoder.encode(editPassword + customer.salt)
         customerWriteService.editPassword(customer.id, newPassword)
