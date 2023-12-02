@@ -1,8 +1,9 @@
 package cherhy.jung.gptinterview.restcontroller
 
 import cherhy.jung.gptinterview.domain.customer.CustomerRequestS
+import cherhy.jung.gptinterview.domain.customer.EditPasswordRequestS
 import jakarta.validation.constraints.Email
-import java.util.UUID
+import java.util.*
 
 data class SignInRequest(
     @field:Email
@@ -37,3 +38,18 @@ fun SignUpRequest.toCustomerRequest(): CustomerRequestS {
         email = this.email,
     )
 }
+
+data class EditPasswordRequest(
+    var originalPassword: String,
+    val editPassword: String,
+) {
+    init {
+        require(originalPassword != editPassword) { "현재 비밀번호와 변경하려는 비밀번호가 일치합니다." }
+    }
+}
+
+fun EditPasswordRequest.toEditPasswordRequestS() =
+    EditPasswordRequestS(
+        originalPassword = originalPassword,
+        editPassword = editPassword,
+    )
