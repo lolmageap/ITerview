@@ -4,8 +4,8 @@ spring:
 
   datasource:
     url: jdbc:mysql://mysql:3501/iterview
-    username: root
-    password: 1234
+    username: your-username
+    password: your-password
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -31,7 +31,19 @@ spring:
   data:
     redis:
       host: localhost
-      port: 6379
+      port: 6397
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: your-email
+    password: your-password
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth: true
 
 logging:
   level:
@@ -44,6 +56,6 @@ api-key: your-open-ai-api-key
 
 jwt:
   header: Authorization
-  secret: your-secret-jwt-key
+  secret: your-jwt-secret-key
   token-validity-in-seconds: 10800
   refresh-token-validity-in-seconds: 86400

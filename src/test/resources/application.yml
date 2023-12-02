@@ -33,6 +33,18 @@ spring:
       host: localhost
       port: 16379
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: your-email
+    password: your-password
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth: true
+
 logging:
   level:
     org.springframework.jdbc.datasource.init.ScriptUtils: DEBUG
@@ -44,6 +56,6 @@ api-key: your-open-ai-api-key
 
 jwt:
   header: Authorization
-  secret: aW5jaGVvbi1hbmQtYnVjaGVvbi1sZWFmeS1wcm9qZWN0LWphdmEtc3ByaW5nLWJhY2tlbmQtcmVhY3QtYW5kLXR5cGVzcGlyLWZyb250ZW5kLWp3dC1zZWNyZXQta2V5
+  secret: your-jwt-secret-key
   token-validity-in-seconds: 10800
   refresh-token-validity-in-seconds: 86400
