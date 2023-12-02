@@ -6,6 +6,8 @@ data class CustomerResponseS(
 
     var name: String,
 
+    var password: String,
+
     val email: String,
 
     val salt: String,
@@ -18,6 +20,7 @@ data class CustomerResponseS(
             return CustomerResponseS(
                 id = customer.id,
                 name = customer.name,
+                password = customer.password,
                 email = customer.email,
                 salt = customer.salt,
                 token = customer.token,
