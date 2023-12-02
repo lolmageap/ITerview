@@ -5,7 +5,6 @@ import jakarta.mail.internet.MimeMessage
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.stereotype.Component
-import java.util.*
 
 
 @Component
@@ -16,7 +15,7 @@ class MailComponent(
     private val sender: String,
 ) {
 
-    fun sendMessage(email: String, certificate: String): Unit {
+    fun sendMessage(email: String, certificate: String) {
         val msg: String = """
                 <h1 style=\"font-size: 30px; padding-right: 30px; padding-left: 30px;\">
                 이메일 주소 확인
@@ -43,7 +42,7 @@ class MailComponent(
         javaMailSender.send(message)
     }
 
-    fun sendPasswordMessage(email: String, password: String): Unit {
+    fun sendPasswordMessage(email: String, password: String) {
         val msg = """
                 <h1 style=\"font-size: 30px; padding-right: 30px; padding-left: 30px;\">
                 임시 비밀번호 발급 완료
