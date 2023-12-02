@@ -45,6 +45,13 @@ object Generator {
             }
         """.trimIndent()
 
+    fun generateRandomPassword(): String =
+        UUID.randomUUID()
+            .toString()
+            .replace("-", "")
+            .substring(0, 10)
+            .uppercase()
+
     fun createCertificate(): String =
         StringBuffer()
             .apply {
