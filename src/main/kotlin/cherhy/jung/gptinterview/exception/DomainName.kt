@@ -3,7 +3,7 @@ package cherhy.jung.gptinterview.exception
 enum class DomainName(val value: String) {
     CUSTOMER("회원"),
     QUESTION("질문"),
-    LOGIN("로그인 해주세요"),
+    EMAIL("이메일"),
     CERTIFICATE_NUMBER("인증번호"),
 
 }
