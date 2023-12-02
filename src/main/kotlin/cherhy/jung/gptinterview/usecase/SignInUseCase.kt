@@ -19,12 +19,13 @@ class SignInUseCase(
     private val redisWriteService: RedisWriteService,
 ) {
     fun signIn(customerRequestS: CustomerRequestS): TokenResponse {
-        val salt = customerReadService.getCustomerByEmail(customerRequestS.email)
-            .let { it.salt }
+        val salt = customerReadService.getCustomerByEmail(customerRequestS.email).salt
 
         val authenticationToken =
             UsernamePasswordAuthenticationToken(customerRequestS.email, customerRequestS.password + salt)
-        val authentication: Authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken)
+        val authentication: Authentication = authenticationManagerBuilder
+            .getObject()
+            .authenticate(authenticationToken)
         val authCustomer = authentication.principal as AuthCustomer
 
         val role = authentication.authorities
