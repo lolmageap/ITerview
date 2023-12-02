@@ -3,7 +3,7 @@ package cherhy.jung.gptinterview.restcontroller
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryInfoS
-import cherhy.jung.gptinterview.usecase.GptResponseS
+import cherhy.jung.gptinterview.domain.gpt.GptResponseS
 
 
 data class GptRequest(

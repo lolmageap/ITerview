@@ -3,6 +3,7 @@ package cherhy.jung.gptinterview.usecase
 import cherhy.jung.gptinterview.annotation.UseCase
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.gpt.GptApi
+import cherhy.jung.gptinterview.domain.gpt.GptResponseS
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryRequestS

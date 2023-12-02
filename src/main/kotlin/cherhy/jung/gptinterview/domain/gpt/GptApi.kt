@@ -39,8 +39,8 @@ class GptApi(
 
         val requestEntity: HttpEntity<Map<String, Any>> = HttpEntity(requestBody, headers)
 
-        val response: ResponseEntity<GptResponseS> =
-            RestTemplate().postForEntity(ENDPOINT, requestEntity, GptResponseS::class.java)
+        val response: ResponseEntity<GptApiResponseS> =
+            RestTemplate().postForEntity(ENDPOINT, requestEntity, GptApiResponseS::class.java)
 
         val choices = response.body
             ?.choices
