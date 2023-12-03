@@ -42,7 +42,18 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
             }
     }
 
-    public fun checkLevel(questionRequestS: QuestionRequestS): BooleanExpression? {
+    override fun findByTokensIn(alreadyQuestion: List<String>): List<Question> =
+        from(question)
+            .where(
+                question.token.`in`(alreadyQuestion),
+            )
+            .fetch()
+            .sortedBy {
+                alreadyQuestion.indexOf(it.token)
+            }
+            .reversed()
+
+    private fun checkLevel(questionRequestS: QuestionRequestS): BooleanExpression? {
         return if (questionRequestS.levels.isNotEmpty()) {
             question.level.`in`(questionRequestS.levels)
         } else null
@@ -81,17 +92,5 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
                 }
         } else null
     }
-
-
-    override fun findByTokensIn(alreadyQuestion: List<String>): List<Question> =
-        from(question)
-            .where(
-                question.token.`in`(alreadyQuestion),
-            )
-            .fetch()
-            .sortedBy {
-                alreadyQuestion.indexOf(it.token)
-            }
-            .reversed()
 
 }
