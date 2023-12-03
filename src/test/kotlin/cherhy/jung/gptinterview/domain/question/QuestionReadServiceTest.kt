@@ -3,7 +3,6 @@ package cherhy.jung.gptinterview.domain.question
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType.JAVA
-import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel.LEVEL1
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel.LEVEL2
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType.DESIGN_PATTERN
@@ -93,14 +92,14 @@ internal class QuestionReadServiceTest(
             title = "Java 가상 머신(JVM)이란 무엇인가요?",
             questionType = PROGRAMING,
             token = "random2",
-            level = QuestionLevel.LEVEL2,
+            level = LEVEL2,
         )
 
         val question3 = Question(
             title = "Java의 가비지 컬렉션(garbage collection)이란 무엇인가요?",
             questionType = PROGRAMING,
             token = "random3",
-            level = QuestionLevel.LEVEL2,
+            level = LEVEL2,
         )
 
         questionRepository.saveAll(
