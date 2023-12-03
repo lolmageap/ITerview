@@ -31,14 +31,14 @@ class MailComponent(
                 "</td></tr></tbody></table></div>"
             """.trimIndent()
 
+        val internetAddress = InternetAddress(sender, "admin")
         val message = javaMailSender.createMimeMessage()
-            .also { memeMessage ->
-                memeMessage.addRecipients(MimeMessage.RecipientType.TO, email)
-                memeMessage.subject = "ITerview 회원가입 인증 코드"
-                memeMessage.setText(msg, "utf-8", "html")
-                memeMessage.setFrom(InternetAddress(sender, "admin"))
+            .apply {
+                addRecipients(MimeMessage.RecipientType.TO, email)
+                subject = "ITerview 회원가입 인증 코드"
+                setText(msg, "utf-8", "html")
+                setFrom(internetAddress)
             }
-
         javaMailSender.send(message)
     }
 
@@ -61,12 +61,13 @@ class MailComponent(
                 </td></tr></tbody></table></div>
             """.trimIndent()
 
+        val internetAddress = InternetAddress(sender, "admin")
         val message = javaMailSender.createMimeMessage()
-            .also { memeMessage ->
-                memeMessage.addRecipients(MimeMessage.RecipientType.TO, email)
-                memeMessage.subject = "ITerview 임시 비밀번호 발급 메일"
-                memeMessage.setText(msg, "utf-8", "html")
-                memeMessage.setFrom(InternetAddress(sender, "admin"))
+            .apply {
+                addRecipients(MimeMessage.RecipientType.TO, email)
+                subject = "ITerview 임시 비밀번호 발급 메일"
+                setText(msg, "utf-8", "html")
+                setFrom(internetAddress)
             }
         javaMailSender.send(message)
     }
