@@ -12,7 +12,9 @@ object Generator {
     }
 
     fun generateSalt(): String =
-        UUID.randomUUID().toString().replace("-", "")
+        UUID.randomUUID()
+            .toString()
+            .replace("-", "")
 
     fun generateQuestionToGpt(question: String, answer: String): String =
         """
@@ -52,14 +54,13 @@ object Generator {
             .substring(0, 10)
             .uppercase()
 
-    fun createCertificate(): String =
-        StringBuffer()
-            .apply {
-                for (i in 0..5) {
-                    append(
-                        Random().nextInt(10)
-                    )
-                }
-            }.toString()
+    fun generateCertificate(): String =
+        buildString {
+            repeat(6) {
+                append(
+                    Random().nextInt(10).toString()
+                )
+            }
+        }
 
 }
