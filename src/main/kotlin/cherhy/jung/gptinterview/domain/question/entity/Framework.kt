@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.domain.question.entity
 
 import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
-import cherhy.jung.gptinterview.util.BaseEntity
+import cherhy.jung.gptinterview.domain.BaseEntity
 import jakarta.persistence.*
 
 @Entity
@@ -13,4 +13,4 @@ class Framework(
     @Enumerated(EnumType.STRING)
     val frameworkType: FrameworkType,
 
-    ) : BaseEntity()
+) : BaseEntity()

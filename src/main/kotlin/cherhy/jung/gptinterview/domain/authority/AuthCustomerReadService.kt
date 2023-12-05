@@ -1,6 +1,7 @@
-package cherhy.jung.gptinterview.domain.customer
+package cherhy.jung.gptinterview.domain.authority
 
 import cherhy.jung.gptinterview.annotation.ReadService
+import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.exception.DomainName
 import cherhy.jung.gptinterview.exception.NotFoundException
 import org.springframework.security.core.userdetails.UserDetails

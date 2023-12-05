@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.jwt
 
-import cherhy.jung.gptinterview.domain.customer.AuthCustomer
+import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.exception.DomainName
 import cherhy.jung.gptinterview.exception.NotFoundException

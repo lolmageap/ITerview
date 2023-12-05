@@ -1,5 +1,6 @@
-package cherhy.jung.gptinterview.exception
+package cherhy.jung.gptinterview.controller
 
+import cherhy.jung.gptinterview.exception.*
 import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.validation.FieldError

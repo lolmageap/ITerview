@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.restcontroller
+package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType

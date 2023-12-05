@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.domain.question.entity
 
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType
-import cherhy.jung.gptinterview.util.BaseEntity
+import cherhy.jung.gptinterview.domain.BaseEntity
 import jakarta.persistence.*
 
 @Entity
@@ -13,4 +13,4 @@ class Programing(
     @Enumerated(EnumType.STRING)
     val programingType: ProgramingType,
 
-    ) : BaseEntity()
+) : BaseEntity()

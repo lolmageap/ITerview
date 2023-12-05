@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.restcontroller
+package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.domain.position.AndroidDeveloper
 import cherhy.jung.gptinterview.domain.position.BackendDeveloper

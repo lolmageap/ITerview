@@ -4,7 +4,6 @@ import cherhy.jung.gptinterview.annotation.UseCase
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.CustomerRequestS
 import cherhy.jung.gptinterview.domain.customer.CustomerWriteService
-import cherhy.jung.gptinterview.domain.customer.toCustomer
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 @UseCase

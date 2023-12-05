@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.domain.question.entity
 
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
-import cherhy.jung.gptinterview.util.BaseEntity
+import cherhy.jung.gptinterview.domain.BaseEntity
 import jakarta.persistence.*
 
 @Entity
@@ -22,4 +22,4 @@ class Question(
     @Enumerated(EnumType.STRING)
     val level: QuestionLevel,
 
-    ) : BaseEntity()
+) : BaseEntity()

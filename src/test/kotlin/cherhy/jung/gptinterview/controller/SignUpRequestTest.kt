@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.restcontroller
+package cherhy.jung.gptinterview.controller
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec

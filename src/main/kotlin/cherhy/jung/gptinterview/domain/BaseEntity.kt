@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.util
+package cherhy.jung.gptinterview.domain
 
 import jakarta.persistence.EntityListeners
 import jakarta.persistence.GeneratedValue
@@ -15,7 +15,7 @@ import java.time.LocalDateTime
 abstract class BaseEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long = 0,
+    val id: Long = 0,
 ) {
 
     @CreatedDate

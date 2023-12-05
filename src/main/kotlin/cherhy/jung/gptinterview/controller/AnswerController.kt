@@ -1,6 +1,6 @@
-package cherhy.jung.gptinterview.restcontroller
+package cherhy.jung.gptinterview.controller
 
-import cherhy.jung.gptinterview.domain.customer.AuthCustomer
+import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryReadService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
@@ -21,7 +21,7 @@ class AnswerController(
     private val questionHistoryReadService: QuestionHistoryReadService,
 ) {
 
-    @PreAuthorize("isAuthenticated()") // seucirtyconfig에서 정의해도 괜찮아보여요. 대부분이 isAuthenticated일거고 config만 보면 어느 API가 무슨 권한이 필요한지 알 수 있거든요.
+    @PreAuthorize("isAuthenticated()") // *require seucirtyconfig에서 정의해도 괜찮아보여요. 대부분이 isAuthenticated일거고 config만 보면 어느 API가 무슨 권한이 필요한지 알 수 있거든요.
     @GetMapping("/histories")
     @ResponseStatus(OK) // 해당 코드가 필요할까요?
     @Operation(summary = "답변 내역", description = "풀었던 질문들을 확인한다.")
