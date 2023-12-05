@@ -2,11 +2,11 @@ package cherhy.jung.gptinterview.domain.customer
 
 
 data class CustomerResponseS(
-    var id: Long, // var인 이유가 있을까요?
+    val id: Long, // var인 이유가 있을까요?
 
-    var name: String,
+    val name: String,
 
-    var password: String,
+    val password: String,
 
     val email: String,
 
@@ -14,7 +14,7 @@ data class CustomerResponseS(
 
     val token: String,
 
-    ) {
+) {
     companion object {
         fun of(customer: Customer): CustomerResponseS {
             return CustomerResponseS(
