@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.domain.customer
 
 
 data class CustomerResponseS(
-    var id: Long,
+    var id: Long, // var인 이유가 있을까요?
 
     var name: String,
 

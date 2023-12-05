@@ -11,6 +11,7 @@ import cherhy.jung.gptinterview.domain.question.dto.toQuestionHistory
 import cherhy.jung.gptinterview.restcontroller.GptRequest
 import cherhy.jung.gptinterview.util.Generator
 
+// 모든 유스케이스들은 도메인 밑에 엔티티에 속하게 하는건 어떨까요?
 @UseCase
 class GptAnswerUseCase(
     private val gptApi: GptApi,
@@ -19,6 +20,8 @@ class GptAnswerUseCase(
     private val questionHistoryWriteService: QuestionHistoryWriteService,
 ) {
 
+    // 코드에 중간중간 문맥처럼 엔터를 넣어서 가독성을 높혀볼까요?
+    // 지금은 너무 다 붙어있어요.
     fun requestAnswerToGpt(customerId: Long, gptRequest: GptRequest): GptResponseS {
         val customer = customerReadService.getCustomerById(customerId)
         val question = questionReadService.getQuestionByToken(gptRequest.questionToken)

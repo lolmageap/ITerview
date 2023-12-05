@@ -10,6 +10,7 @@ import cherhy.jung.gptinterview.redis.RedisKey.QUESTION_TOKEN
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.security.access.AccessDeniedException
 
+// @Cacheable 같은것도 써보면 좋을거 같네요. 한번 적용이 가능한지 보시겠어요?
 @ReadService
 class RedisReadService(
     private val redisTemplate: RedisTemplate<String, Any>,

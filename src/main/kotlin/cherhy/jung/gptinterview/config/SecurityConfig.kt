@@ -25,18 +25,17 @@ class SecurityConfig(val jwtSecurityConfig: JwtSecurityConfig) {
     }
 
     @Bean
-    @Throws(Exception::class)
+    @Throws(Exception::class) // 필요 없는 코드같아요 코틀린에서는. 꼭 마킹이 필요하면 그 떄 적어볼까요?
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain? {
+        // 정렬이 조금 아쉽네요 기존 코드와 비교해볼까요?
         http.authorizeHttpRequests { requests ->
-            requests
-                .requestMatchers("/**").permitAll()
+            requests.requestMatchers("/**").permitAll()
                 .anyRequest().authenticated()
-        }.csrf { it.disable() }
-            .sessionManagement { sessionManagement ->
-                sessionManagement
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            }
-            .apply(jwtSecurityConfig)
+        }.csrf {
+            it.disable()
+        }.sessionManagement { sessionManagement ->
+            sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        }.apply(jwtSecurityConfig)
 
         return http.build()
     }

@@ -41,7 +41,7 @@ class AuthorityController(
         }
 
     @PostMapping("/sign-up")
-    @ResponseStatus(CREATED)
+    @ResponseStatus(CREATED) // 이런친구는 필요하겠군요.
     @Operation(summary = "회원가입", description = "회원가입을 하고 로그인 상태가 되며 토큰을 발급 받는다.")
     fun signUp(
         @Valid @RequestBody signUpRequest: SignUpRequest,
@@ -58,14 +58,14 @@ class AuthorityController(
     @PostMapping("/certificates")
     @ResponseStatus(CREATED)
     @Operation(summary = "이메일로 인증번호 전송", description = "이메일로 인증번호를 보내고 3분간 인증번호를 저장한다.")
-    fun sendCertificate(@RequestBody email: String) {
+    fun sendCertificate(@RequestBody email: String) { // DTO로 받아보는건 어때요? 다른 친구들은 DTO로 받는거 같아요.
         sendMailUseCase.sendCertificate(email)
     }
 
     @GetMapping("/certificates")
     @ResponseStatus(OK)
     @Operation(summary = "인증번호를 검증한다.", description = "이메일로 발급받은 인증번호를 3분안에 검증한다.")
-    fun getCertificate(@RequestParam certificate: String, @RequestParam email: String) {
+    fun getCertificate(@RequestParam certificate: String, @RequestParam email: String) { // 위와 같은 내용입니다~
         redisReadService.checkCertificate(email, certificate)
     }
 
