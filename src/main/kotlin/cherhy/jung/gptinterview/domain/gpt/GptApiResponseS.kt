@@ -2,6 +2,8 @@ package cherhy.jung.gptinterview.domain.gpt
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
+// S의 postfix는 무슨뜻일까요?~
+// jsonProperty가 필요하지 않은애들은 뺼까요?
 data class GptApiResponseS(
     @JsonProperty("id") val id: String,
     @JsonProperty("object") val obj: String,

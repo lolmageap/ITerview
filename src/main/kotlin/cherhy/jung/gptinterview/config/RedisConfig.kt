@@ -7,7 +7,7 @@ import org.springframework.data.redis.core.RedisTemplate
 
 @Configuration
 class RedisConfig {
-
+    // 이 부분 없어도 잘 동작하지 않나요? (잘모름)
     @Bean
     fun redisConnectionFactory(): LettuceConnectionFactory {
         return LettuceConnectionFactory()

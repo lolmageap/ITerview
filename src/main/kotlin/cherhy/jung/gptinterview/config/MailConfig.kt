@@ -10,6 +10,15 @@ import java.util.*
 
 @Configuration
 class MailConfig {
+    // review: 아래 값들은 Properites 파일을 만들어서 관리해보는건 어떨까요?
+    // 아래와 같이 클래스를 만들면 응집도를 높힌 코드도 만들 수 있겠네요.  javaMailService 객체를 Properties클래스에서 만들 수 있을거에요.
+//    class MailProperties(
+//        val id
+//        ..
+//        ...
+//    ) {
+//       fun toJavaMailSender()
+//}
     @Value("\${spring.mail.username}")
     private val id: String? = null
 

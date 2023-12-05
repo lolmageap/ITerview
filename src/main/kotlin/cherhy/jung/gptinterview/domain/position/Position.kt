@@ -4,6 +4,7 @@ import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 
+// enumclass 정의 좋네요~
 sealed class Position {
     abstract val questionTypes: List<QuestionType>
     abstract val frameworkTypes: List<FrameworkType>
