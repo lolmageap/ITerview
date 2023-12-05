@@ -3,7 +3,7 @@ package cherhy.jung.gptinterview.usecase
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.CustomerResponseS
-import cherhy.jung.gptinterview.domain.gpt.GptApi
+import cherhy.jung.gptinterview.domain.gpt.GptClient
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
@@ -11,9 +11,8 @@ import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryRequestS
 import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryResponseS
 import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseS
-import cherhy.jung.gptinterview.domain.question.dto.toQuestionHistory
 import cherhy.jung.gptinterview.domain.question.entity.Question
-import cherhy.jung.gptinterview.restcontroller.GptRequest
+import cherhy.jung.gptinterview.controller.GptRequest
 import cherhy.jung.gptinterview.util.Generator
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.BehaviorSpec
@@ -28,7 +27,7 @@ import org.springframework.boot.test.context.SpringBootTest
 internal class GptAnswerUseCaseTest(
     @Autowired private val gptAnswerUseCase: GptAnswerUseCase,
 
-    @MockkBean private val gptApi: GptApi,
+    @MockkBean private val gptClient: GptClient,
     @MockkBean private val customerReadService: CustomerReadService,
     @MockkBean private val questionReadService: QuestionReadService,
     @MockkBean private val questionHistoryWriteService: QuestionHistoryWriteService,
@@ -63,7 +62,7 @@ internal class GptAnswerUseCaseTest(
             every { customerReadService.getCustomerById(customer.id) } returns CustomerResponseS.of(customer)
             every { questionReadService.getQuestionByToken(question.token) } returns QuestionResponseS.of(question)
             every {
-                gptApi.generateText(
+                gptClient.generateText(
                     Generator.generateQuestionToGpt(question.title, answer)
                 )
             } returns feedback
