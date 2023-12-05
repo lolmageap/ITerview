@@ -8,6 +8,14 @@ data class QuestionHistoryRequestS(
     val feedback: String,
     val answer: String,
 ) {
+    fun toQuestionHistory(): QuestionHistory =
+        QuestionHistory(
+            questionId = questionId,
+            customerId = customerId,
+            feedback = feedback,
+            answer = answer,
+        )
+
     companion object {
         private const val DEFAULT_ANSWER = "정답을 가르쳐줘"
 
@@ -23,14 +31,5 @@ data class QuestionHistoryRequestS(
                 feedback = feedback,
                 answer = answer,
             )
-
     }
 }
-
-fun QuestionHistoryRequestS.toQuestionHistory(): QuestionHistory =
-    QuestionHistory(
-        questionId = questionId,
-        customerId = customerId,
-        feedback = feedback,
-        answer = answer,
-    )
