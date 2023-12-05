@@ -10,8 +10,9 @@ import java.util.*
 
 @Configuration
 class MailConfig {
-    // review: 아래 값들은 Properites 파일을 만들어서 관리해보는건 어떨까요?
-    // 아래와 같이 클래스를 만들면 응집도를 높힌 코드도 만들 수 있겠네요.  javaMailService 객체를 Properties클래스에서 만들 수 있을거에요.
+    // *require
+    // review: 아래 값들은 Properties 파일을 만들어서 관리해보는건 어떨까요?
+    // 아래와 같이 클래스를 만들면 응집도를 높힌 코드도 만들 수 있겠네요.  javaMailService 객체를 Properties 클래스에서 만들 수 있을거에요.
 //    class MailProperties(
 //        val id
 //        ..
@@ -19,17 +20,18 @@ class MailConfig {
 //    ) {
 //       fun toJavaMailSender()
 //}
+
     @Value("\${spring.mail.username}")
-    private val id: String? = null
+    private lateinit var id: String
 
     @Value("\${spring.mail.password}")
-    private val password: String? = null
+    private lateinit var password: String
 
     @Value("\${spring.mail.host}")
-    private val host: String? = null
+    private lateinit var host: String
 
     @Value("\${spring.mail.port}")
-    private val port = 0
+    private var port: Int = 0
 
     @Bean
     fun javaMailService(): JavaMailSender {
@@ -38,7 +40,7 @@ class MailConfig {
         javaMailSender.username = id
         javaMailSender.password = password
         javaMailSender.port = port
-        javaMailSender.setJavaMailProperties(mailProperties)
+        javaMailSender.javaMailProperties = mailProperties
         javaMailSender.defaultEncoding = "UTF-8"
         return javaMailSender
     }
