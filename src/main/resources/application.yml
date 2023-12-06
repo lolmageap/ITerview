@@ -1,3 +1,4 @@
+# review: flyway 를 사용해서 형상 관리를 해보는건 어떨까요? 현 상황에서는 문제가 추가되면 데이터를 다시 날린다음 넣어야 할거 같네요
 spring:
   application:
     name: iterview
@@ -20,8 +21,6 @@ spring:
     open-in-view: false
     defer-datasource-initialization: true
 
-# review: flyway 를 사용해서 형상 관리를 해보는건 어떨까요? 현 상황에서는 문제가 추가되면 데이터를 다시 날린다음 넣어야 할거 같네요
-
   sql:
     init:
       mode: always
@@ -31,9 +30,14 @@ spring:
         - classpath:sql/programing/*.sql
 
   data:
+    web:
+      pageable:
+        one-indexed-parameters: true
     redis:
       host: localhost
       port: 6397
+
+  cache: redis
 
   mail:
     host: smtp.gmail.com
