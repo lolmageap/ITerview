@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpServletResponse
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.OK
-import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 
@@ -58,35 +57,37 @@ class AuthorityController(
     @PostMapping("/certificates")
     @ResponseStatus(CREATED)
     @Operation(summary = "이메일로 인증번호 전송", description = "이메일로 인증번호를 보내고 3분간 인증번호를 저장한다.")
-    fun sendCertificate(@RequestBody email: String) { // DTO로 받아보는건 어때요? 다른 친구들은 DTO로 받는거 같아요.
-        sendMailUseCase.sendCertificate(email)
+    fun sendCertificate(@RequestBody @Valid emailRequest: EmailRequest) { // DTO로 받아보는건 어때요? 다른 친구들은 DTO로 받는거 같아요.
+        sendMailUseCase.sendCertificate(emailRequest.email)
     }
 
     @GetMapping("/certificates")
     @ResponseStatus(OK)
     @Operation(summary = "인증번호를 검증한다.", description = "이메일로 발급받은 인증번호를 3분안에 검증한다.")
-    fun getCertificate(@RequestParam certificate: String, @RequestParam email: String) { // 위와 같은 내용입니다~
-        redisReadService.checkCertificate(email, certificate)
+    fun getCertificate(@RequestParam certificate: String, @RequestParam @Valid emailRequest: EmailRequest) { // 위와 같은 내용입니다~
+        redisReadService.checkCertificate(emailRequest.email, certificate)
     }
 
 
     @PatchMapping("/reset-password")
     @ResponseStatus(OK)
     @Operation(summary = "비밀번호 초기화", description = "비밀번호를 초기화하고 초기화한 비밀번호를 이메일로 보내준다.")
-    fun resetPassword(@RequestParam certificate: String, @RequestParam email: String) {
-        redisReadService.checkCertificate(email, certificate)
-        val resetPassword = editPasswordUseCase.resetPassword(email)
-        sendMailUseCase.sendResetPassword(email, resetPassword)
+    fun resetPassword(@RequestParam certificate: String, @RequestParam @Valid emailRequest: EmailRequest) {
+        redisReadService.checkCertificate(emailRequest.email, certificate)
+        val resetPassword = editPasswordUseCase.resetPassword(emailRequest.email)
+        sendMailUseCase.sendResetPassword(emailRequest.email, resetPassword)
     }
 
     @PatchMapping("/password")
     @ResponseStatus(OK)
-    @PreAuthorize("isAuthenticated()")
     @Operation(summary = "비밀번호 수정", description = "비밀번호를 수정하고 수정된 비밀번호를 이메일로 보내준다.")
     fun editPassword(
         @RequestBody editPasswordRequest: EditPasswordRequest,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
     ) =
-        editPasswordUseCase.editPassword(authCustomer.customerId, editPasswordRequest.toEditPasswordRequestS())
+        editPasswordUseCase.editPassword(
+            authCustomer.customerId,
+            editPasswordRequest.toEditPasswordRequestS()
+        )
 
 }
