@@ -27,8 +27,12 @@ class SecurityConfig(val jwtSecurityConfig: JwtSecurityConfig) {
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain? {
         http.authorizeHttpRequests { requests ->
-            requests.requestMatchers("/**").permitAll()
-                .anyRequest().authenticated()
+            requests
+                .requestMatchers("/answers/**").authenticated()
+                .requestMatchers("/authorities/reset-password").authenticated()
+                .requestMatchers("/authorities/password").authenticated()
+                .requestMatchers("/questions/**").authenticated()
+                .anyRequest().permitAll()
         }
             .csrf {
                 it.disable()
