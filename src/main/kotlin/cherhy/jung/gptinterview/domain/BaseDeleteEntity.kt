@@ -6,7 +6,4 @@ import org.hibernate.annotations.Where
 abstract class BaseDeleteEntity() : BaseEntity() {
     var deleted: Boolean = false
 
-    fun delete() {
-        deleted = true
-    }
 }
