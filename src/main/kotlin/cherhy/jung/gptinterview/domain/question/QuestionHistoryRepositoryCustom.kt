@@ -16,11 +16,11 @@ interface QuestionHistoryRepositoryCustom {
 class QuestionHistoryRepositoryCustomImpl : QuestionHistoryRepositoryCustom,
     QuerydslRepositorySupport(QuestionHistory::class.java) {
 
-        // *require Projection을 위해서 사용한것 같네요.
-        // 또 다른 문제로는 QuestionHisotry가 Question을 가지고 있지 않기에 id를 통한 조인을 넣은것 같구요.
-        // 만약에 QuestionHistory가 Question을 연관관계를 가지고 있고, JPQL을 통해서 간단하게 처리하면 어떨까요?
-        // 이 문제는 연관관계를 안갖으려고 하면서 들어온거 같네요.
-        // 물론 그렇게 하신 이유는 알지만, 연관관계를 갖고있는 걸로 개발을 해보심이 객체지향이나 그런 개발을 공부하기엔 좋아보여요.
+    // *require Projection을 위해서 사용한것 같네요.
+    // 또 다른 문제로는 QuestionHisotry가 Question을 가지고 있지 않기에 id를 통한 조인을 넣은것 같구요.
+    // 만약에 QuestionHistory가 Question을 연관관계를 가지고 있고, JPQL을 통해서 간단하게 처리하면 어떨까요?
+    // 이 문제는 연관관계를 안갖으려고 하면서 들어온거 같네요.
+    // 물론 그렇게 하신 이유는 알지만, 연관관계를 갖고있는 걸로 개발을 해보심이 객체지향이나 그런 개발을 공부하기엔 좋아보여요.
     override fun findAllByCustomerId(customerId: Long, pageable: Pageable): List<QuestionHistoryInfoR> =
         from(questionHistory)
             .select(
