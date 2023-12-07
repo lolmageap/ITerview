@@ -63,6 +63,10 @@ dependencies {
     // yaml
     implementation("org.yaml:snakeyaml")
 
+    // flyway
+    implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-mysql")
+
     // test
     testImplementation("com.h2database:h2")
     testImplementation("com.ninja-squad:springmockk:4.0.2")
