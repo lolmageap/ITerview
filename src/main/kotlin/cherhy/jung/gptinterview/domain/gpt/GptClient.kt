@@ -13,11 +13,7 @@ import org.springframework.web.client.RestTemplate
 // Api라고 하니까 RestController일것 같은 느낌이 조금 들었네요!
 // GptClient 같은건 어떨까요?
 @Component
-class GptClient(
-    // @Value는 최대한 쓰지 말아볼까요? *require
-    @Value("\${api-key}")
-    private val API_KEY: String,
-) {
+class GptClient {
 
     /**
      *  temperature 는 생성된 텍스트의 다양성을 조절
@@ -50,6 +46,10 @@ class GptClient(
     // companino object는 클래스의 맨 마지막에 와야합니다
     // 이런 kotlin 규칙을 한번 찾아볼까요?
     companion object {
+        // @Value는 최대한 쓰지 말아볼까요? *require
+        @Value("\${api-key}")
+        private lateinit var API_KEY: String
+
         private const val ENDPOINT: String = "https://api.openai.com/v1/completions"
         private const val TEMPERATURE: Float = 0.5f
         private const val MAX_TOKENS: Int = 524
