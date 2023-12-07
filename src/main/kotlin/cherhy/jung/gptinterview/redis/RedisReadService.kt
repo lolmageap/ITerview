@@ -23,7 +23,6 @@ class RedisReadService(
             ?.toString()
             ?: throw AccessDeniedException("잘못된 토큰")
 
-    @Cacheable
     fun getQuestionTokens(customerId: Long, start: Long = 0, end: Long = -1): MutableList<String> =
         redisTemplate.opsForList()
             .range(QUESTION_TOKEN + customerId, start, end)
