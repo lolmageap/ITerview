@@ -24,9 +24,9 @@ class Customer(
     // 아래 코드는 Customer 의 권한인데, Customer 안에 변수로 넣어도 될거같고
     // 조인컬럼도 빼볼까요? fk를 안맺으려고 하신거 같은데, 이것은 쿼리로 테이블을 만들 떄 (resources/sql) 같은곳 또는
     // flyway 같은 것을 사용해서 테이블을 만들게 시키면 이 코드는 필요 없을거에요
-    // Eager 로 두면 N+1이슈가 발생하지 않나요?
 
-    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn(name = "customer_id")
     var customerAuthorities: List<CustomerAuthority> = mutableListOf(
         CustomerAuthority(role = CustomerRole.MEMBER)
     )
