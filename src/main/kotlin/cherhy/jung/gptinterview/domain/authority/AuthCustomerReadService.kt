@@ -13,7 +13,7 @@ class AuthCustomerReadService(
 ) : UserDetailsService {
 
     override fun loadUserByUsername(username: String): UserDetails {
-        return customerRepository.findByEmail(username)
+        return customerRepository.findWithAuthorityByEmail(username)
             ?.let { AuthCustomer(it) }
             ?: throw NotFoundException(DomainName.CUSTOMER)
     }
