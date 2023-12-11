@@ -5,7 +5,6 @@ import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryRequestS
-import cherhy.jung.gptinterview.domain.question.dto.toQuestionHistory
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.test.TestCase
