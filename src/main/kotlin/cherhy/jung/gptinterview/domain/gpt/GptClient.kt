@@ -39,7 +39,7 @@ class GptClient {
             ?.choices
             ?: throw GptNotGeneratedException()
 
-        val feedback = choices[0].text
+        val feedback = choices[0].text.trimIndent()
         return Validator.validateJsonFormat(feedback)
     }
 
