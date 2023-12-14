@@ -4,8 +4,8 @@ import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.redis.RedisReadService
 import cherhy.jung.gptinterview.redis.RedisWriteService
-import cherhy.jung.gptinterview.util.getEnd
-import cherhy.jung.gptinterview.util.getStart
+import cherhy.jung.gptinterview.util.end
+import cherhy.jung.gptinterview.util.start
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -50,8 +50,8 @@ class QuestionController(
 
         val alreadyQuestions = redisReadService.getQuestionTokens(
             customerId = authCustomer.customerId,
-            start = pageable.getStart(),
-            end = pageable.getEnd(),
+            start = pageable.start,
+            end = pageable.end,
         )
 
         return questionReadService.getQuestionHistories(alreadyQuestions)
