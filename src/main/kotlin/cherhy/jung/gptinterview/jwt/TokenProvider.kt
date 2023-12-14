@@ -40,15 +40,11 @@ class TokenProvider(
 
     private lateinit var key: SecretKey
 
-    companion object {
-        private const val AUTHORITIES_KEY = "auth"
-    }
-
     override fun afterPropertiesSet() {
         this.key = SecretKeySpec(secret.toByteArray(), "HmacSHA256")
     }
 
-    fun createToken(authCustomer: AuthCustomer): String {
+    fun createAccessToken(authCustomer: AuthCustomer): TokenResponseS {
         val now = Date().time
         val validity = Date(now + tokenValidityInMilliseconds.toLong())
 
@@ -58,10 +54,12 @@ class TokenProvider(
             .expirationTime(validity)
             .build()
 
-        return SignedJWT(JWSHeader(JWSAlgorithm.HS256), claimsSet).run {
+        val accessToken = SignedJWT(JWSHeader(JWSAlgorithm.HS256), claimsSet).run {
             sign(MACSigner(key))
             serialize()
         }
+
+        return TokenResponseS(accessToken, validity)
     }
 
     fun getAuthentication(token: String): Authentication? {
@@ -103,7 +101,7 @@ class TokenProvider(
         }
     }
 
-    fun createRefreshToken(authCustomer: AuthCustomer): String {
+    fun createRefreshToken(authCustomer: AuthCustomer): TokenResponseS {
         val now = Date().time
         val validity = Date(now + refreshTokenValidityInMilliseconds.toLong())
 
@@ -113,10 +111,16 @@ class TokenProvider(
             .expirationTime(validity)
             .build()
 
-        return SignedJWT(JWSHeader(JWSAlgorithm.HS256), claimsSet).run {
+        val refreshToken = SignedJWT(JWSHeader(JWSAlgorithm.HS256), claimsSet).run {
             sign(MACSigner(key))
             serialize()
         }
+
+        return TokenResponseS(refreshToken, validity)
+    }
+
+    companion object {
+        private const val AUTHORITIES_KEY = "auth"
     }
 
 }
