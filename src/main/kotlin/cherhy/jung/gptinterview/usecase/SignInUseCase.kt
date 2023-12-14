@@ -9,7 +9,6 @@ import cherhy.jung.gptinterview.jwt.TokenResponse
 import cherhy.jung.gptinterview.redis.RedisWriteService
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
-import org.springframework.security.core.Authentication
 
 @UseCase
 class SignInUseCase(
@@ -23,19 +22,30 @@ class SignInUseCase(
 
         val authenticationToken =
             UsernamePasswordAuthenticationToken(customerRequestS.email, customerRequestS.password + salt)
-        val authentication: Authentication = authenticationManagerBuilder
-            .getObject()
-            .authenticate(authenticationToken)
-        val authCustomer = authentication.principal as AuthCustomer
 
-        val role = authentication.authorities
-            .map { it?.authority ?: throw IllegalStateException() }
+        val authCustomer = authenticationManagerBuilder.getUserDetails(authenticationToken)
+        val roles = authCustomer.roles
 
-        val jwt = tokenProvider.createToken(authCustomer)
+        val accessToken = tokenProvider.createAccessToken(authCustomer)
         val refreshToken = tokenProvider.createRefreshToken(authCustomer)
 
-        redisWriteService.addJwtToken(jwt, refreshToken)
-        return TokenResponse(jwt, role, authCustomer.token)
+        redisWriteService.addJwtToken(refreshToken.token, customerRequestS.email)
+
+        return TokenResponse(
+            accessToken = accessToken.token,
+            accessTokenExpireTime = accessToken.tokenExpireTime,
+            refreshToken = refreshToken.token,
+            refreshTokenExpireTime = refreshToken.tokenExpireTime,
+            roles = roles,
+            customerToken = authCustomer.token,
+        )
     }
 
+}
+
+private fun AuthenticationManagerBuilder.getUserDetails(
+    authenticationToken: UsernamePasswordAuthenticationToken,
+): AuthCustomer {
+    val authenticate = this.`object`.authenticate(authenticationToken)
+    return authenticate.principal as AuthCustomer
 }
