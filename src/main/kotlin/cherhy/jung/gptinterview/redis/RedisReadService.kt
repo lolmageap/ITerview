@@ -4,9 +4,9 @@ import cherhy.jung.gptinterview.annotation.ReadService
 import cherhy.jung.gptinterview.exception.DomainName.CERTIFICATE_NUMBER
 import cherhy.jung.gptinterview.exception.DomainName.EMAIL
 import cherhy.jung.gptinterview.exception.NotFoundException
-import cherhy.jung.gptinterview.redis.RedisKey.ACCESS_TOKEN
 import cherhy.jung.gptinterview.redis.RedisKey.CERTIFICATE
 import cherhy.jung.gptinterview.redis.RedisKey.QUESTION_TOKEN
+import cherhy.jung.gptinterview.redis.RedisKey.REFRESH_TOKEN
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.security.access.AccessDeniedException
 
@@ -15,9 +15,9 @@ import org.springframework.security.access.AccessDeniedException
 class RedisReadService(
     private val redisTemplate: RedisTemplate<String, Any>,
 ) {
-    fun getJwtToken(accessToken: String): String =
+    fun getEmailByRefreshToken(refreshToken: String): String =
         redisTemplate.opsForValue()
-            .get(ACCESS_TOKEN + accessToken)
+            .get(REFRESH_TOKEN + refreshToken)
             ?.toString()
             ?: throw AccessDeniedException("잘못된 토큰")
 
