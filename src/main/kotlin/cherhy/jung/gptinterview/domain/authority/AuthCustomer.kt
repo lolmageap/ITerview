@@ -14,12 +14,15 @@ class AuthCustomer(
     val customerId = customer.id
     val token = customer.token
 
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        return customer.customerAuthorities.map {
-            SimpleGrantedAuthority("ROLE_${it.role}") as GrantedAuthority
-        }.toMutableList()
+    val roles = authorities.map {
+        it?.authority ?: throw IllegalStateException()
     }
 
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
+        return customer.customerAuthorities.map {
+            SimpleGrantedAuthority("ROLE_${it.role}")
+        }.toMutableList()
+    }
 
     override fun getPassword(): String = customer.password
 
