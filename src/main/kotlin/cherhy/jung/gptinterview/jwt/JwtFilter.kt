@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.jwt
 
-import cherhy.jung.gptinterview.redis.RedisReadService
+import cherhy.jung.gptinterview.util.authorization
 import jakarta.servlet.FilterChain
 import jakarta.servlet.ServletException
 import jakarta.servlet.ServletRequest
@@ -15,25 +15,23 @@ import java.io.IOException
 
 class JwtFilter(
     private val tokenProvider: TokenProvider,
-    private val redisReadService: RedisReadService,
 ) : GenericFilterBean() {
 
-    companion object {
-        const val AUTHORIZATION_HEADER = "Authorization"
-    }
-
     @Throws(IOException::class, ServletException::class)
-    override fun doFilter(servletRequest: ServletRequest, servletResponse: ServletResponse?, filterChain: FilterChain) {
+    override fun doFilter(
+        servletRequest: ServletRequest,
+        servletResponse: ServletResponse?,
+        filterChain: FilterChain
+    ) {
         val httpServletRequest: HttpServletRequest = servletRequest as HttpServletRequest
-        val jwt: String? = getResolveToken(httpServletRequest)
+        val jwt: String = getResolveToken(httpServletRequest)
 
         val authentication: Authentication? =
-            jwt?.let {
+            jwt.let {
                 if (tokenProvider.validateToken(jwt)) {
                     tokenProvider.getAuthentication(jwt)
                 } else {
-                    val refreshToken = redisReadService.getJwtToken(jwt)
-                    tokenProvider.getAuthentication(refreshToken)
+                    throw AccessDeniedException("토큰이 문제가 생겼습니다.")
                 }
             }
 
@@ -41,13 +39,14 @@ class JwtFilter(
         filterChain.doFilter(servletRequest, servletResponse)
     }
 
-
-    private fun getResolveToken(request: HttpServletRequest): String? {
-        val bearerToken: String? = request.getHeader(AUTHORIZATION_HEADER)
+    private fun getResolveToken(request: HttpServletRequest): String {
+        val bearerToken: String? = request.authorization
         bearerToken?.let {
-            if (bearerToken.startsWith("Bearer ")) return bearerToken.substring(7)
+            if (bearerToken.startsWith("Bearer ")) {
+                return bearerToken.substring(7)
+            }
             else throw AccessDeniedException("잘못된 토큰")
-        } ?: return null
+        } ?: throw AccessDeniedException("잘못된 토큰")
     }
 
 }
