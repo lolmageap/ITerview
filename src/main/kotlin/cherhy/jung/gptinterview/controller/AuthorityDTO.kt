@@ -69,3 +69,10 @@ data class EmailRequest(
     @field:Email
     val email: String,
 )
+
+data class CertificateRequest(
+    @field:NotBlank
+    @field:Email
+    val email: String,
+    val certificate: String,
+)

@@ -65,13 +65,11 @@ class AuthorityController(
         regenerateAccessTokenUseCase.regenerateAccessToken(httpServletRequest)
             .let(AccessTokenResponse::of)
 
-
     @PostMapping("/certificates")
     @ResponseStatus(CREATED)
     @Operation(summary = "이메일로 인증번호 전송", description = "이메일로 인증번호를 보내고 3분간 인증번호를 저장한다.")
-    fun sendCertificate(@RequestBody @Valid emailRequest: EmailRequest) {
+    fun sendCertificate(@RequestBody @Valid emailRequest: EmailRequest) =
         sendMailUseCase.sendCertificate(emailRequest.email)
-    }
 
     @GetMapping("/certificates")
     @ResponseStatus(OK)
@@ -79,9 +77,9 @@ class AuthorityController(
     fun getCertificate(
         @RequestParam certificate: String,
         @RequestParam @Valid emailRequest: EmailRequest,
-    ) {
+    ) =
         redisReadService.checkCertificate(emailRequest.email, certificate)
-    }
+
 
     @PatchMapping("/passwords")
     @ResponseStatus(OK)
@@ -98,10 +96,10 @@ class AuthorityController(
     @DeleteMapping("/passwords")
     @ResponseStatus(OK)
     @Operation(summary = "비밀번호 초기화", description = "비밀번호를 초기화하고 초기화한 비밀번호를 이메일로 보내준다.")
-    fun resetPassword(@RequestParam certificate: String, @RequestParam @Valid emailRequest: EmailRequest) {
-        redisReadService.checkCertificate(emailRequest.email, certificate)
-        val resetPassword = editPasswordUseCase.resetPassword(emailRequest.email)
-        sendMailUseCase.sendResetPassword(emailRequest.email, resetPassword)
+    fun resetPassword(@RequestBody @Valid certificateRequest: CertificateRequest) {
+        redisReadService.checkCertificate(certificateRequest.email, certificateRequest.certificate)
+        val resetPassword = editPasswordUseCase.resetPassword(certificateRequest.email)
+        sendMailUseCase.sendResetPassword(certificateRequest.email, resetPassword)
     }
 
 }
