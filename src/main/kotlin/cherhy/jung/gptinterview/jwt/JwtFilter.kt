@@ -24,10 +24,10 @@ class JwtFilter(
         filterChain: FilterChain
     ) {
         val httpServletRequest: HttpServletRequest = servletRequest as HttpServletRequest
-        val jwt: String = getResolveToken(httpServletRequest)
+        val jwt: String? = getResolveToken(httpServletRequest)
 
         val authentication: Authentication? =
-            jwt.let {
+            jwt?.let {
                 if (tokenProvider.validateToken(jwt)) {
                     tokenProvider.getAuthentication(jwt)
                 } else {
@@ -39,14 +39,15 @@ class JwtFilter(
         filterChain.doFilter(servletRequest, servletResponse)
     }
 
-    private fun getResolveToken(request: HttpServletRequest): String {
+    private fun getResolveToken(request: HttpServletRequest): String? {
         val bearerToken: String? = request.authorization
         bearerToken?.let {
             if (bearerToken.startsWith("Bearer ")) {
                 return bearerToken.substring(7)
             }
             else throw AccessDeniedException("잘못된 토큰")
-        } ?: throw AccessDeniedException("잘못된 토큰")
+        }
+        return null
     }
 
 }

@@ -14,7 +14,6 @@ import com.nimbusds.jose.crypto.MACVerifier
 import com.nimbusds.jwt.JWTClaimsSet
 import com.nimbusds.jwt.SignedJWT
 import org.springframework.beans.factory.InitializingBean
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
@@ -27,26 +26,18 @@ import javax.crypto.spec.SecretKeySpec
 @Component
 class TokenProvider(
     private val customerRepository: CustomerRepository,
-
-    @Value("\${jwt.secret}")
-    private val secret: String,
-
-    @Value("\${jwt.token-validity-in-seconds}")
-    private val tokenValidityInMilliseconds: String,
-
-    @Value("\${jwt.refresh-token-validity-in-seconds}")
-    private val refreshTokenValidityInMilliseconds: String,
+    private val jwtProperty: JwtProperty,
 ) : InitializingBean {
 
     private lateinit var key: SecretKey
 
     override fun afterPropertiesSet() {
-        this.key = SecretKeySpec(secret.toByteArray(), "HmacSHA256")
+        this.key = SecretKeySpec(jwtProperty.secret.toByteArray(), "HmacSHA256")
     }
 
     fun createAccessToken(authCustomer: AuthCustomer): TokenResponseS {
         val now = Date().time
-        val validity = Date(now + tokenValidityInMilliseconds.toLong())
+        val validity = Date(now + jwtProperty.tokenValidityInSeconds.toLong())
 
         val claimsSet = JWTClaimsSet.Builder()
             .subject(authCustomer.username)
@@ -103,7 +94,7 @@ class TokenProvider(
 
     fun createRefreshToken(authCustomer: AuthCustomer): TokenResponseS {
         val now = Date().time
-        val validity = Date(now + refreshTokenValidityInMilliseconds.toLong())
+        val validity = Date(now + jwtProperty.refreshTokenValidityInSeconds.toLong())
 
         val claimsSet = JWTClaimsSet.Builder()
             .subject(authCustomer.username)
