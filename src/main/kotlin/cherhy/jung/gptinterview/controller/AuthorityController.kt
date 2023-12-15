@@ -55,7 +55,7 @@ class AuthorityController(
         }
     }
 
-    @GetMapping("/access-tokens")
+    @PostMapping("/access-tokens")
     @ResponseStatus(OK)
     @Operation(summary = "access token 재발급", description = "refresh token 을 넘기면 access token 을 반환한다.")
     fun getAccessToken(
