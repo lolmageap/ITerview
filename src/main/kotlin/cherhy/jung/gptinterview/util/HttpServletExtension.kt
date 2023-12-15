@@ -3,26 +3,17 @@ package cherhy.jung.gptinterview.util
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 
-val HttpServletRequest.accessToken: String
-    get() = "AccessToken"
+val HttpServletRequest.accessToken: String?
+    get() = this.getHeader("Access-Token")
 
-val HttpServletRequest.refreshToken: String
-    get() = "RefreshToken"
+val HttpServletRequest.refreshToken: String?
+    get() = this.getHeader("Refresh-Token")
 
-val HttpServletRequest.authorization: String
-    get() = "Authorization"
-
-val HttpServletResponse.accessToken: String
-    get() = "AccessToken"
-
-val HttpServletResponse.refreshToken: String
-    get() = "RefreshToken"
-
-val HttpServletResponse.authorization: String
-    get() = "Authorization"
+val HttpServletRequest.authorization: String?
+    get() = this.getHeader("Authorization")
 
 fun HttpServletResponse.addAccessTokenInHeader(value: String) =
-    this.addHeader(accessToken, "Bearer $value")
+    this.addHeader("Access-Token", "Bearer $value")
 
 fun HttpServletResponse.addRefreshTokenInHeader(value: String) =
-    this.addHeader(refreshToken, "Bearer $value")
+    this.addHeader("Refresh-Token", "Bearer $value")
