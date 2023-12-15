@@ -2,7 +2,6 @@ package cherhy.jung.gptinterview.mail
 
 import jakarta.mail.internet.InternetAddress
 import jakarta.mail.internet.MimeMessage
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.stereotype.Component
 
@@ -10,9 +9,7 @@ import org.springframework.stereotype.Component
 @Component
 class MailComponent(
     private val javaMailSender: JavaMailSender,
-
-    @Value("\${spring.mail.username}")
-    private val sender: String,
+    private val mailProperties: MailProperties,
 ) {
 
     fun sendMessage(email: String, certificate: String) {
@@ -31,7 +28,7 @@ class MailComponent(
                 "</td></tr></tbody></table></div>"
             """.trimIndent()
 
-        val internetAddress = InternetAddress(sender, "admin")
+        val internetAddress = InternetAddress(mailProperties.username, "admin")
         val message = javaMailSender.createMimeMessage()
             .apply {
                 addRecipients(MimeMessage.RecipientType.TO, email)
@@ -61,7 +58,7 @@ class MailComponent(
                 </td></tr></tbody></table></div>
             """.trimIndent()
 
-        val internetAddress = InternetAddress(sender, "admin")
+        val internetAddress = InternetAddress(mailProperties.username, "admin")
         val message = javaMailSender.createMimeMessage()
             .apply {
                 addRecipients(MimeMessage.RecipientType.TO, email)
