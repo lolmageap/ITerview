@@ -15,11 +15,16 @@ import org.springframework.security.access.AccessDeniedException
 class RedisReadService(
     private val redisTemplate: RedisTemplate<String, Any>,
 ) {
-    fun getEmailByRefreshToken(refreshToken: String): String =
-        redisTemplate.opsForValue()
+    fun getEmailByRefreshToken(refreshToken: String?): String {
+        if (refreshToken.isNullOrBlank()) {
+            throw AccessDeniedException("잘못된 토큰")
+        }
+
+        return redisTemplate.opsForValue()
             .get(REFRESH_TOKEN + refreshToken)
             ?.toString()
             ?: throw AccessDeniedException("잘못된 토큰")
+    }
 
     fun getQuestionTokens(customerId: Long, start: Long = 0, end: Long = -1): MutableList<String> =
         redisTemplate.opsForList()
