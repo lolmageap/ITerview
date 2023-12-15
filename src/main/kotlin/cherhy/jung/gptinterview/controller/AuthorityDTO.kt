@@ -4,6 +4,7 @@ import cherhy.jung.gptinterview.domain.customer.CustomerRequestS
 import cherhy.jung.gptinterview.domain.customer.EditPasswordRequestS
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.Pattern
 import org.hibernate.validator.constraints.Length
 import java.util.*
 
@@ -11,6 +12,7 @@ data class SignInRequest(
     @field:NotBlank
     @field:Email
     val email: String,
+
     @field:NotBlank
     val password: String,
 ) {
@@ -27,13 +29,16 @@ data class SignUpRequest(
     @field:NotBlank
     @field:Email
     val email: String,
+
     @field:NotBlank
+    @field:Length(min = 8, max = 16)
+    @field:Pattern(regexp = "^[a-zA-Z0-9]+\$")
     var password: String,
+
     val confirmPassword: String,
 ) {
     init {
         require(password == confirmPassword) { "동일한 비밀번호를 입력해주세요." }
-        require(password.length > 7) { "비밀번호는 8글자 이상이어야 합니다." }
     }
 
     fun toCustomerRequest(): CustomerRequestS {
@@ -49,6 +54,7 @@ data class EditPasswordRequest(
     @field:NotBlank
     @field:Length(min = 8, max = 16)
     var originalPassword: String,
+
     @field:NotBlank
     @field:Length(min = 8, max = 16)
     val editPassword: String,
@@ -74,5 +80,6 @@ data class CertificateRequest(
     @field:NotBlank
     @field:Email
     val email: String,
+
     val certificate: String,
 )
