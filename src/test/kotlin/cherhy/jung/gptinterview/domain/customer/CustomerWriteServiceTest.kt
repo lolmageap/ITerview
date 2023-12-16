@@ -1,6 +1,9 @@
 package cherhy.jung.gptinterview.domain.customer
 
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.core.test.TestCase
+import io.kotest.core.test.TestResult
+import io.kotest.core.test.isRootTest
 import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
@@ -37,4 +40,10 @@ class CustomerWriteServiceTest(
         }
     }
 
-})
+}) {
+    override suspend fun afterContainer(testCase: TestCase, result: TestResult) {
+        if (testCase.isRootTest()) {
+            customerRepository.deleteAllInBatch()
+        }
+    }
+}
