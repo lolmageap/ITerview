@@ -1,7 +1,7 @@
-package cherhy.jung.gptinterview.controller
+package cherhy.jung.gptinterview.controller.dto
 
-import cherhy.jung.gptinterview.domain.customer.CustomerRequestS
-import cherhy.jung.gptinterview.domain.customer.EditPasswordRequestS
+import cherhy.jung.gptinterview.domain.customer.dto.CustomerRequestS
+import cherhy.jung.gptinterview.domain.customer.dto.EditPasswordRequestS
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
@@ -33,7 +33,7 @@ data class SignUpRequest(
     @field:NotBlank
     @field:Length(min = 8, max = 16)
     @field:Pattern(regexp = "^[a-zA-Z0-9]+\$")
-    var password: String,
+    val password: String,
 
     val confirmPassword: String,
 ) {
@@ -53,7 +53,7 @@ data class SignUpRequest(
 data class EditPasswordRequest(
     @field:NotBlank
     @field:Length(min = 8, max = 16)
-    var originalPassword: String,
+    val originalPassword: String,
 
     @field:NotBlank
     @field:Length(min = 8, max = 16)
