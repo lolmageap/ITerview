@@ -3,9 +3,6 @@ package cherhy.jung.gptinterview.util
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 
-val HttpServletRequest.accessToken: String?
-    get() = this.getHeader("Access-Token")
-
 val HttpServletRequest.refreshToken: String?
     get() = this.getHeader("Refresh-Token")
 
