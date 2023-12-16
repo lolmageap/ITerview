@@ -15,9 +15,9 @@ class SwaggerConfig {
     @Bean
     fun openAPI(): OpenAPI {
         val info = Info()
-            .title("leafy")
+            .title("ITerview")
             .version("v1")
-            .description("Leafy Open Api")
+            .description("ITerview Open Api")
 
         val securityScheme = SecurityScheme()
             .type(SecurityScheme.Type.APIKEY)
@@ -26,9 +26,13 @@ class SwaggerConfig {
             .`in`(SecurityScheme.In.HEADER)
 
         val securityRequirement = SecurityRequirement().addList("Auth")
-        return OpenAPI().components(Components().addSecuritySchemes("Auth", securityScheme))
+        return OpenAPI().components(
+            Components().addSecuritySchemes("Auth", securityScheme)
+        )
             .info(info)
-            .security(Arrays.asList(securityRequirement))
+            .security(
+                mutableListOf(securityRequirement)
+            )
     }
 
 }
