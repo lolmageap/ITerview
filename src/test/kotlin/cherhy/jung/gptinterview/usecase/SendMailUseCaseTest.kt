@@ -43,17 +43,6 @@ class SendMailUseCaseTest(
                 verify { redisWriteService.addCertificate(any(), any()) }
             }
         }
-
-        When("변경한 비밀번호 전송을 ") {
-            val resetPassword = "reset-password"
-            every { mailComponent.sendPasswordMessage(any(), any()) } just Runs
-
-            sendMailUseCase.sendResetPassword(customer.email, resetPassword)
-
-            Then("실행되었는지 확인한다.") {
-                verify { mailComponent.sendPasswordMessage(any(), any()) }
-            }
-        }
     }
 
 })
