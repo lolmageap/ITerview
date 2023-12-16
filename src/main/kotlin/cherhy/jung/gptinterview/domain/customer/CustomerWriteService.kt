@@ -7,14 +7,20 @@ import org.springframework.data.repository.findByIdOrNull
 class CustomerWriteService(
     private val customerRepository: CustomerRepository,
 ) {
-    fun saveCustomer(customer: Customer, password: String) {
-        customer.editPassword(password)
+    fun saveCustomer(customer: Customer, encodedPassword: String) {
+        with(customer) {
+            password = encodedPassword
+        }
+
         customerRepository.save(customer)
     }
 
     fun editPassword(id: Long, newPassword: String) {
         val customer = customerRepository.findByIdOrNull(id)!!
-        customer.editPassword(newPassword)
+        with(customer) {
+            password = newPassword
+        }
+
         customerRepository.save(customer)
     }
 
