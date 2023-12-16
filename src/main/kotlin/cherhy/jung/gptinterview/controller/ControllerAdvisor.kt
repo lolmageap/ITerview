@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
 
 
-// 해당 클래스는 Controller에 가까울까요? exception에 가까울까요?
 @RestControllerAdvice
 class ControllerAdvisor {
 
