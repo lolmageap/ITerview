@@ -32,17 +32,17 @@ class RedisReadServiceTest(
         redisContainer.stop()
     }
 
-    Given("회원이 클라이언트에 저장되어있는 access token 으로 요청을 보내면 ") {
-        val accessToken = "accessToken"
+    Given("회원이 클라이언트에 저장되어있는 refresh token 으로 요청을 보내면 ") {
+        val email = "ekxk1234@naver.com"
         val refreshToken = "refreshToken"
-        redisTemplate.opsForValue().set(RedisKey.ACCESS_TOKEN + accessToken, refreshToken)
+        redisTemplate.opsForValue().set(RedisKey.REFRESH_TOKEN + refreshToken, email)
 
         When("refresh 토큰을 조회한 뒤 ") {
-            val findRefreshToken = redisReadService.getJwtToken(accessToken)
+            val findEmail = redisReadService.getEmailByRefreshToken(refreshToken)
 
             Then("검증한다.") {
-                findRefreshToken shouldNotBe null
-                findRefreshToken shouldBe refreshToken
+                findEmail shouldNotBe null
+                findEmail shouldBe email
             }
         }
     }
