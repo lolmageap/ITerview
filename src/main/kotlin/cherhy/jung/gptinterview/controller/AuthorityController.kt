@@ -1,5 +1,6 @@
 package cherhy.jung.gptinterview.controller
 
+import cherhy.jung.gptinterview.controller.dto.*
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.jwt.AccessTokenResponse
 import cherhy.jung.gptinterview.jwt.TokenResponse
@@ -12,8 +13,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import jakarta.validation.Valid
-import org.springframework.http.HttpStatus.CREATED
-import org.springframework.http.HttpStatus.OK
+import org.springframework.http.HttpStatus.*
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 
@@ -72,7 +72,7 @@ class AuthorityController(
         sendMailUseCase.sendCertificate(emailRequest.email)
 
     @GetMapping("/certificates")
-    @ResponseStatus(OK)
+    @ResponseStatus(NO_CONTENT)
     @Operation(summary = "인증번호를 검증한다.", description = "이메일로 발급받은 인증번호를 3분안에 검증한다.")
     fun getCertificate(
         @RequestParam certificate: String,
@@ -82,7 +82,7 @@ class AuthorityController(
 
 
     @PatchMapping("/passwords")
-    @ResponseStatus(OK)
+    @ResponseStatus(NO_CONTENT)
     @Operation(summary = "비밀번호 수정", description = "비밀번호를 수정하고 수정된 비밀번호를 이메일로 보내준다.")
     fun editPassword(
         @RequestBody editPasswordRequest: EditPasswordRequest,
@@ -94,12 +94,11 @@ class AuthorityController(
         )
 
     @DeleteMapping("/passwords")
-    @ResponseStatus(OK)
+    @ResponseStatus(NO_CONTENT)
     @Operation(summary = "비밀번호 초기화", description = "비밀번호를 초기화하고 초기화한 비밀번호를 이메일로 보내준다.")
     fun resetPassword(@RequestBody @Valid certificateRequest: CertificateRequest) {
         redisReadService.checkCertificate(certificateRequest.email, certificateRequest.certificate)
-        val resetPassword = editPasswordUseCase.resetPassword(certificateRequest.email)
-        sendMailUseCase.sendResetPassword(certificateRequest.email, resetPassword)
+        editPasswordUseCase.resetAndSendPassword(certificateRequest.email)
     }
 
 }
