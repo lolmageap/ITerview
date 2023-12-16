@@ -1,5 +1,8 @@
 package cherhy.jung.gptinterview.controller
 
+import cherhy.jung.gptinterview.controller.dto.QuestionRequest
+import cherhy.jung.gptinterview.controller.dto.QuestionResponse
+import cherhy.jung.gptinterview.controller.dto.toQuestionRequestS
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.redis.RedisReadService

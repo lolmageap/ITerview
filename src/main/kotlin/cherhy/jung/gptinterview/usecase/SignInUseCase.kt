@@ -3,7 +3,7 @@ package cherhy.jung.gptinterview.usecase
 import cherhy.jung.gptinterview.annotation.UseCase
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
-import cherhy.jung.gptinterview.domain.customer.CustomerRequestS
+import cherhy.jung.gptinterview.domain.customer.dto.CustomerRequestS
 import cherhy.jung.gptinterview.jwt.TokenProvider
 import cherhy.jung.gptinterview.jwt.TokenResponse
 import cherhy.jung.gptinterview.redis.RedisWriteService
@@ -24,7 +24,6 @@ class SignInUseCase(
             UsernamePasswordAuthenticationToken(customerRequestS.email, customerRequestS.password + salt)
 
         val authCustomer = authenticationManagerBuilder.getUserDetails(authenticationToken)
-        val roles = authCustomer.roles
 
         val accessToken = tokenProvider.createAccessToken(authCustomer)
         val refreshToken = tokenProvider.createRefreshToken(authCustomer)
@@ -36,7 +35,7 @@ class SignInUseCase(
             accessTokenExpireTime = accessToken.tokenExpireTime,
             refreshToken = refreshToken.token,
             refreshTokenExpireTime = refreshToken.tokenExpireTime,
-            roles = roles,
+            roles = authCustomer.roles,
             customerToken = authCustomer.token,
         )
     }

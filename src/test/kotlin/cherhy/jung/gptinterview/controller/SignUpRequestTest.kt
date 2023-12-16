@@ -1,5 +1,6 @@
 package cherhy.jung.gptinterview.controller
 
+import cherhy.jung.gptinterview.controller.dto.SignUpRequest
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 

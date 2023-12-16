@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
-import cherhy.jung.gptinterview.domain.customer.CustomerResponseS
+import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseS
 import cherhy.jung.gptinterview.domain.gpt.GptClient
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
@@ -12,7 +12,7 @@ import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryRequestS
 import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryResponseS
 import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseS
 import cherhy.jung.gptinterview.domain.question.entity.Question
-import cherhy.jung.gptinterview.controller.GptRequest
+import cherhy.jung.gptinterview.controller.dto.GptRequest
 import cherhy.jung.gptinterview.util.Generator
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.BehaviorSpec

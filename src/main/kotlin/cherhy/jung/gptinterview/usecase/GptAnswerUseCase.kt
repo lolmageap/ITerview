@@ -7,7 +7,7 @@ import cherhy.jung.gptinterview.domain.gpt.GptResponseS
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryRequestS
-import cherhy.jung.gptinterview.controller.GptRequest
+import cherhy.jung.gptinterview.controller.dto.GptRequest
 import cherhy.jung.gptinterview.util.Generator
 
 // 모든 유스케이스들은 도메인 밑에 엔티티에 속하게 하는건 어떨까요?
