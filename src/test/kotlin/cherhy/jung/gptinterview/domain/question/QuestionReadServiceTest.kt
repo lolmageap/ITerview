@@ -38,7 +38,6 @@ internal class QuestionReadServiceTest(
                 email = "ekxk1234@naver.com",
                 password = "abcd1234",
                 salt = "random",
-                token = "random",
             )
         )
 
@@ -46,7 +45,6 @@ internal class QuestionReadServiceTest(
             Question(
                 title = "SingleTon Pattern이 무엇인가요?",
                 questionType = DESIGN_PATTERN,
-                token = "random",
                 level = LEVEL1,
             )
         )
@@ -57,7 +55,6 @@ internal class QuestionReadServiceTest(
                 findQuestion shouldNotBe null
                 findQuestion.title shouldBe question.title
                 findQuestion.type shouldBe question.questionType
-                findQuestion.token shouldBe question.token
                 findQuestion.level shouldBe question.level
             }
         }
@@ -77,28 +74,24 @@ internal class QuestionReadServiceTest(
                 email = "ekxk1234@gamil.com",
                 password = "abcd1234",
                 salt = "random",
-                token = "randoms",
             )
         )
 
         val question1 = Question(
             title = "SingleTon Pattern이 무엇인가요?",
             questionType = DESIGN_PATTERN,
-            token = "random1",
             level = LEVEL1,
         )
 
         val question2 = Question(
             title = "Java 가상 머신(JVM)이란 무엇인가요?",
             questionType = PROGRAMING,
-            token = "random2",
             level = LEVEL2,
         )
 
         val question3 = Question(
             title = "Java의 가비지 컬렉션(garbage collection)이란 무엇인가요?",
             questionType = PROGRAMING,
-            token = "random3",
             level = LEVEL2,
         )
 

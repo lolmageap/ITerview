@@ -31,7 +31,6 @@ class EditPasswordUseCaseTest(
             email = "ekxk1234@naver.com",
             password = "abcd1234",
             salt = "random",
-            token = "random",
         )
 
         When("비밀번호를 초기화 하면 ") {

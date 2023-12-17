@@ -24,7 +24,6 @@ class CustomerWriteServiceTest(
                 email = "ekxk1234@naver.com",
                 password = "abcd1234",
                 salt = "random",
-                token = "random",
             )
         )
         val newPassword = "newPassword"

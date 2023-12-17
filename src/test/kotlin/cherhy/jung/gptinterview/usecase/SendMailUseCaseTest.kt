@@ -27,7 +27,6 @@ class SendMailUseCaseTest(
             email = "ekxk1234@naver.com",
             password = "abcd1234",
             salt = "random",
-            token = "random",
         )
 
         When("이메일을 전송하고 ") {

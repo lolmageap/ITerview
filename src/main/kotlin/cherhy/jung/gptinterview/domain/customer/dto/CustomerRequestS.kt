@@ -14,7 +14,6 @@ data class CustomerRequestS(
         name = name,
         email = email,
         password = password,
-        token = Generator.generateToken(),
         salt = salt,
     )
 }
