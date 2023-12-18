@@ -19,10 +19,10 @@ abstract class BaseEntity(
 ) {
 
     @CreatedDate
-    var createdAt: LocalDateTime? = null
+    lateinit var createdAt: LocalDateTime
 
     @LastModifiedDate
-    var modifiedAt: LocalDateTime? = null
+    lateinit var modifiedAt: LocalDateTime
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
