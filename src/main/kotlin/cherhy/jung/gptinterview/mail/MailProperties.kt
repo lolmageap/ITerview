@@ -24,7 +24,7 @@ class MailProperties {
             setProperty("mail.smtp.auth", "true")
             setProperty("mail.smtp.starttls.enable", "true")
             setProperty("mail.debug", "true")
-            setProperty("mail.smtp.ssl.trust", "smtp.mailplug.co.kr")
+            setProperty("mail.smtp.ssl.trust", "smtp.gmail.com")
             setProperty("mail.smtp.ssl.enable", "true")
         }
 
