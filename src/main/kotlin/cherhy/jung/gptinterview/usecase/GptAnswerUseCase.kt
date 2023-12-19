@@ -6,8 +6,8 @@ import cherhy.jung.gptinterview.domain.gpt.GptClient
 import cherhy.jung.gptinterview.domain.gpt.GptResponseS
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
-import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryRequestS
-import cherhy.jung.gptinterview.controller.GptRequest
+import cherhy.jung.gptinterview.controller.dto.GptRequest
+import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
 import cherhy.jung.gptinterview.util.Generator
 
 // 모든 유스케이스들은 도메인 밑에 엔티티에 속하게 하는건 어떨까요?
@@ -27,8 +27,9 @@ class GptAnswerUseCase(
 
         val feedback = gptClient.generateText(questionToGpt)
 
-        val questionHistory = QuestionHistoryRequestS.of(question.id, customer.id, feedback, gptRequest.answer)
-        val history = questionHistoryWriteService.addHistory(questionHistory.toQuestionHistory())
+        val questionHistory = QuestionHistory(question.id, customer.id, feedback)
+        val history = questionHistoryWriteService.addHistory(questionHistory)
+
         return GptResponseS(history.token, feedback)
     }
 
@@ -40,8 +41,9 @@ class GptAnswerUseCase(
 
         val feedback = gptClient.generateText(questionToGpt)
 
-        val questionHistory = QuestionHistoryRequestS.of(question.id, customer.id, feedback)
-        val history = questionHistoryWriteService.addHistory(questionHistory.toQuestionHistory())
+        val questionHistory = QuestionHistory(question.id, customer.id, feedback)
+        val history = questionHistoryWriteService.addHistory(questionHistory)
+
         return GptResponseS(history.token, feedback)
     }
 

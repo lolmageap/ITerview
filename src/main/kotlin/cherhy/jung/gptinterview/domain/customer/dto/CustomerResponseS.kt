@@ -1,8 +1,10 @@
-package cherhy.jung.gptinterview.domain.customer
+package cherhy.jung.gptinterview.domain.customer.dto
+
+import cherhy.jung.gptinterview.domain.customer.Customer
 
 
 data class CustomerResponseS(
-    val id: Long, // var인 이유가 있을까요?
+    val id: Long,
 
     val name: String,
 

@@ -4,7 +4,6 @@ import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.exception.DomainName
 import cherhy.jung.gptinterview.exception.NotFoundException
-import cherhy.jung.gptinterview.util.log
 import com.nimbusds.jose.JOSEException
 import com.nimbusds.jose.JWSAlgorithm
 import com.nimbusds.jose.JWSHeader
@@ -13,8 +12,8 @@ import com.nimbusds.jose.crypto.MACSigner
 import com.nimbusds.jose.crypto.MACVerifier
 import com.nimbusds.jwt.JWTClaimsSet
 import com.nimbusds.jwt.SignedJWT
+import mu.KotlinLogging
 import org.springframework.beans.factory.InitializingBean
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
@@ -27,30 +26,19 @@ import javax.crypto.spec.SecretKeySpec
 @Component
 class TokenProvider(
     private val customerRepository: CustomerRepository,
-
-    @Value("\${jwt.secret}")
-    private val secret: String,
-
-    @Value("\${jwt.token-validity-in-seconds}")
-    private val tokenValidityInMilliseconds: String,
-
-    @Value("\${jwt.refresh-token-validity-in-seconds}")
-    private val refreshTokenValidityInMilliseconds: String,
+    private val jwtProperty: JwtProperty,
 ) : InitializingBean {
 
+    private val log = KotlinLogging.logger {}
     private lateinit var key: SecretKey
 
-    companion object {
-        private const val AUTHORITIES_KEY = "auth"
-    }
-
     override fun afterPropertiesSet() {
-        this.key = SecretKeySpec(secret.toByteArray(), "HmacSHA256")
+        this.key = SecretKeySpec(jwtProperty.secret.toByteArray(), "HmacSHA256")
     }
 
-    fun createToken(authCustomer: AuthCustomer): String {
+    fun createAccessToken(authCustomer: AuthCustomer): TokenResponseS {
         val now = Date().time
-        val validity = Date(now + tokenValidityInMilliseconds.toLong())
+        val validity = Date(now + jwtProperty.tokenValidityInSeconds.toLong())
 
         val claimsSet = JWTClaimsSet.Builder()
             .subject(authCustomer.username)
@@ -58,10 +46,12 @@ class TokenProvider(
             .expirationTime(validity)
             .build()
 
-        return SignedJWT(JWSHeader(JWSAlgorithm.HS256), claimsSet).run {
+        val accessToken = SignedJWT(JWSHeader(JWSAlgorithm.HS256), claimsSet).run {
             sign(MACSigner(key))
             serialize()
         }
+
+        return TokenResponseS(accessToken, validity)
     }
 
     fun getAuthentication(token: String): Authentication? {
@@ -103,9 +93,9 @@ class TokenProvider(
         }
     }
 
-    fun createRefreshToken(authCustomer: AuthCustomer): String {
+    fun createRefreshToken(authCustomer: AuthCustomer): TokenResponseS {
         val now = Date().time
-        val validity = Date(now + refreshTokenValidityInMilliseconds.toLong())
+        val validity = Date(now + jwtProperty.refreshTokenValidityInSeconds.toLong())
 
         val claimsSet = JWTClaimsSet.Builder()
             .subject(authCustomer.username)
@@ -113,10 +103,16 @@ class TokenProvider(
             .expirationTime(validity)
             .build()
 
-        return SignedJWT(JWSHeader(JWSAlgorithm.HS256), claimsSet).run {
+        val refreshToken = SignedJWT(JWSHeader(JWSAlgorithm.HS256), claimsSet).run {
             sign(MACSigner(key))
             serialize()
         }
+
+        return TokenResponseS(refreshToken, validity)
+    }
+
+    companion object {
+        private const val AUTHORITIES_KEY = "auth"
     }
 
 }

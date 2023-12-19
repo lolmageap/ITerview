@@ -17,3 +17,8 @@ Content-Type: application/json
   "email": "test@gmail.com",
   "password": "password"
 }
+
+### 실행하기 전 먼저 회원가입을 진행해주세요.
+POST localhost:8901/authorities/access-tokens
+Content-Type: application/json
+Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImV4cCI6MTcwMjY1Njc4MSwiYXV0aCI6IltST0xFX01FTUJFUl0ifQ.0TOLQEhquvGvfvFeRVtU-nQSwofiVn8tRWZBLnMKdqs

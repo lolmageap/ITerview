@@ -32,24 +32,22 @@ internal class QuestionReadServiceTest(
 
     Given("회원과 질문이 존재하고 ") {
 
-        val customer = Customer(
-            name = "정철희",
-            email = "ekxk1234@naver.com",
-            password = "abcd1234",
-            salt = "random",
-            token = "random",
+        customerRepository.save(
+            Customer(
+                name = "정철희",
+                email = "ekxk1234@naver.com",
+                password = "abcd1234",
+                salt = "random",
+            )
         )
 
-        customerRepository.save(customer)
-
-        val question = Question(
-            title = "SingleTon Pattern이 무엇인가요?",
-            questionType = DESIGN_PATTERN,
-            token = "random",
-            level = LEVEL1,
+        val question = questionRepository.save(
+            Question(
+                title = "SingleTon Pattern이 무엇인가요?",
+                questionType = DESIGN_PATTERN,
+                level = LEVEL1,
+            )
         )
-
-        questionRepository.save(question)
 
         When("사용자가 정상적인 키(토큰)로 조회를 시도하면 ") {
             val findQuestion = questionReadService.getQuestionByToken(question.token)
@@ -57,7 +55,6 @@ internal class QuestionReadServiceTest(
                 findQuestion shouldNotBe null
                 findQuestion.title shouldBe question.title
                 findQuestion.type shouldBe question.questionType
-                findQuestion.token shouldBe question.token
                 findQuestion.level shouldBe question.level
             }
         }
@@ -71,34 +68,30 @@ internal class QuestionReadServiceTest(
 
     Given("회원과 질문들이 존재하고 ") {
 
-        val customer = Customer(
-            name = "정철희2",
-            email = "ekxk1234@gamil.com",
-            password = "abcd1234",
-            salt = "random",
-            token = "randoms",
+        customerRepository.save(
+            Customer(
+                name = "정철희2",
+                email = "ekxk1234@gamil.com",
+                password = "abcd1234",
+                salt = "random",
+            )
         )
-
-        customerRepository.save(customer)
 
         val question1 = Question(
             title = "SingleTon Pattern이 무엇인가요?",
             questionType = DESIGN_PATTERN,
-            token = "random1",
             level = LEVEL1,
         )
 
         val question2 = Question(
             title = "Java 가상 머신(JVM)이란 무엇인가요?",
             questionType = PROGRAMING,
-            token = "random2",
             level = LEVEL2,
         )
 
         val question3 = Question(
             title = "Java의 가비지 컬렉션(garbage collection)이란 무엇인가요?",
             questionType = PROGRAMING,
-            token = "random3",
             level = LEVEL2,
         )
 
@@ -125,7 +118,7 @@ internal class QuestionReadServiceTest(
         }
 
         When("사용자가 DESIGN_PATTERN 과 JAVA 를 선택한 뒤 요청하면") {
-            val questionRequest = QuestionRequestS( listOf(DESIGN_PATTERN), listOf(JAVA) )
+            val questionRequest = QuestionRequestS(listOf(DESIGN_PATTERN), listOf(JAVA))
             val question = questionReadService.getQuestion(questionRequest)
 
             then("DESIGN_PATTERN 과 JAVA 에서 질문을 랜덤으로 한개 출력한다.") {
@@ -135,7 +128,7 @@ internal class QuestionReadServiceTest(
         }
 
         When("사용자가 DESIGN_PATTERN 을 선택한뒤 요청하면 ") {
-            val questionRequest = QuestionRequestS( questionTypes = listOf(DESIGN_PATTERN) )
+            val questionRequest = QuestionRequestS(questionTypes = listOf(DESIGN_PATTERN))
             val question = questionReadService.getQuestion(questionRequest)
 
             then("질문의 타입이 DESIGN_PATTERN 인 질문을 출력한다.") {
@@ -146,7 +139,7 @@ internal class QuestionReadServiceTest(
         }
 
         When("사용자가 JAVA 를 선택한뒤 요청하면 ") {
-            val questionRequest = QuestionRequestS( programingTypes = listOf(JAVA) )
+            val questionRequest = QuestionRequestS(programingTypes = listOf(JAVA))
             val question = questionReadService.getQuestion(questionRequest)
 
             then("질문의 타입이 JAVA 인 질문을 출력한다.") {

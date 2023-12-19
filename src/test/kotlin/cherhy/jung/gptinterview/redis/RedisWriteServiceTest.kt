@@ -1,8 +1,8 @@
 package cherhy.jung.gptinterview.redis
 
-import cherhy.jung.gptinterview.redis.RedisKey.ACCESS_TOKEN
 import cherhy.jung.gptinterview.redis.RedisKey.CERTIFICATE
 import cherhy.jung.gptinterview.redis.RedisKey.QUESTION_TOKEN
+import cherhy.jung.gptinterview.redis.RedisKey.REFRESH_TOKEN
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.extensions.testcontainers.perSpec
 import io.kotest.matchers.shouldBe
@@ -34,16 +34,16 @@ class RedisWriteServiceTest(
     }
 
     Given("회원이 로그인을 성공하고 JWT 토큰을 발급받으면 ") {
-        val accessToken = "accessToken"
+        val email = "ekxk1234@naver.com"
         val refreshToken = "refreshToken"
 
         When("access token 과 refresh token 을 등록한 뒤 ") {
-            redisWriteService.addJwtToken(accessToken, refreshToken)
+            redisWriteService.addJwtToken(refreshToken, email)
 
             Then("확인한다.") {
-                val findRefreshToken = redisTemplate.opsForValue().get(ACCESS_TOKEN + accessToken) as String
-                findRefreshToken shouldNotBe null
-                findRefreshToken shouldBe refreshToken
+                val findEmail = redisTemplate.opsForValue().get(REFRESH_TOKEN + refreshToken) as String
+                findEmail shouldNotBe null
+                findEmail shouldBe email
             }
         }
     }

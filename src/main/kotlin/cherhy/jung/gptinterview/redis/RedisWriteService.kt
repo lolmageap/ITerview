@@ -1,26 +1,24 @@
 package cherhy.jung.gptinterview.redis
 
 import cherhy.jung.gptinterview.annotation.WriteService
-import cherhy.jung.gptinterview.redis.RedisKey.ACCESS_TOKEN
+import cherhy.jung.gptinterview.jwt.JwtProperty
 import cherhy.jung.gptinterview.redis.RedisKey.CERTIFICATE
 import cherhy.jung.gptinterview.redis.RedisKey.QUESTION_TOKEN
-import org.springframework.beans.factory.annotation.Value
+import cherhy.jung.gptinterview.redis.RedisKey.REFRESH_TOKEN
 import org.springframework.data.redis.core.RedisTemplate
 import java.util.concurrent.TimeUnit
 
 @WriteService
 class RedisWriteService(
     private val redisTemplate: RedisTemplate<String, Any>,
-
-    @Value("\${jwt.refresh-token-validity-in-seconds}")
-    private val refreshTokenValidityInMilliseconds: String,
+    private val jwtProperty: JwtProperty,
 ) {
 
-    fun addJwtToken(accessToken: String, refreshToken: String) {
-        redisTemplate.opsForValue().set(ACCESS_TOKEN + accessToken, refreshToken)
+    fun addJwtToken(refreshToken: String, email: String) {
+        redisTemplate.opsForValue().set(REFRESH_TOKEN + refreshToken, email)
         redisTemplate.expire(
-            ACCESS_TOKEN + accessToken,
-            refreshTokenValidityInMilliseconds.toLong(),
+            REFRESH_TOKEN + refreshToken,
+            jwtProperty.refreshTokenValidityInSeconds.toLong(),
             TimeUnit.SECONDS
         )
     }

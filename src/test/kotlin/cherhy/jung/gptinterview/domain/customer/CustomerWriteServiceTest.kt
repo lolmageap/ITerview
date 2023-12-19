@@ -1,6 +1,9 @@
 package cherhy.jung.gptinterview.domain.customer
 
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.core.test.TestCase
+import io.kotest.core.test.TestResult
+import io.kotest.core.test.isRootTest
 import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
@@ -21,7 +24,6 @@ class CustomerWriteServiceTest(
                 email = "ekxk1234@naver.com",
                 password = "abcd1234",
                 salt = "random",
-                token = "random",
             )
         )
         val newPassword = "newPassword"
@@ -32,9 +34,15 @@ class CustomerWriteServiceTest(
                 val findCustomer = customerRepository.findByIdOrNull(customer.id)!!
                 findCustomer.password shouldNotBe customer.password
                 findCustomer.password shouldBe newPassword
-                findCustomer.modifiedAt!! shouldBeGreaterThan findCustomer.createdAt!!
+                findCustomer.modifiedAt shouldBeGreaterThan findCustomer.createdAt
             }
         }
     }
 
-})
+}) {
+    override suspend fun afterContainer(testCase: TestCase, result: TestResult) {
+        if (testCase.isRootTest()) {
+            customerRepository.deleteAllInBatch()
+        }
+    }
+}

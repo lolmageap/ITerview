@@ -37,5 +37,6 @@
 1. 회원이 다음 문제로 넘기거나 풀게 되면 동일한 문제는 재출제 되지 않습니다.
 1. 회원은 자신이 이전에 풀었던 문제를 다시 확인 할 수 있습니다.
 
-## 질문 메뉴 설계 예시
-![image](https://github.com/lolmageap/interview-gpt/assets/96738163/0e45929a-5d56-4e11-9935-afc5265916ed)
+## TODO
+- DOCKER FILE 을 CI/CD 로 BeanStalk 에 배포하기
+- 회원 도메인 프론트엔드 개발자와 회의 후 수정하기

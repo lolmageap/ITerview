@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.controller
+package cherhy.jung.gptinterview.controller.dto
 
 import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType

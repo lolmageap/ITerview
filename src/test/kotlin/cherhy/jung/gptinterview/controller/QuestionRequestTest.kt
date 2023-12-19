@@ -1,5 +1,7 @@
 package cherhy.jung.gptinterview.controller
 
+import cherhy.jung.gptinterview.controller.dto.QuestionRequest
+import cherhy.jung.gptinterview.controller.dto.toQuestionRequestS
 import cherhy.jung.gptinterview.domain.question.constant.FrameworkType.SPRING
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType.JAVA
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType.*
