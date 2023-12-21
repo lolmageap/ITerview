@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.ResponseStatus
 class HomeController {
 
     @GetMapping("/")
-    @ResponseStatus(HttpStatus.OK)
     fun home(): String = "index.html"
 
     @GetMapping("/login")
-    @ResponseStatus(HttpStatus.OK)
     fun login(): String = "login.html"
 
 }

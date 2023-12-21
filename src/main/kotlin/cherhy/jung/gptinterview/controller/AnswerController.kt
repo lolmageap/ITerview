@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
-import org.springframework.http.HttpStatus.OK
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 
@@ -21,7 +20,6 @@ class AnswerController(
 ) {
 
     @GetMapping("/histories")
-    @ResponseStatus(OK) // 해당 코드가 필요할까요?
     @Operation(summary = "답변 내역", description = "풀었던 질문들을 확인한다.")
     fun getAnswerHistories(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
@@ -31,7 +29,6 @@ class AnswerController(
             .map(AnswerResponse::of)
 
     @GetMapping("/histories/{token}")
-    @ResponseStatus(OK)
     @Operation(summary = "답변 내역", description = "풀었던 질문의 답변 내용을 포함하여 조회한다.")
     fun getAnswerHistory(
         @AuthenticationPrincipal authCustomer: AuthCustomer,

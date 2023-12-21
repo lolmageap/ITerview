@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*
 class PositionController {
 
     @GetMapping
-    @ResponseStatus(OK)
     @Operation(summary = "포지션 정보", description = "요청한 포지션의 상세 스펙에 대해 조회한다.")
     fun getPosition(
         @RequestParam positionTypes: List<PositionType>,

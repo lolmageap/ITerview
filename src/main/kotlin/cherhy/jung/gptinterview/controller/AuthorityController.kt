@@ -42,7 +42,7 @@ class AuthorityController(
         }
 
     @PostMapping("/sign-up")
-    @ResponseStatus(CREATED) // 이런친구는 필요하겠군요.
+    @ResponseStatus(CREATED)
     @Operation(summary = "회원가입", description = "회원가입을 하고 로그인 상태가 되며 토큰을 발급 받는다.")
     fun signUp(
         @Valid @RequestBody signUpRequest: SignUpRequest,
@@ -56,7 +56,6 @@ class AuthorityController(
     }
 
     @PostMapping("/access-tokens")
-    @ResponseStatus(OK)
     @Operation(summary = "access token 재발급", description = "refresh token 을 넘기면 access token 을 반환한다.")
     fun getAccessToken(
         httpServletRequest: HttpServletRequest,
