@@ -19,11 +19,13 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 import javax.crypto.SecretKey
 import javax.crypto.spec.SecretKeySpec
 
 @Component
+@Transactional
 class TokenProvider(
     private val customerRepository: CustomerRepository,
     private val jwtProperty: JwtProperty,
