@@ -19,15 +19,15 @@ class GptClient(private val gptProperty: GptProperty) {
     fun generateText(prompt: String): String {
         val headers = HttpHeaders().apply {
             contentType = MediaType.APPLICATION_JSON
-            set("Authorization", "Bearer ${gptProperty.API_KEY}")
+            set("Authorization", "Bearer ${gptProperty.apiKey}")
         }
 
-        val requestBody = HashMap<String, Any>().apply {
-            "model" to MODEL
-            "prompt" to prompt
-            "temperature" to TEMPERATURE
-            "max_tokens" to MAX_TOKENS
-        }
+        val requestBody = mapOf(
+            "model" to MODEL,
+            "prompt" to prompt,
+            "temperature" to TEMPERATURE,
+            "max_tokens" to MAX_TOKENS,
+        )
 
         val requestEntity = HttpEntity(requestBody, headers)
 
@@ -38,7 +38,10 @@ class GptClient(private val gptProperty: GptProperty) {
             ?.choices
             ?: throw GptNotGeneratedException()
 
-        val feedback = choices[0].text.trimIndent()
+        val feedback = choices.joinToString("") {
+            it.text
+        }.trimIndent()
+
         return Validator.validateJsonFormat(feedback)
     }
 

@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.stereotype.Component
 
 @Component
-@ConfigurationProperties("api-key")
+@ConfigurationProperties
 class GptProperty {
-    lateinit var API_KEY: String
+    lateinit var apiKey: String
 }
