@@ -16,8 +16,8 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: iterview
+      MYSQL_ROOT_PASSWORD: your-password
     ports:
       - "3501:3306"
 
@@ -36,9 +36,12 @@ services:
     command: redis-server /usr/local/conf/redis.conf
 
   iterview:
-    image: iterview:latest
+    container_name: iterview
+    build:
+      context: ./
+      dockerfile: Dockerfile
     ports:
-      - "8091:8080"
+      - "8091:8091"
     depends_on:
       - mysql_container
       - redis_container
