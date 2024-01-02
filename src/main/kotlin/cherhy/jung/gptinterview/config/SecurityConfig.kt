@@ -12,6 +12,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.DefaultSecurityFilterChain
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+
+
+
 
 
 @Configuration
@@ -44,6 +50,19 @@ class SecurityConfig(val jwtSecurityConfig: JwtSecurityConfig) {
         return http.build()
     }
 
+    @Bean
+    fun corsConfigurer(): WebMvcConfigurer {
+        return object : WebMvcConfigurer {
+            override fun addCorsMappings(registry: CorsRegistry) {
+                registry.addMapping("/**")
+                    .allowedOrigins("*")
+                    .allowedMethods("GET", "POST", "PUT", "DELETE")
+                    .allowedHeaders("*")
+                    .allowCredentials(true)
+                    .maxAge(3000)
+            }
+        }
+    }
 }
 
 @Configuration
@@ -56,3 +75,4 @@ class JwtSecurityConfig(
         http.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter::class.java)
     }
 }
+
