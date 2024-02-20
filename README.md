@@ -38,11 +38,6 @@
 1. 회원은 자신이 이전에 풀었던 문제를 다시 확인 할 수 있습니다.
 
 ## TODO
-- DOCKER FILE 을 CI/CD 로 BeanStalk 에 배포하기
-- 도커파일, 컴포즈파일, 스웨거 수정, 프론트 레포지토리 생성
 - 같은 ip로 5번은 호출 가능 / 대신 history는 안쌓임
 - https://source.unsplash.com/random >> username, 이미지 랜덤으로 넣어두기
-- ci/cd 포함하여 ec2 프리티어로 배포
-- getme api 생성
 - 마지막에 세팅했던 기술스택, 포지션 저장
-- 서버에서 포지션, 기술 스택 카테고리 전부 내려주기
