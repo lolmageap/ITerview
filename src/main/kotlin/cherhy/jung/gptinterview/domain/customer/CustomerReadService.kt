@@ -22,8 +22,8 @@ class CustomerReadService(
             ?.let(CustomerResponseS::of)
             ?: throw NotFoundException(DomainName.CUSTOMER)
 
-    fun checkDuplicatedEmail(email: String) {
-        val exists = customerRepository.existsByEmail(email)
-        if (exists) throw ExistException(Property.EMAIL)
-    }
+    fun checkDuplicatedEmail(email: String) =
+        customerRepository.existsByEmail(email).let { isExist ->
+            if (isExist) throw ExistException(Property.EMAIL)
+        }
 }
