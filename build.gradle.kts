@@ -37,6 +37,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
+    implementation("com.linecorp.kotlin-jdsl:hibernate-kotlin-jdsl-jakarta:2.2.1.RELEASE")
+    implementation("org.hibernate:hibernate-core:6.2.4.Final")
+    implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-starter-jakarta:2.2.1.RELEASE")
+    implementation("com.linecorp.kotlin-jdsl:jpql-dsl:3.3.1")
+    implementation("com.linecorp.kotlin-jdsl:jpql-render:3.3.1")
 
     // default
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
