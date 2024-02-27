@@ -98,7 +98,7 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
     }
 
     override fun jpqlTest() {
-        jpql {
+        val jpql = jpql {
             select(
                 entity(Question::class)
             ).from(
