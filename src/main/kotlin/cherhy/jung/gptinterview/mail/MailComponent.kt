@@ -2,9 +2,11 @@ package cherhy.jung.gptinterview.mail
 
 import jakarta.mail.internet.InternetAddress
 import jakarta.mail.internet.MimeMessage
+import kotlinx.html.*
+import kotlinx.html.stream.appendHTML
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.stereotype.Component
-
+import java.io.StringWriter
 
 @Component
 class MailComponent(
@@ -13,20 +15,46 @@ class MailComponent(
 ) {
 
     fun sendMessage(email: String, certificate: String) {
-        val msg: String = """
-                <h1 style=\"font-size: 30px; padding-right: 30px; padding-left: 30px;\">
-                이메일 주소 확인
-                </h1>
-                <p style=\"font-size: 17px; padding-right: 30px; padding-left: 30px;\">
-                아래 확인 코드를 회원가입 화면에서 입력해주세요.
-                </p>
-                <div style=\"padding-right: 30px; padding-left: 30px; margin: 32px 0 40px;\">
-                <table style=\"border-collapse: collapse; border: 0; background-color: #F4F4F4;
-                height: 70px; table-layout: fixed; word-wrap: break-word; border-radius: 6px;\">
-                <tbody><tr><td style=\"text-align: center; vertical-align: middle; font-size: 30px;\">
-                $certificate
-                "</td></tr></tbody></table></div>"
-            """.trimIndent()
+        val writer = StringWriter()
+        val msg = writer.appendHTML().html {
+            head {
+                style {
+                    +"""
+                        .content {
+                            font-size: 17px;
+                            padding-right: 30px;
+                            padding-left: 30px;
+                        }
+                    """.trimIndent()
+                }
+            }
+
+            body {
+                h1("title") {
+                    style = "font-size: 30px; padding-right: 30px; padding-left: 30px;"
+                    +"이메일 주소 확인"
+                }
+                p("content") {
+                    +"아래 확인 코드를 회원가입 화면에서 입력해주세요."
+                }
+                div {
+                    style = "padding-right: 30px; padding-left: 30px; margin: 32px 0 40px;"
+
+                    table {
+                        style = "border-collapse: collapse; border: 0; background-color: #F4F4F4; height: 70px; table-layout: fixed; word-wrap: break-word; border-radius: 6px;"
+
+                        tbody {
+                            tr {
+                                td {
+                                    style = "text-align: center; vertical-align: middle; font-size: 30px;"
+                                    +certificate
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }.toString()
 
         val internetAddress = InternetAddress(mailProperties.username, "admin")
         val message = javaMailSender.createMimeMessage()
@@ -40,23 +68,49 @@ class MailComponent(
     }
 
     fun sendPasswordMessage(email: String, password: String) {
-        val msg = """
-                <h1 style=\"font-size: 30px; padding-right: 30px; padding-left: 30px;\">
-                임시 비밀번호 발급 완료
-                </h1>
-                <p style=\"font-size: 17px; padding-right: 30px; padding-left: 30px;\">
-                아래 임시 비밀번호로 로그인을 진행해주세요.
-                </p>
-                <p style=\"font-size: 17px; padding-right: 30px; padding-left: 30px;\">
-                임시 비밀번호 발급을 요청하지 않았을 경우, 고객센터로 문의 부탁드립니다.
-                </p>
-                <div style=\"padding-right: 30px; padding-left: 30px; margin: 32px 0 40px;\">
-                <table style=\"border-collapse: collapse; border: 0; background-color: #F4F4F4;
-                height: 70px; table-layout: fixed; word-wrap: break-word; border-radius: 6px;\">
-                <tbody> <tr> <td style=\"text-align: center; vertical-align: middle; font-size: 30px;\">
-                $password
-                </td></tr></tbody></table></div>
-            """.trimIndent()
+        val writer = StringWriter()
+        val msg = writer.appendHTML().html {
+            head {
+                style {
+                    +"""
+                        .content {
+                            font-size: 17px;
+                            padding-right: 30px;
+                            padding-left: 30px;
+                        }
+                    """.trimIndent()
+                }
+            }
+
+            body {
+                h1("title") {
+                    style = "font-size: 30px; padding-right: 30px; padding-left: 30px;"
+                    +"임시 비밀번호 발급 완료"
+                }
+                p("content") {
+                    +"아래 임시 비밀번호로 로그인을 진행해주세요."
+                }
+                p("content") {
+                    +"임시 비밀번호 발급을 요청하지 않았을 경우, 고객센터로 문의 부탁드립니다."
+                }
+                div {
+                    style = "padding-right: 30px; padding-left: 30px; margin: 32px 0 40px;"
+
+                    table {
+                        style = "border-collapse: collapse; border: 0; background-color: #F4F4F4; height: 70px; table-layout: fixed; word-wrap: break-word; border-radius: 6px;"
+
+                        tbody {
+                            tr {
+                                td {
+                                    style = "text-align: center; vertical-align: middle; font-size: 30px;"
+                                    +password
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }.toString()
 
         val internetAddress = InternetAddress(mailProperties.username, "admin")
         val message = javaMailSender.createMimeMessage()
