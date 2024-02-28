@@ -2,23 +2,16 @@ package cherhy.jung.gptinterview.mail
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.mail.javamail.JavaMailSenderImpl
-import org.springframework.stereotype.Component
 import java.util.*
 
-
-@Component
 @ConfigurationProperties("spring.mail")
-class MailProperties {
-
-    lateinit var username: String
-
-    lateinit var password: String
-
-    lateinit var host: String
-
-    var port: Int = 0
-
-    val mailProperties: Properties =
+data class MailProperties(
+    val username: String,
+    val password: String,
+    val host: String,
+    val port: Int,
+) {
+    private val mailProperties: Properties =
         Properties().apply {
             setProperty("mail.transport.protocol", "smtp")
             setProperty("mail.smtp.auth", "true")
@@ -37,5 +30,4 @@ class MailProperties {
             it.javaMailProperties = mailProperties
             it.defaultEncoding = "UTF-8"
         }
-
 }
