@@ -5,7 +5,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl
 import java.util.*
 
 @ConfigurationProperties("spring.mail")
-data class MailProperties(
+data class MailProperty(
     val username: String,
     val password: String,
     val host: String,

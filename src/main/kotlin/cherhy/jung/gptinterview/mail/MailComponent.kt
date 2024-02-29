@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component
 import java.io.StringWriter
 
 @Component
-@EnableConfigurationProperties(MailProperties::class)
+@EnableConfigurationProperties(MailProperty::class)
 class MailComponent(
     private val javaMailSender: JavaMailSender,
-    private val mailProperties: MailProperties,
+    private val mailProperty: MailProperty,
 ) {
 
     fun sendMessage(email: String, certificate: String) {
@@ -58,7 +58,7 @@ class MailComponent(
             }
         }.toString()
 
-        val internetAddress = InternetAddress(mailProperties.username, "admin")
+        val internetAddress = InternetAddress(mailProperty.username, "admin")
         val message = javaMailSender.createMimeMessage()
             .apply {
                 addRecipients(MimeMessage.RecipientType.TO, email)
@@ -114,7 +114,7 @@ class MailComponent(
             }
         }.toString()
 
-        val internetAddress = InternetAddress(mailProperties.username, "admin")
+        val internetAddress = InternetAddress(mailProperty.username, "admin")
         val message = javaMailSender.createMimeMessage()
             .apply {
                 addRecipients(MimeMessage.RecipientType.TO, email)
