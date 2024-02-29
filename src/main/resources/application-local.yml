@@ -1,15 +1,18 @@
 spring:
   application:
     name: iterview
+
+  cache: redis
+
   config:
     activate:
       on-profile: local
-
   datasource:
     url: jdbc:mysql://host.docker.internal:3501/iterview
     username: name
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -48,8 +51,6 @@ spring:
       host: host.docker.internal
       port: 6397
 
-  cache: redis
-
   mail:
     host: smtp.gmail.com
     port: 587
@@ -76,3 +77,7 @@ jwt:
   secret: your-secret-key
   token-validity-in-seconds: 10800
   refresh-token-validity-in-seconds: 86400
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
