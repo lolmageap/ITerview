@@ -54,10 +54,11 @@ dependencies {
     // validation
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
-    // authority
+    // security
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.security:spring-security-core")
     implementation("com.nimbusds:nimbus-jose-jwt:9.13")
+    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5")
 
     // mail
     implementation("org.springframework.boot:spring-boot-starter-mail:3.1.4")
@@ -75,6 +76,7 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-mysql")
 
+    // html
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.11.0")
 
     // test
