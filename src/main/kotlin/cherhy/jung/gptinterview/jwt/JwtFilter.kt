@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.jwt
 
-import cherhy.jung.gptinterview.util.authorization
+import cherhy.jung.gptinterview.extension.authorization
 import jakarta.servlet.FilterChain
 import jakarta.servlet.ServletException
 import jakarta.servlet.ServletRequest

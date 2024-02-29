@@ -7,14 +7,13 @@ import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.redis.RedisReadService
 import cherhy.jung.gptinterview.redis.RedisWriteService
-import cherhy.jung.gptinterview.util.end
-import cherhy.jung.gptinterview.util.start
+import cherhy.jung.gptinterview.extension.end
+import cherhy.jung.gptinterview.extension.start
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
-import org.springframework.http.HttpStatus.OK
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 

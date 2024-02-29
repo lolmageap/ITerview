@@ -6,8 +6,8 @@ import cherhy.jung.gptinterview.jwt.AccessTokenResponse
 import cherhy.jung.gptinterview.jwt.TokenResponse
 import cherhy.jung.gptinterview.redis.RedisReadService
 import cherhy.jung.gptinterview.usecase.*
-import cherhy.jung.gptinterview.util.addAccessTokenInHeader
-import cherhy.jung.gptinterview.util.addRefreshTokenInHeader
+import cherhy.jung.gptinterview.extension.addAccessTokenInHeader
+import cherhy.jung.gptinterview.extension.addRefreshTokenInHeader
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.servlet.http.HttpServletRequest
