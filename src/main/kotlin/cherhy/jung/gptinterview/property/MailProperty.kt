@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.mail
+package cherhy.jung.gptinterview.property
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.mail.javamail.JavaMailSenderImpl
