@@ -10,10 +10,10 @@ class JasyptConfig {
     fun jasyptStringEncryptor() =
         StandardPBEStringEncryptor().apply {
             setAlgorithm(
-                System.getProperty("JASYPT_ALGORITHM")
+                System.getenv("JASYPT_ALGORITHM")
             )
             setPassword(
-                System.getProperty("JASYPT_PASSWORD")
+                System.getenv("JASYPT_PASSWORD")
             )
         }
 }
