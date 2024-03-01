@@ -35,14 +35,14 @@ services:
     restart: always
     command: redis-server /usr/local/conf/redis.conf
 
-  iterview:
-    container_name: iterview
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    ports:
-      - "8091:8091"
-    depends_on:
-      - mysql_container
-      - redis_container
-      - elasticsearch_container
+#  iterview:
+#    container_name: iterview
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8091:8091"
+#    depends_on:
+#      - mysql_container
+#      - redis_container
+#      - elasticsearch_container
