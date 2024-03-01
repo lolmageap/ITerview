@@ -4,6 +4,7 @@ import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.exception.DomainName
 import cherhy.jung.gptinterview.exception.NotFoundException
+import cherhy.jung.gptinterview.property.JwtProperty
 import com.nimbusds.jose.JOSEException
 import com.nimbusds.jose.JWSAlgorithm
 import com.nimbusds.jose.JWSHeader
@@ -14,6 +15,7 @@ import com.nimbusds.jwt.JWTClaimsSet
 import com.nimbusds.jwt.SignedJWT
 import mu.KotlinLogging
 import org.springframework.beans.factory.InitializingBean
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
@@ -26,6 +28,7 @@ import javax.crypto.spec.SecretKeySpec
 
 @Component
 @Transactional
+@EnableConfigurationProperties(JwtProperty::class)
 class TokenProvider(
     private val customerRepository: CustomerRepository,
     private val jwtProperty: JwtProperty,
