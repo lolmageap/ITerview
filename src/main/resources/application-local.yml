@@ -7,10 +7,11 @@ spring:
   config:
     activate:
       on-profile: local
+
   datasource:
-    url: jdbc:mysql://host.docker.internal:3501/iterview
-    username: name
-    password: password
+    url: ENC(DATABASE_URL)
+    username: ENC(DATABASE_USERNAME)
+    password: ENC(DATABASE_PASSWORD)
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -30,9 +31,9 @@ spring:
     enabled: true
     baseline-on-migrate: true
     baseline-version: 1
-    url: jdbc:mysql://host.docker.internal:3501/iterview
-    user: name
-    password: password
+    url: ENC(DATABASE_URL)
+    user: ENC(DATABASE_USERNAME)
+    password: ENC(DATABASE_PASSWORD)
 
   sql:
     init:
@@ -48,14 +49,14 @@ spring:
         one-indexed-parameters: true
 
     redis:
-      host: host.docker.internal
-      port: 6397
+      host: ENC(REDIS_URL)
+      port: ENC(REDIS_PORT)
 
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: email
-    password: password
+    host: ENC(MAIL_HOST)
+    port: ENC(MAIL_PORT)
+    username: ENC(MAIL_USERNAME)
+    password: ENC(MAIL_PASSWORD)
     properties:
       mail:
         smtp:
@@ -70,13 +71,14 @@ logging:
 server:
   port: 8901
 
-api-key: your-api-key
+gpt:
+  api-key: ENC(GPT_KEY)
 
 jwt:
   header: Authorization
-  secret: your-secret-key
-  token-validity-in-seconds: 10800
-  refresh-token-validity-in-seconds: 86400
+  secret: ENC(JWT_SECRET)
+  token-validity-in-seconds: ENC(JWT_ACCESS_EXPIRATION)
+  refresh-token-validity-in-seconds: ENC(JWT_REFRESH_EXPIRATION)
 
 jasypt:
   encryptor:
