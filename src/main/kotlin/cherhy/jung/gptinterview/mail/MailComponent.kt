@@ -1,5 +1,6 @@
 package cherhy.jung.gptinterview.mail
 
+import cherhy.jung.gptinterview.property.MailProperty
 import jakarta.mail.internet.InternetAddress
 import jakarta.mail.internet.MimeMessage
 import kotlinx.html.*
