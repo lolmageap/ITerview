@@ -9,9 +9,9 @@ spring:
       on-profile: dev
 
   datasource:
-    url: ENC(DATABASE_URL)
-    username: ENC(DATABASE_USERNAME)
-    password: ENC(DATABASE_PASSWORD)
+    url: ENC(C1FZi1+FFValUsA5fV4SmMTidGLdRIi8CY43Cd3Wl+kkAM7gLh1GWSHEfge5EzNv)
+    username: ENC(UdXJlFoxMCkKTefdRa2tpQ==)
+    password: ENC(WkffxxwkNl3NQxJrUuz90fY/bi9F2STE)
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -31,17 +31,9 @@ spring:
     enabled: true
     baseline-on-migrate: true
     baseline-version: 1
-    url: ENC(DATABASE_URL)
-    user: ENC(DATABASE_USERNAME)
-    password: ENC(DATABASE_PASSWORD)
-
-  sql:
-    init:
-      mode: never
-      data-locations:
-        - classpath:sql/*.sql
-        - classpath:sql/framework/*.sql
-        - classpath:sql/programing/*.sql
+    url: ENC(C1FZi1+FFValUsA5fV4SmMTidGLdRIi8CY43Cd3Wl+kkAM7gLh1GWSHEfge5EzNv)
+    user: ENC(UdXJlFoxMCkKTefdRa2tpQ==)
+    password: ENC(WkffxxwkNl3NQxJrUuz90fY/bi9F2STE)
 
   data:
     web:
@@ -49,14 +41,14 @@ spring:
         one-indexed-parameters: true
 
     redis:
-      host: ENC(REDIS_URL)
-      port: ENC(REDIS_PORT)
+      host: ENC(LmIQsFDxcnNbWq/XT1wQGmRrXtzd3Vdb)
+      port: ENC(eU5AyHoF3fnWXmXnhDY14g==)
 
   mail:
-    host: ENC(MAIL_HOST)
-    port: ENC(MAIL_PORT)
-    username: ENC(MAIL_USERNAME)
-    password: ENC(MAIL_PASSWORD)
+    host: ENC(ZV/jGkr3hQz9Fj5P0hU2U/Yartt3y3DZ)
+    port: ENC(eDwjL4LQcGzUxaW9OD6jFQ==)
+    username: ENC(bvJLgcsqkNo54z87rZak0oGBOS8oZqNK)
+    password: ENC(22jzfyQCJwBaWkRQVElDT387QsYCUNRe)
     properties:
       mail:
         smtp:
@@ -72,13 +64,13 @@ server:
   port: 8901
 
 gpt:
-  api-key: ENC(GPT_KEY)
+  api-key: ENC(9zB0P7lTUKrSgt0XFrLjqg==)
 
 jwt:
   header: Authorization
-  secret: ENC(JWT_SECRET)
-  token-validity-in-seconds: ENC(JWT_ACCESS_EXPIRATION)
-  refresh-token-validity-in-seconds: ENC(JWT_REFRESH_EXPIRATION)
+  secret: ENC(Saqie+K61b4yf2dlqrGeiA==)
+  token-validity-in-seconds: ENC(6MZFapEikl9+TMIHEpAOOA==)
+  refresh-token-validity-in-seconds: ENC(hPTMN4Z/7AXvyPH68wHTEQ==)
 
 jasypt:
   encryptor:
