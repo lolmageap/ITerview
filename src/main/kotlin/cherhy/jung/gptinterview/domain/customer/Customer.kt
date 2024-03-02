@@ -6,8 +6,6 @@ import jakarta.persistence.*
 
 
 @Entity
-// 오 이코드는 제거해보는게 어떨까요? 삭제를 한다고 한다면 서비스에서 그냥 업데이트를 치는 코드를 만들게 하고, 서비스의 메소드명을 딜리트로 하면 될거 같아요.
-// 그러면 Customer(BaseDeleteEntity)에 delete()라는 메서드가 생기고 조금 더 표현이 풍부해지겠네요. 아래 코드가 들어오면 쿼리쪽으로 조금 기능이 빠진거같아요.
 class Customer(
     var name: String,
 
@@ -42,5 +40,5 @@ class CustomerAuthority(
 )
 
 enum class CustomerRole(private val text: String) {
-    MEMBER("일반회원"), ADMIN("관리자")
+    MEMBER("일반 회원"), ADMIN("관리자")
 }
