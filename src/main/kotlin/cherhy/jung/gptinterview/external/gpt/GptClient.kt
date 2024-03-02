@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.domain.gpt
+package cherhy.jung.gptinterview.external.gpt
 
 import cherhy.jung.gptinterview.exception.GptNotGeneratedException
 import cherhy.jung.gptinterview.property.GptProperty

@@ -4,8 +4,8 @@ import cherhy.jung.gptinterview.controller.dto.GptRequest
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
-import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseS
-import cherhy.jung.gptinterview.domain.gpt.GptClient
+import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseVo
+import cherhy.jung.gptinterview.external.gpt.GptClient
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.domain.question.QuestionRepository
@@ -64,7 +64,7 @@ internal class GptAnswerUseCaseTest(
 
         When("GPT가 채점과 피드백을 하고 ") {
 
-            every { customerReadService.getCustomerById(customer.id) } returns CustomerResponseS.of(customer)
+            every { customerReadService.getCustomerById(customer.id) } returns CustomerResponseVo.of(customer)
             every { questionReadService.getQuestionByToken(question.token) } returns QuestionResponseS.of(question)
             every {
                 gptClient.generateText(
