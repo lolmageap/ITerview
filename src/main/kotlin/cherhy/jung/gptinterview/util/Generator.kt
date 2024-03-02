@@ -2,6 +2,7 @@ package cherhy.jung.gptinterview.util
 
 import java.time.LocalDate
 import java.util.*
+import kotlin.random.Random
 
 object Generator {
 
@@ -61,7 +62,7 @@ object Generator {
         buildString {
             repeat(6) {
                 append(
-                    Random().nextInt(10).toString()
+                    Random.nextInt(10).toString()
                 )
             }
         }
