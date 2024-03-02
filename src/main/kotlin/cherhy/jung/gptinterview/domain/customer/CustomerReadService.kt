@@ -3,9 +3,9 @@ package cherhy.jung.gptinterview.domain.customer
 import cherhy.jung.gptinterview.annotation.ReadService
 import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseS
 import cherhy.jung.gptinterview.exception.DomainName
+import cherhy.jung.gptinterview.exception.DomainName.EMAIL
 import cherhy.jung.gptinterview.exception.ExistException
 import cherhy.jung.gptinterview.exception.NotFoundException
-import cherhy.jung.gptinterview.exception.Property
 import org.springframework.data.repository.findByIdOrNull
 
 @ReadService
@@ -24,6 +24,6 @@ class CustomerReadService(
 
     fun checkDuplicatedEmail(email: String) =
         customerRepository.existsByEmail(email).let { isExist ->
-            if (isExist) throw ExistException(Property.EMAIL)
+            if (isExist) throw ExistException(EMAIL)
         }
 }
