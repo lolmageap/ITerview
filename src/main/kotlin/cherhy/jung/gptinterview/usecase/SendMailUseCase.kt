@@ -2,8 +2,8 @@ package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.annotation.UseCase
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
-import cherhy.jung.gptinterview.mail.MailComponent
-import cherhy.jung.gptinterview.redis.RedisWriteService
+import cherhy.jung.gptinterview.external.mail.MailComponent
+import cherhy.jung.gptinterview.external.redis.RedisWriteService
 import cherhy.jung.gptinterview.util.Generator
 
 @UseCase

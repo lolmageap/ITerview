@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.jwt
+package cherhy.jung.gptinterview.external.jwt
 
 import cherhy.jung.gptinterview.extension.authorization
 import jakarta.servlet.FilterChain

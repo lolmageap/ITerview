@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.config
 
-import cherhy.jung.gptinterview.jwt.JwtFilter
-import cherhy.jung.gptinterview.jwt.TokenProvider
+import cherhy.jung.gptinterview.external.jwt.JwtFilter
+import cherhy.jung.gptinterview.external.jwt.TokenProvider
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter

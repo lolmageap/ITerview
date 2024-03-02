@@ -3,9 +3,9 @@ package cherhy.jung.gptinterview.usecase
 import cherhy.jung.gptinterview.annotation.UseCase
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.authority.AuthCustomerReadService
-import cherhy.jung.gptinterview.jwt.TokenProvider
-import cherhy.jung.gptinterview.jwt.TokenResponseS
-import cherhy.jung.gptinterview.redis.RedisReadService
+import cherhy.jung.gptinterview.external.jwt.TokenProvider
+import cherhy.jung.gptinterview.external.jwt.TokenResponseS
+import cherhy.jung.gptinterview.external.redis.RedisReadService
 import cherhy.jung.gptinterview.extension.refreshToken
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.transaction.annotation.Transactional

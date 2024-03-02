@@ -1,7 +1,9 @@
 package cherhy.jung.gptinterview.redis
 
 import cherhy.jung.gptinterview.exception.NotFoundException
-import cherhy.jung.gptinterview.redis.RedisKey.CERTIFICATE
+import cherhy.jung.gptinterview.external.redis.RedisKey
+import cherhy.jung.gptinterview.external.redis.RedisKey.CERTIFICATE
+import cherhy.jung.gptinterview.external.redis.RedisReadService
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.test.TestCase

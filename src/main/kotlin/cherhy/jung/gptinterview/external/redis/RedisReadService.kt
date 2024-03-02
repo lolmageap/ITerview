@@ -1,12 +1,12 @@
-package cherhy.jung.gptinterview.redis
+package cherhy.jung.gptinterview.external.redis
 
 import cherhy.jung.gptinterview.annotation.ReadService
 import cherhy.jung.gptinterview.exception.DomainName.CERTIFICATE_NUMBER
 import cherhy.jung.gptinterview.exception.DomainName.EMAIL
 import cherhy.jung.gptinterview.exception.NotFoundException
-import cherhy.jung.gptinterview.redis.RedisKey.CERTIFICATE
-import cherhy.jung.gptinterview.redis.RedisKey.QUESTION_TOKEN
-import cherhy.jung.gptinterview.redis.RedisKey.REFRESH_TOKEN
+import cherhy.jung.gptinterview.external.redis.RedisKey.CERTIFICATE
+import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_TOKEN
+import cherhy.jung.gptinterview.external.redis.RedisKey.REFRESH_TOKEN
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.security.access.AccessDeniedException
 

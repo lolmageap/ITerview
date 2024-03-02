@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.jwt
+package cherhy.jung.gptinterview.external.jwt
 
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository

@@ -2,9 +2,9 @@ package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.controller.dto.*
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
-import cherhy.jung.gptinterview.jwt.AccessTokenResponse
-import cherhy.jung.gptinterview.jwt.TokenResponse
-import cherhy.jung.gptinterview.redis.RedisReadService
+import cherhy.jung.gptinterview.external.jwt.AccessTokenResponse
+import cherhy.jung.gptinterview.external.jwt.TokenResponse
+import cherhy.jung.gptinterview.external.redis.RedisReadService
 import cherhy.jung.gptinterview.usecase.*
 import cherhy.jung.gptinterview.extension.addAccessTokenInHeader
 import cherhy.jung.gptinterview.extension.addRefreshTokenInHeader

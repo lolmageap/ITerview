@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.mail
+package cherhy.jung.gptinterview.external.mail
 
 import cherhy.jung.gptinterview.property.MailProperty
 import jakarta.mail.internet.InternetAddress

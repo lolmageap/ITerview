@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.redis
+package cherhy.jung.gptinterview.external.redis
 
 object RedisKey {
     const val REFRESH_TOKEN: String = "refreshToken:"

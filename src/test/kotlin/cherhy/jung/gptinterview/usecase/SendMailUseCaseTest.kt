@@ -3,7 +3,7 @@ package cherhy.jung.gptinterview.usecase
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.mail.MailComponent
-import cherhy.jung.gptinterview.redis.RedisWriteService
+import cherhy.jung.gptinterview.external.redis.RedisWriteService
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.Runs

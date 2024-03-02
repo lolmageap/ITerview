@@ -5,8 +5,8 @@ import cherhy.jung.gptinterview.controller.dto.QuestionResponse
 import cherhy.jung.gptinterview.controller.dto.toQuestionRequestS
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
-import cherhy.jung.gptinterview.redis.RedisReadService
-import cherhy.jung.gptinterview.redis.RedisWriteService
+import cherhy.jung.gptinterview.external.redis.RedisReadService
+import cherhy.jung.gptinterview.external.redis.RedisWriteService
 import cherhy.jung.gptinterview.extension.end
 import cherhy.jung.gptinterview.extension.start
 import io.swagger.v3.oas.annotations.Operation

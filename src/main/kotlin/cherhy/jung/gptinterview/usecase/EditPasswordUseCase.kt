@@ -5,7 +5,7 @@ import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseS
 import cherhy.jung.gptinterview.domain.customer.CustomerWriteService
 import cherhy.jung.gptinterview.domain.customer.dto.EditPasswordRequestS
-import cherhy.jung.gptinterview.mail.MailComponent
+import cherhy.jung.gptinterview.external.mail.MailComponent
 import cherhy.jung.gptinterview.util.Generator
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder

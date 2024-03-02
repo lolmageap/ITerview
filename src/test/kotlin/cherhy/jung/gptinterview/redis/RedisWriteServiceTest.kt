@@ -1,8 +1,9 @@
 package cherhy.jung.gptinterview.redis
 
-import cherhy.jung.gptinterview.redis.RedisKey.CERTIFICATE
-import cherhy.jung.gptinterview.redis.RedisKey.QUESTION_TOKEN
-import cherhy.jung.gptinterview.redis.RedisKey.REFRESH_TOKEN
+import cherhy.jung.gptinterview.external.redis.RedisKey.CERTIFICATE
+import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_TOKEN
+import cherhy.jung.gptinterview.external.redis.RedisKey.REFRESH_TOKEN
+import cherhy.jung.gptinterview.external.redis.RedisWriteService
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.extensions.testcontainers.perSpec
 import io.kotest.matchers.shouldBe
