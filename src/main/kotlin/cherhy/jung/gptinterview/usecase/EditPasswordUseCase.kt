@@ -2,9 +2,9 @@ package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.annotation.UseCase
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
-import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseS
+import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseVo
 import cherhy.jung.gptinterview.domain.customer.CustomerWriteService
-import cherhy.jung.gptinterview.domain.customer.dto.EditPasswordRequestS
+import cherhy.jung.gptinterview.domain.customer.dto.EditPasswordRequestVo
 import cherhy.jung.gptinterview.external.mail.MailComponent
 import cherhy.jung.gptinterview.util.Generator
 import org.springframework.security.authentication.BadCredentialsException
@@ -25,15 +25,15 @@ class EditPasswordUseCase(
         mailComponent.sendPasswordMessage(email, newPassword)
     }
 
-    fun editPassword(customerId: Long, editPasswordRequestS: EditPasswordRequestS) {
+    fun editPassword(customerId: Long, editPasswordVo: EditPasswordRequestVo) {
         val customer = customerReadService.getCustomerById(customerId)
-        matchPassword(editPasswordRequestS.originalPassword, customer)
-        changePassword(customer, editPasswordRequestS.editPassword)
+        matchPassword(editPasswordVo.originalPassword, customer)
+        changePassword(customer, editPasswordVo.editPassword)
     }
 
     private fun matchPassword(
         password: String,
-        customer: CustomerResponseS,
+        customer: CustomerResponseVo,
     ) {
         val requestPassword = password + customer.salt
         val encodedPassword = bCryptPasswordEncoder.encode(requestPassword)
@@ -42,7 +42,7 @@ class EditPasswordUseCase(
     }
 
     private fun changePassword(
-        customer: CustomerResponseS,
+        customer: CustomerResponseVo,
         editPassword: String,
     ) {
         val newPassword = bCryptPasswordEncoder.encode(editPassword + customer.salt)

@@ -3,9 +3,9 @@ package cherhy.jung.gptinterview.usecase
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.CustomerWriteService
-import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseS
-import cherhy.jung.gptinterview.domain.customer.dto.EditPasswordRequestS
-import cherhy.jung.gptinterview.mail.MailComponent
+import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseVo
+import cherhy.jung.gptinterview.domain.customer.dto.EditPasswordRequestVo
+import cherhy.jung.gptinterview.external.mail.MailComponent
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.Runs
@@ -34,7 +34,7 @@ class EditPasswordUseCaseTest(
         )
 
         When("비밀번호를 초기화 하면 ") {
-            every { customerReadService.getCustomerByEmail(any()) } returns CustomerResponseS.of(customer)
+            every { customerReadService.getCustomerByEmail(any()) } returns CustomerResponseVo.of(customer)
             every { bCryptPasswordEncoder.encode(any()) } returns "encodedPassword"
             every { customerWriteService.editPassword(any(), any()) } just Runs
             every { mailComponent.sendPasswordMessage(any(), any()) } just Runs
@@ -49,9 +49,9 @@ class EditPasswordUseCaseTest(
         }
 
         When("비밀번호를 변경 하면 ") {
-            val passwordRequestS = EditPasswordRequestS("originalPassword", "newPassword")
+            val passwordRequestS = EditPasswordRequestVo("originalPassword", "newPassword")
 
-            every { customerReadService.getCustomerById(any()) } returns CustomerResponseS.of(customer)
+            every { customerReadService.getCustomerById(any()) } returns CustomerResponseVo.of(customer)
             every {
                 bCryptPasswordEncoder.encode(passwordRequestS.originalPassword + customer.salt)
             } returns "matchedPassword"
