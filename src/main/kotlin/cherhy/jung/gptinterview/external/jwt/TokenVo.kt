@@ -7,7 +7,7 @@ data class AccessTokenResponse(
     val accessTokenExpireTime: Date,
 ) {
     companion object {
-        fun of(tokenResponseS: TokenResponseS) =
+        fun of(tokenResponseS: TokenResponseVo) =
             AccessTokenResponse(
                 accessToken = tokenResponseS.token,
                 accessTokenExpireTime = tokenResponseS.tokenExpireTime,
@@ -24,7 +24,7 @@ data class TokenResponse(
     val customerToken: String,
 )
 
-data class TokenResponseS(
+data class TokenResponseVo(
     val token: String,
     val tokenExpireTime: Date,
 )
