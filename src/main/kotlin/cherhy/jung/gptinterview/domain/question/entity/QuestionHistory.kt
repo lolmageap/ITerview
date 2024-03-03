@@ -7,8 +7,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Lob
 
 @Entity
-class QuestionHistory(
-
+class QuestionHistory private constructor(
     val questionId: Long,
 
     val customerId: Long,
@@ -20,11 +19,18 @@ class QuestionHistory(
     @Lob
     @Column(columnDefinition = "TEXT")
     val answer: String = DEFAULT_ANSWER,
-
 ) : BaseEntity() {
     val token: String = Generator.generateToken()
 
     companion object {
+        fun of(
+            questionId: Long,
+            customerId: Long,
+            feedback: String,
+            answer: String = DEFAULT_ANSWER,
+        ): QuestionHistory =
+            QuestionHistory(questionId, customerId, feedback, answer)
+
         private const val DEFAULT_ANSWER = "정답을 가르쳐줘"
     }
 }
