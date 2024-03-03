@@ -9,8 +9,8 @@ import org.hibernate.validator.constraints.Length
 import java.util.*
 
 data class SignInRequest(
-    @field:NotBlank
     @field:Email
+    @field:NotBlank
     val email: String,
 
     @field:NotBlank
@@ -26,8 +26,8 @@ data class SignInRequest(
 }
 
 data class SignUpRequest(
-    @field:NotBlank
     @field:Email
+    @field:NotBlank
     val email: String,
 
     @field:NotBlank
@@ -38,7 +38,7 @@ data class SignUpRequest(
     val confirmPassword: String,
 ) {
     init {
-        require(password == confirmPassword) { "동일한 비밀번호를 입력해주세요." }
+        require(password == confirmPassword) { "동일한 비밀번호 를 입력해주세요." }
     }
 
     fun toCustomerRequest(): CustomerRequestVo {
@@ -60,7 +60,7 @@ data class EditPasswordRequest(
     val editPassword: String,
 ) {
     init {
-        require(originalPassword != editPassword) { "현재 비밀번호와 변경하려는 비밀번호가 일치합니다." }
+        require(originalPassword != editPassword) { "현재 비밀번호 와 변경 하려는 비밀번호 가 일치 합니다." }
     }
 
     fun toEditPasswordRequestVo() =
@@ -71,14 +71,14 @@ data class EditPasswordRequest(
 }
 
 data class EmailRequest(
-    @field:NotBlank
     @field:Email
+    @field:NotBlank
     val email: String,
 )
 
 data class CertificateRequest(
-    @field:NotBlank
     @field:Email
+    @field:NotBlank
     val email: String,
 
     val certificate: String,
