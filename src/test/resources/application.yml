@@ -2,6 +2,11 @@ spring:
   application:
     name: iterview
 
+  cache: redis
+
+  profiles:
+    active: test
+
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
@@ -22,24 +27,24 @@ spring:
 
   sql:
     init:
-      mode: never
+      mode: always
       data-locations:
-        - classpath:sql/*.sql
-        - classpath:sql/framework/*.sql
-        - classpath:sql/programing/*.sql
+        - classpath:db/migration/*.sql
 
   data:
-    redis:
-      host: localhost
-      port: 16379
+    web:
+      pageable:
+        one-indexed-parameters: true
 
-  cache: redis
+    redis:
+      host: ENC(LmIQsFDxcnNbWq/XT1wQGmRrXtzd3Vdb)
+      port: ENC(eU5AyHoF3fnWXmXnhDY14g==)
 
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: your-email
-    password: your-password
+    host: ENC(ZV/jGkr3hQz9Fj5P0hU2U/Yartt3y3DZ)
+    port: ENC(eDwjL4LQcGzUxaW9OD6jFQ==)
+    username: ENC(bvJLgcsqkNo54z87rZak0oGBOS8oZqNK)
+    password: ENC(22jzfyQCJwBaWkRQVElDT387QsYCUNRe)
     properties:
       mail:
         smtp:
@@ -47,20 +52,18 @@ spring:
             enable: true
           auth: true
 
-logging:
-  level:
-    org.springframework.jdbc.datasource.init.ScriptUtils: DEBUG
-
-server:
-  port: 8901
-
-api-key: your-open-ai-api-key
+gpt:
+  api-key: ENC(9zB0P7lTUKrSgt0XFrLjqg==)
 
 jwt:
-  header: Authorization
-  secret: your-jwt-secret-key
-  token-validity-in-seconds: 10800
-  refresh-token-validity-in-seconds: 86400
+  algorithm: ENC(g7khyfDC+ocrWaNw6hXi1kH+enKJ6Vth)
+  secret: ENC(Saqie+K61b4yf2dlqrGeiA==)
+  token-validity-in-seconds: ENC(6MZFapEikl9+TMIHEpAOOA==)
+  refresh-token-validity-in-seconds: ENC(hPTMN4Z/7AXvyPH68wHTEQ==)
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
 
 flyway:
   enabled: false
