@@ -8,16 +8,16 @@ internal class GptInterviewApplicationTests : StringSpec({
     val listOfMap = listOf(
         mapOf("DATABASE_URL" to "jdbc:mysql://localhost:3501/iterview"),
         mapOf("DATABASE_USERNAME" to "root"),
-        mapOf("DATABASE_PASSWORD" to "wjd0322189!"),
+        mapOf("DATABASE_PASSWORD" to "your-password"),
         mapOf("REDIS_HOST" to "localhost"),
         mapOf("REDIS_PORT" to "6379"),
         mapOf("MAIL_HOST" to "smtp.gmail.com"),
         mapOf("MAIL_PORT" to "587"),
-        mapOf("MAIL_USERNAME" to "ekxk1234@naver.com"),
-        mapOf("MAIL_PASSWORD" to "password"),
-        mapOf("GPT_API_KEY" to "api-key"),
-        mapOf("JWT_SECRET" to "secret"),
-        mapOf("JWT_ALGORITHM" to "HmacSHA256"),
+        mapOf("MAIL_USERNAME" to "your-email"),
+        mapOf("MAIL_PASSWORD" to "your-password"),
+        mapOf("GPT_API_KEY" to "your-api-key"),
+        mapOf("JWT_SECRET" to "your-secret"),
+        mapOf("JWT_ALGORITHM" to "your-algorithm"),
     )
 
     "encrypt and decrypt text with jasypt" {
