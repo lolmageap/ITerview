@@ -39,3 +39,8 @@ data class CustomerResponseVo(
         }
     }
 }
+
+data class EditPasswordRequestVo(
+    val originalPassword: String,
+    val editPassword: String,
+)
