@@ -14,7 +14,7 @@ import io.kotest.matchers.shouldBe
 
 internal class PositionResponseTest : BehaviorSpec({
 
-    Given("Position 클래스를 상속받은 클래스를 생성한 뒤 ") {
+    Given("Position class 를 상속 받은 클래스 를 생성한 뒤 ") {
         val developers= listOf(
             FrontendDeveloper(
                 questionTypes = listOf(PROGRAMING),
@@ -32,10 +32,10 @@ internal class PositionResponseTest : BehaviorSpec({
                 frameworkTypes = emptyList(),
             ),
         )
-        When("PositionResponse 객체로 변환하고 ") {
+        When("PositionResponse 객체로 변환 하고 ") {
             val positionResponse = PositionResponse.of(developers)
 
-            Then("중복을 제거한 필드 값으로 최종 값을 반환한다.") {
+            Then("중복을 제거한 필드 값으로 최종 값을 반환 한다.") {
                 positionResponse.questionTypes.size shouldBe 1
                 positionResponse.questionTypes shouldContain PROGRAMING
 

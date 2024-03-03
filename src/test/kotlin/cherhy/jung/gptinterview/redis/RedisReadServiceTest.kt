@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package cherhy.jung.gptinterview.redis
 
 import cherhy.jung.gptinterview.exception.NotFoundException
@@ -34,7 +36,7 @@ class RedisReadServiceTest(
         redisContainer.stop()
     }
 
-    Given("회원이 클라이언트에 저장되어있는 refresh token 으로 요청을 보내면 ") {
+    Given("회원이 client 에 저장 되있는 refresh token 으로 요청을 보내면 ") {
         val email = "ekxk1234@naver.com"
         val refreshToken = "refreshToken"
         redisTemplate.opsForValue().set(RedisKey.REFRESH_TOKEN + refreshToken, email)
@@ -42,14 +44,14 @@ class RedisReadServiceTest(
         When("refresh 토큰을 조회한 뒤 ") {
             val findEmail = redisReadService.getEmailByRefreshToken(refreshToken)
 
-            Then("검증한다.") {
+            Then("검증 한다.") {
                 findEmail shouldNotBe null
                 findEmail shouldBe email
             }
         }
     }
 
-    Given("회원이 조회했었던 문제들을 ") {
+    Given("회원이 조회 했었던 문제들 을 ") {
         val customerId: Long = 1
         val questionTokens = listOf(
             "questionToken1",
@@ -62,19 +64,19 @@ class RedisReadServiceTest(
             redisTemplate.opsForList().rightPush(RedisKey.QUESTION_TOKEN + customerId, it)
         }
 
-        When("회원의 아이디만으로 ") {
+        When("회원의 아이디 만으로 ") {
             val findQuestionTokens = redisReadService.getQuestionTokens(customerId)
 
-            Then("전부 출력한다.") {
+            Then("전부 출력 한다.") {
                 findQuestionTokens.size shouldBe 4
                 findQuestionTokens shouldContainAll questionTokens
             }
         }
 
-        When("회원의 아이디와 범위로 ") {
+        When("회원의 아이디 와 범위로 ") {
             val findQuestionTokens = redisReadService.getQuestionTokens(customerId, 0, 2)
 
-            Then("출력한다.") {
+            Then("출력 한다.") {
                 findQuestionTokens.size shouldBe 3
                 findQuestionTokens shouldContain "questionToken1"
                 findQuestionTokens shouldContain "questionToken2"
@@ -83,21 +85,21 @@ class RedisReadServiceTest(
         }
     }
 
-    Given("이메일과 인증번호를 저장하고 ") {
+    Given("이메일 과 인증 번호를 저장 하고 ") {
         val email = "ekxk1234@naver.com"
         val certificateNumber = "123456"
         redisTemplate.opsForValue().set(CERTIFICATE + email, certificateNumber)
 
-        When("인증번호와 이메일을 정상 입력하면 ") {
-            Then("성공한다.") {
+        When("인증 번호와 이메일 을 정상 입력 하면 ") {
+            Then("성공 한다.") {
                 redisReadService.checkCertificate(email, certificateNumber)
             }
         }
 
-        When("인증번호가 잘못 입력되면 ") {
+        When("인증번호 가 잘못 입력 되면 ") {
             val notFoundNumber = "000000"
 
-            Then("exception 이 발생한다.") {
+            Then("exception 이 발생 한다.") {
                 shouldThrow<NotFoundException> {
                     redisReadService.checkCertificate(email, notFoundNumber)
                 }

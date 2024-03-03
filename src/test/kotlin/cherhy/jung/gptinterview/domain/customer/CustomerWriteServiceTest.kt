@@ -7,6 +7,8 @@ import io.kotest.core.test.isRootTest
 import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.findByIdOrNull
@@ -17,7 +19,7 @@ class CustomerWriteServiceTest(
     @Autowired private val customerRepository: CustomerRepository,
 ) : BehaviorSpec({
 
-    Given("회원이 존재하고 ") {
+    Given("회원이 존재 하고 ") {
         val customer = customerRepository.save(
             Customer(
                 name = "정철희",
@@ -28,9 +30,9 @@ class CustomerWriteServiceTest(
         )
         val newPassword = "newPassword"
 
-        When("비밀번호를 수정하면 ") {
+        When("비밀 번호를 수정 하면 ") {
             customerWriteService.editPassword(customer.id, newPassword)
-            then("비밀번호가 변경된다.") {
+            then("비밀 번호가 변경 된다.") {
                 val findCustomer = customerRepository.findByIdOrNull(customer.id)!!
                 findCustomer.password shouldNotBe customer.password
                 findCustomer.password shouldBe newPassword
@@ -42,7 +44,9 @@ class CustomerWriteServiceTest(
 }) {
     override suspend fun afterContainer(testCase: TestCase, result: TestResult) {
         if (testCase.isRootTest()) {
-            customerRepository.deleteAllInBatch()
+            withContext(Dispatchers.IO) {
+                customerRepository.deleteAllInBatch()
+            }
         }
     }
 }
