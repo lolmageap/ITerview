@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
 
-
 @RestControllerAdvice
 class ControllerAdvisor {
-
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun methodArgumentNotValidException(e: MethodArgumentNotValidException): Map<String, String?> {
@@ -62,5 +60,4 @@ class ControllerAdvisor {
     fun globalRuntimeException(e: GlobalRuntimeException): ClientResponse<Any> {
         return ClientResponse.fail(e.message)
     }
-
 }

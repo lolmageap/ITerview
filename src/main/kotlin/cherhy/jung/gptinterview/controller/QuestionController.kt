@@ -25,7 +25,6 @@ class QuestionController(
     private val redisReadService: RedisReadService,
     private val redisWriteService: RedisWriteService,
 ) {
-
     @GetMapping
     @Operation(summary = "질문 받기", description = "요청에 맞게 질문을 반환한다.")
     fun getRandomQuestion(
@@ -57,5 +56,4 @@ class QuestionController(
         return questionReadService.getQuestionHistories(alreadyQuestions)
             .map(QuestionResponse::of)
     }
-
 }

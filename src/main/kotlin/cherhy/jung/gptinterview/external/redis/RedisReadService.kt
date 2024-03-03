@@ -39,5 +39,4 @@ class RedisReadService(
         if (certificateNumber != certificate) throw NotFoundException(CERTIFICATE_NUMBER)
         redisTemplate.delete(CERTIFICATE + email)
     }
-
 }

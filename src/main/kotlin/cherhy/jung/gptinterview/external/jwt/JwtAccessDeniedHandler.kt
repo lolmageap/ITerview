@@ -1,6 +1,5 @@
 package cherhy.jung.gptinterview.external.jwt
 
-
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.security.access.AccessDeniedException
@@ -16,6 +15,6 @@ class JwtAccessDeniedHandler : AccessDeniedHandler {
         response: HttpServletResponse?,
         accessDeniedException: AccessDeniedException?,
     ) {
-        response?.sendError(HttpServletResponse.SC_FORBIDDEN);
+        response?.sendError(HttpServletResponse.SC_FORBIDDEN)
     }
 }

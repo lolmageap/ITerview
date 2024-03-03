@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.domain.question.constant
 
-enum class QuestionType() {
+enum class QuestionType {
     DATABASE,
     NETWORK,
     DESIGN_PATTERN,

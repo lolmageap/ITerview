@@ -6,11 +6,9 @@ import jakarta.persistence.*
 
 @Entity
 class Framework(
-
     @Column(unique = true)
     val questionId: Long,
 
     @Enumerated(EnumType.STRING)
     val frameworkType: FrameworkType,
-
 ) : BaseEntity()

@@ -12,11 +12,9 @@ class SignUpUseCase(
     private val customerWriteService: CustomerWriteService,
     private val passwordEncoder: BCryptPasswordEncoder,
 ) {
-
     fun signUp(customerRequestS: CustomerRequestVo) {
         customerReadService.checkDuplicatedEmail(customerRequestS.email)
         val encodedPassword = passwordEncoder.encode(customerRequestS.password + customerRequestS.salt)
         customerWriteService.saveCustomer(customerRequestS.toCustomer(), encodedPassword)
     }
-
 }

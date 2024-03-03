@@ -1,6 +1,5 @@
 package cherhy.jung.gptinterview.exception
 
-
 data class ClientResponse<T>(
     val message: String? = null,
     val value: T? = null,

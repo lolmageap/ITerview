@@ -11,9 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender
 class MailConfig(
     private val mailProperty: MailProperty,
 ) {
-
     @Bean
     fun javaMailService(): JavaMailSender =
         mailProperty.toJavaMailSender()
-
 }

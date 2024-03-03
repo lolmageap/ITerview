@@ -7,7 +7,6 @@ import org.springframework.data.redis.core.RedisTemplate
 
 @Configuration
 class RedisConfig {
-
     @Bean
     fun redisConnectionFactory(): LettuceConnectionFactory {
         return LettuceConnectionFactory()

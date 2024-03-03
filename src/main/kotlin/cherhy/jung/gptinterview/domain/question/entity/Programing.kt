@@ -6,11 +6,9 @@ import jakarta.persistence.*
 
 @Entity
 class Programing(
-
     @Column(unique = true)
     val questionId: Long,
 
     @Enumerated(EnumType.STRING)
     val programingType: ProgramingType,
-
 ) : BaseEntity()

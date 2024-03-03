@@ -5,7 +5,6 @@ import java.util.*
 import kotlin.random.Random
 
 object Generator {
-
     fun generateToken(): String {
         val now = LocalDate.now().toString().replace("-", "")
         val uuid = UUID.randomUUID().toString().replace("-", "").substring(0, 12)
@@ -66,5 +65,4 @@ object Generator {
                 )
             }
         }
-
 }

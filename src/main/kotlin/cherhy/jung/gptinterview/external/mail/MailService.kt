@@ -12,11 +12,10 @@ import java.io.StringWriter
 
 @Component
 @EnableConfigurationProperties(MailProperty::class)
-class MailComponent(
+class MailService(
     private val javaMailSender: JavaMailSender,
     private val mailProperty: MailProperty,
 ) {
-
     fun sendMessage(email: String, certificate: String) {
         val writer = StringWriter()
         val msg = writer.appendHTML().html {
@@ -125,5 +124,4 @@ class MailComponent(
             }
         javaMailSender.send(message)
     }
-
 }

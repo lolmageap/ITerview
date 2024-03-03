@@ -4,7 +4,6 @@ import cherhy.jung.gptinterview.domain.BaseDeleteEntity
 import cherhy.jung.gptinterview.util.Generator
 import jakarta.persistence.*
 
-
 @Entity
 class Customer(
     var name: String,
@@ -16,7 +15,6 @@ class Customer(
     val salt: String,
 
 ) : BaseDeleteEntity() {
-
     @Column(unique = true)
     val token: String = Generator.generateToken()
 
@@ -25,7 +23,6 @@ class Customer(
     var customerAuthorities: List<CustomerAuthority> = mutableListOf(
         CustomerAuthority(CustomerRole.MEMBER)
     )
-
 }
 
 @Entity

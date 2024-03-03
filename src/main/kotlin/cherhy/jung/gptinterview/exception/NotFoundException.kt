@@ -1,5 +1,7 @@
 package cherhy.jung.gptinterview.exception
 
-class NotFoundException(private val state: DomainName) : GlobalRuntimeException(
+class NotFoundException(
+    private val state: DomainName,
+) : GlobalRuntimeException(
     message = state.value + "이(가) 존재하지 않습니다."
 )

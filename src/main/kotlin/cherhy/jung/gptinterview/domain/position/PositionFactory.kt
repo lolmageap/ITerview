@@ -1,7 +1,6 @@
 package cherhy.jung.gptinterview.domain.position
 
 object PositionFactory {
-
     fun generatePosition(positionType: PositionType): Position =
         when (positionType) {
             PositionType.GAME -> GameDeveloper()
@@ -16,5 +15,4 @@ object PositionFactory {
             PositionType.BLOCKCHAIN -> BlockchainDeveloper()
             PositionType.DBA -> DatabaseAdministrator()
         }
-
 }

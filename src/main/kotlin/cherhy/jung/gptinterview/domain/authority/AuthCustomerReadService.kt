@@ -11,11 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService
 class AuthCustomerReadService(
     private val customerRepository: CustomerRepository,
 ) : UserDetailsService {
-
     override fun loadUserByUsername(username: String): UserDetails {
         return customerRepository.findWithAuthorityByEmail(username)
             ?.let { AuthCustomer(it) }
             ?: throw NotFoundException(DomainName.CUSTOMER)
     }
-
 }

@@ -23,5 +23,4 @@ class CustomerWriteService(
 
         customerRepository.save(customer)
     }
-
 }

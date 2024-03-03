@@ -12,11 +12,9 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.filter.GenericFilterBean
 import java.io.IOException
 
-
 class JwtFilter(
     private val tokenProvider: TokenProvider,
 ) : GenericFilterBean() {
-
     @Throws(IOException::class, ServletException::class)
     override fun doFilter(
         servletRequest: ServletRequest,
@@ -49,5 +47,4 @@ class JwtFilter(
         }
         return null
     }
-
 }

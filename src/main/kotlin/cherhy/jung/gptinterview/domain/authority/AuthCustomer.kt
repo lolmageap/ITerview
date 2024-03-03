@@ -5,11 +5,9 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-
 class AuthCustomer(
     private val customer: Customer,
 ) : UserDetails {
-
     val customerId = customer.id
     val token = customer.token
 

@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.domain.position
 
-enum class PositionType() {
+enum class PositionType {
     GAME,
     DATA_ANALYSIS,
     DATA_ENGINEER,

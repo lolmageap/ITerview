@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class SwaggerConfig {
-
     @Bean
     fun openAPI(): OpenAPI {
         val info = Info()
@@ -33,5 +32,4 @@ class SwaggerConfig {
                 mutableListOf(securityRequirement)
             )
     }
-
 }

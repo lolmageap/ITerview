@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*
 class GptController(
     private val gptAnswerUseCase: GptAnswerUseCase,
 ) {
-
     @PostMapping("/answers")
     @ResponseStatus(CREATED)
     @Operation(summary = "답변 하기", description = "질문을 풀고 답안을 제출한 뒤 점수 및 피드백을 받는다.")
@@ -35,5 +34,4 @@ class GptController(
     ): GptResponse =
         gptAnswerUseCase.requestOnlyAnswerKeyToGpt(authCustomer.customerId, token)
             .let(GptResponse::of)
-
 }

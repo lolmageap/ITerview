@@ -3,7 +3,6 @@ package cherhy.jung.gptinterview.util
 import cherhy.jung.gptinterview.exception.GptNotGeneratedException
 
 object Validator {
-
     fun validateJsonFormat(feedback: String): String {
         val json = feedback.trim()
 
@@ -22,5 +21,4 @@ object Validator {
             json.plus("\"}")
         }
     }
-        
 }
