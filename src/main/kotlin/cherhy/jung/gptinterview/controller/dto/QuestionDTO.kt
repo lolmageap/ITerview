@@ -4,8 +4,8 @@ import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
-import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestS
-import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseS
+import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestVo
+import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseVo
 
 data class QuestionRequest(
     val questionTypes: List<QuestionType> = emptyList(),
@@ -14,8 +14,8 @@ data class QuestionRequest(
     val levels: List<QuestionLevel> = emptyList(),
 )
 
-fun QuestionRequest.toQuestionRequestS(): QuestionRequestS =
-    QuestionRequestS(
+fun QuestionRequest.toQuestionRequestS(): QuestionRequestVo =
+    QuestionRequestVo(
         questionTypes = questionTypes
             .filterNot {
                 it == QuestionType.PROGRAMING
@@ -36,7 +36,7 @@ data class QuestionResponse(
 ) {
 
     companion object {
-        fun of(questionResponseS: QuestionResponseS): QuestionResponse {
+        fun of(questionResponseS: QuestionResponseVo): QuestionResponse {
             return QuestionResponse(
                 token = questionResponseS.token,
                 title = questionResponseS.title,

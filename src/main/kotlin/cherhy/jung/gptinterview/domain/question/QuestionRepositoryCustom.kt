@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.domain.question
 
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
-import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestS
+import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestVo
 import cherhy.jung.gptinterview.domain.question.entity.QFramework.framework
 import cherhy.jung.gptinterview.domain.question.entity.QPrograming.programing
 import cherhy.jung.gptinterview.domain.question.entity.QQuestion.question
@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 interface QuestionRepositoryCustom {
     fun findByQuestionRequestS(
-        questionRequestS: QuestionRequestS,
+        questionRequestS: QuestionRequestVo,
         questionTokens: List<String>,
     ): List<Question>
 
@@ -23,9 +23,8 @@ interface QuestionRepositoryCustom {
 }
 
 class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositorySupport(Question::class.java) {
-
     override fun findByQuestionRequestS(
-        questionRequestS: QuestionRequestS,
+        questionRequestS: QuestionRequestVo,
         alreadyQuestion: List<String>,
     ): List<Question> {
         val query = from(question)
@@ -57,19 +56,19 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
             }
             .reversed()
 
-    private fun checkLevel(questionRequestS: QuestionRequestS): BooleanExpression? {
+    private fun checkLevel(questionRequestS: QuestionRequestVo): BooleanExpression? {
         return if (questionRequestS.levels.isNotEmpty()) {
             question.level.`in`(questionRequestS.levels)
         } else null
     }
 
-    private fun checkQuestionType(questionRequestS: QuestionRequestS): BooleanExpression? {
+    private fun checkQuestionType(questionRequestS: QuestionRequestVo): BooleanExpression? {
         return if (questionRequestS.questionTypes.isNotEmpty()) {
             question.questionType.`in`(questionRequestS.questionTypes)
         } else null
     }
 
-    private fun checkPrograming(questionRequestS: QuestionRequestS): BooleanExpression? {
+    private fun checkPrograming(questionRequestS: QuestionRequestVo): BooleanExpression? {
         return if (questionRequestS.programingTypes.isNotEmpty()) {
             from(programing)
                 .join(question)
@@ -83,7 +82,7 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
         } else null
     }
 
-    private fun checkFramework(questionRequestS: QuestionRequestS): BooleanExpression? {
+    private fun checkFramework(questionRequestS: QuestionRequestVo): BooleanExpression? {
         return if (questionRequestS.frameworkTypes.isNotEmpty()) {
             from(framework)
                 .join(question)

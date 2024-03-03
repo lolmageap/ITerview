@@ -1,8 +1,8 @@
 package cherhy.jung.gptinterview.domain.question
 
 import cherhy.jung.gptinterview.annotation.ReadService
-import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestS
-import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseS
+import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestVo
+import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseVo
 import cherhy.jung.gptinterview.exception.DomainName.QUESTION
 import cherhy.jung.gptinterview.exception.NotFoundException
 
@@ -10,23 +10,22 @@ import cherhy.jung.gptinterview.exception.NotFoundException
 class QuestionReadService(
     private val questionRepository: QuestionRepository,
 ) {
-
-    fun getQuestionByToken(token: String): QuestionResponseS =
+    fun getQuestionByToken(token: String): QuestionResponseVo =
         questionRepository.findByToken(token)
-            ?.let(QuestionResponseS::of)
+            ?.let(QuestionResponseVo::of)
             ?: throw NotFoundException(QUESTION)
 
     fun getQuestion(
-        questionRequestS: QuestionRequestS,
+        questionRequestS: QuestionRequestVo,
         alreadyQuestions: List<String> = emptyList(),
-    ): QuestionResponseS =
+    ): QuestionResponseVo =
         questionRepository.findByQuestionRequestS(questionRequestS, alreadyQuestions)
             .firstNotNullOfOrNull {
-                it.let(QuestionResponseS::of)
+                it.let(QuestionResponseVo::of)
             }
             ?: throw NotFoundException(QUESTION)
 
-    fun getQuestionHistories(alreadyQuestions: List<String>): List<QuestionResponseS> =
+    fun getQuestionHistories(alreadyQuestions: List<String>): List<QuestionResponseVo> =
         questionRepository.findByTokensIn(alreadyQuestions)
-            .map(QuestionResponseS::of)
+            .map(QuestionResponseVo::of)
 }

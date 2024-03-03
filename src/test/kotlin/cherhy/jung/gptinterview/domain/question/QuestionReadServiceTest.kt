@@ -7,7 +7,7 @@ import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel.LEVEL1
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel.LEVEL2
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType.DESIGN_PATTERN
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType.PROGRAMING
-import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestS
+import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestVo
 import cherhy.jung.gptinterview.domain.question.entity.Programing
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.exception.NotFoundException
@@ -19,6 +19,8 @@ import io.kotest.core.test.isRootTest
 import io.kotest.matchers.collections.shouldBeOneOf
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -107,7 +109,7 @@ internal class QuestionReadServiceTest(
         )
 
         When("사용자가 질문의 타입을 선택하지 않은 뒤 요청하면 ") {
-            val questionRequest = QuestionRequestS()
+            val questionRequest = QuestionRequestVo()
             val question = questionReadService.getQuestion(questionRequest)
 
             then("전체에서 질문을 랜덤으로 한개 출력한다.") {
@@ -118,7 +120,7 @@ internal class QuestionReadServiceTest(
         }
 
         When("사용자가 DESIGN_PATTERN 과 JAVA 를 선택한 뒤 요청하면") {
-            val questionRequest = QuestionRequestS(listOf(DESIGN_PATTERN), listOf(JAVA))
+            val questionRequest = QuestionRequestVo(listOf(DESIGN_PATTERN), listOf(JAVA))
             val question = questionReadService.getQuestion(questionRequest)
 
             then("DESIGN_PATTERN 과 JAVA 에서 질문을 랜덤으로 한개 출력한다.") {
@@ -128,7 +130,7 @@ internal class QuestionReadServiceTest(
         }
 
         When("사용자가 DESIGN_PATTERN 을 선택한뒤 요청하면 ") {
-            val questionRequest = QuestionRequestS(questionTypes = listOf(DESIGN_PATTERN))
+            val questionRequest = QuestionRequestVo(questionTypes = listOf(DESIGN_PATTERN))
             val question = questionReadService.getQuestion(questionRequest)
 
             then("질문의 타입이 DESIGN_PATTERN 인 질문을 출력한다.") {
@@ -139,7 +141,7 @@ internal class QuestionReadServiceTest(
         }
 
         When("사용자가 JAVA 를 선택한뒤 요청하면 ") {
-            val questionRequest = QuestionRequestS(programingTypes = listOf(JAVA))
+            val questionRequest = QuestionRequestVo(programingTypes = listOf(JAVA))
             val question = questionReadService.getQuestion(questionRequest)
 
             then("질문의 타입이 JAVA 인 질문을 출력한다.") {
@@ -150,7 +152,7 @@ internal class QuestionReadServiceTest(
         }
 
         When("사용자가 이전에 봤던 질문만 존재한다면 ") {
-            val questionRequest = QuestionRequestS()
+            val questionRequest = QuestionRequestVo()
             val alreadyQuestions = listOf(question1.token, question2.token, question3.token)
 
             then("더 이상 출력될 질문이 없기에 NotFoundException 이 발생한다.") {
@@ -171,9 +173,15 @@ internal class QuestionReadServiceTest(
 }) {
     override suspend fun afterContainer(testCase: TestCase, result: TestResult) {
         if (testCase.isRootTest()) {
-            questionRepository.deleteAllInBatch()
-            customerRepository.deleteAllInBatch()
-            programingRepository.deleteAllInBatch()
+            withContext(Dispatchers.IO) {
+                questionRepository.deleteAllInBatch()
+            }
+            withContext(Dispatchers.IO) {
+                customerRepository.deleteAllInBatch()
+            }
+            withContext(Dispatchers.IO) {
+                programingRepository.deleteAllInBatch()
+            }
         }
     }
 }
