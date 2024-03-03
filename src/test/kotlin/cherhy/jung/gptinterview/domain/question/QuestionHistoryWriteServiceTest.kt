@@ -11,6 +11,8 @@ import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
 import io.kotest.core.test.isRootTest
 import io.kotest.matchers.shouldNotBe
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -42,7 +44,7 @@ internal class QuestionHistoryWriteServiceTest(
 
         val answer = "어플리케이션 실행 시점부터 객체가 단 한개만 생성되고 값이 전역적으로 공유되는 패턴입니다."
         val feedback = "{ score: 100점, feedback: 완벽한 정답입니다.}"
-        val questionHistory = QuestionHistory(
+        val questionHistory = QuestionHistory.of(
             questionId = question.id,
             customerId = customer.id,
             answer = answer,
@@ -62,9 +64,15 @@ internal class QuestionHistoryWriteServiceTest(
 }) {
     override suspend fun afterContainer(testCase: TestCase, result: TestResult) {
         if (testCase.isRootTest()) {
-            customerRepository.deleteAllInBatch()
-            questionRepository.deleteAllInBatch()
-            questionHistoryRepository.deleteAllInBatch()
+            withContext(Dispatchers.IO) {
+                customerRepository.deleteAllInBatch()
+            }
+            withContext(Dispatchers.IO) {
+                questionRepository.deleteAllInBatch()
+            }
+            withContext(Dispatchers.IO) {
+                questionHistoryRepository.deleteAllInBatch()
+            }
         }
     }
 }
