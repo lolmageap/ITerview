@@ -11,8 +11,8 @@ import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.domain.question.QuestionRepository
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
-import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryResponseS
-import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseS
+import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryResponseVo
+import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseVo
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
 import cherhy.jung.gptinterview.util.Generator
@@ -37,7 +37,7 @@ internal class GptAnswerUseCaseTest(
     @MockkBean private val questionHistoryWriteService: QuestionHistoryWriteService,
 ) : BehaviorSpec({
 
-    Given("회원이 질문과 답변을 요청하면 ") {
+    Given("회원이 질문과 답변을 요청 하면 ") {
         val customer = customerRepository.save(
             Customer(
                 name = "정철희",
@@ -49,25 +49,25 @@ internal class GptAnswerUseCaseTest(
 
         val question = questionRepository.save(
             Question(
-                title = "SingleTon Pattern이 무엇인가요?",
+                title = "SingleTon Pattern 이 무엇 인가요?",
                 questionType = QuestionType.DESIGN_PATTERN,
                 level = QuestionLevel.LEVEL1,
             )
         )
 
-        val answer = "어플리케이션 실행 시점부터 객체가 단 한개만 생성되고 값이 전역적으로 공유되는 패턴입니다."
-        val feedback = "score : 10, feedback : 완벽한 정답이기에 피드백 할 것이 없습니다."
+        val answer = "application 실행 시점 부터 객체가 단 한개만 생성 되고 값이 전역적 으로 공유 되는 패턴 입니다."
+        val feedback = "score : 10, feedback : 완벽한 정답 이기에 피드백 할 것이 없습니다."
         val gptRequest = GptRequest(questionToken = question.token, answer = answer)
 
-        val questionHistory = QuestionHistory(question.id, customer.id, answer, feedback)
-        val historyResponse = QuestionHistoryResponseS.of(questionHistory)
+        val questionHistory = QuestionHistory.of(question.id, customer.id, answer, feedback)
+        val historyResponse = QuestionHistoryResponseVo.of(questionHistory)
 
-        When("GPT가 채점과 피드백을 하고 ") {
+        When("GPT 가 채점과 피드백을 하고 ") {
 
             every { customerReadService.getCustomerById(customer.id) } returns CustomerResponseVo.of(customer)
-            every { questionReadService.getQuestionByToken(question.token) } returns QuestionResponseS.of(question)
+            every { questionReadService.getQuestionByToken(question.token) } returns QuestionResponseVo.of(question)
             every {
-                gptClient.generateText(
+                gptClient.requestAndReceiveFeedback(
                     Generator.generateQuestionToGpt(question.title, answer)
                 )
             } returns feedback
@@ -75,7 +75,7 @@ internal class GptAnswerUseCaseTest(
 
             val feedBack = gptAnswerUseCase.requestAnswerToGpt(customerId = customer.id, gptRequest = gptRequest)
 
-            Then("점수와 피드백이 정상적으로 출력되는지 검증한다.") {
+            Then("점수와 피드백 이 정상적 으로 출력 되는지 검증 한다.") {
                 feedBack.body shouldContain "score"
                 feedBack.body shouldContain "feedback"
                 verify { customerReadService.getCustomerById(customer.id) }

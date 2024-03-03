@@ -20,7 +20,7 @@ import org.springframework.web.client.RestTemplate
 class GptClient(
     private val gptProperty: GptProperty,
 ) {
-    fun generateText(prompt: String): String {
+    fun requestAndReceiveFeedback(prompt: String): String {
         val headers = HttpHeaders().apply {
             contentType = MediaType.APPLICATION_JSON
             set("Authorization", "Bearer ${gptProperty.apiKey}")
