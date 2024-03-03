@@ -1,9 +1,9 @@
 package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.annotation.UseCase
-import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.dto.CustomerRequestVo
+import cherhy.jung.gptinterview.extension.getUserDetails
 import cherhy.jung.gptinterview.external.jwt.TokenProvider
 import cherhy.jung.gptinterview.external.jwt.TokenResponse
 import cherhy.jung.gptinterview.external.redis.RedisWriteService
@@ -39,12 +39,4 @@ class SignInUseCase(
             customerToken = authCustomer.token,
         )
     }
-
-}
-
-private fun AuthenticationManagerBuilder.getUserDetails(
-    authenticationToken: UsernamePasswordAuthenticationToken,
-): AuthCustomer {
-    val authenticate = this.`object`.authenticate(authenticationToken)
-    return authenticate.principal as AuthCustomer
 }
