@@ -67,8 +67,8 @@ gpt:
   api-key: ENC(9zB0P7lTUKrSgt0XFrLjqg==)
 
 jwt:
-  header: Authorization
   secret: ENC(Saqie+K61b4yf2dlqrGeiA==)
+  algorithm: ENC(g7khyfDC+ocrWaNw6hXi1kH+enKJ6Vth)
   token-validity-in-seconds: ENC(6MZFapEikl9+TMIHEpAOOA==)
   refresh-token-validity-in-seconds: ENC(hPTMN4Z/7AXvyPH68wHTEQ==)
 

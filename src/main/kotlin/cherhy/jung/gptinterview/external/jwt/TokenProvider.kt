@@ -13,6 +13,7 @@ import com.nimbusds.jose.crypto.MACSigner
 import com.nimbusds.jose.crypto.MACVerifier
 import com.nimbusds.jwt.JWTClaimsSet
 import com.nimbusds.jwt.SignedJWT
+import com.nimbusds.jwt.proc.BadJWTException
 import mu.KotlinLogging
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties
@@ -33,15 +34,14 @@ class TokenProvider(
     private val customerRepository: CustomerRepository,
     private val jwtProperty: JwtProperty,
 ) : InitializingBean {
-
     private val log = KotlinLogging.logger {}
     private lateinit var key: SecretKey
 
     override fun afterPropertiesSet() {
-        this.key = SecretKeySpec(jwtProperty.secret.toByteArray(), "HmacSHA256")
+        this.key = SecretKeySpec(jwtProperty.secret.toByteArray(), jwtProperty.algorithm)
     }
 
-    fun createAccessToken(authCustomer: AuthCustomer): TokenResponseS {
+    fun createAccessToken(authCustomer: AuthCustomer): TokenResponseVo {
         val now = Date().time
         val validity = Date(now + jwtProperty.tokenValidityInSeconds.toLong())
 
@@ -56,7 +56,7 @@ class TokenProvider(
             serialize()
         }
 
-        return TokenResponseS(accessToken, validity)
+        return TokenResponseVo(accessToken, validity)
     }
 
     fun getAuthentication(token: String): Authentication? {
@@ -76,7 +76,7 @@ class TokenProvider(
             return UsernamePasswordAuthenticationToken(authCustomer, token, authorities)
         }
 
-        throw IllegalArgumentException("Invalid JWT token")
+        throw BadJWTException("Invalid JWT token")
     }
 
     fun validateToken(token: String): Boolean {
@@ -98,7 +98,7 @@ class TokenProvider(
         }
     }
 
-    fun createRefreshToken(authCustomer: AuthCustomer): TokenResponseS {
+    fun createRefreshToken(authCustomer: AuthCustomer): TokenResponseVo {
         val now = Date().time
         val validity = Date(now + jwtProperty.refreshTokenValidityInSeconds.toLong())
 
@@ -113,11 +113,10 @@ class TokenProvider(
             serialize()
         }
 
-        return TokenResponseS(refreshToken, validity)
+        return TokenResponseVo(refreshToken, validity)
     }
 
     companion object {
         private const val AUTHORITIES_KEY = "auth"
     }
-
 }

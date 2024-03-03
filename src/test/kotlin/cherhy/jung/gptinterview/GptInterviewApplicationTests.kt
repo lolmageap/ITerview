@@ -17,6 +17,7 @@ internal class GptInterviewApplicationTests : StringSpec({
         mapOf("MAIL_PASSWORD" to "password"),
         mapOf("GPT_API_KEY" to "api-key"),
         mapOf("JWT_SECRET" to "secret"),
+        mapOf("JWT_ALGORITHM" to "HmacSHA256"),
     )
 
     "encrypt and decrypt text with jasypt" {
