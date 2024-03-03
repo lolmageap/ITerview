@@ -5,12 +5,14 @@ import org.flywaydb.core.Flyway
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Profile
 
 @Configuration
 @EnableConfigurationProperties(DatabaseProperty::class)
 class FlywayConfig(
     private val databaseProperty: DatabaseProperty,
 ) {
+    @Profile("!test")
     @Bean(initMethod = "migrate")
     fun flyway() =
         Flyway(
@@ -23,5 +25,4 @@ class FlywayConfig(
                 .baselineOnMigrate(true)
                 .locations("classpath:db/migration")
         )
-
 }
