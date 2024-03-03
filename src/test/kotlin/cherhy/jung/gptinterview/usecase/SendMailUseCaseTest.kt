@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
-import cherhy.jung.gptinterview.mail.MailComponent
+import cherhy.jung.gptinterview.external.mail.MailService
 import cherhy.jung.gptinterview.external.redis.RedisWriteService
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.BehaviorSpec
@@ -17,7 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest
 class SendMailUseCaseTest(
     @Autowired private val sendMailUseCase: SendMailUseCase,
     @MockkBean private val customerReadService: CustomerReadService,
-    @MockkBean private val mailComponent: MailComponent,
+    @MockkBean private val mailService: MailService,
     @MockkBean private val redisWriteService: RedisWriteService,
 ) : BehaviorSpec({
 
@@ -29,16 +29,16 @@ class SendMailUseCaseTest(
             salt = "random",
         )
 
-        When("이메일을 전송하고 ") {
+        When("이메일 을 전송 하고 ") {
             every { customerReadService.checkDuplicatedEmail(any()) } just Runs
-            every { mailComponent.sendMessage(any(), any()) } just Runs
+            every { mailService.sendMessage(any(), any()) } just Runs
             every { redisWriteService.addCertificate(any(), any()) } just Runs
 
             sendMailUseCase.sendCertificate(customer.email)
 
-            Then("모두 실행되었는지 확인한다.") {
+            Then("모두 실행 되었는 지 확인 한다.") {
                 verify { customerReadService.checkDuplicatedEmail(any()) }
-                verify { mailComponent.sendMessage(any(), any()) }
+                verify { mailService.sendMessage(any(), any()) }
                 verify { redisWriteService.addCertificate(any(), any()) }
             }
         }

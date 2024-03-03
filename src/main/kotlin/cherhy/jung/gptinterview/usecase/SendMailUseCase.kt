@@ -2,22 +2,20 @@ package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.annotation.UseCase
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
-import cherhy.jung.gptinterview.external.mail.MailComponent
+import cherhy.jung.gptinterview.external.mail.MailService
 import cherhy.jung.gptinterview.external.redis.RedisWriteService
 import cherhy.jung.gptinterview.util.Generator
 
 @UseCase
 class SendMailUseCase(
     private val customerReadService: CustomerReadService,
-    private val mailComponent: MailComponent,
+    private val mailService: MailService,
     private val redisWriteService: RedisWriteService,
 ) {
-
     fun sendCertificate(email: String) {
         customerReadService.checkDuplicatedEmail(email)
         val certificate = Generator.generateCertificate()
-        mailComponent.sendMessage(email, certificate)
+        mailService.sendMessage(email, certificate)
         redisWriteService.addCertificate(email, certificate)
     }
-
 }

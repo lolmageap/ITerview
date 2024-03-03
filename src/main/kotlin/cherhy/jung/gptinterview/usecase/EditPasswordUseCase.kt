@@ -5,9 +5,9 @@ import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseVo
 import cherhy.jung.gptinterview.domain.customer.CustomerWriteService
 import cherhy.jung.gptinterview.domain.customer.dto.EditPasswordRequestVo
-import cherhy.jung.gptinterview.external.mail.MailComponent
+import cherhy.jung.gptinterview.extension.matchOrThrow
+import cherhy.jung.gptinterview.external.mail.MailService
 import cherhy.jung.gptinterview.util.Generator
-import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 @UseCase
@@ -15,30 +15,19 @@ class EditPasswordUseCase(
     private val customerReadService: CustomerReadService,
     private val customerWriteService: CustomerWriteService,
     private val bCryptPasswordEncoder: BCryptPasswordEncoder,
-    private val mailComponent: MailComponent,
+    private val mailService: MailService,
 ) {
-
     fun resetAndSendPassword(email: String) {
         val customer = customerReadService.getCustomerByEmail(email)
         val newPassword = Generator.generateRandomPassword()
         changePassword(customer, newPassword)
-        mailComponent.sendPasswordMessage(email, newPassword)
+        mailService.sendPasswordMessage(email, newPassword)
     }
 
     fun editPassword(customerId: Long, editPasswordVo: EditPasswordRequestVo) {
         val customer = customerReadService.getCustomerById(customerId)
-        matchPassword(editPasswordVo.originalPassword, customer)
+        bCryptPasswordEncoder.matchOrThrow(editPasswordVo.originalPassword, customer.salt, customer.password)
         changePassword(customer, editPasswordVo.editPassword)
-    }
-
-    private fun matchPassword(
-        password: String,
-        customer: CustomerResponseVo,
-    ) {
-        val requestPassword = password + customer.salt
-        val encodedPassword = bCryptPasswordEncoder.encode(requestPassword)
-        val isMatched = bCryptPasswordEncoder.matches(encodedPassword, customer.password)
-        if (!isMatched) throw BadCredentialsException("password not match")
     }
 
     private fun changePassword(
@@ -48,5 +37,4 @@ class EditPasswordUseCase(
         val newPassword = bCryptPasswordEncoder.encode(editPassword + customer.salt)
         customerWriteService.editPassword(customer.id, newPassword)
     }
-
 }
