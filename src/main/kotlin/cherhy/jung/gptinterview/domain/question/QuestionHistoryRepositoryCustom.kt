@@ -1,65 +1,97 @@
 package cherhy.jung.gptinterview.domain.question
 
 import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryInfoVo
-import cherhy.jung.gptinterview.domain.question.entity.QQuestion.question
-import cherhy.jung.gptinterview.domain.question.entity.QQuestionHistory.questionHistory
+import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
-import com.querydsl.core.types.Projections
+import com.linecorp.kotlinjdsl.querydsl.expression.col
+import com.linecorp.kotlinjdsl.spring.data.SpringDataQueryFactory
+import com.linecorp.kotlinjdsl.spring.data.listQuery
+import com.linecorp.kotlinjdsl.spring.data.selectQuery
 import org.springframework.data.domain.Pageable
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 interface QuestionHistoryRepositoryCustom {
     fun findAllByCustomerId(customerId: Long, pageable: Pageable): List<QuestionHistoryInfoVo>
     fun findByCustomerIdAndToken(customerId: Long, token: String): QuestionHistoryInfoVo
 }
 
-class QuestionHistoryRepositoryCustomImpl : QuestionHistoryRepositoryCustom,
-    QuerydslRepositorySupport(QuestionHistory::class.java) {
+class QuestionHistoryRepositoryCustomImpl(
+    private val queryFactory: SpringDataQueryFactory,
+) : QuestionHistoryRepositoryCustom {
 
     override fun findAllByCustomerId(customerId: Long, pageable: Pageable): List<QuestionHistoryInfoVo> =
-        from(questionHistory)
-            .select(
-                Projections.constructor(
-                    QuestionHistoryInfoVo::class.java,
-                    questionHistory.token,
-                    question.title,
-                    questionHistory.answer,
-                    questionHistory.feedback,
-                    question.questionType,
-                    question.level,
-                    question.createdAt,
-                    question.modifiedAt,
-                )
+
+        queryFactory.listQuery<QuestionHistoryInfoVo> {
+            selectMulti(
+                col(Question::id),
+                col(Question::token),
+                col(Question::title),
+                col(Question::questionType),
+                col(Question::level),
+
+                col(QuestionHistory::token),
+                col(QuestionHistory::answer),
+                col(QuestionHistory::feedback),
+                col(QuestionHistory::customerId),
+                col(QuestionHistory::createdAt),
+                col(QuestionHistory::modifiedAt),
             )
-            .join(question)
-            .on(questionHistory.questionId.eq(question.id))
-            .where(questionHistory.customerId.eq(customerId))
-            .orderBy(questionHistory.createdAt.desc())
-            .limit(pageable.pageSize.toLong())
-            .offset(pageable.offset)
-            .fetch()
+
+            from(
+                entity(QuestionHistory::class)
+            )
+
+            join(
+                entity(Question::class),
+                on {
+                    col(QuestionHistory::questionId).equal(col(Question::id))
+                }
+            )
+
+            where(
+                col(QuestionHistory::customerId).equal(customerId)
+            )
+
+            orderBy(
+                col(QuestionHistory::createdAt).desc()
+            )
+
+            limit(pageable.pageSize)
+            offset(pageable.offset.toInt())
+        }
 
     override fun findByCustomerIdAndToken(customerId: Long, token: String): QuestionHistoryInfoVo =
-        from(questionHistory)
-            .select(
-                Projections.constructor(
-                    QuestionHistoryInfoVo::class.java,
-                    questionHistory.token,
-                    question.title,
-                    questionHistory.answer,
-                    questionHistory.feedback,
-                    question.questionType,
-                    question.level,
-                    question.createdAt,
-                    question.modifiedAt,
+        queryFactory.selectQuery<QuestionHistoryInfoVo> {
+            selectDistinctMulti(
+                col(Question::id),
+                col(Question::token),
+                col(Question::title),
+                col(Question::questionType),
+                col(Question::level),
+
+                col(QuestionHistory::token),
+                col(QuestionHistory::answer),
+                col(QuestionHistory::feedback),
+                col(QuestionHistory::customerId),
+                col(QuestionHistory::createdAt),
+                col(QuestionHistory::modifiedAt),
+            )
+
+            from(
+                entity(QuestionHistory::class)
+            )
+
+            join(
+                entity(Question::class),
+                on {
+                    col(QuestionHistory::questionId).equal(col(Question::id))
+                }
+            )
+
+            where(
+                col(QuestionHistory::customerId).equal(customerId).and(
+                    col(QuestionHistory::token).equal(token)
                 )
             )
-            .join(question)
-            .on(questionHistory.questionId.eq(question.id))
-            .where(
-                questionHistory.customerId.eq(customerId),
-                questionHistory.token.eq(token)
-            )
-            .fetchOne()
+        }.singleResult
 
 }
