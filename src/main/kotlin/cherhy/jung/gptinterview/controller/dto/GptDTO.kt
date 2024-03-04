@@ -19,14 +19,14 @@ data class AnswerResponse(
     val level: QuestionLevel,
 ) {
     companion object {
-        fun of(responseS: QuestionHistoryInfoVo): AnswerResponse =
+        fun of(questionHistoryInfoVo: QuestionHistoryInfoVo): AnswerResponse =
             AnswerResponse(
-                token = responseS.token,
-                question = responseS.question,
-                answer = responseS.answer,
-                feedback = responseS.feedback,
-                type = responseS.type,
-                level = responseS.level,
+                token = questionHistoryInfoVo.questionHistoryToken,
+                question = questionHistoryInfoVo.question,
+                answer = questionHistoryInfoVo.answer,
+                feedback = questionHistoryInfoVo.feedback,
+                type = questionHistoryInfoVo.type,
+                level = questionHistoryInfoVo.level,
             )
     }
 }
@@ -36,10 +36,10 @@ data class GptResponse(
     val body: String,
 ) {
     companion object {
-        fun of(responseS: GptResponseVo): GptResponse =
+        fun of(responseVo: GptResponseVo): GptResponse =
             GptResponse(
-                token = responseS.token,
-                body = responseS.body,
+                token = responseVo.token,
+                body = responseVo.body,
             )
     }
 }
