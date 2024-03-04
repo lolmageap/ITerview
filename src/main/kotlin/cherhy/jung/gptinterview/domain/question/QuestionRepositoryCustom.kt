@@ -1,16 +1,15 @@
 package cherhy.jung.gptinterview.domain.question
 
-import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestVo
 import cherhy.jung.gptinterview.domain.question.entity.QFramework.framework
 import cherhy.jung.gptinterview.domain.question.entity.QPrograming.programing
 import cherhy.jung.gptinterview.domain.question.entity.QQuestion.question
 import cherhy.jung.gptinterview.domain.question.entity.Question
-import com.linecorp.kotlinjdsl.dsl.jpql.jpql
 import com.querydsl.core.BooleanBuilder
 import com.querydsl.core.types.dsl.BooleanExpression
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
+// TODO : 퇴근 하고 수정 하기
 interface QuestionRepositoryCustom {
     fun findByQuestionRequestS(
         questionRequestS: QuestionRequestVo,
@@ -18,10 +17,9 @@ interface QuestionRepositoryCustom {
     ): List<Question>
 
     fun findByTokensIn(questionTokens: List<String>): List<Question>
-
-    fun jpqlTest()
 }
 
+@Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
 class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositorySupport(Question::class.java) {
     override fun findByQuestionRequestS(
         questionRequestS: QuestionRequestVo,
@@ -94,19 +92,5 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
                     question.id.`in`(it)
                 }
         } else null
-    }
-
-    override fun jpqlTest() {
-        val jpql = jpql {
-            select(
-                entity(Question::class)
-            ).from(
-                entity(Question::class)
-            ).where(
-                entity(Question::class)(Question::id).eq(1L)
-                    .and(entity(Question::class)(Question::token).eq("token"))
-                    .or(entity(Question::class)(Question::questionType).eq(QuestionType.NETWORK))
-            )
-        }
     }
 }
