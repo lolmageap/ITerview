@@ -35,12 +35,16 @@ data class QuestionResponseVo(
 }
 
 data class QuestionHistoryInfoVo(
-    val token: String,
+    val id: Long,
+    val questionToken: String,
     val question: String,
-    val answer: String,
-    val feedback: String,
     val type: QuestionType,
     val level: QuestionLevel,
+
+    val questionHistoryToken: String,
+    val answer: String,
+    val feedback: String,
+    val customerId: Long,
     val createdAt: String,
     val modifiedAt: String,
 )
