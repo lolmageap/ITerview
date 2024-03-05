@@ -17,11 +17,11 @@ class GptAnswerUseCase(
     private val questionReadService: QuestionReadService,
     private val questionHistoryWriteService: QuestionHistoryWriteService,
 ) {
-    fun requestAnswerToGpt(customerId: Long, gptRequest: GptRequest): GptResponseVo {
+    fun requestAnswerToGpt(customerId: Long, request: GptRequest): GptResponseVo {
         val customer = customerReadService.getCustomerById(customerId)
-        val question = questionReadService.getQuestionByToken(gptRequest.questionToken)
+        val question = questionReadService.getQuestionByToken(request.questionToken)
 
-        val questionToGpt = Generator.generateQuestionToGpt(question.title, gptRequest.answer)
+        val questionToGpt = Generator.generateQuestionToGpt(question.title, request.answer)
 
         val feedback = gptClient.requestAndReceiveFeedback(questionToGpt)
 

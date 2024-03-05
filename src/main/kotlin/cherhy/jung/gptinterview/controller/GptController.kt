@@ -19,10 +19,10 @@ class GptController(
     @ResponseStatus(CREATED)
     @Operation(summary = "답변 하기", description = "질문을 풀고 답안을 제출한 뒤 점수 및 피드백을 받는다.")
     fun requestAnswer(
-        @RequestBody gptRequest: GptRequest,
+        @RequestBody request: GptRequest,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
     ): GptResponse =
-        gptAnswerUseCase.requestAnswerToGpt(authCustomer.customerId, gptRequest)
+        gptAnswerUseCase.requestAnswerToGpt(authCustomer.customerId, request)
             .let(GptResponse::of)
 
     @GetMapping("/answers/{token}")

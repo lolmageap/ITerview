@@ -17,18 +17,18 @@ class SignInUseCase(
     private val authenticationManagerBuilder: AuthenticationManagerBuilder,
     private val redisWriteService: RedisWriteService,
 ) {
-    fun signIn(customerRequestS: CustomerRequestVo): TokenResponse {
-        val salt = customerReadService.getCustomerByEmail(customerRequestS.email).salt
+    fun signIn(request: CustomerRequestVo): TokenResponse {
+        val customer = customerReadService.getCustomerByEmail(request.email)
 
         val authenticationToken =
-            UsernamePasswordAuthenticationToken(customerRequestS.email, customerRequestS.password + salt)
+            UsernamePasswordAuthenticationToken(request.email, request.password + customer.salt)
 
         val authCustomer = authenticationManagerBuilder.getUserDetails(authenticationToken)
 
         val accessToken = tokenProvider.createAccessToken(authCustomer)
         val refreshToken = tokenProvider.createRefreshToken(authCustomer)
 
-        redisWriteService.addJwtToken(refreshToken.token, customerRequestS.email)
+        redisWriteService.addJwtToken(refreshToken.token, request.email)
 
         return TokenResponse(
             accessToken = accessToken.token,

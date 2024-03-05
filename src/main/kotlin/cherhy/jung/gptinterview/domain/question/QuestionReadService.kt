@@ -16,10 +16,10 @@ class QuestionReadService(
             ?: throw NotFoundException(QUESTION)
 
     fun getQuestion(
-        questionRequestS: QuestionRequestVo,
+        request: QuestionRequestVo,
         alreadyQuestions: List<String> = emptyList(),
     ): QuestionResponseVo =
-        questionRepository.findByQuestionRequestS(questionRequestS, alreadyQuestions)
+        questionRepository.findByQuestionRequestS(request, alreadyQuestions)
             .firstNotNullOfOrNull {
                 it.let(QuestionResponseVo::of)
             }

@@ -24,10 +24,10 @@ class EditPasswordUseCase(
         mailService.sendPasswordMessage(email, newPassword)
     }
 
-    fun editPassword(customerId: Long, editPasswordVo: EditPasswordRequestVo) {
+    fun editPassword(customerId: Long, request: EditPasswordRequestVo) {
         val customer = customerReadService.getCustomerById(customerId)
-        bCryptPasswordEncoder.matchOrThrow(editPasswordVo.originalPassword, customer.salt, customer.password)
-        changePassword(customer, editPasswordVo.editPassword)
+        bCryptPasswordEncoder.matchOrThrow(request.originalPassword, customer.salt, customer.password)
+        changePassword(customer, request.editPassword)
     }
 
     private fun changePassword(

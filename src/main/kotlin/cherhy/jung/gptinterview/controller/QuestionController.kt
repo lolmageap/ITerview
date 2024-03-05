@@ -29,11 +29,11 @@ class QuestionController(
     @Operation(summary = "질문 받기", description = "요청에 맞게 질문을 반환한다.")
     fun getRandomQuestion(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
-        @ModelAttribute questionRequest: QuestionRequest,
+        @ModelAttribute request: QuestionRequest,
     ): QuestionResponse {
         val alreadyQuestions = redisReadService.getQuestionTokens(authCustomer.customerId)
 
-        return questionReadService.getQuestion(questionRequest.toQuestionRequestS(), alreadyQuestions)
+        return questionReadService.getQuestion(request.toQuestionRequestS(), alreadyQuestions)
             .let(QuestionResponse::of)
             .also {
                 redisWriteService.addQuestionToken(authCustomer.customerId, it.token)

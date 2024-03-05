@@ -33,10 +33,10 @@ class AuthorityController(
     @ResponseStatus(CREATED)
     @Operation(summary = "로그인", description = "로그인을 하고 토큰을 발급 받는다.")
     fun signIn(
-        @Valid @RequestBody signInRequest: SignInRequest,
+        @Valid @RequestBody request: SignInRequest,
         httpServletResponse: HttpServletResponse,
     ): TokenResponse =
-        signInUseCase.signIn(signInRequest.toCustomerRequest()).also { tokenResponse ->
+        signInUseCase.signIn(request.toCustomerRequest()).also { tokenResponse ->
             httpServletResponse.addAccessTokenInHeader(tokenResponse.accessToken)
             httpServletResponse.addRefreshTokenInHeader(tokenResponse.refreshToken)
         }
@@ -45,11 +45,11 @@ class AuthorityController(
     @ResponseStatus(CREATED)
     @Operation(summary = "회원가입", description = "회원가입 을 하고 로그인 상태가 되며 토큰을 발급 받는다.")
     fun signUp(
-        @Valid @RequestBody signUpRequest: SignUpRequest,
+        @Valid @RequestBody request: SignUpRequest,
         httpServletResponse: HttpServletResponse,
     ): TokenResponse {
-        signUpUseCase.signUp(signUpRequest.toCustomerRequest())
-        return signInUseCase.signIn(signUpRequest.toCustomerRequest()).also { tokenResponse ->
+        signUpUseCase.signUp(request.toCustomerRequest())
+        return signInUseCase.signIn(request.toCustomerRequest()).also { tokenResponse ->
             httpServletResponse.addAccessTokenInHeader(tokenResponse.accessToken)
             httpServletResponse.addRefreshTokenInHeader(tokenResponse.refreshToken)
         }
@@ -75,28 +75,28 @@ class AuthorityController(
     @Operation(summary = "인증 번호를 검증 한다.", description = "이메일 로 발급 받은 인증번호 를 3분안에 검증 한다.")
     fun getCertificate(
         @RequestParam certificate: String,
-        @RequestParam @Valid emailRequest: EmailRequest,
+        @RequestParam @Valid request: EmailRequest,
     ) =
-        redisReadService.checkCertificate(emailRequest.email, certificate)
+        redisReadService.checkCertificate(request.email, certificate)
 
 
     @PatchMapping("/passwords")
     @ResponseStatus(NO_CONTENT)
     @Operation(summary = "비밀번호 수정", description = "비밀번호 를 수정 하고 수정된 비밀번호 를 이메일 로 보내 준다.")
     fun editPassword(
-        @RequestBody editPasswordRequest: EditPasswordRequest,
+        @RequestBody request: EditPasswordRequest,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
     ) =
         editPasswordUseCase.editPassword(
             authCustomer.customerId,
-            editPasswordRequest.toEditPasswordRequestVo()
+            request.toEditPasswordRequestVo()
         )
 
     @DeleteMapping("/passwords")
     @ResponseStatus(NO_CONTENT)
     @Operation(summary = "비밀번호 초기화", description = "비밀번호 를 초기화 하고 초기화 한 비밀번호 를 이메일 로 보내 준다.")
-    fun resetPassword(@RequestBody @Valid certificateRequest: CertificateRequest) {
-        redisReadService.checkCertificate(certificateRequest.email, certificateRequest.certificate)
-        editPasswordUseCase.resetAndSendPassword(certificateRequest.email)
+    fun resetPassword(@RequestBody @Valid request: CertificateRequest) {
+        redisReadService.checkCertificate(request.email, request.certificate)
+        editPasswordUseCase.resetAndSendPassword(request.email)
     }
 }

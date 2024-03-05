@@ -22,7 +22,7 @@ interface QuestionRepositoryCustom {
 @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
 class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositorySupport(Question::class.java) {
     override fun findByQuestionRequestS(
-        questionRequestS: QuestionRequestVo,
+        request: QuestionRequestVo,
         alreadyQuestion: List<String>,
     ): List<Question> {
         val query = from(question)
@@ -30,10 +30,10 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
         return query
             .where(
                 BooleanBuilder().let { condition ->
-                    checkQuestionType(questionRequestS)?.let { condition.or(it) }
-                    checkPrograming(questionRequestS)?.let { condition.or(it) }
-                    checkFramework(questionRequestS)?.let { condition.or(it) }
-                    checkLevel(questionRequestS)?.let { condition.and(it) }
+                    checkQuestionType(request)?.let { condition.or(it) }
+                    checkPrograming(request)?.let { condition.or(it) }
+                    checkFramework(request)?.let { condition.or(it) }
+                    checkLevel(request)?.let { condition.and(it) }
                     condition.and(question.token.notIn(alreadyQuestion))
                 }
             )
@@ -54,24 +54,24 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
             }
             .reversed()
 
-    private fun checkLevel(questionRequestS: QuestionRequestVo): BooleanExpression? {
-        return if (questionRequestS.levels.isNotEmpty()) {
-            question.level.`in`(questionRequestS.levels)
+    private fun checkLevel(request: QuestionRequestVo): BooleanExpression? {
+        return if (request.levels.isNotEmpty()) {
+            question.level.`in`(request.levels)
         } else null
     }
 
-    private fun checkQuestionType(questionRequestS: QuestionRequestVo): BooleanExpression? {
-        return if (questionRequestS.questionTypes.isNotEmpty()) {
-            question.questionType.`in`(questionRequestS.questionTypes)
+    private fun checkQuestionType(request: QuestionRequestVo): BooleanExpression? {
+        return if (request.questionTypes.isNotEmpty()) {
+            question.questionType.`in`(request.questionTypes)
         } else null
     }
 
-    private fun checkPrograming(questionRequestS: QuestionRequestVo): BooleanExpression? {
-        return if (questionRequestS.programingTypes.isNotEmpty()) {
+    private fun checkPrograming(request: QuestionRequestVo): BooleanExpression? {
+        return if (request.programingTypes.isNotEmpty()) {
             from(programing)
                 .join(question)
                 .on(programing.questionId.eq(question.id))
-                .where(programing.programingType.`in`(questionRequestS.programingTypes))
+                .where(programing.programingType.`in`(request.programingTypes))
                 .select(programing.questionId)
                 .fetch()
                 .let {
@@ -80,12 +80,12 @@ class QuestionRepositoryCustomImpl : QuestionRepositoryCustom, QuerydslRepositor
         } else null
     }
 
-    private fun checkFramework(questionRequestS: QuestionRequestVo): BooleanExpression? {
-        return if (questionRequestS.frameworkTypes.isNotEmpty()) {
+    private fun checkFramework(request: QuestionRequestVo): BooleanExpression? {
+        return if (request.frameworkTypes.isNotEmpty()) {
             from(framework)
                 .join(question)
                 .on(framework.questionId.eq(question.id))
-                .where(framework.frameworkType.`in`(questionRequestS.frameworkTypes))
+                .where(framework.frameworkType.`in`(request.frameworkTypes))
                 .select(framework.questionId)
                 .fetch()
                 .let {
