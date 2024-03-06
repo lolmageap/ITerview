@@ -19,7 +19,7 @@ data class GptApiResponseS(
 data class Choice(
     val text: String,
     val index: Int,
-    val logprobs: Any?,
+    val logprobs: String?,
     @JsonProperty("finish_reason") val finishReason: String,
 )
 
