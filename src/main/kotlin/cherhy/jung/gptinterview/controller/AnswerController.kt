@@ -18,7 +18,7 @@ class AnswerController(
     private val questionHistoryReadService: QuestionHistoryReadService,
 ) {
     @GetMapping("/histories")
-    @Operation(summary = "답변 내역", description = "풀었던 질문들을 확인한다.")
+    @Operation(summary = "답변 내역", description = "풀었던 질문 목록을 확인 한다.")
     fun getAnswerHistories(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @Parameter(hidden = true) @PageableDefault(size = 15, page = 0) pageable: Pageable,
@@ -27,7 +27,7 @@ class AnswerController(
             .map(AnswerResponse::of)
 
     @GetMapping("/histories/{token}")
-    @Operation(summary = "답변 내역", description = "풀었던 질문의 답변 내용을 포함하여 조회한다.")
+    @Operation(summary = "답변 내역", description = "풀었던 질문의 답변 내용을 포함 하여 조회한다.")
     fun getAnswerHistory(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @PathVariable token: String,
