@@ -73,7 +73,7 @@ internal class GptAnswerUseCaseTest(
             } returns feedback
             every { questionHistoryWriteService.addHistory(questionHistory) } returns historyResponse
 
-            val feedBack = gptAnswerUseCase.requestAnswerToGpt(customerId = customer.id, gptRequest = gptRequest)
+            val feedBack = gptAnswerUseCase.requestAnswerToGpt(customerId = customer.id, request = gptRequest)
 
             Then("점수와 피드백 이 정상적 으로 출력 되는지 검증 한다.") {
                 feedBack.body shouldContain "score"
