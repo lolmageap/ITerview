@@ -73,7 +73,7 @@ dependencies {
     implementation("org.yaml:snakeyaml")
 
     // flyway
-    implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-core:9.22.3")
     implementation("org.flywaydb:flyway-mysql")
 
     // html
