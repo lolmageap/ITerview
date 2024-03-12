@@ -46,7 +46,7 @@ class SecurityConfig(val jwtSecurityConfig: JwtSecurityConfig) {
         return object : WebMvcConfigurer {
             override fun addCorsMappings(registry: CorsRegistry) {
                 registry.addMapping("/**")
-                    .allowedMethods("GET", "POST", "PUT", "DELETE")
+                    .allowedMethods("GET", "POST", "PATCH", "PUT", "DELETE")
                     .allowedHeaders("*")
                     .allowCredentials(true)
                     .allowedOriginPatterns("*")
