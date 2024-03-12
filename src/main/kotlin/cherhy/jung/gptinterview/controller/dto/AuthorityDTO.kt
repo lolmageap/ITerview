@@ -81,5 +81,11 @@ data class CertificateRequest(
     @field:NotBlank
     val email: String,
 
+    @field:NotBlank
+    @field:Length(min = 6, max = 6)
     val certificate: String,
-)
+) {
+    init {
+        require(certificate.toInt() >= 0) { "인증번호 는 0보다 큰 숫자 여야 합니다." }
+    }
+}
