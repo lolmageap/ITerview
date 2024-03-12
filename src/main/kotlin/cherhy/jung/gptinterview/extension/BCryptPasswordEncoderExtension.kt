@@ -4,13 +4,12 @@ import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 fun BCryptPasswordEncoder.matchOrThrow(
-    requestPassword: String,
+    rawPassword: String,
     salt: String,
-    originalPassword: String,
+    encodedPassword: String,
 ) {
-    val password = requestPassword + salt
-    val encodedPassword = this.encode(password)
-    val isMatched = this.matches(encodedPassword, originalPassword)
+    val password = rawPassword + salt
+    val isMatched = this.matches(password, encodedPassword)
     if (!isMatched)
         throw BadCredentialsException("password not match")
 }
