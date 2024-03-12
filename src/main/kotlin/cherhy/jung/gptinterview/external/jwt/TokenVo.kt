@@ -2,19 +2,6 @@ package cherhy.jung.gptinterview.external.jwt
 
 import java.util.*
 
-data class AccessTokenResponse(
-    val accessToken: String,
-    val accessTokenExpireTime: Date,
-) {
-    companion object {
-        fun of(tokenResponseS: TokenResponseVo) =
-            AccessTokenResponse(
-                accessToken = tokenResponseS.token,
-                accessTokenExpireTime = tokenResponseS.tokenExpireTime,
-            )
-    }
-}
-
 data class TokenResponse(
     val accessToken: String,
     val accessTokenExpireTime: Date,
