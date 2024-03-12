@@ -30,6 +30,8 @@ class SecurityConfig(val jwtSecurityConfig: JwtSecurityConfig) {
         }
             .csrf {
                 it.disable()
+            }.cors {
+                corsConfigurer()
             }
             .sessionManagement { sessionManagement ->
                 sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -44,10 +46,10 @@ class SecurityConfig(val jwtSecurityConfig: JwtSecurityConfig) {
         return object : WebMvcConfigurer {
             override fun addCorsMappings(registry: CorsRegistry) {
                 registry.addMapping("/**")
-                    .allowedOrigins("*")
                     .allowedMethods("GET", "POST", "PUT", "DELETE")
                     .allowedHeaders("*")
                     .allowCredentials(true)
+                    .allowedOriginPatterns("*")
                     .maxAge(3000)
             }
         }
