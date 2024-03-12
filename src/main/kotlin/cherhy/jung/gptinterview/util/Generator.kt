@@ -1,12 +1,12 @@
 package cherhy.jung.gptinterview.util
 
-import java.time.LocalDate
+import java.time.ZonedDateTime
 import java.util.*
 import kotlin.random.Random
 
 object Generator {
     fun generateToken(): String {
-        val now = LocalDate.now().toString().replace("-", "")
+        val now = ZonedDateTime.now().toLocalDate().toString().replace("-", "")
         val uuid = UUID.randomUUID().toString().replace("-", "").substring(0, 12)
         return "$now-$uuid"
     }

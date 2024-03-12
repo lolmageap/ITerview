@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldHaveLength
-import java.time.LocalDate
+import java.time.ZonedDateTime
 
 internal class GeneratorTest: StringSpec() {
     init {
@@ -16,7 +16,7 @@ internal class GeneratorTest: StringSpec() {
         }
         "생성된 날짜와 랜덤한 값을 이어서 회원의 유니크 한 키 값을 생성 한다." {
             val token = Generator.generateToken()
-            token shouldContain LocalDate.now().toString().replace("-", "")
+            token shouldContain ZonedDateTime.now().toLocalDate().toString().replace("-", "")
             token shouldHaveLength 21
         }
         "개발 관련 문제와 답안을 받고 GPT 에게 질문할 양식 으로 메시지 를 생성 한다." {
