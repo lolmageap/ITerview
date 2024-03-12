@@ -4,8 +4,6 @@ import cherhy.jung.gptinterview.controller.dto.*
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.extension.addAccessTokenInHeader
 import cherhy.jung.gptinterview.extension.addRefreshTokenInHeader
-import cherhy.jung.gptinterview.external.jwt.AccessTokenResponse
-import cherhy.jung.gptinterview.external.jwt.TokenResponse
 import cherhy.jung.gptinterview.external.redis.RedisReadService
 import cherhy.jung.gptinterview.usecase.*
 import io.swagger.v3.oas.annotations.Operation
@@ -35,10 +33,10 @@ class AuthorityController(
     fun signIn(
         @Valid @RequestBody request: SignInRequest,
         httpServletResponse: HttpServletResponse,
-    ): TokenResponse =
-        signInUseCase.signIn(request.toCustomerRequest()).also { tokenResponse ->
-            httpServletResponse.addAccessTokenInHeader(tokenResponse.accessToken)
-            httpServletResponse.addRefreshTokenInHeader(tokenResponse.refreshToken)
+    ) =
+        signInUseCase.signIn(request.toCustomerRequest()).let {
+            httpServletResponse.addAccessTokenInHeader(it.accessToken)
+            httpServletResponse.addRefreshTokenInHeader(it.refreshToken)
         }
 
     @PostMapping("/sign-up")
@@ -47,11 +45,11 @@ class AuthorityController(
     fun signUp(
         @Valid @RequestBody request: SignUpRequest,
         httpServletResponse: HttpServletResponse,
-    ): TokenResponse {
+    ) {
         signUpUseCase.signUp(request.toCustomerRequest())
-        return signInUseCase.signIn(request.toCustomerRequest()).also { tokenResponse ->
-            httpServletResponse.addAccessTokenInHeader(tokenResponse.accessToken)
-            httpServletResponse.addRefreshTokenInHeader(tokenResponse.refreshToken)
+        signInUseCase.signIn(request.toCustomerRequest()).let {
+            httpServletResponse.addAccessTokenInHeader(it.accessToken)
+            httpServletResponse.addRefreshTokenInHeader(it.refreshToken)
         }
     }
 
@@ -61,8 +59,10 @@ class AuthorityController(
         httpServletRequest: HttpServletRequest,
         httpServletResponse: HttpServletResponse,
     ) =
-        regenerateAccessTokenUseCase.regenerateAccessToken(httpServletRequest)
-            .let(AccessTokenResponse::of)
+        regenerateAccessTokenUseCase.regenerateAccessToken(httpServletRequest).let {
+            httpServletResponse.addAccessTokenInHeader(it.token)
+        }
+
 
     @PostMapping("/certificates")
     @ResponseStatus(CREATED)
@@ -84,18 +84,20 @@ class AuthorityController(
     @ResponseStatus(NO_CONTENT)
     @Operation(summary = "비밀번호 수정", description = "비밀번호 를 수정 하고 수정된 비밀번호 를 이메일 로 보내 준다.")
     fun editPassword(
-        @RequestBody request: EditPasswordRequest,
+        @RequestBody @Valid request: EditPasswordRequest,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
     ) =
         editPasswordUseCase.editPassword(
-            authCustomer.customerId,
+            authCustomer.id,
             request.toEditPasswordRequestVo()
         )
 
     @DeleteMapping("/passwords")
     @ResponseStatus(NO_CONTENT)
     @Operation(summary = "비밀번호 초기화", description = "비밀번호 를 초기화 하고 초기화 한 비밀번호 를 이메일 로 보내 준다.")
-    fun resetPassword(@RequestBody @Valid request: CertificateRequest) {
+    fun resetPassword(
+        @RequestBody @Valid request: CertificateRequest
+    ) {
         redisReadService.checkCertificate(request.email, request.certificate)
         editPasswordUseCase.resetAndSendPassword(request.email)
     }
