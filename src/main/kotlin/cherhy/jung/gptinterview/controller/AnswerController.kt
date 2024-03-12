@@ -23,7 +23,7 @@ class AnswerController(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @Parameter(hidden = true) @PageableDefault(size = 15, page = 0) pageable: Pageable,
     ): List<AnswerResponse> =
-        questionHistoryReadService.getAllQuestionHistories(authCustomer.customerId, pageable)
+        questionHistoryReadService.getAllQuestionHistories(authCustomer.id, pageable)
             .map(AnswerResponse::of)
 
     @GetMapping("/histories/{token}")
@@ -32,7 +32,7 @@ class AnswerController(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @PathVariable token: String,
     ): AnswerResponse =
-        questionHistoryReadService.getQuestionHistory(authCustomer.customerId, token)
+        questionHistoryReadService.getQuestionHistory(authCustomer.id, token)
             .let(AnswerResponse::of)
 
 }

@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails
 class AuthCustomer(
     private val customer: Customer,
 ) : UserDetails {
-    val customerId = customer.id
+    val id = customer.id
     val token = customer.token
 
     val roles = authorities.map { it.authority }

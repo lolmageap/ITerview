@@ -31,12 +31,12 @@ class QuestionController(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @ModelAttribute request: QuestionRequest,
     ): QuestionResponse {
-        val alreadyQuestions = redisReadService.getQuestionTokens(authCustomer.customerId)
+        val alreadyQuestions = redisReadService.getQuestionTokens(authCustomer.id)
 
         return questionReadService.getQuestion(request.toQuestionRequestS(), alreadyQuestions)
             .let(QuestionResponse::of)
             .also {
-                redisWriteService.addQuestionToken(authCustomer.customerId, it.token)
+                redisWriteService.addQuestionToken(authCustomer.id, it.token)
             }
     }
 
@@ -48,7 +48,7 @@ class QuestionController(
     ): List<QuestionResponse> {
 
         val alreadyQuestions = redisReadService.getQuestionTokens(
-            customerId = authCustomer.customerId,
+            customerId = authCustomer.id,
             start = pageable.start,
             end = pageable.end,
         )

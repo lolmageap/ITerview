@@ -22,7 +22,7 @@ class GptController(
         @RequestBody request: GptRequest,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
     ): GptResponse =
-        gptAnswerUseCase.requestAnswerToGpt(authCustomer.customerId, request)
+        gptAnswerUseCase.requestAnswerToGpt(authCustomer.id, request)
             .let(GptResponse::of)
 
     @GetMapping("/answers/{token}")
@@ -32,6 +32,6 @@ class GptController(
         @PathVariable token: String,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
     ): GptResponse =
-        gptAnswerUseCase.requestOnlyAnswerKeyToGpt(authCustomer.customerId, token)
+        gptAnswerUseCase.requestOnlyAnswerKeyToGpt(authCustomer.id, token)
             .let(GptResponse::of)
 }
