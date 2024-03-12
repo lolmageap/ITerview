@@ -4,13 +4,13 @@ import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 
 val HttpServletRequest.refreshToken: String?
-    get() = this.getHeader("refresh-token")
+    get() = this.getHeader("Refresh-Token")
 
 val HttpServletRequest.authorization: String?
     get() = this.getHeader("Authorization")
 
 fun HttpServletResponse.addAccessTokenInHeader(value: String) =
-    this.addHeader("access-token", "Bearer $value")
+    this.addHeader("Access-Token", "Bearer $value")
 
 fun HttpServletResponse.addRefreshTokenInHeader(value: String) =
-    this.addHeader("refresh-token", "Bearer $value")
+    this.addHeader("Refresh-Token", "Bearer $value")
