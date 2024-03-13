@@ -39,6 +39,5 @@
 1. 회원은 자신이 이전에 풀었던 문제를 다시 확인 할 수 있습니다.
 
 ## TODO
-- 같은 ip로 5번은 호출 가능 / 대신 history 는 안쌓임
 - https://source.unsplash.com/random >> username, 이미지 랜덤 으로 넣어두기
 - 마지막 에 세팅 했던 기술 스택, 포지션 저장
