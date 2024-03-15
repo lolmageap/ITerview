@@ -55,7 +55,7 @@ data class QuestionHistoryResponseVo(
     val answer: String,
     val feedback: String,
     val createdAt: String,
-    val modifiedAt: String,
+    val updatedAt: String,
 ) {
     companion object {
         fun of(questionHistory: QuestionHistory): QuestionHistoryResponseVo {
@@ -65,7 +65,7 @@ data class QuestionHistoryResponseVo(
                 answer = questionHistory.answer,
                 feedback = questionHistory.feedback,
                 createdAt = questionHistory.createdAt.toString(),
-                modifiedAt = questionHistory.modifiedAt.toString(),
+                updatedAt = questionHistory.updatedAt.toString(),
             )
         }
     }

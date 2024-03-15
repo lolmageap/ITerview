@@ -33,7 +33,7 @@ class QuestionHistoryRepositoryCustomImpl(
                 col(QuestionHistory::feedback),
                 col(QuestionHistory::customerId),
                 col(QuestionHistory::createdAt),
-                col(QuestionHistory::modifiedAt),
+                col(QuestionHistory::updatedAt),
             )
 
             from(
@@ -73,7 +73,7 @@ class QuestionHistoryRepositoryCustomImpl(
                 col(QuestionHistory::feedback),
                 col(QuestionHistory::customerId),
                 col(QuestionHistory::createdAt),
-                col(QuestionHistory::modifiedAt),
+                col(QuestionHistory::updatedAt),
             )
 
             from(

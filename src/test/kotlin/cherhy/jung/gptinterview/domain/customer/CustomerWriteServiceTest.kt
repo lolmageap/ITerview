@@ -36,7 +36,7 @@ class CustomerWriteServiceTest(
                 val findCustomer = customerRepository.findByIdOrNull(customer.id)!!
                 findCustomer.password shouldNotBe customer.password
                 findCustomer.password shouldBe newPassword
-                findCustomer.modifiedAt shouldBeGreaterThan findCustomer.createdAt
+                findCustomer.updatedAt shouldBeGreaterThan findCustomer.createdAt
             }
         }
     }
