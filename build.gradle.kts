@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "3.1.4"
     id("io.spring.dependency-management") version "1.1.3"
+    id("org.asciidoctor.jvm.convert") version "3.3.2"
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     kotlin("plugin.jpa") version "1.8.22"
@@ -11,6 +12,7 @@ plugins {
 
 group = "cherhy.jung"
 version = "0.0.1-SNAPSHOT"
+val snippetsDir by extra { file("build/generated-snippets") }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -18,6 +20,7 @@ java {
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {
@@ -73,11 +76,14 @@ dependencies {
     implementation("org.yaml:snakeyaml")
 
     // flyway
-    implementation("org.flywaydb:flyway-core:9.22.3")
     implementation("org.flywaydb:flyway-mysql")
 
     // html
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.11.0")
+
+    // rest docs
+    implementation("com.github.toss:restdocs-appendix:v0.1.2")
+    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc:3.0.1")
 
     // test
     testImplementation("com.h2database:h2")
@@ -102,4 +108,31 @@ tasks.withType<Test> {
 
 tasks.named<Jar>("jar") {
     enabled = false
+}
+
+tasks {
+    test {
+        outputs.dir(snippetsDir)
+    }
+
+    asciidoctor {
+        dependsOn(test)
+
+        doFirst {
+            delete(file("src/main/resources/static/docs"))
+        }
+
+        inputs.dir(snippetsDir)
+
+        doLast {
+            copy {
+                from("build/docs/asciidoc")
+                into("src/main/resources/static/docs")
+            }
+        }
+    }
+
+    build {
+        dependsOn(asciidoctor)
+    }
 }
