@@ -68,7 +68,7 @@ internal class GptAnswerUseCaseTest(
             every { questionReadService.getQuestionByToken(question.token) } returns QuestionResponseVo.of(question)
             every {
                 gptClient.requestAndReceiveFeedback(
-                    Generator.generateQuestionToGpt(question.title, answer)
+                    Generator.questionToGpt(question.title, answer)
                 )
             } returns feedback
             every { questionHistoryWriteService.addHistory(questionHistory) } returns historyResponse

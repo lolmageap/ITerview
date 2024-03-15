@@ -19,7 +19,7 @@ class EditPasswordUseCase(
 ) {
     fun resetAndSendPassword(email: String) {
         val customer = customerReadService.getCustomerByEmail(email)
-        val newPassword = Generator.generateRandomPassword()
+        val newPassword = Generator.randomPassword()
         changePassword(customer, newPassword)
         mailService.sendPasswordMessage(email, newPassword)
     }

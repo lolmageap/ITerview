@@ -20,7 +20,7 @@ class QuestionHistory private constructor(
     @Column(columnDefinition = "TEXT")
     val answer: String = DEFAULT_ANSWER,
 ) : BaseEntity() {
-    val token: String = Generator.generateToken()
+    val token: String = Generator.token()
 
     companion object {
         fun of(

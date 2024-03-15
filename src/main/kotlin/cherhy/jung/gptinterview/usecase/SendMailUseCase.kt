@@ -14,7 +14,7 @@ class SendMailUseCase(
 ) {
     fun sendCertificate(email: String) {
         customerReadService.checkDuplicatedEmail(email)
-        val certificate = Generator.generateCertificate()
+        val certificate = Generator.certificate()
         mailService.sendMessage(email, certificate)
         redisWriteService.addCertificate(email, certificate)
     }

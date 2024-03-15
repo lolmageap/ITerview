@@ -21,5 +21,5 @@ class Question(
     @Enumerated(EnumType.STRING)
     val level: QuestionLevel,
 ) : BaseEntity() {
-    val token: String = Generator.generateToken()
+    val token: String = Generator.token()
 }

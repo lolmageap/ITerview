@@ -12,7 +12,7 @@ class Customer(
     val salt: String,
 ) : BaseDeleteEntity() {
     @Column(unique = true)
-    val token: String = Generator.generateToken()
+    val token: String = Generator.token()
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn(name = "customer_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))

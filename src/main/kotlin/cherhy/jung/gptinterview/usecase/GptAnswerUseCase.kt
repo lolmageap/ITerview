@@ -21,7 +21,7 @@ class GptAnswerUseCase(
         val customer = customerReadService.getCustomerById(customerId)
         val question = questionReadService.getQuestionByToken(request.questionToken)
 
-        val questionToGpt = Generator.generateQuestionToGpt(question.title, request.answer)
+        val questionToGpt = Generator.questionToGpt(question.title, request.answer)
 
         val feedback = gptClient.requestAndReceiveFeedback(questionToGpt)
 
@@ -35,7 +35,7 @@ class GptAnswerUseCase(
         val customer = customerReadService.getCustomerById(customerId)
         val question = questionReadService.getQuestionByToken(token)
 
-        val questionToGpt = Generator.generateAnswerKeyToGpt(question.title)
+        val questionToGpt = Generator.answerKeyToGpt(question.title)
 
         val feedback = gptClient.requestAndReceiveFeedback(questionToGpt)
 

@@ -5,18 +5,18 @@ import java.util.*
 import kotlin.random.Random
 
 object Generator {
-    fun generateToken(): String {
+    fun token(): String {
         val now = ZonedDateTime.now().toLocalDate().toString().replace("-", "")
         val uuid = UUID.randomUUID().toString().replace("-", "").substring(0, 12)
         return "$now-$uuid"
     }
 
-    fun generateSalt(): String =
+    fun salt(): String =
         UUID.randomUUID()
             .toString()
             .replace("-", "")
 
-    fun generateQuestionToGpt(question: String, answer: String): String =
+    fun questionToGpt(question: String, answer: String): String =
         """
             아래는 개발자 기술 면접 질문이야.
             
@@ -36,7 +36,7 @@ object Generator {
             }
         """.trimIndent()
 
-    fun generateAnswerKeyToGpt(question: String): String =
+    fun answerKeyToGpt(question: String): String =
         """
             질문 : $question
             
@@ -50,14 +50,14 @@ object Generator {
             }
         """.trimIndent()
 
-    fun generateRandomPassword(): String =
+    fun randomPassword(): String =
         UUID.randomUUID()
             .toString()
             .replace("-", "")
             .substring(0, 10)
             .uppercase()
 
-    fun generateCertificate(): String =
+    fun certificate(): String =
         buildString {
             repeat(6) {
                 append(

@@ -8,7 +8,7 @@ data class CustomerRequestVo(
     val email: String,
     var password: String,
 ) {
-    val salt: String = Generator.generateSalt()
+    val salt: String = Generator.salt()
 
     fun toCustomer(): Customer = Customer(
         name = name,
