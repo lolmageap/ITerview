@@ -16,7 +16,6 @@ import com.nimbusds.jwt.SignedJWT
 import com.nimbusds.jwt.proc.BadJWTException
 import mu.KotlinLogging
 import org.springframework.beans.factory.InitializingBean
-import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
@@ -29,7 +28,6 @@ import javax.crypto.spec.SecretKeySpec
 
 @Component
 @Transactional
-@EnableConfigurationProperties(JwtProperty::class)
 class TokenProvider(
     private val customerRepository: CustomerRepository,
     private val jwtProperty: JwtProperty,

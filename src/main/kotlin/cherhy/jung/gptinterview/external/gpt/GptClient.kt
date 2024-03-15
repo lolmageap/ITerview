@@ -3,7 +3,6 @@ package cherhy.jung.gptinterview.external.gpt
 import cherhy.jung.gptinterview.exception.GptNotGeneratedException
 import cherhy.jung.gptinterview.property.GptProperty
 import cherhy.jung.gptinterview.util.Validator
-import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
@@ -16,7 +15,6 @@ import org.springframework.web.client.RestTemplate
  *  max tokens 는 생성된 텍스트의 최대 길이를 제한
  */
 @Component
-@EnableConfigurationProperties(GptProperty::class)
 class GptClient(
     private val gptProperty: GptProperty,
 ) {

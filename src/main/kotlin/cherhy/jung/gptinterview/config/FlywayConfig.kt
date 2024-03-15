@@ -2,13 +2,11 @@ package cherhy.jung.gptinterview.config
 
 import cherhy.jung.gptinterview.property.DatabaseProperty
 import org.flywaydb.core.Flyway
-import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
 
 @Configuration
-@EnableConfigurationProperties(DatabaseProperty::class)
 class FlywayConfig(
     private val databaseProperty: DatabaseProperty,
 ) {

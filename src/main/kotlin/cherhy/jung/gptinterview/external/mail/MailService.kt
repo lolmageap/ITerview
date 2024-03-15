@@ -5,13 +5,11 @@ import jakarta.mail.internet.InternetAddress
 import jakarta.mail.internet.MimeMessage
 import kotlinx.html.*
 import kotlinx.html.stream.appendHTML
-import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.stereotype.Component
 import java.io.StringWriter
 
 @Component
-@EnableConfigurationProperties(MailProperty::class)
 class MailService(
     private val javaMailSender: JavaMailSender,
     private val mailProperty: MailProperty,

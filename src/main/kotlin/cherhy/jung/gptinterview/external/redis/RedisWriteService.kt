@@ -5,12 +5,10 @@ import cherhy.jung.gptinterview.property.JwtProperty
 import cherhy.jung.gptinterview.external.redis.RedisKey.CERTIFICATE
 import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_TOKEN
 import cherhy.jung.gptinterview.external.redis.RedisKey.REFRESH_TOKEN
-import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.data.redis.core.RedisTemplate
 import java.util.concurrent.TimeUnit
 
 @WriteService
-@EnableConfigurationProperties(JwtProperty::class)
 class RedisWriteService(
     private val redisTemplate: RedisTemplate<String, Any>,
     private val jwtProperty: JwtProperty,
