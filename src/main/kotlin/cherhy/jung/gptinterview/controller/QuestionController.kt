@@ -5,6 +5,7 @@ import cherhy.jung.gptinterview.controller.dto.QuestionResponse
 import cherhy.jung.gptinterview.controller.dto.toQuestionRequestS
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
+import cherhy.jung.gptinterview.exception.ClientResponse
 import cherhy.jung.gptinterview.external.redis.RedisReadService
 import cherhy.jung.gptinterview.external.redis.RedisWriteService
 import cherhy.jung.gptinterview.extension.end
@@ -30,13 +31,14 @@ class QuestionController(
     fun getRandomQuestion(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @ModelAttribute request: QuestionRequest,
-    ): QuestionResponse {
+    ): ClientResponse<QuestionResponse> {
         val alreadyQuestions = redisReadService.getQuestionTokens(authCustomer.id)
 
         return questionReadService.getQuestion(request.toQuestionRequestS(), alreadyQuestions)
             .let(QuestionResponse::of)
-            .also {
+            .let {
                 redisWriteService.addQuestionToken(authCustomer.id, it.token)
+                ClientResponse.success(it)
             }
     }
 
@@ -45,7 +47,7 @@ class QuestionController(
     fun getQuestionHistory(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @Parameter(hidden = true) @PageableDefault(size = 15, page = 0) pageable: Pageable,
-    ): List<QuestionResponse> {
+    ): ClientResponse<List<QuestionResponse>> {
 
         val alreadyQuestions = redisReadService.getQuestionTokens(
             customerId = authCustomer.id,
@@ -55,5 +57,6 @@ class QuestionController(
 
         return questionReadService.getQuestionHistories(alreadyQuestions)
             .map(QuestionResponse::of)
+            .let(ClientResponse.Companion::success)
     }
 }

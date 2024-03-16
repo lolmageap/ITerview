@@ -3,6 +3,7 @@ package cherhy.jung.gptinterview.controller
 import cherhy.jung.gptinterview.controller.dto.GptRequest
 import cherhy.jung.gptinterview.controller.dto.GptResponse
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
+import cherhy.jung.gptinterview.exception.ClientResponse
 import cherhy.jung.gptinterview.usecase.GptAnswerUseCase
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -21,9 +22,10 @@ class GptController(
     fun requestAnswer(
         @RequestBody request: GptRequest,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
-    ): GptResponse =
+    ) =
         gptAnswerUseCase.requestAnswerToGpt(authCustomer.id, request)
             .let(GptResponse::of)
+            .let(ClientResponse.Companion::success)
 
     @GetMapping("/answers/{token}")
     @ResponseStatus(CREATED)
@@ -31,7 +33,8 @@ class GptController(
     fun getOnlyFeedback(
         @PathVariable token: String,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
-    ): GptResponse =
+    ) =
         gptAnswerUseCase.requestOnlyAnswerKeyToGpt(authCustomer.id, token)
             .let(GptResponse::of)
+            .let(ClientResponse.Companion::success)
 }
