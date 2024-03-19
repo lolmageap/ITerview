@@ -22,6 +22,7 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
+import java.time.ZonedDateTime
 import java.util.*
 import javax.crypto.SecretKey
 import javax.crypto.spec.SecretKeySpec
@@ -45,7 +46,7 @@ class TokenProvider(
 
         val claimsSet = JWTClaimsSet.Builder()
             .subject(authCustomer.username)
-            .claim(AUTHORITIES_KEY, authCustomer.authorities.toString())
+            .claim(jwtProperty.authorityKey, authCustomer.authorities.toString())
             .expirationTime(validity)
             .build()
 
@@ -62,7 +63,7 @@ class TokenProvider(
 
         if (signedJWT.verify(MACVerifier(key))) {
             val claims = signedJWT.jwtClaimsSet
-            val authorities: Collection<GrantedAuthority> = claims.getStringClaim(AUTHORITIES_KEY)
+            val authorities: Collection<GrantedAuthority> = claims.getStringClaim(jwtProperty.authorityKey)
                 .split(",")
                 .map(::SimpleGrantedAuthority)
                 .toList()
@@ -74,7 +75,7 @@ class TokenProvider(
             return UsernamePasswordAuthenticationToken(authCustomer, token, authorities)
         }
 
-        throw BadJWTException("Invalid JWT token")
+        throw BadJWTException("JWT 토큰이 잘못 되었습니다.")
     }
 
     fun validateToken(token: String): Boolean {
@@ -85,24 +86,21 @@ class TokenProvider(
             signedJWT.verify(verifier)
             true
         } catch (e: JOSEException) {
-            log.info("JWT 토큰이 만료되었습니다, detail: {}", e.toString())
-            false
-        } catch (e: IllegalArgumentException) {
-            log.info("JWT 토큰이 잘못되었습니다.")
+            log.info { "JWT 토큰이 만료 되었습니다. detail: $e" }
             false
         } catch (e: RuntimeException) {
-            log.info("JWT 토큰이 만료되었습니다, detail: {}", e.toString())
+            log.info { "JWT 토큰이 잘못 되었습니다. detail: $e" }
             false
         }
     }
 
     fun createRefreshToken(authCustomer: AuthCustomer): TokenResponseVo {
-        val now = Date().time
+        val now = ZonedDateTime.now().toInstant().toEpochMilli()
         val validity = Date(now + jwtProperty.refreshTokenValidityInSeconds.toLong())
 
         val claimsSet = JWTClaimsSet.Builder()
             .subject(authCustomer.username)
-            .claim(AUTHORITIES_KEY, authCustomer.authorities.toString())
+            .claim(jwtProperty.authorityKey, authCustomer.authorities.toString())
             .expirationTime(validity)
             .build()
 
@@ -112,9 +110,5 @@ class TokenProvider(
         }
 
         return TokenResponseVo(refreshToken, validity)
-    }
-
-    companion object {
-        private const val AUTHORITIES_KEY = "auth"
     }
 }
