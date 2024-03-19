@@ -6,6 +6,6 @@ data class ClientResponse<T>(
 ) {
     companion object {
         fun <T> success(value: T?): ClientResponse<T> = ClientResponse(value = value)
-        fun fail(message: String?): ClientResponse<Any> = ClientResponse(message = message)
+        fun fail(message: String?): ClientResponse<Nothing> = ClientResponse(message = message)
     }
 }
