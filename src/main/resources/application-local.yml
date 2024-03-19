@@ -63,6 +63,7 @@ jwt:
   algorithm: ENC(FZP1ocYqbuUNqKTryg4hs9RsnWU71+kg)
   token-validity-in-seconds: ENC(Ve48Jm2889YJ2q+1i0k2Ow==)
   refresh-token-validity-in-seconds: ENC(/QKwo/CreUrMtmwlV8Awdw==)
+  authority-key: ENC(UVfqbHMajrR5flVbVmMQtw==)
 
 jasypt:
   encryptor:

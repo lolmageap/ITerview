@@ -8,4 +8,5 @@ class JwtProperty(
     val algorithm: String,
     val tokenValidityInSeconds: String,
     val refreshTokenValidityInSeconds: String,
+    val authorityKey: String,
 )
