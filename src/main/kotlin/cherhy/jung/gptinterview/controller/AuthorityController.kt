@@ -3,10 +3,13 @@ package cherhy.jung.gptinterview.controller
 import cherhy.jung.gptinterview.controller.dto.*
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.extension.addAccessTokenInHeader
-import cherhy.jung.gptinterview.extension.addRefreshTokenInHeader
+import cherhy.jung.gptinterview.extension.addRefreshTokenInCookie
+import cherhy.jung.gptinterview.extension.refreshToken
 import cherhy.jung.gptinterview.external.redis.RedisReadService
 import cherhy.jung.gptinterview.usecase.*
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -36,7 +39,7 @@ class AuthorityController(
     ) =
         signInUseCase.signIn(request.toCustomerRequest()).let {
             httpServletResponse.addAccessTokenInHeader(it.accessToken)
-            httpServletResponse.addRefreshTokenInHeader(it.refreshToken)
+            httpServletResponse.addRefreshTokenInCookie(it.refreshToken)
         }
 
     @PostMapping("/sign-up")
@@ -49,20 +52,26 @@ class AuthorityController(
         signUpUseCase.signUp(request.toCustomerRequest())
         signInUseCase.signIn(request.toCustomerRequest()).let {
             httpServletResponse.addAccessTokenInHeader(it.accessToken)
-            httpServletResponse.addRefreshTokenInHeader(it.refreshToken)
+            httpServletResponse.addRefreshTokenInCookie(it.refreshToken)
         }
     }
 
     @PostMapping("/access-tokens")
+    @ApiResponses(
+        value = [
+            ApiResponse(responseCode = "200", description = "성공"),
+            ApiResponse(responseCode = "404", description = "엑세스 토큰이 헤더에 없음"),
+            ApiResponse(responseCode = "500", description = "엑세스 토큰이 만료"),
+        ]
+    )
     @Operation(summary = "access token 재발급", description = "refresh token 을 넘기면 access token 을 반환 한다.")
     fun getAccessToken(
         httpServletRequest: HttpServletRequest,
         httpServletResponse: HttpServletResponse,
     ) =
-        regenerateAccessTokenUseCase.regenerateAccessToken(httpServletRequest).let {
+        regenerateAccessTokenUseCase.regenerateAccessToken(httpServletRequest.refreshToken).let {
             httpServletResponse.addAccessTokenInHeader(it.token)
         }
-
 
     @PostMapping("/certificates")
     @ResponseStatus(CREATED)
@@ -78,7 +87,6 @@ class AuthorityController(
         @RequestParam @Valid request: EmailRequest,
     ) =
         redisReadService.checkCertificate(request.email, certificate)
-
 
     @PatchMapping("/passwords")
     @ResponseStatus(NO_CONTENT)
