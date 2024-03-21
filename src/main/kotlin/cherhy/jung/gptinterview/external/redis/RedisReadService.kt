@@ -1,8 +1,8 @@
 package cherhy.jung.gptinterview.external.redis
 
 import cherhy.jung.gptinterview.annotation.ReadService
-import cherhy.jung.gptinterview.exception.DomainName.CERTIFICATE_NUMBER
-import cherhy.jung.gptinterview.exception.DomainName.EMAIL
+import cherhy.jung.gptinterview.exception.MessageType.CERTIFICATE_NUMBER
+import cherhy.jung.gptinterview.exception.MessageType.EMAIL
 import cherhy.jung.gptinterview.exception.NotFoundException
 import cherhy.jung.gptinterview.external.redis.RedisKey.CERTIFICATE
 import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_TOKEN

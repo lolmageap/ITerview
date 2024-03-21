@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.extension
 
-import cherhy.jung.gptinterview.exception.DomainName
+import cherhy.jung.gptinterview.exception.MessageType
 import cherhy.jung.gptinterview.exception.NotFoundException
 import jakarta.servlet.http.Cookie
 import jakarta.servlet.http.HttpServletRequest
@@ -10,7 +10,7 @@ import javax.security.sasl.AuthenticationException
 val HttpServletRequest.refreshToken: String
     get() = this.cookies.find { it.name == "Refresh-Token" }
         ?.value?.substringAfter("Bearer ")
-        ?: throw NotFoundException(DomainName.REFRESH_TOKEN)
+        ?: throw NotFoundException(MessageType.REFRESH_TOKEN)
 
 val HttpServletRequest.authorization: String
     get() = this.getHeader("Authorization")

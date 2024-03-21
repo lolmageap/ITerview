@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.domain.authority
 
 import cherhy.jung.gptinterview.annotation.ReadService
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
-import cherhy.jung.gptinterview.exception.DomainName
+import cherhy.jung.gptinterview.exception.MessageType
 import cherhy.jung.gptinterview.exception.NotFoundException
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -14,6 +14,6 @@ class AuthCustomerReadService(
     override fun loadUserByUsername(username: String): UserDetails {
         return customerRepository.findWithAuthorityByEmail(username)
             ?.let { AuthCustomer(it) }
-            ?: throw NotFoundException(DomainName.CUSTOMER)
+            ?: throw NotFoundException(MessageType.CUSTOMER)
     }
 }

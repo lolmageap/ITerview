@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.external.jwt
 
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
-import cherhy.jung.gptinterview.exception.DomainName
+import cherhy.jung.gptinterview.exception.MessageType
 import cherhy.jung.gptinterview.exception.NotFoundException
 import cherhy.jung.gptinterview.property.JwtProperty
 import com.nimbusds.jose.JOSEException
@@ -69,7 +69,7 @@ class TokenProvider(
                 .toList()
 
             val customer = customerRepository.findByEmail(claims.subject)
-                ?: throw NotFoundException(DomainName.CUSTOMER)
+                ?: throw NotFoundException(MessageType.CUSTOMER)
 
             val authCustomer = AuthCustomer(customer)
             return UsernamePasswordAuthenticationToken(authCustomer, token, authorities)
