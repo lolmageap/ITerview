@@ -57,6 +57,9 @@ server:
 
 gpt:
   api-key: ENC(YlIOGmhEAT9AfbG07YKSTPonmTpR2UjPyTIluWgHZIp31Z1QP7YMtROIbtOja5ehDRDmQ76YWiM/EnxpAbfUig==)
+  model: ENC(AYTN6NFGkJgvRNAxFvJllhFV1Xe3ucIPq/V67OSg8Og=)
+  max-tokens: ENC(T5XUEqCHZR8qKfwfG/Vw3A==)
+  temperature: ENC(TddObl0wYeWKd2CNbAKiqA==)
 
 jwt:
   secret: ENC(eOfRAmjveMWkNeUcJ5Qyyln3/QndmrARoE2h4fq2Cd/q/CJjnS4o4dob1hB0ypSLtlVZSLyi3izhh54dy88OF6PObuSf/FAOvbF2v+zeYeBKJvWz1JZTy6PlYzsnbgHCpfFd/JRnAl06/1dax75V/Zo6XHTi9+AFiB6C2Yk/1PKqp+rRAAKcx8abujVyUMS5)
