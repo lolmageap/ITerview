@@ -22,8 +22,8 @@ class ControllerAdvisor {
             }
 
     @ResponseStatus(HttpStatus.CONFLICT)
-    @ExceptionHandler(ExistException::class)
-    fun existException(e: ExistException) =
+    @ExceptionHandler(AlreadyExistsException::class)
+    fun existException(e: AlreadyExistsException) =
         ClientResponse.fail(e.message)
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
