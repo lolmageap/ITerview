@@ -1,6 +1,11 @@
 package cherhy.jung.gptinterview.external.gpt
 
 import cherhy.jung.gptinterview.exception.GptNotGeneratedException
+import cherhy.jung.gptinterview.external.gpt.GptKey.ENDPOINT
+import cherhy.jung.gptinterview.external.gpt.GptKey.MAX_TOKENS
+import cherhy.jung.gptinterview.external.gpt.GptKey.MODEL
+import cherhy.jung.gptinterview.external.gpt.GptKey.PROMPT
+import cherhy.jung.gptinterview.external.gpt.GptKey.TEMPERATURE
 import cherhy.jung.gptinterview.property.GptProperty
 import cherhy.jung.gptinterview.util.Validator
 import org.springframework.http.HttpEntity
@@ -25,10 +30,10 @@ class GptClient(
         }
 
         val requestBody = mapOf(
-            "model" to MODEL,
-            "prompt" to prompt,
-            "temperature" to TEMPERATURE,
-            "max_tokens" to MAX_TOKENS,
+            MODEL to gptProperty.model,
+            PROMPT to prompt,
+            MAX_TOKENS to gptProperty.maxTokens,
+            TEMPERATURE to gptProperty.temperature,
         )
 
         val requestEntity = HttpEntity(requestBody, headers)
@@ -45,12 +50,5 @@ class GptClient(
         }.trimIndent()
 
         return Validator.validateJsonFormat(feedback)
-    }
-
-    companion object {
-        private const val ENDPOINT: String = "https://api.openai.com/v1/completions"
-        private const val TEMPERATURE: Float = 0.5f
-        private const val MODEL: String = "gpt-3.5-turbo-instruct"
-        private const val MAX_TOKENS: Int = 524
     }
 }
