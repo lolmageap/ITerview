@@ -22,14 +22,14 @@ spring:
         show_sql: true
         default_batch_fetch_size: 100
         use_sql_comments: true
-    open-in-view: false
-    defer-datasource-initialization: false
+    open-in-view: true
+    defer-datasource-initialization: true
 
   sql:
     init:
       mode: always
       data-locations:
-        - classpath:db/migration/*.sql
+        - classpath:db/migration/DROP_FLYWAY_HISTORY.sql
 
   data:
     web:
@@ -54,12 +54,16 @@ spring:
 
 gpt:
   api-key: ENC(9zB0P7lTUKrSgt0XFrLjqg==)
+  model: ENC(AYTN6NFGkJgvRNAxFvJllhFV1Xe3ucIPq/V67OSg8Og=)
+  max-tokens: ENC(T5XUEqCHZR8qKfwfG/Vw3A==)
+  temperature: ENC(TddObl0wYeWKd2CNbAKiqA==)
 
 jwt:
   algorithm: ENC(g7khyfDC+ocrWaNw6hXi1kH+enKJ6Vth)
   secret: ENC(Saqie+K61b4yf2dlqrGeiA==)
   token-validity-in-seconds: ENC(6MZFapEikl9+TMIHEpAOOA==)
   refresh-token-validity-in-seconds: ENC(hPTMN4Z/7AXvyPH68wHTEQ==)
+  authority-key: ENC(UVfqbHMajrR5flVbVmMQtw==)
 
 jasypt:
   encryptor:
