@@ -7,9 +7,9 @@ data class GptResponseVo(
     val body: String,
 )
 
-data class GptApiResponseS(
+data class GptApiResponseVo(
     val id: String,
-    @JsonProperty("object") val obj: String,
+    @JsonProperty("object") val `object`: String,
     val created: Long,
     val model: String,
     val choices: List<Choice>,

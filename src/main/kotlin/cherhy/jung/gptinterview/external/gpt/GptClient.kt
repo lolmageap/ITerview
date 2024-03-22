@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.external.gpt
 
 import cherhy.jung.gptinterview.exception.GptNotGeneratedException
-import cherhy.jung.gptinterview.external.gpt.GptKey.ENDPOINT
+import cherhy.jung.gptinterview.external.gpt.GptKey.GPT_ENDPOINT
 import cherhy.jung.gptinterview.external.gpt.GptKey.MAX_TOKENS
 import cherhy.jung.gptinterview.external.gpt.GptKey.MODEL
 import cherhy.jung.gptinterview.external.gpt.GptKey.PROMPT
@@ -11,7 +11,6 @@ import cherhy.jung.gptinterview.util.Validator
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
 
@@ -38,8 +37,8 @@ class GptClient(
 
         val requestEntity = HttpEntity(requestBody, headers)
 
-        val response: ResponseEntity<GptApiResponseS> =
-            RestTemplate().postForEntity(ENDPOINT, requestEntity, GptApiResponseS::class.java)
+        val response =
+            RestTemplate().postForEntity(GPT_ENDPOINT, requestEntity, GptApiResponseVo::class.java)
 
         val choices = response.body
             ?.choices
