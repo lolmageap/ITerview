@@ -50,7 +50,7 @@ spring:
 
 logging:
   level:
-    root: debug
+    org.springframework.jdbc.datasource.init.ScriptUtils: DEBUG
 
 server:
   port: 8901
