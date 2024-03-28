@@ -37,3 +37,6 @@ fun HttpServletResponse.removeRefreshTokenInCookie() =
             maxAge = 0
         }
     )
+
+fun HttpServletResponse.removeAccessTokenInHeader() =
+    this.addHeader("Access-Token", "")

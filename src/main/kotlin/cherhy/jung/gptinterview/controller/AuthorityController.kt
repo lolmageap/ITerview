@@ -2,10 +2,7 @@ package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.controller.dto.*
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
-import cherhy.jung.gptinterview.extension.addAccessTokenInHeader
-import cherhy.jung.gptinterview.extension.addRefreshTokenInCookie
-import cherhy.jung.gptinterview.extension.refreshToken
-import cherhy.jung.gptinterview.extension.removeRefreshTokenInCookie
+import cherhy.jung.gptinterview.extension.*
 import cherhy.jung.gptinterview.external.redis.RedisReadService
 import cherhy.jung.gptinterview.usecase.*
 import io.swagger.v3.oas.annotations.Operation
@@ -60,10 +57,13 @@ class AuthorityController(
 
     @PostMapping("/sign-out")
     @ResponseStatus(NO_CONTENT)
-    @Operation(summary = "로그 아웃", description = "로그 아웃 을 하고 refresh token 을 cookie 에서 삭제 한다.")
+    @Operation(summary = "로그 아웃", description = "access token 과 refresh token 을 header, cookie 에서 삭제 한다.")
     fun signOut(
         httpServletResponse: HttpServletResponse,
-    ) = httpServletResponse.removeRefreshTokenInCookie()
+    ) {
+        httpServletResponse.removeAccessTokenInHeader()
+        httpServletResponse.removeRefreshTokenInCookie()
+    }
 
     @PostMapping("/access-tokens")
     @ApiResponses(
