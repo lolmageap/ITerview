@@ -39,5 +39,8 @@
 1. 회원은 자신이 이전에 풀었던 문제를 다시 확인 할 수 있습니다.
 
 ## TODO
-- https://source.unsplash.com/random >> username, 이미지 랜덤 으로 넣어두기
-- 마지막 에 세팅 했던 기술 스택, 포지션 저장
+- [ ] refactoring 및 분해로 인해 깨지는 test case 를 수정
+- [ ] xss 를 방지하기 위한 시큐리티 필터를 구현
+- [ ] OAuth2 로그인 구현
+- [ ] https://source.unsplash.com/random >> username, 이미지 랜덤 으로 넣어두기
+- [ ] 마지막 에 세팅 했던 기술 스택, 포지션 저장
