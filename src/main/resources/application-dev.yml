@@ -9,9 +9,9 @@ spring:
       on-profile: dev
 
   datasource:
-    url: ENC(umsgxoaa8ozCbonhylS5J0Hc0bp83RSNishdaQ52bb7SgDev9SawTNkLSXflkvAF)
-    username: ENC(Vr3pVJGGDzxCXt87l/DXLA==)
-    password: ENC(JBmJhAuqTJfaBty2ScvI4Wz1jcUAhDpI)
+    url: ENC(ISGU4B0SIGBjotonifvJCiL2wirwWiFDEP16ZGB0w6yaWSAXycng7XF1ZzYo36Ew)
+    username: ENC(2JA6lbC9M3tzp5CnvJg3rg==)
+    password: ENC(DhGziWvTVdnlS3fzhvP2UjzuCX3ZfpKS)
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -33,14 +33,14 @@ spring:
         one-indexed-parameters: true
 
     redis:
-      host: ENC(mS7ThrEwK/ObO95kkxfQVOaIp4AYGD7a)
-      port: ENC(/VpBoGDlg3Cee9qZxNMw0Q==)
+      host: ENC(ylOXhuRJ+nOtc0Za/RiBFqFr9v2cCpig)
+      port: ENC(5FiIEpTUFLoBGGmI3Vx9Gg==)
 
   mail:
-    host: ENC(1hXOFJQq7m8ynSW2a6b1CGmBuZkVeCC3)
-    port: ENC(qb/seMi4z6/41EJdatfEAg==)
-    username: ENC(9psRfDAoGn4RR0bwfhGQq52Xop2uwe/knpklsrUTTz4=)
-    password: ENC(j9j111bVYYhgpRcwCQdVRObLUyztljqjn6blOl39M4E=)
+    host: ENC(Mz2+M9eFGsqmIa8XrhwB2ZjrP+7zeBdZ)
+    port: ENC(StcEUTdFCzwO3w4w5I0ABQ==)
+    username: ENC(M4F2BtuCfc2iTb2wn8P+ylUpCQ1ZJqg3/EAj2U5NCmA=)
+    password: ENC(cBUbprMjnyXe2CkseVhLT2tSWy+HVEsN0UJchFaOheU=)
     properties:
       mail:
         smtp:
@@ -56,17 +56,17 @@ server:
   port: 8901
 
 gpt:
-  api-key: ENC(YlIOGmhEAT9AfbG07YKSTPonmTpR2UjPyTIluWgHZIp31Z1QP7YMtROIbtOja5ehDRDmQ76YWiM/EnxpAbfUig==)
-  model: ENC(AYTN6NFGkJgvRNAxFvJllhFV1Xe3ucIPq/V67OSg8Og=)
-  max-tokens: ENC(T5XUEqCHZR8qKfwfG/Vw3A==)
-  temperature: ENC(TddObl0wYeWKd2CNbAKiqA==)
+  api-key: ENC(TR7PE9Ncamxwvl/hanmuE7DHjnRswd/3sJi8iFtCRyZ8TXAs6WSPEcOEMoZM+kSpyXDWN1iBD5ma2Ot0f4O/Rw==)
+  model: ENC(U5Z2m9/IipwgqjIWefT2CJiadkGJoIPuOuBq3WN1aj8=)
+  max-tokens: ENC(1MLX7nSkPYavGaJYKLfqNA==)
+  temperature: ENC(5hoVArJA1nMBafn9QVQYCg==)
 
 jwt:
-  secret: ENC(eOfRAmjveMWkNeUcJ5Qyyln3/QndmrARoE2h4fq2Cd/q/CJjnS4o4dob1hB0ypSLtlVZSLyi3izhh54dy88OF6PObuSf/FAOvbF2v+zeYeBKJvWz1JZTy6PlYzsnbgHCpfFd/JRnAl06/1dax75V/Zo6XHTi9+AFiB6C2Yk/1PKqp+rRAAKcx8abujVyUMS5)
-  algorithm: ENC(FZP1ocYqbuUNqKTryg4hs9RsnWU71+kg)
-  token-validity-in-seconds: ENC(Ve48Jm2889YJ2q+1i0k2Ow==)
-  refresh-token-validity-in-seconds: ENC(/QKwo/CreUrMtmwlV8Awdw==)
-  authority-key: ENC(UVfqbHMajrR5flVbVmMQtw==)
+  secret: ENC(5GHnPZIF7LWtLVhNHbeD+MU31NiytSHXKjA94xsVeSB8DGqHqerc4wi6jcRDH0Qu8iNZmyJh1I6qWOJU3e4HD8zqRAR+ehpbS3twM7mREvhX9SH1HnyHfXuhH0P2JJUcLEpWE8ZExSmfQXkzGtuM8k6X0fxp6m2dxTOS3uK1aX0dHPQSQCxUXn2GDM/GHp2t)
+  algorithm: ENC(lW5OyGlhGPu+V4mqQKZrwUwxk4zZlW2p)
+  token-validity-in-seconds: ENC(x1wKzd7lHKdnfrD5uUwAnA==)
+  refresh-token-validity-in-seconds: ENC(9pEjw+Ss6ONot60OrzgLhQ==)
+  authority-key: ENC(uUdyCzQpsDZuSx6I+4N6tw==)
 
 jasypt:
   encryptor:
