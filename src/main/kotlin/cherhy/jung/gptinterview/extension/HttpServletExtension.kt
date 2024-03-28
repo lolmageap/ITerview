@@ -28,3 +28,12 @@ fun HttpServletResponse.addRefreshTokenInCookie(value: String) =
             maxAge = 60 * 60 * 24 * 30
         }
     )
+
+fun HttpServletResponse.removeRefreshTokenInCookie() =
+    this.addCookie(
+        Cookie("Refresh-Token", "").apply {
+            path = "/"
+            isHttpOnly = true
+            maxAge = 0
+        }
+    )
