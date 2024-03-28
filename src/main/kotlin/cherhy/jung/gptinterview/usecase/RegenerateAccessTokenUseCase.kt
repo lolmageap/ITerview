@@ -15,7 +15,7 @@ class RegenerateAccessTokenUseCase(
     private val tokenProvider: TokenProvider,
 ) {
     @Transactional(readOnly = true)
-    fun regenerateAccessToken(refreshToken: String): TokenResponseVo {
+    fun execute(refreshToken: String): TokenResponseVo {
         val isValid = tokenProvider.validateToken(refreshToken)
         require(isValid) { "Refresh Token 이 만료 되었습니다." }
 

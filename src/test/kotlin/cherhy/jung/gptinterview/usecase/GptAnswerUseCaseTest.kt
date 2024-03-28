@@ -24,10 +24,9 @@ import io.mockk.verify
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
-
 @SpringBootTest
 internal class GptAnswerUseCaseTest(
-    @Autowired private val gptAnswerUseCase: GptAnswerUseCase,
+    @Autowired private val requestAnswerKeyToGptUseCase: RequestAnswerKeyToGptUseCase,
     @Autowired private val customerRepository: CustomerRepository,
     @Autowired private val questionRepository: QuestionRepository,
 
@@ -73,7 +72,7 @@ internal class GptAnswerUseCaseTest(
             } returns feedback
             every { questionHistoryWriteService.addHistory(questionHistory) } returns historyResponse
 
-            val feedBack = gptAnswerUseCase.requestAnswerToGpt(customerId = customer.id, request = gptRequest)
+            val feedBack = requestAnswerKeyToGptUseCase.execute(customer.id, gptRequest.questionToken)
 
             Then("점수와 피드백 이 정상적 으로 출력 되는지 검증 한다.") {
                 feedBack.body shouldContain "score"
