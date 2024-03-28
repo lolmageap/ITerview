@@ -4,7 +4,8 @@ import cherhy.jung.gptinterview.controller.dto.GptRequest
 import cherhy.jung.gptinterview.controller.dto.GptResponse
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.exception.ClientResponse
-import cherhy.jung.gptinterview.usecase.GptAnswerUseCase
+import cherhy.jung.gptinterview.usecase.RequestAnswerKeyToGptUseCase
+import cherhy.jung.gptinterview.usecase.RequestAnswerToGptUseCase
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus.CREATED
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.*
 @Tag(name = "GPT 요청")
 @RestController
 class GptController(
-    private val gptAnswerUseCase: GptAnswerUseCase,
+    private val requestAnswerKeyToGptUseCase: RequestAnswerKeyToGptUseCase,
+    private val requestAnswerToGptUseCase: RequestAnswerToGptUseCase,
 ) {
     @PostMapping("/answers")
     @ResponseStatus(CREATED)
@@ -23,7 +25,7 @@ class GptController(
         @RequestBody request: GptRequest,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
     ) =
-        gptAnswerUseCase.requestAnswerToGpt(authCustomer.id, request)
+        requestAnswerToGptUseCase.execute(authCustomer.id, request)
             .let(GptResponse::of)
             .let(ClientResponse.Companion::success)
 
@@ -34,7 +36,7 @@ class GptController(
         @PathVariable token: String,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
     ) =
-        gptAnswerUseCase.requestOnlyAnswerKeyToGpt(authCustomer.id, token)
+        requestAnswerKeyToGptUseCase.execute(authCustomer.id, token)
             .let(GptResponse::of)
             .let(ClientResponse.Companion::success)
 }

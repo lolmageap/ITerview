@@ -6,32 +6,17 @@ import cherhy.jung.gptinterview.external.gpt.GptClient
 import cherhy.jung.gptinterview.external.gpt.GptResponseVo
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
-import cherhy.jung.gptinterview.controller.dto.GptRequest
 import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
 import cherhy.jung.gptinterview.util.Generator
 
 @UseCase
-class GptAnswerUseCase(
+class RequestAnswerKeyToGptUseCase(
     private val gptClient: GptClient,
     private val customerReadService: CustomerReadService,
     private val questionReadService: QuestionReadService,
     private val questionHistoryWriteService: QuestionHistoryWriteService,
 ) {
-    fun requestAnswerToGpt(customerId: Long, request: GptRequest): GptResponseVo {
-        val customer = customerReadService.getCustomerById(customerId)
-        val question = questionReadService.getQuestionByToken(request.questionToken)
-
-        val questionToGpt = Generator.questionToGpt(question.title, request.answer)
-
-        val feedback = gptClient.requestAndReceiveFeedback(questionToGpt)
-
-        val questionHistory = QuestionHistory.of(question.id, customer.id, feedback)
-        val history = questionHistoryWriteService.addHistory(questionHistory)
-
-        return GptResponseVo(history.token, feedback)
-    }
-
-    fun requestOnlyAnswerKeyToGpt(customerId: Long, token: String): GptResponseVo {
+    fun execute(customerId: Long, token: String): GptResponseVo {
         val customer = customerReadService.getCustomerById(customerId)
         val question = questionReadService.getQuestionByToken(token)
 
