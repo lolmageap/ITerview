@@ -34,7 +34,7 @@ class SendMailUseCaseTest(
             every { mailService.sendMessage(any(), any()) } just Runs
             every { redisWriteService.addCertificate(any(), any()) } just Runs
 
-            sendMailUseCase.sendCertificate(customer.email)
+            sendMailUseCase.execute(customer.email)
 
             Then("모두 실행 되었는 지 확인 한다.") {
                 verify { customerReadService.checkDuplicatedEmail(any()) }

@@ -12,7 +12,7 @@ class SendMailUseCase(
     private val mailService: MailService,
     private val redisWriteService: RedisWriteService,
 ) {
-    fun sendCertificate(email: String) {
+    fun execute(email: String) {
         customerReadService.checkDuplicatedEmail(email)
         val certificate = Generator.certificate()
         mailService.sendMessage(email, certificate)

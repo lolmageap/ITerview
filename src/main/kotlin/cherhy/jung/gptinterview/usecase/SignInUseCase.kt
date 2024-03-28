@@ -17,7 +17,7 @@ class SignInUseCase(
     private val authenticationManagerBuilder: AuthenticationManagerBuilder,
     private val redisWriteService: RedisWriteService,
 ) {
-    fun signIn(request: CustomerRequestVo): TokenResponse {
+    fun execute(request: CustomerRequestVo): TokenResponse {
         val customer = customerReadService.getCustomerByEmail(request.email)
 
         val authenticationToken =
