@@ -34,15 +34,21 @@ class RedisWriteService(
             TimeUnit.SECONDS,
         )
     }
-    // TODO: 다시 작성
+
     fun addQuestionAttributes(
         customerId: Long,
         request: QuestionRequest,
     ) {
         val opsForHash = redisTemplate.opsForHash<String, String>()
-        val questionTypes = request.questionTypes
-        val programingTypes = request.programingTypes
-        val frameworkTypes = request.frameworkTypes
-        val levels = request.levels
+
+        val questionTypes = request.questionTypes.joinToString(", ") { it.name }
+        val programingTypes = request.programingTypes.joinToString(", ") { it.name }
+        val frameworkTypes = request.frameworkTypes.joinToString(", ") { it.name }
+        val levels = request.levels.joinToString(", ") { it.name }
+
+        opsForHash.put(QUESTION_TOKEN + customerId, "questionTypes", questionTypes)
+        opsForHash.put(QUESTION_TOKEN + customerId, "programingTypes", programingTypes)
+        opsForHash.put(QUESTION_TOKEN + customerId, "frameworkTypes", frameworkTypes)
+        opsForHash.put(QUESTION_TOKEN + customerId, "levels", levels)
     }
 }
