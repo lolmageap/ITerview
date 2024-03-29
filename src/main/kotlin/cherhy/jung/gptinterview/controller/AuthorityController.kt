@@ -2,6 +2,8 @@ package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.controller.dto.*
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
+import cherhy.jung.gptinterview.domain.customer.CustomerReadService
+import cherhy.jung.gptinterview.exception.ClientResponse
 import cherhy.jung.gptinterview.extension.*
 import cherhy.jung.gptinterview.external.redis.RedisReadService
 import cherhy.jung.gptinterview.usecase.*
@@ -28,6 +30,7 @@ class AuthorityController(
     private val resetPasswordUseCase: ResetPasswordUseCase,
     private val redisReadService: RedisReadService,
     private val regenerateAccessTokenUseCase: RegenerateAccessTokenUseCase,
+    private val customerReadService: CustomerReadService,
 ) {
     @PostMapping("/sign-in")
     @ResponseStatus(CREATED)
@@ -118,4 +121,12 @@ class AuthorityController(
         redisReadService.checkCertificate(request.email, request.certificate)
         resetPasswordUseCase.execute(request.email)
     }
+
+    @GetMapping("/me")
+    @Operation(summary = "내 정보", description = "내 정보를 조회 한다.")
+    fun getMe(
+        @AuthenticationPrincipal authCustomer: AuthCustomer,
+    ) = customerReadService.getCustomerById(authCustomer.id)
+        .let(CustomerResponse::of)
+        .let(ClientResponse.Companion::success)
 }
