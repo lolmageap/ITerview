@@ -5,7 +5,7 @@ import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.exception.ClientResponse
 import cherhy.jung.gptinterview.extension.*
-import cherhy.jung.gptinterview.external.redis.RedisReadService
+import cherhy.jung.gptinterview.external.cache.CacheReadService
 import cherhy.jung.gptinterview.usecase.*
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -28,7 +28,7 @@ class AuthorityController(
     private val sendMailUseCase: SendMailUseCase,
     private val editPasswordUseCase: EditPasswordUseCase,
     private val resetPasswordUseCase: ResetPasswordUseCase,
-    private val redisReadService: RedisReadService,
+    private val cacheReadService: CacheReadService,
     private val regenerateAccessTokenUseCase: RegenerateAccessTokenUseCase,
     private val customerReadService: CustomerReadService,
 ) {
@@ -104,7 +104,7 @@ class AuthorityController(
         @RequestParam certificate: String,
         @RequestParam @Valid request: EmailRequest,
     ) =
-        redisReadService.checkCertificate(request.email, certificate)
+        cacheReadService.checkCertificate(request.email, certificate)
             .let(ClientResponse.Companion::success)
 
     @PatchMapping("/passwords")
@@ -125,7 +125,7 @@ class AuthorityController(
     fun resetPassword(
         @RequestBody @Valid request: CertificateRequest,
     ): ClientResponse<Unit> {
-        redisReadService.checkCertificate(request.email, request.certificate)
+        cacheReadService.checkCertificate(request.email, request.certificate)
         resetPasswordUseCase.execute(request.email)
         return ClientResponse.success()
     }

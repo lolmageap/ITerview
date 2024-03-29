@@ -1,6 +1,6 @@
-package cherhy.jung.gptinterview.external.redis
+package cherhy.jung.gptinterview.external.cache
 
-object RedisKey {
+object CacheKey {
     const val REFRESH_TOKEN: String = "refresh:"
     const val QUESTION_TOKEN: String = "question:"
     const val CERTIFICATE: String = "certificate:"

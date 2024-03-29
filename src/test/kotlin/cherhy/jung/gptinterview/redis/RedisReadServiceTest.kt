@@ -3,9 +3,9 @@
 package cherhy.jung.gptinterview.redis
 
 import cherhy.jung.gptinterview.exception.NotFoundException
-import cherhy.jung.gptinterview.external.redis.RedisKey
-import cherhy.jung.gptinterview.external.redis.RedisKey.CERTIFICATE
-import cherhy.jung.gptinterview.external.redis.RedisReadService
+import cherhy.jung.gptinterview.external.cache.CacheKey
+import cherhy.jung.gptinterview.external.cache.CacheKey.CERTIFICATE
+import cherhy.jung.gptinterview.external.cache.CacheReadService
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.test.TestCase
@@ -23,7 +23,7 @@ import org.testcontainers.containers.GenericContainer
 
 @SpringBootTest
 class RedisReadServiceTest(
-    @Autowired private val redisReadService: RedisReadService,
+    @Autowired private val cacheReadService: CacheReadService,
     @Autowired private val redisTemplate: RedisTemplate<String, Any>,
 ) : BehaviorSpec({
     val redisContainer = GenericContainer<Nothing>("redis:5.0.3-alpine")
@@ -39,10 +39,10 @@ class RedisReadServiceTest(
     Given("회원이 client 에 저장 되있는 refresh token 으로 요청을 보내면 ") {
         val email = "ekxk1234@naver.com"
         val refreshToken = "refreshToken"
-        redisTemplate.opsForValue().set(RedisKey.REFRESH_TOKEN + refreshToken, email)
+        redisTemplate.opsForValue().set(CacheKey.REFRESH_TOKEN + refreshToken, email)
 
         When("refresh 토큰을 조회한 뒤 ") {
-            val findEmail = redisReadService.getEmailByRefreshToken(refreshToken)
+            val findEmail = cacheReadService.getEmailByRefreshToken(refreshToken)
 
             Then("검증 한다.") {
                 findEmail shouldNotBe null
@@ -61,11 +61,11 @@ class RedisReadServiceTest(
         );
 
         questionTokens.forEach {
-            redisTemplate.opsForList().rightPush(RedisKey.QUESTION_TOKEN + customerId, it)
+            redisTemplate.opsForList().rightPush(CacheKey.QUESTION_TOKEN + customerId, it)
         }
 
         When("회원의 아이디 만으로 ") {
-            val findQuestionTokens = redisReadService.getQuestionTokens(customerId)
+            val findQuestionTokens = cacheReadService.getQuestionTokens(customerId)
 
             Then("전부 출력 한다.") {
                 findQuestionTokens.size shouldBe 4
@@ -74,7 +74,7 @@ class RedisReadServiceTest(
         }
 
         When("회원의 아이디 와 범위로 ") {
-            val findQuestionTokens = redisReadService.getQuestionTokens(customerId, 0, 2)
+            val findQuestionTokens = cacheReadService.getQuestionTokens(customerId, 0, 2)
 
             Then("출력 한다.") {
                 findQuestionTokens.size shouldBe 3
@@ -92,7 +92,7 @@ class RedisReadServiceTest(
 
         When("인증 번호와 이메일 을 정상 입력 하면 ") {
             Then("성공 한다.") {
-                redisReadService.checkCertificate(email, certificateNumber)
+                cacheReadService.checkCertificate(email, certificateNumber)
             }
         }
 
@@ -101,7 +101,7 @@ class RedisReadServiceTest(
 
             Then("exception 이 발생 한다.") {
                 shouldThrow<NotFoundException> {
-                    redisReadService.checkCertificate(email, notFoundNumber)
+                    cacheReadService.checkCertificate(email, notFoundNumber)
                 }
             }
         }

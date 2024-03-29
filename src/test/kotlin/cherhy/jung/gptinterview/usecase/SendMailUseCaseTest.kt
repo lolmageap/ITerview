@@ -3,7 +3,7 @@ package cherhy.jung.gptinterview.usecase
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.external.mail.MailService
-import cherhy.jung.gptinterview.external.redis.RedisWriteService
+import cherhy.jung.gptinterview.external.cache.CacheWriteService
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.Runs
@@ -18,7 +18,7 @@ class SendMailUseCaseTest(
     @Autowired private val sendMailUseCase: SendMailUseCase,
     @MockkBean private val customerReadService: CustomerReadService,
     @MockkBean private val mailService: MailService,
-    @MockkBean private val redisWriteService: RedisWriteService,
+    @MockkBean private val cacheWriteService: CacheWriteService,
 ) : BehaviorSpec({
 
     Given("회원이 ") {
@@ -32,14 +32,14 @@ class SendMailUseCaseTest(
         When("이메일 을 전송 하고 ") {
             every { customerReadService.checkDuplicatedEmail(any()) } just Runs
             every { mailService.sendMessage(any(), any()) } just Runs
-            every { redisWriteService.addCertificate(any(), any()) } just Runs
+            every { cacheWriteService.addCertificate(any(), any()) } just Runs
 
             sendMailUseCase.execute(customer.email)
 
             Then("모두 실행 되었는 지 확인 한다.") {
                 verify { customerReadService.checkDuplicatedEmail(any()) }
                 verify { mailService.sendMessage(any(), any()) }
-                verify { redisWriteService.addCertificate(any(), any()) }
+                verify { cacheWriteService.addCertificate(any(), any()) }
             }
         }
     }

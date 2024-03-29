@@ -1,9 +1,9 @@
 package cherhy.jung.gptinterview.redis
 
-import cherhy.jung.gptinterview.external.redis.RedisKey.CERTIFICATE
-import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_TOKEN
-import cherhy.jung.gptinterview.external.redis.RedisKey.REFRESH_TOKEN
-import cherhy.jung.gptinterview.external.redis.RedisWriteService
+import cherhy.jung.gptinterview.external.cache.CacheKey.CERTIFICATE
+import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_TOKEN
+import cherhy.jung.gptinterview.external.cache.CacheKey.REFRESH_TOKEN
+import cherhy.jung.gptinterview.external.cache.CacheWriteService
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.extensions.testcontainers.perSpec
 import io.kotest.matchers.shouldBe
@@ -16,7 +16,7 @@ import org.testcontainers.containers.GenericContainer
 @Suppress("DEPRECATION")
 @SpringBootTest
 class RedisWriteServiceTest(
-    @Autowired private val redisWriteService: RedisWriteService,
+    @Autowired private val cacheWriteService: CacheWriteService,
     @Autowired private val redisTemplate: RedisTemplate<String, Any>,
 ) : BehaviorSpec({
     val redisContainer = GenericContainer<Nothing>("redis:5.0.3-alpine")
@@ -40,7 +40,7 @@ class RedisWriteServiceTest(
         val refreshToken = "refreshToken"
 
         When("access token 과 refresh token 을 등록한 뒤 ") {
-            redisWriteService.addJwtToken(refreshToken, email)
+            cacheWriteService.addJwtToken(refreshToken, email)
 
             Then("확인 한다.") {
                 val findEmail = redisTemplate.opsForValue().get(REFRESH_TOKEN + refreshToken) as String
@@ -55,7 +55,7 @@ class RedisWriteServiceTest(
         val questionToken = "questionToken"
 
         When("회원의 아이디 로 질문 토큰을 등록 하고 ") {
-            redisWriteService.addQuestionToken(customerId, questionToken)
+            cacheWriteService.addQuestionToken(customerId, questionToken)
 
             Then("확인 한다.") {
                 val questionTokens =
@@ -72,7 +72,7 @@ class RedisWriteServiceTest(
         val certificateNumber = "123456"
 
         When("메모리 에 저장 하고 ") {
-            redisWriteService.addCertificate(email, certificateNumber)
+            cacheWriteService.addCertificate(email, certificateNumber)
 
             Then("이메일 로 조회 한 뒤 인증 번호를 확인 한다.") {
                 val result = redisTemplate.opsForValue().get(CERTIFICATE + email) as String

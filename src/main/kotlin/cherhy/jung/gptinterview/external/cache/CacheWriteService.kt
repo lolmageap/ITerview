@@ -1,20 +1,20 @@
-package cherhy.jung.gptinterview.external.redis
+package cherhy.jung.gptinterview.external.cache
 
 import cherhy.jung.gptinterview.annotation.WriteService
 import cherhy.jung.gptinterview.controller.dto.QuestionRequest
 import cherhy.jung.gptinterview.property.JwtProperty
-import cherhy.jung.gptinterview.external.redis.RedisKey.CERTIFICATE
-import cherhy.jung.gptinterview.external.redis.RedisKey.FRAMEWORK_TYPE
-import cherhy.jung.gptinterview.external.redis.RedisKey.PROGRAMING_TYPE
-import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_LEVEL
-import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_TOKEN
-import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_TYPE
-import cherhy.jung.gptinterview.external.redis.RedisKey.REFRESH_TOKEN
+import cherhy.jung.gptinterview.external.cache.CacheKey.CERTIFICATE
+import cherhy.jung.gptinterview.external.cache.CacheKey.FRAMEWORK_TYPE
+import cherhy.jung.gptinterview.external.cache.CacheKey.PROGRAMING_TYPE
+import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_LEVEL
+import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_TOKEN
+import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_TYPE
+import cherhy.jung.gptinterview.external.cache.CacheKey.REFRESH_TOKEN
 import org.springframework.data.redis.core.RedisTemplate
 import java.util.concurrent.TimeUnit
 
 @WriteService
-class RedisWriteService(
+class CacheWriteService(
     private val redisTemplate: RedisTemplate<String, Any>,
     private val jwtProperty: JwtProperty,
 ) {

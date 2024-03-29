@@ -6,8 +6,8 @@ import cherhy.jung.gptinterview.controller.dto.toQuestionRequestS
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.exception.ClientResponse
-import cherhy.jung.gptinterview.external.redis.RedisReadService
-import cherhy.jung.gptinterview.external.redis.RedisWriteService
+import cherhy.jung.gptinterview.external.cache.CacheReadService
+import cherhy.jung.gptinterview.external.cache.CacheWriteService
 import cherhy.jung.gptinterview.extension.end
 import cherhy.jung.gptinterview.extension.start
 import io.swagger.v3.oas.annotations.Operation
@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/questions")
 class QuestionController(
     private val questionReadService: QuestionReadService,
-    private val redisReadService: RedisReadService,
-    private val redisWriteService: RedisWriteService,
+    private val cacheReadService: CacheReadService,
+    private val cacheWriteService: CacheWriteService,
 ) {
     @GetMapping
     @Operation(summary = "질문 받기", description = "요청에 맞게 질문을 반환한다.")
@@ -32,12 +32,12 @@ class QuestionController(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @ModelAttribute request: QuestionRequest,
     ): ClientResponse<QuestionResponse> {
-        val alreadyQuestions = redisReadService.getQuestionTokens(authCustomer.id)
+        val alreadyQuestions = cacheReadService.getQuestionTokens(authCustomer.id)
 
         return questionReadService.getQuestion(request.toQuestionRequestS(), alreadyQuestions)
             .let(QuestionResponse::of)
             .let {
-                redisWriteService.addQuestionToken(authCustomer.id, it.token)
+                cacheWriteService.addQuestionToken(authCustomer.id, it.token)
                 ClientResponse.success(it)
             }
     }
@@ -49,7 +49,7 @@ class QuestionController(
         @Parameter(hidden = true) @PageableDefault(size = 15, page = 0) pageable: Pageable,
     ): ClientResponse<List<QuestionResponse>> {
 
-        val alreadyQuestions = redisReadService.getQuestionTokens(
+        val alreadyQuestions = cacheReadService.getQuestionTokens(
             customerId = authCustomer.id,
             start = pageable.start,
             end = pageable.end,
@@ -66,7 +66,7 @@ class QuestionController(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @ModelAttribute request: QuestionRequest,
     ) =
-        redisWriteService.addQuestionAttributes(authCustomer.id, request)
+        cacheWriteService.addQuestionAttributes(authCustomer.id, request)
             .let(ClientResponse.Companion::success)
 
     @GetMapping("/attributes")
@@ -74,6 +74,6 @@ class QuestionController(
     fun getQuestionAttributes(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
     ) =
-        redisReadService.getQuestionAttributes(authCustomer.id)
+        cacheReadService.getQuestionAttributes(authCustomer.id)
             .let(ClientResponse.Companion::success)
 }

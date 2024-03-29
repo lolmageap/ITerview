@@ -6,7 +6,7 @@ import cherhy.jung.gptinterview.domain.customer.dto.CustomerRequestVo
 import cherhy.jung.gptinterview.extension.getUserDetails
 import cherhy.jung.gptinterview.external.jwt.TokenProvider
 import cherhy.jung.gptinterview.external.jwt.TokenResponse
-import cherhy.jung.gptinterview.external.redis.RedisWriteService
+import cherhy.jung.gptinterview.external.cache.CacheWriteService
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 
@@ -15,7 +15,7 @@ class SignInUseCase(
     private val customerReadService: CustomerReadService,
     private val tokenProvider: TokenProvider,
     private val authenticationManagerBuilder: AuthenticationManagerBuilder,
-    private val redisWriteService: RedisWriteService,
+    private val cacheWriteService: CacheWriteService,
 ) {
     fun execute(request: CustomerRequestVo): TokenResponse {
         val customer = customerReadService.getCustomerByEmail(request.email)
@@ -28,7 +28,7 @@ class SignInUseCase(
         val accessToken = tokenProvider.createAccessToken(authCustomer)
         val refreshToken = tokenProvider.createRefreshToken(authCustomer)
 
-        redisWriteService.addJwtToken(refreshToken.token, request.email)
+        cacheWriteService.addJwtToken(refreshToken.token, request.email)
 
         return TokenResponse(
             accessToken = accessToken.token,

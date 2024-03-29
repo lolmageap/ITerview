@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.external.redis
+package cherhy.jung.gptinterview.external.cache
 
 import cherhy.jung.gptinterview.annotation.ReadService
 import cherhy.jung.gptinterview.controller.dto.QuestionAttributeResponse
@@ -9,18 +9,18 @@ import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.exception.MessageType.CERTIFICATE_NUMBER
 import cherhy.jung.gptinterview.exception.MessageType.EMAIL
 import cherhy.jung.gptinterview.exception.NotFoundException
-import cherhy.jung.gptinterview.external.redis.RedisKey.CERTIFICATE
-import cherhy.jung.gptinterview.external.redis.RedisKey.FRAMEWORK_TYPE
-import cherhy.jung.gptinterview.external.redis.RedisKey.PROGRAMING_TYPE
-import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_LEVEL
-import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_TOKEN
-import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_TYPE
-import cherhy.jung.gptinterview.external.redis.RedisKey.REFRESH_TOKEN
+import cherhy.jung.gptinterview.external.cache.CacheKey.CERTIFICATE
+import cherhy.jung.gptinterview.external.cache.CacheKey.FRAMEWORK_TYPE
+import cherhy.jung.gptinterview.external.cache.CacheKey.PROGRAMING_TYPE
+import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_LEVEL
+import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_TOKEN
+import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_TYPE
+import cherhy.jung.gptinterview.external.cache.CacheKey.REFRESH_TOKEN
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.security.access.AccessDeniedException
 
 @ReadService
-class RedisReadService(
+class CacheReadService(
     private val redisTemplate: RedisTemplate<String, Any>,
 ) {
     fun getEmailByRefreshToken(refreshToken: String?): String {
