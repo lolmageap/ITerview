@@ -4,7 +4,11 @@ import cherhy.jung.gptinterview.annotation.WriteService
 import cherhy.jung.gptinterview.controller.dto.QuestionRequest
 import cherhy.jung.gptinterview.property.JwtProperty
 import cherhy.jung.gptinterview.external.redis.RedisKey.CERTIFICATE
+import cherhy.jung.gptinterview.external.redis.RedisKey.FRAMEWORK_TYPE
+import cherhy.jung.gptinterview.external.redis.RedisKey.PROGRAMING_TYPE
+import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_LEVEL
 import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_TOKEN
+import cherhy.jung.gptinterview.external.redis.RedisKey.QUESTION_TYPE
 import cherhy.jung.gptinterview.external.redis.RedisKey.REFRESH_TOKEN
 import org.springframework.data.redis.core.RedisTemplate
 import java.util.concurrent.TimeUnit
@@ -46,9 +50,9 @@ class RedisWriteService(
         val frameworkTypes = request.frameworkTypes.joinToString(", ") { it.name }
         val levels = request.levels.joinToString(", ") { it.name }
 
-        opsForHash.put(QUESTION_TOKEN + customerId, "questionTypes", questionTypes)
-        opsForHash.put(QUESTION_TOKEN + customerId, "programingTypes", programingTypes)
-        opsForHash.put(QUESTION_TOKEN + customerId, "frameworkTypes", frameworkTypes)
-        opsForHash.put(QUESTION_TOKEN + customerId, "levels", levels)
+        opsForHash.put(QUESTION_TOKEN + customerId, QUESTION_TYPE, questionTypes)
+        opsForHash.put(QUESTION_TOKEN + customerId, PROGRAMING_TYPE, programingTypes)
+        opsForHash.put(QUESTION_TOKEN + customerId, FRAMEWORK_TYPE, frameworkTypes)
+        opsForHash.put(QUESTION_TOKEN + customerId, QUESTION_LEVEL, levels)
     }
 }
