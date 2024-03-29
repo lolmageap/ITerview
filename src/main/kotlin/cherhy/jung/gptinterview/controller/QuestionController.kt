@@ -68,4 +68,12 @@ class QuestionController(
     ) =
         redisWriteService.addQuestionAttributes(authCustomer.id, request)
             .let(ClientResponse.Companion::success)
+
+    @GetMapping("/attributes")
+    @Operation(summary = "마지막에 사용한 질문의 속성", description = "마지막에 사용한 질문의 속성을 캐시에서 가져온다.")
+    fun getQuestionAttributes(
+        @AuthenticationPrincipal authCustomer: AuthCustomer,
+    ) =
+        redisReadService.getQuestionAttributes(authCustomer.id)
+            .let(ClientResponse.Companion::success)
 }
