@@ -42,5 +42,5 @@
 - [ ] refactoring 및 분해로 인해 깨지는 test case 를 수정
 - [ ] xss 를 방지하기 위한 시큐리티 필터를 구현
 - [ ] OAuth2 로그인 구현
-- [ ] https://source.unsplash.com/random >> username, 이미지 랜덤 으로 넣어두기
+- [x] https://source.unsplash.com/random >> username, 이미지 랜덤 으로 넣어두기
 - [ ] 마지막 에 세팅 했던 기술 스택, 포지션 저장
