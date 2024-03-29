@@ -1,7 +1,9 @@
 package cherhy.jung.gptinterview.controller.dto
 
 import cherhy.jung.gptinterview.domain.customer.dto.CustomerRequestVo
+import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseVo
 import cherhy.jung.gptinterview.domain.customer.dto.EditPasswordRequestVo
+import cherhy.jung.gptinterview.extension.isNumber
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
@@ -86,6 +88,23 @@ data class CertificateRequest(
     val certificate: String,
 ) {
     init {
-        require(certificate.toInt() >= 0) { "인증번호 는 0보다 큰 숫자 여야 합니다." }
+        require(certificate.isNumber) { "인증번호는 숫자여야 합니다." }
+    }
+}
+
+data class CustomerResponse(
+    val name: String,
+    val image: String,
+    val email: String,
+    val token: String,
+) {
+    companion object {
+        fun of(response: CustomerResponseVo): CustomerResponse =
+            CustomerResponse(
+                name = response.name,
+                image = "https://source.unsplash.com/random",
+                email = response.email,
+                token = response.token,
+            )
     }
 }
