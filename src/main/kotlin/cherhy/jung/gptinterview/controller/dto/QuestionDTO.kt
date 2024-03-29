@@ -46,3 +46,10 @@ data class QuestionResponse(
         }
     }
 }
+
+data class QuestionAttributeResponse(
+    val questionTypes: List<QuestionType>,
+    val programingTypes: List<ProgramingType>,
+    val frameworkTypes: List<FrameworkType>,
+    val levels: List<QuestionLevel>,
+)
