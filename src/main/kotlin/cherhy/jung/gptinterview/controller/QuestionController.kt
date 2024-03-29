@@ -59,4 +59,13 @@ class QuestionController(
             .map(QuestionResponse::of)
             .let(ClientResponse.Companion::success)
     }
+
+    @PostMapping("/attributes")
+    @Operation(summary = "마지막에 사용한 질문의 속성", description = "마지막에 사용한 질문의 속성을 캐시에 저장한다.")
+    fun getQuestionAttributes(
+        @AuthenticationPrincipal authCustomer: AuthCustomer,
+        @ModelAttribute request: QuestionRequest,
+    ) =
+        redisWriteService.addQuestionAttributes(authCustomer.id, request)
+            .let(ClientResponse.Companion::success)
 }
