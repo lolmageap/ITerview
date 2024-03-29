@@ -5,7 +5,7 @@ data class ClientResponse<T>(
     val value: T? = null,
 ) {
     companion object {
-        fun <T> success(value: T?): ClientResponse<T> = ClientResponse(value = value)
+        fun <T> success(value: T? = null): ClientResponse<T> = ClientResponse(value = value)
         fun fail(message: String?): ClientResponse<Nothing> = ClientResponse(message = message)
     }
 }
