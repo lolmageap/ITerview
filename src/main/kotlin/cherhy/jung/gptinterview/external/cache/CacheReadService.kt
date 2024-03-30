@@ -49,10 +49,12 @@ class CacheReadService(
         redisTemplate.delete(CERTIFICATE + email)
     }
 
-    fun getQuestionAttributes(id: Long): QuestionAttributeResponse {
+    fun getQuestionAttributes(customerId: Long): QuestionAttributeResponse {
         val hash = redisTemplate.opsForHash<String, String>()
-            .entries(QUESTION_TOKEN + id)
-            .mapValues { it.value.split(", ") }
+            .entries(QUESTION_TOKEN + customerId)
+            .mapValues {
+                it.value.split(", ")
+            }
             .toMap()
 
         val questionTypes =
@@ -71,7 +73,7 @@ class CacheReadService(
             hash[QUESTION_LEVEL]?.map(QuestionLevel::valueOf)
                 ?: emptyList()
 
-        return QuestionAttributeResponse(
+        return QuestionAttributeResponse.of(
             questionTypes = questionTypes,
             programingTypes = programingTypes,
             frameworkTypes = frameworkTypes,
