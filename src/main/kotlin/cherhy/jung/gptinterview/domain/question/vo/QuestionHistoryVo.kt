@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.domain.question.dto
+package cherhy.jung.gptinterview.domain.question.vo
 
 import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType
@@ -6,6 +6,7 @@ import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
+import java.time.ZonedDateTime
 
 data class QuestionRequestVo(
     val questionTypes: List<QuestionType> = emptyList(),
@@ -45,8 +46,8 @@ data class QuestionHistoryInfoVo(
     val answer: String,
     val feedback: String,
     val customerId: Long,
-    val createdAt: String,
-    val modifiedAt: String,
+    val createdAt: ZonedDateTime,
+    val modifiedAt: ZonedDateTime,
 )
 
 data class QuestionHistoryResponseVo(
@@ -54,8 +55,8 @@ data class QuestionHistoryResponseVo(
     val questionId: Long,
     val answer: String,
     val feedback: String,
-    val createdAt: String,
-    val updatedAt: String,
+    val createdAt: ZonedDateTime,
+    val updatedAt: ZonedDateTime,
 ) {
     companion object {
         fun of(questionHistory: QuestionHistory): QuestionHistoryResponseVo {
@@ -64,8 +65,8 @@ data class QuestionHistoryResponseVo(
                 questionId = questionHistory.questionId,
                 answer = questionHistory.answer,
                 feedback = questionHistory.feedback,
-                createdAt = questionHistory.createdAt.toString(),
-                updatedAt = questionHistory.updatedAt.toString(),
+                createdAt = questionHistory.createdAt,
+                updatedAt = questionHistory.updatedAt,
             )
         }
     }

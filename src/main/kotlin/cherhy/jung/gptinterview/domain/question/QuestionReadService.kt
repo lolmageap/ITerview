@@ -1,8 +1,8 @@
 package cherhy.jung.gptinterview.domain.question
 
 import cherhy.jung.gptinterview.annotation.ReadService
-import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestVo
-import cherhy.jung.gptinterview.domain.question.dto.QuestionResponseVo
+import cherhy.jung.gptinterview.domain.question.vo.QuestionRequestVo
+import cherhy.jung.gptinterview.domain.question.vo.QuestionResponseVo
 import cherhy.jung.gptinterview.exception.MessageType.QUESTION
 import cherhy.jung.gptinterview.exception.NotFoundException
 

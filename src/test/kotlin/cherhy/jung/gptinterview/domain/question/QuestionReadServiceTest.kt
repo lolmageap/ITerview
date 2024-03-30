@@ -7,7 +7,7 @@ import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel.LEVEL1
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel.LEVEL2
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType.DESIGN_PATTERN
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType.PROGRAMING
-import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestVo
+import cherhy.jung.gptinterview.domain.question.vo.QuestionRequestVo
 import cherhy.jung.gptinterview.domain.question.entity.Programing
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.exception.NotFoundException

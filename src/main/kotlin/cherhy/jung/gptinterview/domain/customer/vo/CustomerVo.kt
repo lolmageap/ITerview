@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.domain.customer.dto
+package cherhy.jung.gptinterview.domain.customer.vo
 
 import cherhy.jung.gptinterview.domain.customer.Customer
 import cherhy.jung.gptinterview.util.Generator

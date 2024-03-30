@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.domain.question
 
 import cherhy.jung.gptinterview.annotation.ReadService
-import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryInfoVo
+import cherhy.jung.gptinterview.domain.question.vo.QuestionHistoryInfoVo
 import org.springframework.data.domain.Pageable
 
 @ReadService

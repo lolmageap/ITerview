@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.domain.customer
 
 import cherhy.jung.gptinterview.annotation.ReadService
-import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseVo
+import cherhy.jung.gptinterview.domain.customer.vo.CustomerResponseVo
 import cherhy.jung.gptinterview.exception.MessageType
 import cherhy.jung.gptinterview.exception.MessageType.EMAIL
 import cherhy.jung.gptinterview.exception.AlreadyExistsException

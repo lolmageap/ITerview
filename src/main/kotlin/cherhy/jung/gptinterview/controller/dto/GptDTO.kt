@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.controller.dto
 
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
-import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryInfoVo
+import cherhy.jung.gptinterview.domain.question.vo.QuestionHistoryInfoVo
 import cherhy.jung.gptinterview.external.gpt.GptResponseVo
 
 data class GptRequest(

@@ -1,8 +1,8 @@
 package cherhy.jung.gptinterview.controller.dto
 
-import cherhy.jung.gptinterview.domain.customer.dto.CustomerRequestVo
-import cherhy.jung.gptinterview.domain.customer.dto.CustomerResponseVo
-import cherhy.jung.gptinterview.domain.customer.dto.EditPasswordRequestVo
+import cherhy.jung.gptinterview.domain.customer.vo.CustomerRequestVo
+import cherhy.jung.gptinterview.domain.customer.vo.CustomerResponseVo
+import cherhy.jung.gptinterview.domain.customer.vo.EditPasswordRequestVo
 import cherhy.jung.gptinterview.extension.isNumber
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank

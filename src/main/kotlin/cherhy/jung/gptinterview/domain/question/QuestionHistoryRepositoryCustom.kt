@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.domain.question
 
-import cherhy.jung.gptinterview.domain.question.dto.QuestionHistoryInfoVo
+import cherhy.jung.gptinterview.domain.question.vo.QuestionHistoryInfoVo
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
 import com.linecorp.kotlinjdsl.querydsl.expression.col

@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.domain.question
 
-import cherhy.jung.gptinterview.domain.question.dto.QuestionRequestVo
+import cherhy.jung.gptinterview.domain.question.vo.QuestionRequestVo
 import cherhy.jung.gptinterview.domain.question.entity.QFramework.framework
 import cherhy.jung.gptinterview.domain.question.entity.QPrograming.programing
 import cherhy.jung.gptinterview.domain.question.entity.QQuestion.question

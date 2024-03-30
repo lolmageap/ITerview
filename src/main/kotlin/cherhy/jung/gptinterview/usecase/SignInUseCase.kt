@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.annotation.UseCase
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
-import cherhy.jung.gptinterview.domain.customer.dto.CustomerRequestVo
+import cherhy.jung.gptinterview.domain.customer.vo.CustomerRequestVo
 import cherhy.jung.gptinterview.extension.getUserDetails
 import cherhy.jung.gptinterview.external.jwt.TokenProvider
 import cherhy.jung.gptinterview.external.jwt.TokenResponse
