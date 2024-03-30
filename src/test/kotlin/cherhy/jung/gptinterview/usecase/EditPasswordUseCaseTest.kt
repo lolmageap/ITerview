@@ -19,6 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 @SpringBootTest
 class EditPasswordUseCaseTest(
     @Autowired private val editPasswordUseCase: EditPasswordUseCase,
+    @Autowired private val resetPasswordUseCase: ResetPasswordUseCase,
     @MockkBean private val customerReadService: CustomerReadService,
     @MockkBean private val customerWriteService: CustomerWriteService,
     @MockkBean private val bCryptPasswordEncoder: BCryptPasswordEncoder,
@@ -39,7 +40,7 @@ class EditPasswordUseCaseTest(
             every { customerWriteService.editPassword(any(), any()) } just Runs
             every { mailService.sendPasswordMessage(any(), any()) } just Runs
 
-            editPasswordUseCase.resetAndSendPassword(customer.email)
+            resetPasswordUseCase.execute(customer.email)
             Then("모두 실행 되는지 확인 하고 비밀번호 가 초기화 되었는 지 검증 한다.") {
                 verify { customerReadService.getCustomerByEmail(any()) }
                 verify { bCryptPasswordEncoder.encode(any()) }
@@ -63,7 +64,7 @@ class EditPasswordUseCaseTest(
                 bCryptPasswordEncoder.encode(passwordRequestS.editPassword + customer.salt)
             } returns "encodedPassword"
 
-            editPasswordUseCase.editPassword(customer.id, passwordRequestS)
+            editPasswordUseCase.execute(customer.id, passwordRequestS)
 
             Then("모두 실행 되는지 확인 한다.") {
                 verify { customerReadService.getCustomerById(any()) }
