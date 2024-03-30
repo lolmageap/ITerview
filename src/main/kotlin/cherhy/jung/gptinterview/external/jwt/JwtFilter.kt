@@ -15,12 +15,12 @@ class JwtFilter(
     override fun doFilter(
         servletRequest: ServletRequest,
         servletResponse: ServletResponse?,
-        filterChain: FilterChain
+        filterChain: FilterChain,
     ) {
         val httpServletRequest: HttpServletRequest = servletRequest as HttpServletRequest
 
         val authentication =
-            httpServletRequest.authorization.let {
+            httpServletRequest.authorization?.let {
                 if (tokenProvider.validateToken(it)) {
                     tokenProvider.getAuthentication(it)
                 } else {

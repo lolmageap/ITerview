@@ -12,13 +12,12 @@ val HttpServletRequest.refreshToken: String
         ?.value?.substringAfter("Bearer ")
         ?: throw NotFoundException(MessageType.REFRESH_TOKEN)
 
-val HttpServletRequest.authorization: String
+val HttpServletRequest.authorization: String?
     get() = this.getHeader("Authorization")
         ?.substringAfter("Bearer ")
-        ?: throw AuthenticationException()
 
 fun HttpServletResponse.addAccessTokenInHeader(value: String) =
-    this.addHeader("Access-Token", "Bearer $value")
+    this.addHeader("Authorization", "Bearer $value")
 
 fun HttpServletResponse.addRefreshTokenInCookie(value: String) =
     this.addCookie(
@@ -39,4 +38,4 @@ fun HttpServletResponse.removeRefreshTokenInCookie() =
     )
 
 fun HttpServletResponse.removeAccessTokenInHeader() =
-    this.addHeader("Access-Token", "")
+    this.addHeader("Authorization", "")
