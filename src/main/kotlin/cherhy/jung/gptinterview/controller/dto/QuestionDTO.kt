@@ -52,4 +52,20 @@ data class QuestionAttributeResponse(
     val programingTypes: List<ProgramingType>,
     val frameworkTypes: List<FrameworkType>,
     val levels: List<QuestionLevel>,
-)
+) {
+    companion object {
+        fun of(
+            questionTypes: List<QuestionType>,
+            programingTypes: List<ProgramingType>,
+            frameworkTypes: List<FrameworkType>,
+            levels: List<QuestionLevel>,
+        ): QuestionAttributeResponse {
+            return QuestionAttributeResponse(
+                questionTypes = questionTypes,
+                programingTypes = programingTypes,
+                frameworkTypes = frameworkTypes,
+                levels = levels,
+            )
+        }
+    }
+}
