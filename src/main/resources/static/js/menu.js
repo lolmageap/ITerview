@@ -200,7 +200,7 @@ const sendPositionToServer = async () => {
     })
 
     const data = await response.json()
-    await checkQuestionFromPosition(data)
+    await checkQuestionFromPosition(data.value)
 }
 
 const makeRequestParams = (set, key) => {

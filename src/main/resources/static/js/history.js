@@ -1,6 +1,6 @@
 const createHistories = async () => {
     let data = await getHistories()
-    data.forEach(item => {
+    data.value.forEach(item => {
         createHistory(item);
     })
 }
@@ -13,7 +13,6 @@ const getHistories = async () => {
             "Authorization": getCookie()
         },
     })
-
     return await response.json()
 }
 
@@ -29,7 +28,7 @@ const getHistory = async token => {
     })
 
     const data = await response.json()
-    await switchChatContainer(data)
+    await switchChatContainer(data.value)
 }
 
 const switchChatContainer = async data => {

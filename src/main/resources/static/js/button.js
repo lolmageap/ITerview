@@ -49,9 +49,9 @@ const handleSubmit = async () => {
             await enableButton('sendBtn', 'handleSend()')
 
             const data = await response.json()
-            const {answer} = JSON.parse(data.body)
+            const {answer} = JSON.parse(data.value.body)
 
-            const historyToken = data.token
+            const historyToken = data.value.token
             addHistory( {question: questionTitle, token: historyToken} )
             await createAnimatedMessage(answer, "feedback", enableButton.bind(null, 'submitBtn', handleSubmit))
         } else {
@@ -78,8 +78,8 @@ const handleSubmit = async () => {
 
         const data = await response.json()
 
-        const {feedback} = JSON.parse(data.body)
-        const historyToken = data.token
+        const {feedback} = JSON.parse(data.value.body)
+        const historyToken = data.value.token
         const feedbackText = feedback
 
         addHistory( {question: questionTitle, token: historyToken} )
@@ -116,7 +116,7 @@ const handleSend = async () => {
         })
 
         const data = await response.json()
-        if (response.status == 403 || response.status == 401) {
+        if (response.status === 403 || response.status === 401) {
             location.href = '/login'
         } else if (response.status === 404) {
             await hasNotQuestions(data.message)
@@ -124,10 +124,10 @@ const handleSend = async () => {
         }
 
         await disableButton('submitBtn')
-        await createAnimatedMessage(data.title, "question")
+        await createAnimatedMessage(data.value.title, "question")
         await enableButton('submitBtn', 'handleSubmit()')
-        questionToken = data.token
-        questionTitle = data.title
+        questionToken = data.value.token
+        questionTitle = data.value.title
     } else {
         location.href = '/login'
     }
