@@ -7,10 +7,14 @@ import jakarta.persistence.*
 @Entity
 class Customer(
     var name: String,
-    val email: String,
-    var password: String,
+    val username: String,
     val salt: String,
 ) : BaseDeleteEntity() {
+    lateinit var password: String
+
+    @Enumerated(EnumType.STRING)
+    lateinit var provider: Provider
+
     @Column(unique = true)
     val token: String = Generator.token()
 

@@ -4,11 +4,12 @@ create table customer
         primary key,
     created_at  datetime(6)  null,
     updated_at datetime(6)  null,
-    email       varchar(255) null,
+    username       varchar(255) null,
     name        varchar(255) null,
     password    varchar(255) null,
     salt        varchar(255) null,
     token       varchar(255) null,
+    provider    varchar(255) null,
     constraint UK_i1p08swb0onyuxes5tjx73rqg
         unique (token)
 );
