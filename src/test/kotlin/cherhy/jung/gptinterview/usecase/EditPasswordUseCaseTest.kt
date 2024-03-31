@@ -29,8 +29,7 @@ class EditPasswordUseCaseTest(
     Given("회원이 존재 하고 ") {
         val customer = Customer(
             name = "정철희",
-            email = "ekxk1234@naver.com",
-            password = "abcd1234",
+            username = "ekxk1234@naver.com",
             salt = "random",
         )
 
@@ -40,7 +39,7 @@ class EditPasswordUseCaseTest(
             every { customerWriteService.editPassword(any(), any()) } just Runs
             every { mailService.sendPasswordMessage(any(), any()) } just Runs
 
-            resetPasswordUseCase.execute(customer.email)
+            resetPasswordUseCase.execute(customer.username)
             Then("모두 실행 되는지 확인 하고 비밀번호 가 초기화 되었는 지 검증 한다.") {
                 verify { customerReadService.getCustomerByEmail(any()) }
                 verify { bCryptPasswordEncoder.encode(any()) }

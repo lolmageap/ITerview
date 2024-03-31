@@ -40,8 +40,7 @@ internal class GptAnswerUseCaseTest(
         val customer = customerRepository.save(
             Customer(
                 name = "정철희",
-                email = "ekxk1234@naver.com",
-                password = "abcd1234",
+                username = "ekxk1234@naver.com",
                 salt = "random",
             )
         )

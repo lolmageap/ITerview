@@ -37,8 +37,7 @@ internal class QuestionReadServiceTest(
         customerRepository.save(
             Customer(
                 name = "정철희",
-                email = "ekxk1234@naver.com",
-                password = "abcd1234",
+                username = "ekxk1234@naver.com",
                 salt = "random",
             )
         )
@@ -73,8 +72,7 @@ internal class QuestionReadServiceTest(
         customerRepository.save(
             Customer(
                 name = "정철희2",
-                email = "ekxk1234@gamil.com",
-                password = "abcd1234",
+                username = "ekxk1234@gamil.com",
                 salt = "random",
             )
         )

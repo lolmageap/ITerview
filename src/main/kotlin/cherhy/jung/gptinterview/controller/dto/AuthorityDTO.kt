@@ -4,11 +4,11 @@ import cherhy.jung.gptinterview.domain.customer.vo.CustomerRequestVo
 import cherhy.jung.gptinterview.domain.customer.vo.CustomerResponseVo
 import cherhy.jung.gptinterview.domain.customer.vo.EditPasswordRequestVo
 import cherhy.jung.gptinterview.extension.isNumber
+import cherhy.jung.gptinterview.util.Generator
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
 import org.hibernate.validator.constraints.Length
-import java.util.*
 
 data class SignInRequest(
     @field:Email
@@ -18,11 +18,13 @@ data class SignInRequest(
     @field:NotBlank
     val password: String,
 ) {
+    // TODO : CustomerRequestVo 말고 로그인만을 담당하는 SignInRequestVo 를 만들어야 할 것 같습니다.
     fun toCustomerRequest(): CustomerRequestVo {
         return CustomerRequestVo(
-            name = UUID.randomUUID().toString().substring(0, 12),
+            name = Generator.name(),
             password = this.password,
-            email = this.email,
+            username = this.email,
+            salt = Generator.salt(),
         )
     }
 }
@@ -45,9 +47,10 @@ data class SignUpRequest(
 
     fun toCustomerRequest(): CustomerRequestVo {
         return CustomerRequestVo(
-            name = UUID.randomUUID().toString().substring(0, 12),
+            name = Generator.name(),
             password = this.password,
-            email = this.email,
+            username = this.email,
+            salt = Generator.salt(),
         )
     }
 }
@@ -95,7 +98,7 @@ data class CertificateRequest(
 data class CustomerResponse(
     val name: String,
     val image: String,
-    val email: String,
+    val username: String,
     val token: String,
 ) {
     companion object {
@@ -103,7 +106,7 @@ data class CustomerResponse(
             CustomerResponse(
                 name = response.name,
                 image = "https://source.unsplash.com/random",
-                email = response.email,
+                username = response.username,
                 token = response.token,
             )
     }

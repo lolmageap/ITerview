@@ -24,8 +24,7 @@ class SendMailUseCaseTest(
     Given("회원이 ") {
         val customer = Customer(
             name = "정철희",
-            email = "ekxk1234@naver.com",
-            password = "abcd1234",
+            username = "ekxk1234@naver.com",
             salt = "random",
         )
 
@@ -34,7 +33,7 @@ class SendMailUseCaseTest(
             every { mailService.sendMessage(any(), any()) } just Runs
             every { cacheWriteService.addCertificate(any(), any()) } just Runs
 
-            sendMailUseCase.execute(customer.email)
+            sendMailUseCase.execute(customer.username)
 
             Then("모두 실행 되었는 지 확인 한다.") {
                 verify { customerReadService.checkDuplicatedEmail(any()) }
