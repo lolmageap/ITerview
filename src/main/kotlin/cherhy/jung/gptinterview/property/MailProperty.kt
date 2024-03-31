@@ -1,11 +1,9 @@
 package cherhy.jung.gptinterview.property
 
 import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.context.annotation.DependsOn
 import org.springframework.mail.javamail.JavaMailSenderImpl
 import java.util.*
 
-@DependsOn("jasyptStringEncryptor")
 @ConfigurationProperties("spring.mail")
 data class MailProperty(
     val username: String,
