@@ -12,8 +12,8 @@ class AuthCustomerReadService(
     private val customerRepository: CustomerRepository,
 ) : UserDetailsService {
     override fun loadUserByUsername(username: String): UserDetails {
-        return customerRepository.findWithAuthorityByEmail(username)
-            ?.let { AuthCustomer(it) }
+        return customerRepository.findWithAuthorityByUsername(username)
+            ?.let(AuthCustomer::of)
             ?: throw NotFoundException(MessageType.CUSTOMER)
     }
 }

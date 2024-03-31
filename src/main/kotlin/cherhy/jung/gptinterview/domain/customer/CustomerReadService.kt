@@ -18,12 +18,17 @@ class CustomerReadService(
             ?: throw NotFoundException(MessageType.CUSTOMER)
 
     fun getCustomerByEmail(email: String): CustomerResponseVo =
-        customerRepository.findByEmail(email)
+        customerRepository.findByUsername(email)
             ?.let(CustomerResponseVo::of)
             ?: throw NotFoundException(MessageType.CUSTOMER)
 
     fun checkDuplicatedEmail(email: String) =
-        customerRepository.existsByEmail(email).let { isExist ->
+        customerRepository.existsByUsername(email).let { isExist ->
             if (isExist) throw AlreadyExistsException(EMAIL)
         }
+
+    fun getCustomerByEmailAndProvider(email: String, provider: Provider) =
+        customerRepository.findByUsernameAndProvider(email, provider)
+            ?.let(CustomerResponseVo::of)
+            ?: throw NotFoundException(MessageType.CUSTOMER)
 }

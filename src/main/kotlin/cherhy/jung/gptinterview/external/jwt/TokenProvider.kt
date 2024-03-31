@@ -68,7 +68,7 @@ class TokenProvider(
                 .map(::SimpleGrantedAuthority)
                 .toList()
 
-            val customer = customerRepository.findByEmail(claims.subject)
+            val customer = customerRepository.findByUsername(claims.subject)
                 ?: throw NotFoundException(MessageType.CUSTOMER)
 
             val authCustomer = AuthCustomer(customer)
