@@ -71,3 +71,32 @@ jwt:
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor
+
+oauth2:
+  client:
+    google:
+      token-uri: ENC(PQwggtxklvEkJ8mCbpGhsVViDGQei9jBxxaIDrUUM/mTOCb6TcWXSxh+QJnIHtUnP0r+VZoqIH0=)
+      client-id: ENC(CoS1YQPj4lXOPN2u7SjcrVUur/AS1NhzqNemTGuBrGs=)
+      redirect-uri: ENC(4e/XpicF+tpsTpfX1QdltjynH2UhhDK++v6Fo5U2Hpw=)
+      client-secret: ENC(dMxOo9bsfT1oSaxL2Pv19nRCkeF5fzB8DirqOs6Ag6k=)
+      client-authentication-method: ENC(w2nPpHxELlyBseu63hEUke32214Ja7Mr0CwEZaGnV5I=)
+      authorization-grant-type: ENC(/mmL/BJz1aD62/H4zH0qDbcDCuCBrAKeSDayXm0Jnb4=)
+      scope: ENC(cSj//Eg478QNdsS436PPfKiftFmnb785ri8DQ4/WJsM=)
+      client-name: ENC(btEOk7njA5vwN+pcut1WkWyRjtWOXROeRIOzWlTdA0g=)
+    kakao:
+      client-id: ENC(frcolbLfPp0QMyK/Qx07NCg+FlQa8bnEtkJxqEBykfO/blb9X59aDTQunes77ZB5)
+      redirect-uri: ENC(RdkTSOeN0lne+DEdO+z701ezusm6sVWEYsdyY44/9VZKe4F8Xha5kS73tYbmbP++wrwhCWAFx7U=)
+      client-secret: ENC(b5jPe5jDAlaEZm4pJ1eFkpqSOTzK+jLRgpQRtT6M8bpHtlo1reLRXW6rS338mmP4)
+      client-authentication-method: ENC(QZ4rhou8QcFCVE8pF5w4Qg==)
+      authorization-grant-type: ENC(13tyB06yTYnhhsnRLVaJI1Nee6x6gOyGI7gI64MlNtU=)
+      scope: ENC(b7u/j3wRYpYK7JD67x52u4w4SVopqpwbcpobcYfh+rOTjTw5vjkIt4Eh8qxVKgHr2YFE15vR+2U=)
+      client-name: ENC(p466ueEXmznujCV3SLlLjQ==)
+  provider:
+    kakao:
+      authorization_uri: ENC(RSvj3e2MQL1SIIPiCMWhlQQeWcv70Sd7I7rOHgMlZ5UYaMx7PMuhE9m4OuJLwUK1)
+      token_uri: ENC(dQFcjvT4U3cd5hCCGzYY+DbCq0ZtB8SLhu6MtgS3PwIYnkLhiyXEEjCjvNsh8oNU)
+      user-info-uri: ENC(0ZSnOdT93So6nkMV/zFuHi9PgFLpRkCu0K4zzuDo+vKTVmLFV7LlzDaZoh5qd0fR)
+      user_name_attribute: ENC(Xmqpsq5A8+AOTpM3LeEMrg==)
+  default:
+    password: ENC(eq6EnHZlGq1ner+W6F15Zza8OHH1DAsg)
+    salt: ENC(Bodekxx7rnjJ1sifihQRBw==)
