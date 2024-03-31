@@ -11,6 +11,9 @@ object Generator {
         return "$now-$uuid"
     }
 
+    fun name() =
+        UUID.randomUUID().toString().substring(0, 12)
+
     fun salt(): String =
         UUID.randomUUID()
             .toString()
