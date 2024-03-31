@@ -4,12 +4,14 @@ import cherhy.jung.gptinterview.domain.customer.Customer
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.oauth2.core.user.OAuth2User
 
 class AuthCustomer(
     private val customer: Customer,
-) : UserDetails {
+) : UserDetails, OAuth2User {
     val id = customer.id
     val token = customer.token
+    val provider = customer.provider
 
     val roles = authorities.map { it.authority }
 
@@ -19,9 +21,19 @@ class AuthCustomer(
         }.toMutableList()
     }
 
+    override fun getAttributes(): MutableMap<String, Any> =
+        mutableMapOf(
+            "id" to id,
+            "token" to token,
+            "provider" to provider,
+            "roles" to roles,
+        )
+
+    override fun getName() = customer.username
+
     override fun getPassword(): String = customer.password
 
-    override fun getUsername(): String = customer.email
+    override fun getUsername(): String = customer.username
 
     override fun isAccountNonExpired(): Boolean = customer.deleted.not()
 
@@ -30,4 +42,9 @@ class AuthCustomer(
     override fun isCredentialsNonExpired(): Boolean = customer.deleted.not()
 
     override fun isEnabled(): Boolean = customer.deleted.not()
+    companion object {
+        fun of(customer: Customer): AuthCustomer {
+            return AuthCustomer(customer)
+        }
+    }
 }
