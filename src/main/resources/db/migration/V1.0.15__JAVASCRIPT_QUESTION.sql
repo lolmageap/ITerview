@@ -1,20 +1,4 @@
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), '자바스크립트(Javascript)란 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
-
-SET @last_id_in_question = LAST_INSERT_ID();
-
-INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
-VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
-
-INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), '자바스크립트의 특징은 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
-
-SET @last_id_in_question = LAST_INSERT_ID();
-
-INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
-VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
-
-INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
 VALUES (0, NOW(), NOW(), '자바스크립트에서 변수의 유효 범위(scope)에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
 
 SET @last_id_in_question = LAST_INSERT_ID();
@@ -39,7 +23,7 @@ INSERT INTO programing (id, question_id, programing_type, created_at, updated_at
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), '자바스크립트에서 콜백(callback) 함수의 역할과 사용 방법을 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
+VALUES (0, NOW(), NOW(), '자바스크립트에서 콜백(callback) 함수에 대해서 설명해주세요', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
@@ -103,7 +87,7 @@ INSERT INTO programing (id, question_id, programing_type, created_at, updated_at
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), '자바스크립트에서 AJAX의 개념과 사용 방법을 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
+VALUES (0, NOW(), NOW(), '자바스크립트에서 AJAX에 대해 섦명해주세요', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
@@ -111,7 +95,7 @@ INSERT INTO programing (id, question_id, programing_type, created_at, updated_at
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), '자바스크립트에서 RESTful API와 fetch API의 관계를 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
+VALUES (0, NOW(), NOW(), '자바스크립트에서 fetch API에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
@@ -119,7 +103,7 @@ INSERT INTO programing (id, question_id, programing_type, created_at, updated_at
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), '자바스크립트에서 모듈(module)의 개념과 사용 방법을 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
+VALUES (0, NOW(), NOW(), '자바스크립트에서 모듈(module)의 개념을 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
@@ -135,7 +119,7 @@ INSERT INTO programing (id, question_id, programing_type, created_at, updated_at
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), '자바스크립트에서 화살표 함수(arrow function)의 특징과 사용 방법을 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
+VALUES (0, NOW(), NOW(), '자바스크립트에서 화살표 함수(arrow function)의 특징과 사용 하는 이유를 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
@@ -303,22 +287,6 @@ INSERT INTO programing (id, question_id, programing_type, created_at, updated_at
 VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), '자바스크립트에서 객체의 프로퍼티(property)와 메소드(method)의 추가와 삭제 방법을 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
-
-SET @last_id_in_question = LAST_INSERT_ID();
-
-INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
-VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
-
-INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), '자바스크립트에서 객체의 프로퍼티(property)의 속성(attribute)에는 어떤 것들이 있나요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
-
-SET @last_id_in_question = LAST_INSERT_ID();
-
-INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
-VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
-
-INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
 VALUES (0, NOW(), NOW(), '자바스크립트에서 프로토타입(prototype)을 직접 수정하는 것이 권장되지 않는 이유는 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
 
 SET @last_id_in_question = LAST_INSERT_ID();
@@ -328,14 +296,6 @@ VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
 
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
 VALUES (0, NOW(), NOW(), '자바스크립트에서 클로저(closure)를 사용하여 private 변수를 구현하는 방법을 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL3');
-
-SET @last_id_in_question = LAST_INSERT_ID();
-
-INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
-VALUES (0, @last_id_in_question, 'JAVASCRIPT', NOW(), NOW());
-
-INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), '자바스크립트에서 자료형의 종류와 typeof 연산자의 동작 방식을 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
