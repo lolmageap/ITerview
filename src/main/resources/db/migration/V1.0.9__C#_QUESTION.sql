@@ -1,22 +1,4 @@
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), 'C#이란 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
-
-SET @last_id_in_question = LAST_INSERT_ID();
-
-INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
-VALUES (0, @last_id_in_question, 'C#', NOW(), NOW());
-
-
-INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), 'C#의 주요 특징은 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
-
-SET @last_id_in_question = LAST_INSERT_ID();
-
-INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
-VALUES (0, @last_id_in_question, 'C#', NOW(), NOW());
-
-
-INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
 VALUES (0, NOW(), NOW(), 'C#에서 값 타입과 참조 타입의 차이점은 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
 
 SET @last_id_in_question = LAST_INSERT_ID();
@@ -176,4 +158,3 @@ SET @last_id_in_question = LAST_INSERT_ID();
 
 INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
 VALUES (0, @last_id_in_question, 'C#', NOW(), NOW());
-
