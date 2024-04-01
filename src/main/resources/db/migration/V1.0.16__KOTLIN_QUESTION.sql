@@ -215,7 +215,7 @@ INSERT INTO programing (id, question_id, programing_type, created_at, updated_at
 VALUES (0, @last_id_in_question, 'KOTLIN', NOW(), NOW());
 
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), 'Kotlin에서 lateinit과 by lazy의 차이점은 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
+VALUES (0, NOW(), NOW(), 'Kotlin에서 lateinit과 by lazy의 차이점은 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL3');
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
@@ -232,6 +232,62 @@ VALUES (0, @last_id_in_question, 'KOTLIN', NOW(), NOW());
 
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
 VALUES (0, NOW(), NOW(), 'Kotlin에서 함수형 프로그래밍의 특징과 장점을 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
+VALUES (0, @last_id_in_question, 'KOTLIN', NOW(), NOW());
+
+INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Kotlin에서 tailrec 키워드를 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL3');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
+VALUES (0, @last_id_in_question, 'KOTLIN', NOW(), NOW());
+
+INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Kotlin에서 expect/actual 키워드를 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL3');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
+VALUES (0, @last_id_in_question, 'KOTLIN', NOW(), NOW());
+
+INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Kotlin에서 reified 키워드를 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL3');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
+VALUES (0, @last_id_in_question, 'KOTLIN', NOW(), NOW());
+
+INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Kotlin에서 noinline, crossinline 키워드에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL3');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
+VALUES (0, @last_id_in_question, 'KOTLIN', NOW(), NOW());
+
+INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Kotlin에서 out, in, where 키워드에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL3');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
+VALUES (0, @last_id_in_question, 'KOTLIN', NOW(), NOW());
+
+INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Kotlin에서 vararg 키워드에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL3');
+
+SET @last_id_in_question = LAST_INSERT_ID();
+
+INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
+VALUES (0, @last_id_in_question, 'KOTLIN', NOW(), NOW());
+
+INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
+VALUES (0, NOW(), NOW(), 'Kotlin에서 dynamic, external 키워드에 대해 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL3');
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
