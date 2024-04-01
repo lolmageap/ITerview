@@ -1,20 +1,4 @@
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), 'PHP 언어의 특징은 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
-
-SET @last_id_in_question = LAST_INSERT_ID();
-
-INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
-VALUES (0, @last_id_in_question, 'PHP', NOW(), NOW());
-
-INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), 'PHP에서 배열(array)의 종류와 각각의 특징을 설명해주세요.', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
-
-SET @last_id_in_question = LAST_INSERT_ID();
-
-INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
-VALUES (0, @last_id_in_question, 'PHP', NOW(), NOW());
-
-INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
 VALUES (0, NOW(), NOW(), 'PHP에서 PDO란 무엇이고, 어떻게 사용하나요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
 
 SET @last_id_in_question = LAST_INSERT_ID();
