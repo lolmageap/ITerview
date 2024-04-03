@@ -39,7 +39,7 @@ spring:
   mail:
     host: ENC(Mz2+M9eFGsqmIa8XrhwB2ZjrP+7zeBdZ)
     port: ENC(StcEUTdFCzwO3w4w5I0ABQ==)
-    username: ENC(M4F2BtuCfc2iTb2wn8P+ylUpCQ1ZJqg3/EAj2U5NCmA=)
+    username: ENC(1/5Lr19WTv1Xoc90Tj5wyxSL9U5Y/Mcff6T8iMvrCkI=)
     password: ENC(cBUbprMjnyXe2CkseVhLT2tSWy+HVEsN0UJchFaOheU=)
     properties:
       mail:
