@@ -1,12 +1,4 @@
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), 'Python 언어의 특징은 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
-
-SET @last_id_in_question = LAST_INSERT_ID();
-
-INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
-VALUES (0, @last_id_in_question, 'PYTHON', NOW(), NOW());
-
-INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
 VALUES (0, NOW(), NOW(), 'Python에서 리스트와 튜플의 차이점은 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL1');
 
 SET @last_id_in_question = LAST_INSERT_ID();
@@ -368,14 +360,6 @@ VALUES (0, @last_id_in_question, 'PYTHON', NOW(), NOW());
 
 INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
 VALUES (0, NOW(), NOW(), 'Python에서 쓰레드(thread)와 프로세스(process)의 차이점은 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
-
-SET @last_id_in_question = LAST_INSERT_ID();
-
-INSERT INTO programing (id, question_id, programing_type, created_at, updated_at)
-VALUES (0, @last_id_in_question, 'PYTHON', NOW(), NOW());
-
-INSERT INTO question (id, created_at, updated_at, title, token, question_type, level)
-VALUES (0, NOW(), NOW(), 'Python에서 데드락(deadlock)이란 무엇인가요?', SUBSTRING(UUID(), 1, 8), 'PROGRAMING', 'LEVEL2');
 
 SET @last_id_in_question = LAST_INSERT_ID();
 
