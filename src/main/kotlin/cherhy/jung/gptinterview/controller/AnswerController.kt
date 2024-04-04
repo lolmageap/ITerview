@@ -2,8 +2,9 @@ package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.controller.dto.AnswerResponse
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
-import cherhy.jung.gptinterview.domain.question.QuestionHistoryReadService
+import cherhy.jung.gptinterview.domain.question.AnswerReadService
 import cherhy.jung.gptinterview.exception.ClientResponse
+import cherhy.jung.gptinterview.usecase.GetAnswerUseCase
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -16,7 +17,8 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/answers")
 class AnswerController(
-    private val questionHistoryReadService: QuestionHistoryReadService,
+    private val answerReadService: AnswerReadService,
+    private val getAnswerUseCase: GetAnswerUseCase,
 ) {
     @GetMapping("/histories")
     @Operation(summary = "답변 내역", description = "풀었던 질문 목록을 확인 한다.")
@@ -24,7 +26,7 @@ class AnswerController(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @Parameter(hidden = true) @PageableDefault(size = 15, page = 0) pageable: Pageable,
     ) =
-        questionHistoryReadService.getAllQuestionHistories(authCustomer.id, pageable)
+        answerReadService.getAnswers(authCustomer.id, pageable)
             .map(AnswerResponse::of)
             .let(ClientResponse.Companion::success)
 
@@ -34,7 +36,7 @@ class AnswerController(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @PathVariable token: String,
     ) =
-        questionHistoryReadService.getQuestionHistory(authCustomer.id, token)
+        getAnswerUseCase.execute(authCustomer.id, token)
             .let(AnswerResponse::of)
             .let(ClientResponse.Companion::success)
 }
