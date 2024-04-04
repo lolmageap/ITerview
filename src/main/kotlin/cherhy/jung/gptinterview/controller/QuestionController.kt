@@ -48,7 +48,6 @@ class QuestionController(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @Parameter(hidden = true) @PageableDefault(size = 15, page = 0) pageable: Pageable,
     ): ClientResponse<List<QuestionResponse>> {
-
         val alreadyQuestions = cacheReadService.getQuestionTokens(
             customerId = authCustomer.id,
             start = pageable.start,

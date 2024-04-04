@@ -43,8 +43,6 @@ data class QuestionHistoryInfoVo(
     val level: QuestionLevel,
 
     val questionHistoryToken: String,
-    val answer: String,
-    val feedback: String,
     val customerId: Long,
     val createdAt: ZonedDateTime,
     val modifiedAt: ZonedDateTime,
@@ -53,8 +51,6 @@ data class QuestionHistoryInfoVo(
 data class QuestionHistoryResponseVo(
     val token: String,
     val questionId: Long,
-    val answer: String,
-    val feedback: String,
     val createdAt: ZonedDateTime,
     val updatedAt: ZonedDateTime,
 ) {
@@ -63,8 +59,6 @@ data class QuestionHistoryResponseVo(
             return QuestionHistoryResponseVo(
                 token = questionHistory.token,
                 questionId = questionHistory.questionId,
-                answer = questionHistory.answer,
-                feedback = questionHistory.feedback,
                 createdAt = questionHistory.createdAt,
                 updatedAt = questionHistory.updatedAt,
             )

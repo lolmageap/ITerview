@@ -29,8 +29,6 @@ class QuestionHistoryRepositoryCustomImpl(
                 col(Question::level),
 
                 col(QuestionHistory::token),
-                col(QuestionHistory::answer),
-                col(QuestionHistory::feedback),
                 col(QuestionHistory::customerId),
                 col(QuestionHistory::createdAt),
                 col(QuestionHistory::updatedAt),
@@ -69,8 +67,6 @@ class QuestionHistoryRepositoryCustomImpl(
                 col(Question::level),
 
                 col(QuestionHistory::token),
-                col(QuestionHistory::answer),
-                col(QuestionHistory::feedback),
                 col(QuestionHistory::customerId),
                 col(QuestionHistory::createdAt),
                 col(QuestionHistory::updatedAt),
