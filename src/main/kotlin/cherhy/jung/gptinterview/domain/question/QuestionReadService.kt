@@ -5,6 +5,7 @@ import cherhy.jung.gptinterview.domain.question.vo.QuestionRequestVo
 import cherhy.jung.gptinterview.domain.question.vo.QuestionResponseVo
 import cherhy.jung.gptinterview.exception.MessageType.QUESTION
 import cherhy.jung.gptinterview.exception.NotFoundException
+import org.springframework.data.repository.findByIdOrNull
 
 @ReadService
 class QuestionReadService(
@@ -28,4 +29,9 @@ class QuestionReadService(
     fun getQuestionHistories(alreadyQuestions: List<String>): List<QuestionResponseVo> =
         questionRepository.findByTokensIn(alreadyQuestions)
             .map(QuestionResponseVo::of)
+
+    fun getQuestionById(id: Long) =
+        questionRepository.findByIdOrNull(id)
+            ?.let(QuestionResponseVo::of)
+            ?: throw NotFoundException(QUESTION)
 }
