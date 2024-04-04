@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.controller.dto
 
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
-import cherhy.jung.gptinterview.domain.question.vo.QuestionHistoryInfoVo
+import cherhy.jung.gptinterview.domain.question.vo.AnswerDetailResponseVo
 import cherhy.jung.gptinterview.external.gpt.GptResponseVo
 
 data class GptRequest(
@@ -19,14 +19,14 @@ data class AnswerResponse(
     val level: QuestionLevel,
 ) {
     companion object {
-        fun of(questionHistoryInfoVo: QuestionHistoryInfoVo): AnswerResponse =
+        fun of(response: AnswerDetailResponseVo): AnswerResponse =
             AnswerResponse(
-                token = questionHistoryInfoVo.questionHistoryToken,
-                question = questionHistoryInfoVo.question,
-                answer = questionHistoryInfoVo.answer,
-                feedback = questionHistoryInfoVo.feedback,
-                type = questionHistoryInfoVo.type,
-                level = questionHistoryInfoVo.level,
+                token = response.token,
+                question = response.question,
+                answer = response.answer,
+                feedback = response.feedback,
+                type = response.type,
+                level = response.level,
             )
     }
 }
