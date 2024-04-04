@@ -42,8 +42,11 @@
 - [ ] refactoring 및 분해로 인해 깨지는 test case 를 수정
 - [ ] xss 를 방지하기 위한 시큐리티 필터를 구현
 - [ ] OAuth2 로그인 구현
-- [x] https://source.unsplash.com/random >> username, 이미지 랜덤 으로 넣어두기
+- [x] https://source.unsplash.com/random -> username, 이미지 랜덤 으로 넣어두기
 - [x] 마지막 에 세팅 했던 기술 스택, 포지션 저장
-- [ ] 기술 질문들 변경하자 ex) 특히 framework 쪽 - nest, fastapi 등등...
+- [x] 기술 질문들 변경하자 ex) 특히 framework 쪽 - nest, fastapi 등등...
 - [ ] page response 객체를 만들자!
 - [ ] 라즈베리파이로 배포 도전해보기!!!
+- [ ] 답변 받았던 대답에 이어서 대답하기 기능 추가 ( 답글 - 대댓글 구조의 테이블 생성 )
+- [ ] 질문의 타입을 바꿨을 때 어디까지 바뀐 것인지 알 수 있게 라인 추가
+- [ ] 카테고리 늘리기 ( 아키텍쳐, 데브옵스, 인프라 등등... )
