@@ -18,7 +18,7 @@ class QuestionHistoryRepositoryCustomImpl(
     private val queryFactory: SpringDataQueryFactory,
 ) : QuestionHistoryRepositoryCustom {
 
-    override fun findAllByCustomerId(customerId: Long, pageable: Pageable): List<QuestionHistoryInfoVo> =
+    override fun findAllByCustomerId(customerId: Long, pageable: Pageable) =
 
         queryFactory.listQuery<QuestionHistoryInfoVo> {
             selectMulti(
