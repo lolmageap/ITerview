@@ -3,6 +3,7 @@ package cherhy.jung.gptinterview.domain.question.vo
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.domain.question.entity.Answer
+import cherhy.jung.gptinterview.domain.question.entity.Question
 
 data class AnswerResponseVo(
     val id: Long,
@@ -34,15 +35,32 @@ data class AnswerResponseVo(
 data class AnswerDetailResponseVo(
     val id: Long,
     val token: String,
-    val type: QuestionType,
-    val level: QuestionLevel,
+    val answer: String,
+    val feedback: String,
     val createdAt: String,
     val modifiedAt: String,
 
+    val type: QuestionType,
+    val level: QuestionLevel,
     val question: String,
-    val answer: String,
-    val feedback: String,
 ) {
+
+    constructor(
+        answer: Answer,
+        question: Question,
+    ) : this(
+        id = answer.id,
+        token = answer.token,
+        answer = answer.answer,
+        feedback = answer.feedback,
+        createdAt = answer.createdAt.toString(),
+        modifiedAt = answer.updatedAt.toString(),
+
+        type = question.questionType,
+        level = question.level,
+        question = question.title,
+    )
+
     companion object {
         fun of(
             answer: AnswerResponseVo,
