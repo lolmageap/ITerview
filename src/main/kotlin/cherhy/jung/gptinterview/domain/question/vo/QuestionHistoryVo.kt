@@ -46,7 +46,23 @@ data class QuestionHistoryInfoVo(
     val customerId: Long,
     val createdAt: ZonedDateTime,
     val modifiedAt: ZonedDateTime,
-)
+) {
+    constructor(
+        question: Question,
+        questionHistory: QuestionHistory,
+    ) : this(
+        id = questionHistory.id,
+        questionToken = question.token,
+        question = question.title,
+        type = question.questionType,
+        level = question.level,
+
+        questionHistoryToken = questionHistory.token,
+        customerId = questionHistory.customerId,
+        createdAt = questionHistory.createdAt,
+        modifiedAt = questionHistory.updatedAt,
+    )
+}
 
 data class QuestionHistoryResponseVo(
     val token: String,
