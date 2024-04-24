@@ -1,8 +1,8 @@
 package cherhy.jung.gptinterview.domain.question
 
-import cherhy.jung.gptinterview.domain.question.vo.QuestionHistoryInfoVo
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
+import cherhy.jung.gptinterview.domain.question.vo.QuestionHistoryInfoVo
 import com.linecorp.kotlinjdsl.querydsl.expression.col
 import com.linecorp.kotlinjdsl.spring.data.SpringDataQueryFactory
 import com.linecorp.kotlinjdsl.spring.data.listQuery
@@ -18,20 +18,12 @@ class QuestionHistoryRepositoryCustomImpl(
     private val queryFactory: SpringDataQueryFactory,
 ) : QuestionHistoryRepositoryCustom {
 
+    // TODO: 이 부분을 수정 해야함. -> DTO 다른 거로 바꾸고 상태에 맞게 조회하자 (TODO LIST 참고)
     override fun findAllByCustomerId(customerId: Long, pageable: Pageable) =
-
         queryFactory.listQuery<QuestionHistoryInfoVo> {
             selectMulti(
-                col(Question::id),
-                col(Question::token),
-                col(Question::title),
-                col(Question::questionType),
-                col(Question::level),
-
-                col(QuestionHistory::token),
-                col(QuestionHistory::customerId),
-                col(QuestionHistory::createdAt),
-                col(QuestionHistory::updatedAt),
+                entity(Question::class),
+                entity(QuestionHistory::class),
             )
 
             from(
@@ -57,19 +49,11 @@ class QuestionHistoryRepositoryCustomImpl(
             offset(pageable.offset.toInt())
         }
 
-    override fun findByCustomerIdAndToken(customerId: Long, token: String): QuestionHistoryInfoVo =
+    override fun findByCustomerIdAndToken(customerId: Long, token: String) =
         queryFactory.selectQuery<QuestionHistoryInfoVo> {
             selectDistinctMulti(
-                col(Question::id),
-                col(Question::token),
-                col(Question::title),
-                col(Question::questionType),
-                col(Question::level),
-
-                col(QuestionHistory::token),
-                col(QuestionHistory::customerId),
-                col(QuestionHistory::createdAt),
-                col(QuestionHistory::updatedAt),
+                entity(Question::class),
+                entity(QuestionHistory::class),
             )
 
             from(
@@ -89,5 +73,4 @@ class QuestionHistoryRepositoryCustomImpl(
                 )
             )
         }.singleResult
-
 }
