@@ -59,6 +59,17 @@ class QuestionController(
             .let(ClientResponse.Companion::success)
     }
 
+    // TODO: 이 부분 피드백 + 질문 내역을 조회 하게 변경
+    @GetMapping("/histories/{token}")
+    @Operation(summary = "질문 내역", description = "조회했던 질문의 내용을 포함하여 확인한다.")
+    fun getQuestionHistory(
+        @AuthenticationPrincipal authCustomer: AuthCustomer,
+        @PathVariable token: String,
+    ): ClientResponse<QuestionResponse> {
+        val question = questionReadService.getQuestionByToken(token)
+        TODO()
+    }
+
     @PostMapping("/attributes")
     @Operation(summary = "마지막에 사용한 질문의 속성", description = "마지막에 사용한 질문의 속성을 캐시에 저장한다.")
     fun getQuestionAttributes(
