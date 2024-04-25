@@ -14,12 +14,13 @@ object Generator {
     fun name() =
         UUID.randomUUID().toString().substring(0, 12)
 
-    fun salt(): String =
+    fun salt() =
         UUID.randomUUID()
             .toString()
             .replace("-", "")
 
-    fun questionToGpt(question: String, answer: String): String =
+    fun questionToGpt(question: String, answer: String?) =
+        answer?.let {
         """
             아래는 개발자 기술 면접 질문이야.
             
@@ -38,8 +39,7 @@ object Generator {
                 "feedback" : 
             }
         """.trimIndent()
-
-    fun answerKeyToGpt(question: String): String =
+        } ?:
         """
             질문 : $question
             
@@ -53,14 +53,14 @@ object Generator {
             }
         """.trimIndent()
 
-    fun randomPassword(): String =
+    fun randomPassword() =
         UUID.randomUUID()
             .toString()
             .replace("-", "")
             .substring(0, 10)
             .uppercase()
 
-    fun certificate(): String =
+    fun certificate() =
         buildString {
             repeat(6) {
                 append(
