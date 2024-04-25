@@ -8,8 +8,11 @@ import cherhy.jung.gptinterview.domain.question.QuestionHistoryWriteService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.controller.dto.GptRequest
 import cherhy.jung.gptinterview.domain.question.AnswerWriteService
+import cherhy.jung.gptinterview.domain.question.FeedbackWriteService
 import cherhy.jung.gptinterview.domain.question.entity.Answer
+import cherhy.jung.gptinterview.domain.question.entity.Feedback
 import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
+import cherhy.jung.gptinterview.domain.question.entity.Type.*
 import cherhy.jung.gptinterview.util.Generator
 
 @UseCase
@@ -18,6 +21,7 @@ class RequestAnswerToGptUseCase(
     private val customerReadService: CustomerReadService,
     private val questionReadService: QuestionReadService,
     private val answerWriteService: AnswerWriteService,
+    private val feedbackWriteService: FeedbackWriteService,
     private val questionHistoryWriteService: QuestionHistoryWriteService,
 ) {
     fun execute(customerId: Long, request: GptRequest): GptResponseVo {
@@ -26,14 +30,19 @@ class RequestAnswerToGptUseCase(
 
         val questionToGpt = Generator.questionToGpt(question.title, request.answer)
 
+        val answer = Answer.of(customer.id, question.id, request.answer)
+        val savedAnswer = answerWriteService.addAnswer(answer)
+
         val feedback = gptClient.requestAndReceiveFeedback(questionToGpt)
+        val feedbackEntity = Feedback.of(customer.id, question.id, savedAnswer.id, feedback)
+        feedbackWriteService.addFeedback(feedbackEntity)
 
-        val answer = Answer.of(customer.id, question.id, feedback, request.answer)
-        val saveAnswer = answerWriteService.addAnswer(answer)
+        val answerHistory = QuestionHistory.of(question.id, customer.id, ANSWER, answer.text)
+        questionHistoryWriteService.addHistory(answerHistory)
 
-        val questionHistory = QuestionHistory.of(question.id, customer.id, saveAnswer.id)
-        val history = questionHistoryWriteService.addHistory(questionHistory)
+        val feedbackHistory = QuestionHistory.of(question.id, customer.id, FEEDBACK, feedback)
+        val savedFeedbackHistory = questionHistoryWriteService.addHistory(feedbackHistory)
 
-        return GptResponseVo(history.token, feedback)
+        return GptResponseVo(savedFeedbackHistory.token, feedback)
     }
 }
