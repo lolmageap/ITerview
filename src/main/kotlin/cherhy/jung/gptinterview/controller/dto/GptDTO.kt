@@ -7,14 +7,13 @@ import cherhy.jung.gptinterview.external.gpt.GptResponseVo
 
 data class GptRequest(
     val questionToken: String,
-    val answer: String,
+    val answer: String?,
 )
 
 data class AnswerResponse(
     val token: String,
     val question: String,
     val answer: String,
-    val feedback: String,
     val type: QuestionType,
     val level: QuestionLevel,
 ) {
@@ -24,7 +23,6 @@ data class AnswerResponse(
                 token = response.token,
                 question = response.question,
                 answer = response.answer,
-                feedback = response.feedback,
                 type = response.type,
                 level = response.level,
             )

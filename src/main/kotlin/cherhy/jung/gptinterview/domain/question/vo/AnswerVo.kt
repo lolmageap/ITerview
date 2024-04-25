@@ -10,7 +10,6 @@ data class AnswerResponseVo(
     val customerId: Long,
     val questionId: Long,
     val answer: String,
-    val feedback: String,
     val token: String,
     val createdAt: String,
     val updatedAt: String,
@@ -23,8 +22,7 @@ data class AnswerResponseVo(
                 id = answer.id,
                 customerId = answer.customerId,
                 questionId = answer.questionId,
-                answer = answer.answer,
-                feedback = answer.feedback,
+                answer = answer.text,
                 token = answer.token,
                 createdAt = answer.createdAt.toString(),
                 updatedAt = answer.updatedAt.toString(),
@@ -36,7 +34,6 @@ data class AnswerDetailResponseVo(
     val id: Long,
     val token: String,
     val answer: String,
-    val feedback: String,
     val createdAt: String,
     val modifiedAt: String,
 
@@ -44,15 +41,13 @@ data class AnswerDetailResponseVo(
     val level: QuestionLevel,
     val question: String,
 ) {
-
     constructor(
         answer: Answer,
         question: Question,
     ) : this(
         id = answer.id,
         token = answer.token,
-        answer = answer.answer,
-        feedback = answer.feedback,
+        answer = answer.text,
         createdAt = answer.createdAt.toString(),
         modifiedAt = answer.updatedAt.toString(),
 
@@ -69,7 +64,6 @@ data class AnswerDetailResponseVo(
             AnswerDetailResponseVo(
                 id = answer.id,
                 answer = answer.answer,
-                feedback = answer.feedback,
                 token = answer.token,
                 createdAt = answer.createdAt,
                 modifiedAt = answer.updatedAt,
