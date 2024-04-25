@@ -7,8 +7,9 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Lob
 
 @Entity
-class Answer(
+class Feedback(
     val customerId: Long,
+    val answerId: Long,
     val questionId: Long,
 
     @Lob
@@ -20,14 +21,14 @@ class Answer(
         fun of(
             customerId: Long,
             questionId: Long,
-            answer: String?,
+            answerId: Long,
+            feedback: String,
         ) =
-            Answer(
+            Feedback(
                 customerId = customerId,
                 questionId = questionId,
-                text = answer ?: DEFAULT_ANSWER,
+                answerId = answerId,
+                text = feedback,
             )
-
-        private const val DEFAULT_ANSWER = "정답을 가르쳐줘"
     }
 }
