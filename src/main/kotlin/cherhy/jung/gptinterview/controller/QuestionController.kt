@@ -1,15 +1,17 @@
 package cherhy.jung.gptinterview.controller
 
+import cherhy.jung.gptinterview.controller.dto.QuestionHistoryDetailResponse
 import cherhy.jung.gptinterview.controller.dto.QuestionRequest
 import cherhy.jung.gptinterview.controller.dto.QuestionResponse
 import cherhy.jung.gptinterview.controller.dto.toQuestionRequestS
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.exception.ClientResponse
-import cherhy.jung.gptinterview.external.cache.CacheReadService
-import cherhy.jung.gptinterview.external.cache.CacheWriteService
 import cherhy.jung.gptinterview.extension.end
 import cherhy.jung.gptinterview.extension.start
+import cherhy.jung.gptinterview.external.cache.CacheReadService
+import cherhy.jung.gptinterview.external.cache.CacheWriteService
+import cherhy.jung.gptinterview.usecase.GetQuestionHistoriesUseCase
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -25,6 +27,7 @@ class QuestionController(
     private val questionReadService: QuestionReadService,
     private val cacheReadService: CacheReadService,
     private val cacheWriteService: CacheWriteService,
+    private val getQuestionHistoriesUseCase: GetQuestionHistoriesUseCase,
 ) {
     @GetMapping
     @Operation(summary = "질문 받기", description = "요청에 맞게 질문을 반환한다.")
@@ -59,16 +62,15 @@ class QuestionController(
             .let(ClientResponse.Companion::success)
     }
 
-    // TODO: 이 부분 피드백 + 질문 내역을 조회 하게 변경
     @GetMapping("/histories/{token}")
     @Operation(summary = "질문 내역", description = "조회했던 질문의 내용을 포함하여 확인한다.")
     fun getQuestionHistory(
         @AuthenticationPrincipal authCustomer: AuthCustomer,
         @PathVariable token: String,
-    ): ClientResponse<QuestionResponse> {
-        val question = questionReadService.getQuestionByToken(token)
-        TODO()
-    }
+    ) =
+        getQuestionHistoriesUseCase.execute(authCustomer.id, token)
+            .map(QuestionHistoryDetailResponse::of)
+            .let(ClientResponse.Companion::success)
 
     @PostMapping("/attributes")
     @Operation(summary = "마지막에 사용한 질문의 속성", description = "마지막에 사용한 질문의 속성을 캐시에 저장한다.")
