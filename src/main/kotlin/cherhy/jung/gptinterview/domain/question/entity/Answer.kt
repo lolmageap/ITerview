@@ -9,7 +9,7 @@ import jakarta.persistence.Lob
 @Entity
 class Answer(
     val customerId: Long,
-    val questionId: Long,
+    val questionHistoryId: Long,
 
     @Lob
     @Column(columnDefinition = "TEXT")
@@ -19,12 +19,12 @@ class Answer(
     companion object {
         fun of(
             customerId: Long,
-            questionId: Long,
+            questionHistoryId: Long,
             answer: String?,
         ) =
             Answer(
                 customerId = customerId,
-                questionId = questionId,
+                questionHistoryId = questionHistoryId,
                 text = answer ?: DEFAULT_ANSWER,
             )
 

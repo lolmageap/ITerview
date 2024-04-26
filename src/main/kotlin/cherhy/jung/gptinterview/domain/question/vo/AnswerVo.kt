@@ -4,15 +4,16 @@ import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.domain.question.entity.Answer
 import cherhy.jung.gptinterview.domain.question.entity.Question
+import java.time.ZonedDateTime
 
 data class AnswerResponseVo(
     val id: Long,
     val customerId: Long,
     val questionId: Long,
-    val answer: String,
+    val text: String,
     val token: String,
-    val createdAt: String,
-    val updatedAt: String,
+    val createdAt: ZonedDateTime,
+    val updatedAt: ZonedDateTime,
 ) {
     companion object {
         fun of(
@@ -21,11 +22,11 @@ data class AnswerResponseVo(
             AnswerResponseVo(
                 id = answer.id,
                 customerId = answer.customerId,
-                questionId = answer.questionId,
-                answer = answer.text,
+                questionId = answer.questionHistoryId,
+                text = answer.text,
                 token = answer.token,
-                createdAt = answer.createdAt.toString(),
-                updatedAt = answer.updatedAt.toString(),
+                createdAt = answer.createdAt,
+                updatedAt = answer.updatedAt,
             )
     }
 }
@@ -34,8 +35,8 @@ data class AnswerDetailResponseVo(
     val id: Long,
     val token: String,
     val answer: String,
-    val createdAt: String,
-    val modifiedAt: String,
+    val createdAt: ZonedDateTime,
+    val modifiedAt: ZonedDateTime,
 
     val type: QuestionType,
     val level: QuestionLevel,
@@ -48,8 +49,8 @@ data class AnswerDetailResponseVo(
         id = answer.id,
         token = answer.token,
         answer = answer.text,
-        createdAt = answer.createdAt.toString(),
-        modifiedAt = answer.updatedAt.toString(),
+        createdAt = answer.createdAt,
+        modifiedAt = answer.updatedAt,
 
         type = question.questionType,
         level = question.level,
@@ -63,7 +64,7 @@ data class AnswerDetailResponseVo(
         ) =
             AnswerDetailResponseVo(
                 id = answer.id,
-                answer = answer.answer,
+                answer = answer.text,
                 token = answer.token,
                 createdAt = answer.createdAt,
                 modifiedAt = answer.updatedAt,

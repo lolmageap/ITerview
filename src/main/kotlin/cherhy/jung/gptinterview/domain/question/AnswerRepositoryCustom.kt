@@ -29,7 +29,7 @@ class AnswerRepositoryCustomImpl(
             join(
                 entity(Question::class),
                 on {
-                    col(Answer::questionId).equal(col(Question::id))
+                    col(Answer::questionHistoryId).equal(col(Question::id))
                 }
             )
 

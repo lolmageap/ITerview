@@ -6,31 +6,19 @@ import jakarta.persistence.Entity
 
 @Entity
 class QuestionHistory private constructor(
-    val questionId: Long,
     val customerId: Long,
-    val text: String,
-    val type: Type,
+    val questionId: Long,
 ) : BaseEntity() {
     val token: String = Generator.token()
 
     companion object {
         fun of(
-            questionId: Long,
             customerId: Long,
-            type: Type,
-            text: String,
+            questionId: Long,
         ) =
             QuestionHistory(
-                questionId = questionId,
                 customerId = customerId,
-                type = type,
-                text = text,
+                questionId = questionId,
             )
     }
-}
-
-enum class Type {
-    QUESTION,
-    ANSWER,
-    FEEDBACK,
 }
