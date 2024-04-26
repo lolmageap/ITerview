@@ -1,10 +1,10 @@
 package cherhy.jung.gptinterview.domain.question
 
-import cherhy.jung.gptinterview.domain.question.vo.QuestionRequestVo
 import cherhy.jung.gptinterview.domain.question.entity.QFramework.framework
 import cherhy.jung.gptinterview.domain.question.entity.QPrograming.programing
 import cherhy.jung.gptinterview.domain.question.entity.QQuestion.question
 import cherhy.jung.gptinterview.domain.question.entity.Question
+import cherhy.jung.gptinterview.domain.question.vo.QuestionRequestVo
 import com.querydsl.core.BooleanBuilder
 import com.querydsl.core.types.dsl.BooleanExpression
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport

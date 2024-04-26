@@ -1,9 +1,6 @@
 package cherhy.jung.gptinterview.domain.question.vo
 
-import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
-import cherhy.jung.gptinterview.domain.question.constant.ProgramingType
-import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
-import cherhy.jung.gptinterview.domain.question.constant.QuestionType
+import cherhy.jung.gptinterview.domain.question.constant.*
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
 import java.time.ZonedDateTime
@@ -79,5 +76,33 @@ data class QuestionHistoryResponseVo(
                 updatedAt = questionHistory.updatedAt,
             )
         }
+    }
+}
+
+data class QuestionHistoryDetailResponseVo(
+    val token: String,
+    val historyType: HistoryType,
+    val text: String,
+    val createdAt: ZonedDateTime,
+    val updatedAt: ZonedDateTime,
+) {
+    companion object {
+        fun of(answer: AnswerResponseVo) =
+            QuestionHistoryDetailResponseVo(
+                token = answer.token,
+                historyType = HistoryType.ANSWER,
+                text = answer.text,
+                createdAt = answer.createdAt,
+                updatedAt = answer.updatedAt,
+            )
+
+        fun of(feedback: FeedbackResponseVo) =
+            QuestionHistoryDetailResponseVo(
+                token = feedback.token,
+                historyType = HistoryType.FEEDBACK,
+                text = feedback.text,
+                createdAt = feedback.createdAt,
+                updatedAt = feedback.updatedAt,
+            )
     }
 }

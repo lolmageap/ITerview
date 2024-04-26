@@ -1,11 +1,11 @@
 package cherhy.jung.gptinterview.controller.dto
 
-import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
-import cherhy.jung.gptinterview.domain.question.constant.ProgramingType
-import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
-import cherhy.jung.gptinterview.domain.question.constant.QuestionType
+import cherhy.jung.gptinterview.domain.question.constant.*
+import cherhy.jung.gptinterview.domain.question.vo.QuestionHistoryDetailResponseVo
 import cherhy.jung.gptinterview.domain.question.vo.QuestionRequestVo
 import cherhy.jung.gptinterview.domain.question.vo.QuestionResponseVo
+import com.fasterxml.jackson.annotation.JsonFormat
+import java.time.ZonedDateTime
 
 data class QuestionRequest(
     val questionTypes: List<QuestionType> = emptyList(),
@@ -65,6 +65,30 @@ data class QuestionAttributeResponse(
                 programingTypes = programingTypes,
                 frameworkTypes = frameworkTypes,
                 levels = levels,
+            )
+        }
+    }
+}
+
+data class QuestionHistoryDetailResponse(
+    val token: String,
+    val text: String,
+    val historyType: HistoryType,
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    val createdAt: ZonedDateTime,
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    val updatedAt: ZonedDateTime,
+) {
+    companion object {
+        fun of(
+            response: QuestionHistoryDetailResponseVo
+        ): QuestionHistoryDetailResponse {
+            return QuestionHistoryDetailResponse(
+                token = response.token,
+                text = response.text,
+                historyType = response.historyType,
+                createdAt = response.createdAt,
+                updatedAt = response.updatedAt,
             )
         }
     }
