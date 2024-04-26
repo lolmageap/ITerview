@@ -17,4 +17,8 @@ class AnswerReadService(
         answerRepository.findByCustomerIdAndToken(userId, token)
             ?.let(AnswerResponseVo::of)
             ?: throw NotFoundException(MessageType.ANSWER)
+
+    fun getAnswers(questionHistoryId: Long) =
+        answerRepository.findAllByQuestionHistoryId(questionHistoryId)
+            .map(AnswerResponseVo::of)
 }
