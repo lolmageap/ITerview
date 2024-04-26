@@ -49,7 +49,30 @@ object Generator {
             
             {
                 "score" : ,
-                "answer" : 
+                "feedback" : 
+            }
+        """.trimIndent()
+
+    fun reAnswerToGpt(
+        question: String,
+        feedback: String,
+        answer: String,
+    ) =
+        """
+            아래는 개발자 기술 면접 질문에 대한 피드백이야.
+            
+            질문 : $question
+            답변 : $answer
+            이전에 너가 해준 피드백 : $feedback
+            
+            피드백에 대해 답변을 다시 작성해줘.
+            
+            개선해야할 부분을 상세하게 피드백을 해줘.
+            그리고 아래 양식에 맞게 엄격하게 채점한 점수와 피드백을 작성해줘.
+            
+            {
+                "score" : ,
+                "feedback" : 
             }
         """.trimIndent()
 
