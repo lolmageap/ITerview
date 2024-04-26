@@ -29,4 +29,15 @@ class GptController(
         requestAnswerToGptUseCase.execute(authCustomer.id, request)
             .let(GptResponse::of)
             .let(ClientResponse.Companion::success)
+
+    @PostMapping("/re-answers")
+    @ResponseStatus(CREATED)
+    @Operation(summary = "답변 하기", description = "피드백 에 대한 답변을 이어서 제출 한다.")
+    fun requestReAnswer(
+        @RequestBody request: GptRequest,
+        @AuthenticationPrincipal authCustomer: AuthCustomer,
+    ) =
+        requestAnswerToGptUseCase.execute(authCustomer.id, request)
+            .let(GptResponse::of)
+            .let(ClientResponse.Companion::success)
 }

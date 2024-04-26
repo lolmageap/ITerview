@@ -10,6 +10,11 @@ data class GptRequest(
     val answer: String?,
 )
 
+data class GptReAnswerRequest(
+    val questionToken: String,
+    val answer: String,
+)
+
 data class AnswerResponse(
     val token: String,
     val question: String,
