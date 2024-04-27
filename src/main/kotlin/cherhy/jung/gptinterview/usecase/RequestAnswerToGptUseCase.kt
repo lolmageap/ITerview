@@ -27,16 +27,16 @@ class RequestAnswerToGptUseCase(
         val customer = customerReadService.getCustomerById(customerId)
         val question = questionReadService.getQuestionByToken(request.questionToken)
 
-        val questionHistory = QuestionHistory.of(customer.id, question.id)
+        val questionHistory = QuestionHistory.of(customer.id, question.id, question.title)
         val history = questionHistoryWriteService.addHistory(questionHistory)
 
         val questionToGpt = Generator.questionToGpt(question.title, request.answer)
 
-        val answer = Answer.of(customer.id, question.id, request.answer)
+        val answer = Answer.of(customer.id, history.id, request.answer)
         val savedAnswer = answerWriteService.addAnswer(answer)
 
         val feedback = gptClient.requestAndReceiveFeedback(questionToGpt)
-        val feedbackEntity = Feedback.of(customer.id, question.id, savedAnswer.id, feedback)
+        val feedbackEntity = Feedback.of(customer.id, history.id, savedAnswer.id, feedback)
         feedbackWriteService.addFeedback(feedbackEntity)
 
         return GptResponseVo(history.token, feedback)

@@ -1,10 +1,12 @@
 package cherhy.jung.gptinterview.controller
 
+import cherhy.jung.gptinterview.controller.dto.GptReAnswerRequest
 import cherhy.jung.gptinterview.controller.dto.GptRequest
 import cherhy.jung.gptinterview.controller.dto.GptResponse
 import cherhy.jung.gptinterview.domain.authority.AuthCustomer
 import cherhy.jung.gptinterview.exception.ClientResponse
 import cherhy.jung.gptinterview.usecase.RequestAnswerToGptUseCase
+import cherhy.jung.gptinterview.usecase.RequestReAnswerToGptUseCase
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus.CREATED
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class GptController(
     private val requestAnswerToGptUseCase: RequestAnswerToGptUseCase,
+    private val requestReAnswerToGptUseCase: RequestReAnswerToGptUseCase,
 ) {
     @PostMapping("/answers")
     @ResponseStatus(CREATED)
@@ -32,12 +35,12 @@ class GptController(
 
     @PostMapping("/re-answers")
     @ResponseStatus(CREATED)
-    @Operation(summary = "답변 하기", description = "피드백 에 대한 답변을 이어서 제출 한다.")
+    @Operation(summary = "피드백에 재답변 하기", description = "피드백 에 대한 답변을 이어서 제출 한다.")
     fun requestReAnswer(
-        @RequestBody request: GptRequest,
+        @RequestBody request: GptReAnswerRequest,
         @AuthenticationPrincipal authCustomer: AuthCustomer,
     ) =
-        requestAnswerToGptUseCase.execute(authCustomer.id, request)
+        requestReAnswerToGptUseCase.execute(authCustomer.id, request)
             .let(GptResponse::of)
             .let(ClientResponse.Companion::success)
 }
