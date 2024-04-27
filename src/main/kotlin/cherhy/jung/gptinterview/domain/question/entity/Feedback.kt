@@ -10,7 +10,7 @@ import jakarta.persistence.Lob
 class Feedback(
     val customerId: Long,
     val answerId: Long,
-    val questionId: Long,
+    val questionHistoryId: Long,
 
     @Lob
     @Column(columnDefinition = "TEXT")
@@ -20,13 +20,13 @@ class Feedback(
     companion object {
         fun of(
             customerId: Long,
-            questionId: Long,
+            questionHistoryId: Long,
             answerId: Long,
             feedback: String,
         ) =
             Feedback(
                 customerId = customerId,
-                questionId = questionId,
+                questionHistoryId = questionHistoryId,
                 answerId = answerId,
                 text = feedback,
             )

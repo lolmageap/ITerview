@@ -6,7 +6,7 @@ import java.time.ZonedDateTime
 data class FeedbackResponseVo(
     val id: Long,
     val customerId: Long,
-    val questionId: Long,
+    val questionHistoryId: Long,
     val text: String,
     val token: String,
     val createdAt: ZonedDateTime,
@@ -19,7 +19,7 @@ data class FeedbackResponseVo(
             FeedbackResponseVo(
                 id = feedback.id,
                 customerId = feedback.customerId,
-                questionId = feedback.questionId,
+                questionHistoryId = feedback.questionHistoryId,
                 text = feedback.text,
                 token = feedback.token,
                 createdAt = feedback.createdAt,

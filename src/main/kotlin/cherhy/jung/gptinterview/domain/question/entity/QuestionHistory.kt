@@ -8,6 +8,7 @@ import jakarta.persistence.Entity
 class QuestionHistory private constructor(
     val customerId: Long,
     val questionId: Long,
+    val question: String,
 ) : BaseEntity() {
     val token: String = Generator.token()
 
@@ -15,10 +16,12 @@ class QuestionHistory private constructor(
         fun of(
             customerId: Long,
             questionId: Long,
+            question: String,
         ) =
             QuestionHistory(
                 customerId = customerId,
                 questionId = questionId,
+                question = question,
             )
     }
 }

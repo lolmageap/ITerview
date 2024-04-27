@@ -11,7 +11,7 @@ data class GptRequest(
 )
 
 data class GptReAnswerRequest(
-    val questionToken: String,
+    val feedbackToken: String,
     val answer: String,
 )
 

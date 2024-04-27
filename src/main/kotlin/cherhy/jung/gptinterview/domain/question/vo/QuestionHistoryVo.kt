@@ -62,7 +62,9 @@ data class QuestionHistoryInfoVo(
 }
 
 data class QuestionHistoryResponseVo(
+    val id: Long,
     val token: String,
+    val question: String,
     val questionId: Long,
     val createdAt: ZonedDateTime,
     val updatedAt: ZonedDateTime,
@@ -70,7 +72,9 @@ data class QuestionHistoryResponseVo(
     companion object {
         fun of(questionHistory: QuestionHistory): QuestionHistoryResponseVo {
             return QuestionHistoryResponseVo(
+                id = questionHistory.id,
                 token = questionHistory.token,
+                question = questionHistory.question,
                 questionId = questionHistory.questionId,
                 createdAt = questionHistory.createdAt,
                 updatedAt = questionHistory.updatedAt,
