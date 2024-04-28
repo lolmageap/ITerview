@@ -1,6 +1,7 @@
 package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.domain.customer.Provider
+import cherhy.jung.gptinterview.domain.customer.Provider.*
 import cherhy.jung.gptinterview.exception.ClientResponse
 import cherhy.jung.gptinterview.extension.addAccessTokenInHeader
 import cherhy.jung.gptinterview.extension.addRefreshTokenInCookie
@@ -29,11 +30,11 @@ class Oauth2Controller(
     ): ClientResponse<Unit> {
 
         val response = when (provider) {
-            Provider.KAKAO -> oauth2Client.signInByKakao(code)
-            Provider.GOOGLE -> oauth2Client.signInByGoogle(code)
-            Provider.GITHUB -> oauth2Client.signInByGithub(code)
-            Provider.NAVER -> oauth2Client.signInByNaver(code)
-            else -> throw IllegalArgumentException("지원하지 않는 소셜 로그인입니다.")
+            KAKAO -> oauth2Client.signInByKakao(code)
+            GOOGLE -> oauth2Client.signInByGoogle(code)
+            GITHUB -> oauth2Client.signInByGithub(code)
+            NAVER -> oauth2Client.signInByNaver(code)
+            LOCAL -> throw IllegalArgumentException("지원하지 않는 소셜 로그인입니다.")
         }
 
         httpServletResponse.addAccessTokenInHeader(response.accessToken)
