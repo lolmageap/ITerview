@@ -11,7 +11,7 @@ import org.springframework.data.repository.findByIdOrNull
 class QuestionReadService(
     private val questionRepository: QuestionRepository,
 ) {
-    fun getQuestionByToken(token: String): QuestionResponseVo =
+    fun getQuestionByToken(token: String) =
         questionRepository.findByToken(token)
             ?.let(QuestionResponseVo::of)
             ?: throw NotFoundException(QUESTION)
@@ -19,14 +19,14 @@ class QuestionReadService(
     fun getQuestion(
         request: QuestionRequestVo,
         alreadyQuestions: List<String> = emptyList(),
-    ): QuestionResponseVo =
+    ) =
         questionRepository.findByQuestionRequestS(request, alreadyQuestions)
             .firstNotNullOfOrNull {
                 it.let(QuestionResponseVo::of)
             }
             ?: throw NotFoundException(QUESTION)
 
-    fun getQuestionHistories(alreadyQuestions: List<String>): List<QuestionResponseVo> =
+    fun getQuestionHistories(alreadyQuestions: List<String>) =
         questionRepository.findByTokensIn(alreadyQuestions)
             .map(QuestionResponseVo::of)
 

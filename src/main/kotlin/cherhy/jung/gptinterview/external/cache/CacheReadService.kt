@@ -34,11 +34,11 @@ class CacheReadService(
             ?: throw AccessDeniedException("잘못된 토큰")
     }
 
-    fun getQuestionTokens(customerId: Long, start: Long = 0, end: Long = -1): MutableList<String> =
+    fun getQuestionTokens(customerId: Long, start: Long = 0, end: Long = -1) =
         redisTemplate.opsForList()
             .range(QUESTION_TOKEN + customerId, start, end)
-            ?.map { it.toString() }?.toMutableList()
-            ?: mutableListOf()
+            ?.map { it.toString() }?.toList()
+            ?: emptyList()
 
     fun checkCertificate(email: String, certificateNumber: String) {
         val certificate = redisTemplate.opsForValue().get(CERTIFICATE + email)
