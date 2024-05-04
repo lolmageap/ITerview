@@ -51,7 +51,7 @@ create table question
     id            bigint auto_increment
         primary key,
     created_at    datetime(6)                                                                                                 null,
-    updated_at   datetime(6)                                                                                                 null,
+    updated_at    datetime(6)                                                                                                  null,
     level         enum ('LEVEL1', 'LEVEL2', 'LEVEL3')                                                                         null,
     question_type enum ('DATABASE', 'DESIGN_PATTERN', 'FRAMEWORK', 'NETWORK', 'OS', 'PROGRAMING', 'STRUCTURE', 'TEST', 'VCS') null,
     title         varchar(255)                                                                                                null,
