@@ -29,7 +29,7 @@ dependencies {
 
     // log
     implementation("io.github.microutils:kotlin-logging:3.0.5")
-    implementation("ch.qos.logback:logback-classic:1.5.6")
+    implementation("ch.qos.logback:logback-classic:1.4.11")
 
     // web
     implementation("org.springframework.boot:spring-boot-starter-web")
