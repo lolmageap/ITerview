@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.annotation.UseCase
-import cherhy.jung.gptinterview.domain.authority.AuthCustomer
+import cherhy.jung.gptinterview.domain.authority.Principal
 import cherhy.jung.gptinterview.domain.authority.AuthCustomerReadService
 import cherhy.jung.gptinterview.external.jwt.TokenProvider
 import cherhy.jung.gptinterview.external.jwt.TokenResponseVo
@@ -21,7 +21,7 @@ class RegenerateAccessTokenUseCase(
 
         val email = cacheReadService.getEmailByRefreshToken(refreshToken)
         val userDetails = authCustomerReadService.loadUserByUsername(email)
-        val customer = userDetails as AuthCustomer
+        val customer = userDetails as Principal
         return tokenProvider.createAccessToken(customer)
     }
 }

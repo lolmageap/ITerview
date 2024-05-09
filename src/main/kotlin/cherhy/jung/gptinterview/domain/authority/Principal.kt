@@ -6,7 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.oauth2.core.user.OAuth2User
 
-class AuthCustomer(
+class Principal(
     private val customer: Customer,
 ) : UserDetails, OAuth2User {
     val id = customer.id
@@ -43,8 +43,8 @@ class AuthCustomer(
 
     override fun isEnabled(): Boolean = customer.deleted.not()
     companion object {
-        fun of(customer: Customer): AuthCustomer {
-            return AuthCustomer(customer)
+        fun of(customer: Customer): Principal {
+            return Principal(customer)
         }
     }
 }

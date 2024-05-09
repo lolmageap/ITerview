@@ -13,7 +13,7 @@ class AuthCustomerReadService(
 ) : UserDetailsService {
     override fun loadUserByUsername(username: String): UserDetails {
         return customerRepository.findWithAuthorityByUsername(username)
-            ?.let(AuthCustomer::of)
+            ?.let(Principal::of)
             ?: throw NotFoundException(MessageType.CUSTOMER)
     }
 }

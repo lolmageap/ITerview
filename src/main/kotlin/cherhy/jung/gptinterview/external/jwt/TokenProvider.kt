@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.external.jwt
 
-import cherhy.jung.gptinterview.domain.authority.AuthCustomer
+import cherhy.jung.gptinterview.domain.authority.Principal
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.exception.MessageType
 import cherhy.jung.gptinterview.exception.NotFoundException
@@ -17,7 +17,6 @@ import com.nimbusds.jwt.proc.BadJWTException
 import mu.KotlinLogging
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.stereotype.Component
@@ -40,13 +39,13 @@ class TokenProvider(
         this.key = SecretKeySpec(jwtProperty.secret.toByteArray(), jwtProperty.algorithm)
     }
 
-    fun createAccessToken(authCustomer: AuthCustomer): TokenResponseVo {
+    fun createAccessToken(principal: Principal): TokenResponseVo {
         val now = Date().time
         val validity = Date(now + jwtProperty.tokenValidityInSeconds.toLong())
 
         val claimsSet = JWTClaimsSet.Builder()
-            .subject(authCustomer.username)
-            .claim(jwtProperty.authorityKey, authCustomer.authorities.toString())
+            .subject(principal.username)
+            .claim(jwtProperty.authorityKey, principal.authorities.toString())
             .expirationTime(validity)
             .build()
 
@@ -58,7 +57,7 @@ class TokenProvider(
         return TokenResponseVo(accessToken, validity)
     }
 
-    fun getAuthentication(token: String): Authentication? {
+    fun getPrincipal(token: String): Principal {
         val signedJWT = SignedJWT.parse(token)
 
         if (signedJWT.verify(MACVerifier(key))) {
@@ -71,8 +70,31 @@ class TokenProvider(
             val customer = customerRepository.findByUsername(claims.subject)
                 ?: throw NotFoundException(MessageType.CUSTOMER)
 
-            val authCustomer = AuthCustomer(customer)
-            return UsernamePasswordAuthenticationToken(authCustomer, token, authorities)
+            val principal = Principal(customer)
+            val authenticationToken =
+                UsernamePasswordAuthenticationToken(principal, token, authorities)
+
+            return authenticationToken.principal as Principal
+        }
+
+        throw BadJWTException("JWT 토큰이 잘못 되었습니다.")
+    }
+
+    fun getAuthentication(token: String): UsernamePasswordAuthenticationToken {
+        val signedJWT = SignedJWT.parse(token)
+
+        if (signedJWT.verify(MACVerifier(key))) {
+            val claims = signedJWT.jwtClaimsSet
+            val authorities: Collection<GrantedAuthority> = claims.getStringClaim(jwtProperty.authorityKey)
+                .split(",")
+                .map(::SimpleGrantedAuthority)
+                .toList()
+
+            val customer = customerRepository.findByUsername(claims.subject)
+                ?: throw NotFoundException(MessageType.CUSTOMER)
+
+            val principal = Principal(customer)
+            return UsernamePasswordAuthenticationToken(principal, token, authorities)
         }
 
         throw BadJWTException("JWT 토큰이 잘못 되었습니다.")
@@ -94,13 +116,13 @@ class TokenProvider(
         }
     }
 
-    fun createRefreshToken(authCustomer: AuthCustomer): TokenResponseVo {
+    fun createRefreshToken(principal: Principal): TokenResponseVo {
         val now = ZonedDateTime.now().toInstant().toEpochMilli()
         val validity = Date(now + jwtProperty.refreshTokenValidityInSeconds.toLong())
 
         val claimsSet = JWTClaimsSet.Builder()
-            .subject(authCustomer.username)
-            .claim(jwtProperty.authorityKey, authCustomer.authorities.toString())
+            .subject(principal.username)
+            .claim(jwtProperty.authorityKey, principal.authorities.toString())
             .expirationTime(validity)
             .build()
 

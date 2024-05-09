@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.controller.dto.*
-import cherhy.jung.gptinterview.domain.authority.AuthCustomer
+import cherhy.jung.gptinterview.domain.authority.Principal
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.exception.ClientResponse
 import cherhy.jung.gptinterview.extension.*
@@ -112,10 +112,10 @@ class AuthorityController(
     @Operation(summary = "비밀번호 수정", description = "비밀번호 를 수정 하고 수정된 비밀번호 를 이메일 로 보내 준다.")
     fun editPassword(
         @RequestBody @Valid request: EditPasswordRequest,
-        @AuthenticationPrincipal authCustomer: AuthCustomer,
+        @AuthenticationPrincipal principal: Principal,
     ) =
         editPasswordUseCase.execute(
-            authCustomer.id,
+            principal.id,
             request.toEditPasswordRequestVo()
         ).let(ClientResponse.Companion::success)
 
@@ -133,8 +133,8 @@ class AuthorityController(
     @GetMapping("/me")
     @Operation(summary = "내 정보", description = "내 정보를 조회 한다.")
     fun getMe(
-        @AuthenticationPrincipal authCustomer: AuthCustomer,
-    ) = customerReadService.getCustomerById(authCustomer.id)
+        @AuthenticationPrincipal principal: Principal,
+    ) = customerReadService.getCustomerById(principal.id)
         .let(CustomerResponse::of)
         .let(ClientResponse.Companion::success)
 }

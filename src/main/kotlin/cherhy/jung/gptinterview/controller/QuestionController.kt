@@ -3,7 +3,7 @@ package cherhy.jung.gptinterview.controller
 import cherhy.jung.gptinterview.controller.dto.QuestionRequest
 import cherhy.jung.gptinterview.controller.dto.QuestionResponse
 import cherhy.jung.gptinterview.controller.dto.toQuestionRequestS
-import cherhy.jung.gptinterview.domain.authority.AuthCustomer
+import cherhy.jung.gptinterview.domain.authority.Principal
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.exception.ClientResponse
 import cherhy.jung.gptinterview.external.cache.CacheReadService
@@ -24,15 +24,15 @@ class QuestionController(
     @GetMapping
     @Operation(summary = "질문 받기 (질문 조회)", description = "요청에 맞게 질문을 반환한다.")
     fun getRandomQuestion(
-        @AuthenticationPrincipal authCustomer: AuthCustomer,
+        @AuthenticationPrincipal principal: Principal,
         @ModelAttribute request: QuestionRequest,
     ): ClientResponse<QuestionResponse> {
-        val alreadyQuestions = cacheReadService.getQuestionTokens(authCustomer.id)
+        val alreadyQuestions = cacheReadService.getQuestionTokens(principal.id)
 
         return questionReadService.getQuestion(request.toQuestionRequestS(), alreadyQuestions)
             .let(QuestionResponse::of)
             .let {
-                cacheWriteService.addQuestionToken(authCustomer.id, it.token)
+                cacheWriteService.addQuestionToken(principal.id, it.token)
                 ClientResponse.success(it)
             }
     }
@@ -40,17 +40,17 @@ class QuestionController(
     @PostMapping("/attributes")
     @Operation(summary = "마지막에 사용한 질문의 속성", description = "마지막에 사용한 질문의 속성을 캐시에 저장한다.")
     fun getQuestionAttributes(
-        @AuthenticationPrincipal authCustomer: AuthCustomer,
+        @AuthenticationPrincipal principal: Principal,
         @ModelAttribute request: QuestionRequest,
     ) =
-        cacheWriteService.addQuestionAttributes(authCustomer.id, request)
+        cacheWriteService.addQuestionAttributes(principal.id, request)
             .let(ClientResponse.Companion::success)
 
     @GetMapping("/attributes")
     @Operation(summary = "마지막에 사용한 질문의 속성", description = "마지막에 사용한 질문의 속성을 캐시에서 가져온다.")
     fun getQuestionAttributes(
-        @AuthenticationPrincipal authCustomer: AuthCustomer,
+        @AuthenticationPrincipal principal: Principal,
     ) =
-        cacheReadService.getQuestionAttributes(authCustomer.id)
+        cacheReadService.getQuestionAttributes(principal.id)
             .let(ClientResponse.Companion::success)
 }

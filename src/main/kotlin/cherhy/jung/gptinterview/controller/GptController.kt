@@ -3,7 +3,7 @@ package cherhy.jung.gptinterview.controller
 import cherhy.jung.gptinterview.controller.dto.GptReAnswerRequest
 import cherhy.jung.gptinterview.controller.dto.GptRequest
 import cherhy.jung.gptinterview.controller.dto.GptResponse
-import cherhy.jung.gptinterview.domain.authority.AuthCustomer
+import cherhy.jung.gptinterview.domain.authority.Principal
 import cherhy.jung.gptinterview.exception.ClientResponse
 import cherhy.jung.gptinterview.usecase.RequestAnswerToGptUseCase
 import cherhy.jung.gptinterview.usecase.RequestReAnswerToGptUseCase
@@ -27,9 +27,9 @@ class GptController(
     @Operation(summary = "답변 하기", description = "질문을 풀거나 풀지 않고 답안을 제출한 뒤 점수 및 피드백을 받는다.")
     fun requestAnswer(
         @RequestBody request: GptRequest,
-        @AuthenticationPrincipal authCustomer: AuthCustomer,
+        @AuthenticationPrincipal principal: Principal,
     ) =
-        requestAnswerToGptUseCase.execute(authCustomer.id, request)
+        requestAnswerToGptUseCase.execute(principal.id, request)
             .let(GptResponse::of)
             .let(ClientResponse.Companion::success)
 
@@ -38,9 +38,9 @@ class GptController(
     @Operation(summary = "피드백에 재답변 하기", description = "피드백 에 대한 답변을 이어서 제출 한다.")
     fun requestReAnswer(
         @RequestBody request: GptReAnswerRequest,
-        @AuthenticationPrincipal authCustomer: AuthCustomer,
+        @AuthenticationPrincipal principal: Principal,
     ) =
-        requestReAnswerToGptUseCase.execute(authCustomer.id, request)
+        requestReAnswerToGptUseCase.execute(principal.id, request)
             .let(GptResponse::of)
             .let(ClientResponse.Companion::success)
 }

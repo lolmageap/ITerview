@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.controller.dto.QuestionHistoryDetailResponse
 import cherhy.jung.gptinterview.controller.dto.QuestionResponse
-import cherhy.jung.gptinterview.domain.authority.AuthCustomer
+import cherhy.jung.gptinterview.domain.authority.Principal
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.exception.ClientResponse
 import cherhy.jung.gptinterview.extension.end
@@ -32,11 +32,11 @@ class QuestionHistoryController(
     @GetMapping("/histories")
     @Operation(summary = "질문 내역", description = "조회했던 질문들을 확인한다.")
     fun getQuestionHistory(
-        @AuthenticationPrincipal authCustomer: AuthCustomer,
+        @AuthenticationPrincipal principal: Principal,
         @Parameter(hidden = true) @PageableDefault(size = 15, page = 0) pageable: Pageable,
     ): ClientResponse<List<QuestionResponse>> {
         val alreadyQuestions = cacheReadService.getQuestionTokens(
-            customerId = authCustomer.id,
+            customerId = principal.id,
             start = pageable.start,
             end = pageable.end,
         )
@@ -49,10 +49,10 @@ class QuestionHistoryController(
     @GetMapping("/histories/{token}")
     @Operation(summary = "질문 내역", description = "조회했던 질문의 내용을 포함하여 확인한다.")
     fun getQuestionHistory(
-        @AuthenticationPrincipal authCustomer: AuthCustomer,
+        @AuthenticationPrincipal principal: Principal,
         @PathVariable token: String,
     ) =
-        getQuestionHistoriesUseCase.execute(authCustomer.id, token)
+        getQuestionHistoriesUseCase.execute(principal.id, token)
             .map(QuestionHistoryDetailResponse::of)
             .let(ClientResponse.Companion::success)
 }
