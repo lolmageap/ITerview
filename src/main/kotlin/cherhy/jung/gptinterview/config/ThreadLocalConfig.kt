@@ -1,22 +1,15 @@
 package cherhy.jung.gptinterview.config
 
-import cherhy.jung.gptinterview.domain.authority.AuthCustomer
+import cherhy.jung.gptinterview.domain.authority.Principal
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
 class ThreadLocalConfig {
-    private val threadLocal = ThreadLocal<AuthCustomer>()
+    private val threadLocal = ThreadLocal<Principal>()
 
     @Bean
-    fun threadLocal(): ThreadLocal<AuthCustomer> {
+    fun threadLocal(): ThreadLocal<Principal> {
         return threadLocal
-    }
-
-    val userId
-        get() = threadLocal.get().id
-
-    fun clear() {
-        threadLocal.remove()
     }
 }
