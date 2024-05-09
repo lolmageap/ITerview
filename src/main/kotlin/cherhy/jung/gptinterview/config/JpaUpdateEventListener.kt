@@ -57,6 +57,7 @@ class JpaUpdateEventListener() {
 
         val updatedFields = stateAfterUpdate.filter { (fieldName, log) ->
             stateBeforeUpdate[fieldName]?.value != log.value
+            // TODO: 비교 로직이 들어감
         }
 
         if (updatedFields.isNotEmpty()) {
