@@ -55,4 +55,13 @@ class CacheWriteService(
         opsForHash.put(QUESTION_TOKEN + customerId, FRAMEWORK_TYPE, frameworkTypes)
         opsForHash.put(QUESTION_TOKEN + customerId, QUESTION_LEVEL, levels)
     }
+
+    fun setEntity(
+        key: String,
+        entity: Any,
+    ) {
+        // TODO: 여기 구현 해야함
+        redisTemplate.opsForValue().set(key, entity)
+        redisTemplate.expire(key, 1, TimeUnit.SECONDS)
+    }
 }
