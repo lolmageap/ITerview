@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.external.jwt
 
-import cherhy.jung.gptinterview.extension.authorization
+import cherhy.jung.gptinterview.extension.accessToken
 import jakarta.servlet.FilterChain
 import jakarta.servlet.ServletRequest
 import jakarta.servlet.ServletResponse
@@ -20,7 +20,7 @@ class JwtFilter(
         val httpServletRequest: HttpServletRequest = servletRequest as HttpServletRequest
 
         val authentication =
-            httpServletRequest.authorization?.let {
+            httpServletRequest.accessToken?.let {
                 if (tokenProvider.validateToken(it)) {
                     tokenProvider.getAuthentication(it)
                 } else {
