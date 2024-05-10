@@ -2,6 +2,8 @@ package cherhy.jung.gptinterview.domain.customer
 
 import cherhy.jung.gptinterview.annotation.WriteService
 import cherhy.jung.gptinterview.domain.customer.vo.CustomerResponseVo
+import cherhy.jung.gptinterview.exception.MessageType
+import cherhy.jung.gptinterview.exception.NotFoundException
 import org.springframework.data.repository.findByIdOrNull
 
 @WriteService
@@ -14,18 +16,16 @@ class CustomerWriteService(
         provider: Provider,
     ) =
         with(customer) {
-            this.password = encodedPassword
+            password = encodedPassword
             this.provider = provider
-            customerRepository.save(this)
             CustomerResponseVo.of(this)
         }
 
-    fun editPassword(id: Long, newPassword: String) {
-        val customer = customerRepository.findByIdOrNull(id)!!
-        with(customer) {
-            password = newPassword
-        }
-
-        customerRepository.save(customer)
-    }
+    fun editPassword(
+        id: Long,
+        newPassword: String,
+    ) =
+        customerRepository.findByIdOrNull(id)
+            ?.run { password = newPassword }
+            ?: throw NotFoundException(MessageType.CUSTOMER)
 }
