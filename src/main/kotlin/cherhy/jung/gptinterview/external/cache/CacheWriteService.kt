@@ -1,15 +1,19 @@
 package cherhy.jung.gptinterview.external.cache
 
 import cherhy.jung.gptinterview.annotation.WriteService
+import cherhy.jung.gptinterview.config.ChangeValueCollector
 import cherhy.jung.gptinterview.controller.dto.QuestionRequest
 import cherhy.jung.gptinterview.property.JwtProperty
 import cherhy.jung.gptinterview.external.cache.CacheKey.CERTIFICATE
+import cherhy.jung.gptinterview.external.cache.CacheKey.CUSTOMER_HISTORY
 import cherhy.jung.gptinterview.external.cache.CacheKey.FRAMEWORK_TYPE
 import cherhy.jung.gptinterview.external.cache.CacheKey.PROGRAMING_TYPE
 import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_LEVEL
 import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_TOKEN
 import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_TYPE
 import cherhy.jung.gptinterview.external.cache.CacheKey.REFRESH_TOKEN
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.data.redis.core.RedisTemplate
 import java.util.concurrent.TimeUnit
 
@@ -56,12 +60,18 @@ class CacheWriteService(
         opsForHash.put(QUESTION_TOKEN + customerId, QUESTION_LEVEL, levels)
     }
 
-    fun setEntity(
+    fun setBeforeValue(
         key: String,
-        entity: Any,
+        data: Map<String, ChangeValueCollector>,
     ) {
-        // TODO: 여기 구현 해야함
-        redisTemplate.opsForValue().set(key, entity)
+        val mapper = jacksonObjectMapper()
+        mapper.registerModule(JavaTimeModule())
+
+        val hash = redisTemplate.opsForHash<String, String>()
+        data.forEach { (field, value) ->
+            hash.put(CUSTOMER_HISTORY + key, field, mapper.writeValueAsString(value))
+        }
+
         redisTemplate.expire(key, 1, TimeUnit.SECONDS)
     }
 }
