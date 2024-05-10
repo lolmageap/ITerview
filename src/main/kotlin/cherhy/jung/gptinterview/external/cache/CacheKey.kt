@@ -8,4 +8,5 @@ object CacheKey {
     const val PROGRAMING_TYPE: String = "programingType:"
     const val FRAMEWORK_TYPE: String = "frameworkType:"
     const val QUESTION_LEVEL: String = "questionLevel:"
+    const val CUSTOMER_HISTORY: String = "customerHistory:"
 }
