@@ -28,22 +28,22 @@ class JpaDeleteEventListener() {
     @PreRemove
     fun preRemoveEvent(entity: Entity) {
         val principal = threadLocal.get() ?: return
-        val customerId = principal.id
+        val customerId = principal.customerId
 
         val deletedFields = entity.extractFields()
-        deletedFields.forEach { (fieldName, deletedValue) ->
-            CustomerHistory.of(
+        deletedFields.forEach { (fieldName, deletedField) ->
+            val history = CustomerHistory.of(
                 customerId = customerId,
                 targetCustomerId = entity.targetCustomerId,
                 type = HistoryType.DELETE,
                 entityName = entity.className,
                 entityDescription = entity.classDescription,
                 fieldName = fieldName,
-                fieldDescription = deletedValue.description,
-                beforeValue = null,
-                afterValue = deletedValue.value.toString(),
+                fieldDescription = deletedField.description,
+                beforeValue = deletedField.value.toString(),
+                afterValue = null,
             )
+            applicationEventPublisher.publishEvent(history)
         }
-        applicationEventPublisher.publishEvent(deletedFields)
     }
 }
