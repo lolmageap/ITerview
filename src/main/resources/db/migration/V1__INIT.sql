@@ -1,74 +1,120 @@
 create table customer
 (
-    id          bigint auto_increment
-        primary key,
-    created_at  datetime(6)  null,
-    updated_at datetime(6)  null,
-    username       varchar(255) null,
-    name        varchar(255) null,
-    password    varchar(255) null,
-    salt        varchar(255) null,
-    token       varchar(255) null,
-    provider    varchar(255) null,
-    constraint UK_i1p08swb0onyuxes5tjx73rqg
-        unique (token)
+    id         bigint auto_increment primary key,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    username   varchar(255) not null,
+    name       varchar(255) not null,
+    password   varchar(255) not null,
+    salt       varchar(255) not null,
+    provider   varchar(255) not null,
+    token      varchar(255) not null,
+    constraint IDX_CUSTOMER_TOKEN unique (token)
 );
 
 create table customer_authority
 (
-    id          bigint auto_increment
-        primary key,
-    role        enum ('ADMIN', 'MEMBER') null,
-    customer_id bigint                   null
+    id          bigint auto_increment primary key,
+    role        varchar(255) not null,
+    customer_id bigint       not null
 );
 
 create table framework
 (
-    id             bigint auto_increment
-        primary key,
-    created_at     datetime(6)                                                                                                      null,
-    updated_at    datetime(6)                                                                                                      null,
-    framework_type enum ('DJANGO', 'DOTNET', 'EXPRESS', 'FAST_API', 'FLASK', 'LARAVEL', 'NEST', 'NEXT', 'REACT', 'SPRING', 'UNITY') null,
-    question_id    bigint                                                                                                           null,
-    constraint UK_osontrk9ytdfoctyjtq4y3kv4
-        unique (question_id)
+    id             bigint auto_increment primary key,
+    created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    framework_type varchar(255) not null,
+    question_id    bigint       not null,
+    constraint IDX_FRAMEWORK_QUESTION_ID unique (question_id)
 );
 
 create table programing
 (
-    id              bigint auto_increment
-        primary key,
-    created_at      datetime(6)                                                                                            null,
-    updated_at     datetime(6)                                                                                            null,
-    programing_type enum ('C', 'C#', 'C++', 'CSS', 'GO', 'JAVA', 'JAVASCRIPT', 'KOTLIN', 'PHP', 'PYTHON', 'RUST', 'SWIFT') null,
-    question_id     bigint                                                                                                 null,
-    constraint UK_dug2xh72llr4tnfrcg8u89ln5
-        unique (question_id)
+    id              bigint auto_increment primary key,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    programing_type varchar(255) not null,
+    question_id     bigint       not null,
+    constraint IDX_PROGRAMING_QUESTION_ID unique (question_id)
 );
 
 create table question
 (
-    id            bigint auto_increment
-        primary key,
-    created_at    datetime(6)                                                                                                 null,
-    updated_at    datetime(6)                                                                                                  null,
-    level         enum ('LEVEL1', 'LEVEL2', 'LEVEL3')                                                                         null,
-    question_type enum ('DATABASE', 'DESIGN_PATTERN', 'FRAMEWORK', 'NETWORK', 'OS', 'PROGRAMING', 'STRUCTURE', 'TEST', 'VCS') null,
-    title         varchar(255)                                                                                                null,
-    token         varchar(255)                                                                                                null,
-    constraint IDX_QUESTION_TOKEN
-        unique (token)
+    id            bigint auto_increment primary key,
+    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    level         varchar(255) not null,
+    question_type varchar(255) not null,
+    title         varchar(255) not null,
+    token         varchar(255) not null,
+    constraint IDX_QUESTION_TOKEN unique (token)
 );
 
 create table question_history
 (
-    id          bigint auto_increment
-        primary key,
-    created_at  datetime(6)  null,
-    updated_at datetime(6)  null,
-    answer      text         null,
+    id          bigint auto_increment primary key,
+    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     customer_id bigint       not null,
-    feedback    text         null,
     question_id bigint       not null,
-    token       varchar(255) null
+    text        varchar(255) not null,
+    token       varchar(255) not null,
+    constraint IDX_QUESTION_HISTORY_TOKEN unique (token)
+);
+
+create table answer
+(
+    id                  bigint auto_increment primary key,
+    created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    customer_id         bigint       not null,
+    question_history_id bigint       not null,
+    text                text         not null,
+    token               varchar(255) not null,
+    constraint IDX_ANSWER_TOKEN unique (token)
+);
+
+create table feedback
+(
+    id                  bigint auto_increment primary key,
+    created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    customer_id         bigint       not null,
+    answer_id           bigint       not null,
+    question_history_id bigint       not null,
+    text                text         not null,
+    token               varchar(255) not null,
+    constraint IDX_FEEDBACK_TOKEN unique (token)
+);
+
+create table re_question
+(
+    id          bigint auto_increment primary key,
+    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    answer_id   bigint       not null,
+    customer_id bigint       not null,
+    question_id bigint       not null,
+    text        text         not null,
+    token       varchar(255) not null,
+    constraint IDX_RE_QUESTION_TOKEN unique (token)
+);
+
+create table customer_history
+(
+    id                 bigint auto_increment primary key,
+    created_at         TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at         TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    customer_id        bigint       not null,
+    target_customer_id bigint       not null,
+    type               varchar(255) not null,
+    entity_name        varchar(255) not null,
+    entity_description varchar(255) null,
+    field_name         varchar(255) not null,
+    field_description  varchar(255) null,
+    before_value       varchar(255) null,
+    after_value        varchar(255) null,
+    token              varchar(255) not null,
+    constraint IDX_CUSTOMER_HISTORY_TOKEN unique (token)
 );
