@@ -74,7 +74,7 @@ data class QuestionHistoryResponseVo(
             return QuestionHistoryResponseVo(
                 id = questionHistory.id,
                 token = questionHistory.token,
-                question = questionHistory.question,
+                question = questionHistory.text,
                 questionId = questionHistory.questionId,
                 createdAt = questionHistory.createdAt,
                 updatedAt = questionHistory.updatedAt,
