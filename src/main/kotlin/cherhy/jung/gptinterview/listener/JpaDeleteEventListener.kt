@@ -1,8 +1,8 @@
 package cherhy.jung.gptinterview.listener
 
 import cherhy.jung.gptinterview.domain.authority.Principal
-import cherhy.jung.gptinterview.domain.customer.CustomerHistory
-import cherhy.jung.gptinterview.domain.customer.HistoryType
+import cherhy.jung.gptinterview.domain.customer.constant.CustomerHistoryType
+import cherhy.jung.gptinterview.domain.customer.entity.CustomerHistory
 import cherhy.jung.gptinterview.extension.classDescription
 import cherhy.jung.gptinterview.extension.className
 import cherhy.jung.gptinterview.extension.extractFields
@@ -35,7 +35,7 @@ class JpaDeleteEventListener() {
             val history = CustomerHistory.of(
                 customerId = customerId,
                 targetCustomerId = entity.targetCustomerId,
-                type = HistoryType.DELETE,
+                type = CustomerHistoryType.DELETE,
                 entityName = entity.className,
                 entityDescription = entity.classDescription,
                 fieldName = fieldName,

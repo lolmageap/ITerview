@@ -1,13 +1,19 @@
-package cherhy.jung.gptinterview.domain.customer
+package cherhy.jung.gptinterview.domain.customer.entity
 
 import cherhy.jung.gptinterview.domain.BaseEntity
+import cherhy.jung.gptinterview.domain.customer.constant.CustomerHistoryType
+import cherhy.jung.gptinterview.util.Generator
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 
 @Entity
 class CustomerHistory(
     val customerId: Long,
-    val targetCustomerId: Long,
-    val type: HistoryType,
+    val targetCustomerId: Long?,
+    @Enumerated(EnumType.STRING)
+    val type: CustomerHistoryType,
     val entityName: String,
     val entityDescription: String?,
     val fieldName: String,
@@ -15,11 +21,14 @@ class CustomerHistory(
     val beforeValue: String?,
     val afterValue: String?,
 ): BaseEntity() {
+    @Column(unique = true)
+    val token: String = Generator.token()
+
     companion object {
         fun of(
             customerId: Long,
-            targetCustomerId: Long,
-            type: HistoryType,
+            targetCustomerId: Long?,
+            type: CustomerHistoryType,
             entityName: String,
             entityDescription: String?,
             fieldName: String,
@@ -38,10 +47,4 @@ class CustomerHistory(
             afterValue = afterValue,
         )
     }
-}
-
-enum class HistoryType {
-    CREATE,
-    UPDATE,
-    DELETE,
 }
