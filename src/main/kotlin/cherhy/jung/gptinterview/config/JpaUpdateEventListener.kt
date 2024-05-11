@@ -41,7 +41,7 @@ class JpaUpdateEventListener() {
     @PostLoad
     fun preUpdateEvent(entity: Entity) {
         val principal = threadLocal.get() ?: return
-        val userId = principal.id
+        val userId = principal.customerId
         val key = "$userId-${entity.className}"
 
         try {
@@ -56,30 +56,30 @@ class JpaUpdateEventListener() {
     @PostUpdate
     fun postUpdateEvent(entity: Entity) {
         val principal = threadLocal.get() ?: return
-        val customerId = principal.id
+        val customerId = principal.customerId
         val key = "$customerId-${entity.className}"
 
         val stateBeforeUpdate = cacheReadService.getBeforeValue(key)
         val stateAfterUpdate = entity.extractFields()
 
-        stateAfterUpdate.forEach { (fieldName, after) ->
+        stateAfterUpdate.forEach { (fieldName, updatedField) ->
             val beforeValue = stateBeforeUpdate[fieldName]?.value
-            val afterValue = after.value
+            val afterValue = updatedField.value
 
             if (beforeValue != afterValue) {
-                val updatedFields = CustomerHistory.of(
+                val history = CustomerHistory.of(
                     customerId = customerId,
                     targetCustomerId = entity.targetCustomerId,
                     type = HistoryType.UPDATE,
                     entityName = entity.className,
                     entityDescription = entity.classDescription,
                     fieldName = fieldName,
-                    fieldDescription = after.description,
+                    fieldDescription = updatedField.description,
                     beforeValue = beforeValue.toString(),
                     afterValue = afterValue.toString(),
                 )
 
-                applicationEventPublisher.publishEvent(updatedFields)
+                applicationEventPublisher.publishEvent(history)
             }
         }
     }
