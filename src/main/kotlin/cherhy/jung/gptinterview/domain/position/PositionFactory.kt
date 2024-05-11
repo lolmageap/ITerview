@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.domain.position
 
 object PositionFactory {
-    fun valueOf(positionType: PositionType): Position =
+    fun valueOf(positionType: PositionType) =
         when (positionType) {
             PositionType.GAME -> GameDeveloper()
             PositionType.DATA_ANALYSIS -> DataAnalysis()

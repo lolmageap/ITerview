@@ -21,12 +21,12 @@ fun Entity.extractFields() =
         field.name to ChangeValueCollector(value, description)
     }.toMap()
 
-val Entity.targetCustomerId: Long
+val Entity.targetCustomerId: Long?
     get() = this.javaClass.declaredFields
         .first { it.getAnnotation(TargetCustomerId::class.java) != null }
         .let { field ->
             field.isAccessible = true
-            field.get(this) as Long
+            field.get(this) as? Long
         }
 
 val Entity.classDescription: String?
