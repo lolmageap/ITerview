@@ -9,13 +9,13 @@ import com.linecorp.kotlinjdsl.spring.data.listQuery
 import org.springframework.data.domain.Pageable
 
 interface AnswerRepositoryCustom {
-    fun findAllByCustomerId(userId: Long, pageable: Pageable): List<AnswerDetailResponseVo>
+    fun findAllByCustomerId(customerId: Long, pageable: Pageable): List<AnswerDetailResponseVo>
 }
 
 class AnswerRepositoryCustomImpl(
     private val queryFactory: SpringDataQueryFactory,
 ): AnswerRepositoryCustom {
-    override fun findAllByCustomerId(userId: Long, pageable: Pageable) =
+    override fun findAllByCustomerId(customerId: Long, pageable: Pageable) =
         queryFactory.listQuery<AnswerDetailResponseVo> {
             selectMulti(
                 entity(Answer::class),
@@ -34,7 +34,7 @@ class AnswerRepositoryCustomImpl(
             )
 
             where(
-                col(Answer::customerId).equal(userId)
+                col(Answer::customerId).equal(customerId)
             )
 
             orderBy(

@@ -29,7 +29,7 @@ class GptController(
         @RequestBody request: GptRequest,
         @AuthenticationPrincipal principal: Principal,
     ) =
-        requestAnswerToGptUseCase.execute(principal.id, request)
+        requestAnswerToGptUseCase.execute(principal.customerId, request)
             .let(GptResponse::of)
             .let(ClientResponse.Companion::success)
 
@@ -40,7 +40,7 @@ class GptController(
         @RequestBody request: GptReAnswerRequest,
         @AuthenticationPrincipal principal: Principal,
     ) =
-        requestReAnswerToGptUseCase.execute(principal.id, request)
+        requestReAnswerToGptUseCase.execute(principal.customerId, request)
             .let(GptResponse::of)
             .let(ClientResponse.Companion::success)
 }

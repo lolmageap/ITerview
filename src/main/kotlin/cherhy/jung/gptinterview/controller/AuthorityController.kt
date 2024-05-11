@@ -115,7 +115,7 @@ class AuthorityController(
         @AuthenticationPrincipal principal: Principal,
     ) =
         editPasswordUseCase.execute(
-            principal.id,
+            principal.customerId,
             request.toEditPasswordRequestVo()
         ).let(ClientResponse.Companion::success)
 
@@ -134,7 +134,7 @@ class AuthorityController(
     @Operation(summary = "내 정보", description = "내 정보를 조회 한다.")
     fun getMe(
         @AuthenticationPrincipal principal: Principal,
-    ) = customerReadService.getCustomerById(principal.id)
+    ) = customerReadService.getCustomerById(principal.customerId)
         .let(CustomerResponse::of)
         .let(ClientResponse.Companion::success)
 }

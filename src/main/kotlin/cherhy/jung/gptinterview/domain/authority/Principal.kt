@@ -9,10 +9,9 @@ import org.springframework.security.oauth2.core.user.OAuth2User
 class Principal(
     private val customer: Customer,
 ) : UserDetails, OAuth2User {
-    val id = customer.id
+    val customerId = customer.id
     val token = customer.token
     val provider = customer.provider
-
     val roles = authorities.map { it.authority }
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
@@ -23,7 +22,7 @@ class Principal(
 
     override fun getAttributes(): MutableMap<String, Any> =
         mutableMapOf(
-            "id" to id,
+            "id" to customerId,
             "token" to token,
             "provider" to provider,
             "roles" to roles,

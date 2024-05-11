@@ -36,7 +36,7 @@ class QuestionHistoryController(
         @Parameter(hidden = true) @PageableDefault(size = 15, page = 0) pageable: Pageable,
     ): ClientResponse<List<QuestionResponse>> {
         val alreadyQuestions = cacheReadService.getQuestionTokens(
-            customerId = principal.id,
+            customerId = principal.customerId,
             start = pageable.start,
             end = pageable.end,
         )
@@ -52,7 +52,7 @@ class QuestionHistoryController(
         @AuthenticationPrincipal principal: Principal,
         @PathVariable token: String,
     ) =
-        getQuestionHistoriesUseCase.execute(principal.id, token)
+        getQuestionHistoriesUseCase.execute(principal.customerId, token)
             .map(QuestionHistoryDetailResponse::of)
             .let(ClientResponse.Companion::success)
 }

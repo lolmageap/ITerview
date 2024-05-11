@@ -27,12 +27,12 @@ class QuestionController(
         @AuthenticationPrincipal principal: Principal,
         @ModelAttribute request: QuestionRequest,
     ): ClientResponse<QuestionResponse> {
-        val alreadyQuestions = cacheReadService.getQuestionTokens(principal.id)
+        val alreadyQuestions = cacheReadService.getQuestionTokens(principal.customerId)
 
         return questionReadService.getQuestion(request.toQuestionRequestS(), alreadyQuestions)
             .let(QuestionResponse::of)
             .let {
-                cacheWriteService.addQuestionToken(principal.id, it.token)
+                cacheWriteService.addQuestionToken(principal.customerId, it.token)
                 ClientResponse.success(it)
             }
     }
@@ -43,7 +43,7 @@ class QuestionController(
         @AuthenticationPrincipal principal: Principal,
         @ModelAttribute request: QuestionRequest,
     ) =
-        cacheWriteService.addQuestionAttributes(principal.id, request)
+        cacheWriteService.addQuestionAttributes(principal.customerId, request)
             .let(ClientResponse.Companion::success)
 
     @GetMapping("/attributes")
@@ -51,6 +51,6 @@ class QuestionController(
     fun getQuestionAttributes(
         @AuthenticationPrincipal principal: Principal,
     ) =
-        cacheReadService.getQuestionAttributes(principal.id)
+        cacheReadService.getQuestionAttributes(principal.customerId)
             .let(ClientResponse.Companion::success)
 }
