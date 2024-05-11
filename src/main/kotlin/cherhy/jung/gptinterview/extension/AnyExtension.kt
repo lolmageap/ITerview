@@ -3,7 +3,7 @@ package cherhy.jung.gptinterview.extension
 import cherhy.jung.gptinterview.annotation.Description
 import cherhy.jung.gptinterview.annotation.LoggingDisable
 import cherhy.jung.gptinterview.annotation.TargetCustomerId
-import cherhy.jung.gptinterview.config.ChangeValueCollector
+import cherhy.jung.gptinterview.listener.ChangeValueCollector
 import cherhy.jung.gptinterview.util.Entity
 
 val Entity.className: String

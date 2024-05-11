@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.external.cache
 
 import cherhy.jung.gptinterview.annotation.ReadService
-import cherhy.jung.gptinterview.config.ChangeValueCollector
+import cherhy.jung.gptinterview.listener.ChangeValueCollector
 import cherhy.jung.gptinterview.controller.dto.QuestionAttributeResponse
 import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType

@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.config
+package cherhy.jung.gptinterview.listener
 
 data class ChangeValueCollector(
     val value: Any,

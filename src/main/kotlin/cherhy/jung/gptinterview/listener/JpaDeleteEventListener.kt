@@ -1,4 +1,4 @@
-package cherhy.jung.gptinterview.config
+package cherhy.jung.gptinterview.listener
 
 import cherhy.jung.gptinterview.domain.authority.Principal
 import cherhy.jung.gptinterview.domain.customer.CustomerHistory

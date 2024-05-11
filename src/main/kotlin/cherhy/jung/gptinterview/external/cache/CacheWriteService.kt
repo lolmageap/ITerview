@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.external.cache
 
 import cherhy.jung.gptinterview.annotation.WriteService
-import cherhy.jung.gptinterview.config.ChangeValueCollector
+import cherhy.jung.gptinterview.listener.ChangeValueCollector
 import cherhy.jung.gptinterview.controller.dto.QuestionRequest
 import cherhy.jung.gptinterview.property.JwtProperty
 import cherhy.jung.gptinterview.external.cache.CacheKey.CERTIFICATE
