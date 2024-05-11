@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.controller.dto.GptRequest
-import cherhy.jung.gptinterview.domain.customer.Customer
+import cherhy.jung.gptinterview.domain.customer.entity.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.domain.customer.vo.CustomerResponseVo

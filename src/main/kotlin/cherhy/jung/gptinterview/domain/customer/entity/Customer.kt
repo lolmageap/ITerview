@@ -1,6 +1,8 @@
-package cherhy.jung.gptinterview.domain.customer
+package cherhy.jung.gptinterview.domain.customer.entity
 
 import cherhy.jung.gptinterview.domain.BaseDeleteEntity
+import cherhy.jung.gptinterview.domain.customer.constant.CustomerRole
+import cherhy.jung.gptinterview.domain.customer.constant.Provider
 import cherhy.jung.gptinterview.util.Generator
 import jakarta.persistence.*
 

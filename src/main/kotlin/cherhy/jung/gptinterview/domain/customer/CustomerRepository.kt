@@ -1,5 +1,7 @@
 package cherhy.jung.gptinterview.domain.customer
 
+import cherhy.jung.gptinterview.domain.customer.constant.Provider
+import cherhy.jung.gptinterview.domain.customer.entity.Customer
 import org.springframework.data.jpa.repository.EntityGraph
 import org.springframework.data.jpa.repository.JpaRepository
 

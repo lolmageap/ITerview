@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.domain.customer.vo
 
-import cherhy.jung.gptinterview.domain.customer.Customer
+import cherhy.jung.gptinterview.domain.customer.entity.Customer
 
 data class CustomerRequestVo(
     val name: String,

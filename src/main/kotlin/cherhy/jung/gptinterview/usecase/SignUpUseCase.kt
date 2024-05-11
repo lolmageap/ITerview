@@ -3,7 +3,7 @@ package cherhy.jung.gptinterview.usecase
 import cherhy.jung.gptinterview.annotation.UseCase
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.CustomerWriteService
-import cherhy.jung.gptinterview.domain.customer.Provider
+import cherhy.jung.gptinterview.domain.customer.constant.Provider
 import cherhy.jung.gptinterview.domain.customer.vo.CustomerRequestVo
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 

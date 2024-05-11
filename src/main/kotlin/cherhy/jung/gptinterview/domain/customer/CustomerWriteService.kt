@@ -1,6 +1,8 @@
 package cherhy.jung.gptinterview.domain.customer
 
 import cherhy.jung.gptinterview.annotation.WriteService
+import cherhy.jung.gptinterview.domain.customer.constant.Provider
+import cherhy.jung.gptinterview.domain.customer.entity.Customer
 import cherhy.jung.gptinterview.domain.customer.vo.CustomerResponseVo
 import cherhy.jung.gptinterview.exception.MessageType
 import cherhy.jung.gptinterview.exception.NotFoundException

@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.domain.question
 
-import cherhy.jung.gptinterview.domain.customer.Customer
+import cherhy.jung.gptinterview.domain.customer.entity.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerRepository
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType.JAVA
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel.LEVEL1

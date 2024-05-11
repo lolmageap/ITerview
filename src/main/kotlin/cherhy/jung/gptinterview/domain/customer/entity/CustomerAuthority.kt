@@ -1,5 +1,6 @@
-package cherhy.jung.gptinterview.domain.customer
+package cherhy.jung.gptinterview.domain.customer.entity
 
+import cherhy.jung.gptinterview.domain.customer.constant.CustomerRole
 import jakarta.persistence.*
 
 @Entity

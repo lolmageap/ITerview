@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.domain.authority
 
-import cherhy.jung.gptinterview.domain.customer.Customer
-import cherhy.jung.gptinterview.domain.customer.Provider
+import cherhy.jung.gptinterview.domain.customer.entity.Customer
+import cherhy.jung.gptinterview.domain.customer.constant.Provider
 import cherhy.jung.gptinterview.util.Generator
 
 data class OauthRequest(

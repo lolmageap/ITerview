@@ -1,5 +1,6 @@
 package cherhy.jung.gptinterview.domain.customer
 
+import cherhy.jung.gptinterview.domain.customer.entity.Customer
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult

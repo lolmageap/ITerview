@@ -1,6 +1,6 @@
 package cherhy.jung.gptinterview.domain.authority
 
-import cherhy.jung.gptinterview.domain.customer.Customer
+import cherhy.jung.gptinterview.domain.customer.entity.Customer
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails

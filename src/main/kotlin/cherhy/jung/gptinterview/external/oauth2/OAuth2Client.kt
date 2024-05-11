@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.external.oauth2
 
 import cherhy.jung.gptinterview.domain.authority.Oauth2WriteService
 import cherhy.jung.gptinterview.domain.authority.OauthRequest
-import cherhy.jung.gptinterview.domain.customer.Provider
+import cherhy.jung.gptinterview.domain.customer.constant.Provider
 import cherhy.jung.gptinterview.extension.*
 import cherhy.jung.gptinterview.external.jwt.TokenResponse
 import cherhy.jung.gptinterview.external.oauth2.OauthKey.CLIENT_ID

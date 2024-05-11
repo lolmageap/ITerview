@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.controller
 
-import cherhy.jung.gptinterview.domain.customer.Provider
-import cherhy.jung.gptinterview.domain.customer.Provider.*
+import cherhy.jung.gptinterview.domain.customer.constant.Provider
+import cherhy.jung.gptinterview.domain.customer.constant.Provider.*
 import cherhy.jung.gptinterview.exception.ClientResponse
 import cherhy.jung.gptinterview.extension.addAccessTokenInHeader
 import cherhy.jung.gptinterview.extension.addRefreshTokenInCookie
