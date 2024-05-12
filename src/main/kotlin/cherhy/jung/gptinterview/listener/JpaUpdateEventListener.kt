@@ -41,8 +41,8 @@ class JpaUpdateEventListener() {
     @PostLoad
     fun preUpdateEvent(entity: Entity) {
         val principal = threadLocal.get() ?: return
-        val userId = principal.customerId
-        val key = "$userId-${entity.className}"
+        val customerId = principal.customerId
+        val key = "$customerId-${entity.className}"
 
         try {
             val stateBeforeUpdate = entity.extractFields()
