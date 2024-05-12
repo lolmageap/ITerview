@@ -30,11 +30,11 @@ class Notice(
 
     @Description("조회수")
     @LoggingDisable
-    var viewCount: Int,
+    var viewCount: Long,
 
     @Description("좋아요 수")
     @LoggingDisable
-    var likeCount: Int,
+    var likeCount: Long,
 ): BaseEntity() {
     @Description("uuid")
     @LoggingDisable

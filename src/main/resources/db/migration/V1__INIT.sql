@@ -121,14 +121,15 @@ create table customer_history
 
 create table notice
 (
-    id         bigint auto_increment primary key,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    title      varchar(255) not null,
-    content    text         not null,
-    category   varchar(255) not null,
-    view_count bigint       not null,
-    like_count bigint       not null,
-    token      varchar(255) not null,
+    id          bigint auto_increment primary key,
+    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    customer_id bigint       not null,
+    title       varchar(255) not null,
+    content     text         not null,
+    category    varchar(255) not null,
+    view_count  bigint       not null,
+    like_count  bigint       not null,
+    token       varchar(255) not null,
     constraint IDX_NOTICE_TOKEN unique (token)
 );
