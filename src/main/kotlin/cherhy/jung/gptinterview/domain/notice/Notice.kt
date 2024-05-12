@@ -41,10 +41,3 @@ class Notice(
     @Column(unique = true)
     val token: String = Generator.token()
 }
-
-enum class Category {
-    NOTICE,
-    EVENT,
-    PROMOTION,
-    ETC,
-}
