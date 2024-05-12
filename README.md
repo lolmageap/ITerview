@@ -38,6 +38,15 @@
 6. 회원이 다음 문제로 넘기거나 풀게 되면 동일한 문제는 재출제 되지 않습니다. 
 7. 회원은 자신이 이전에 풀었던 문제를 다시 확인 할 수 있습니다.
 
+### 회원의 변경, 삭제 이벤트 처리
+- 회원의 변경, 삭제 이벤트는 항상 customer history table 에 저장 됩니다.
+- 이 이벤트들은 아래 경로에서 확인 할 수 있습니다.
+  - [ThreadLocalConfig.kt](src%2Fmain%2Fkotlin%2Fcherhy%2Fjung%2Fgptinterview%2Fconfig%2FThreadLocalConfig.kt)
+  - [PrincipalInterceptor.kt](src%2Fmain%2Fkotlin%2Fcherhy%2Fjung%2Fgptinterview%2Fconfig%2FPrincipalInterceptor.kt)
+  - [JpaUpdateEventListener.kt](src%2Fmain%2Fkotlin%2Fcherhy%2Fjung%2Fgptinterview%2Flistener%2FJpaUpdateEventListener.kt)
+  - [JpaDeleteEventListener.kt](src%2Fmain%2Fkotlin%2Fcherhy%2Fjung%2Fgptinterview%2Flistener%2FJpaDeleteEventListener.kt)
+  - [AnyExtension.kt](src%2Fmain%2Fkotlin%2Fcherhy%2Fjung%2Fgptinterview%2Fextension%2FAnyExtension.kt)
+  
 ## TODO
 - [ ] refactoring 및 분해로 인해 깨지는 test case 를 수정
 - [ ] xss 를 방지하기 위한 시큐리티 필터를 구현
@@ -45,9 +54,8 @@
 - [x] https://source.unsplash.com/random -> username, 이미지 랜덤 으로 넣어두기
 - [x] 마지막 에 세팅 했던 기술 스택, 포지션 저장
 - [x] 기술 질문들 변경하자 ex) 특히 framework 쪽 - nest, fastapi 등등...
-- [ ] page response 객체를 만들자!
-- [ ] 라즈베리파이로 배포 도전해보기!!!
-- [ ] 답변 받았던 대답에 이어서 대답하기 기능 추가 ( 답글 - 대댓글 구조의 테이블 생성 )
+- [ ] pagination response 객체를 만들자!
+- [x] 답변 받았던 대답에 이어서 대답하기 기능 추가 ( 답글 - 대댓글 구조의 테이블 생성 )
 - [ ] 질문의 타입을 바꿨을 때 어디까지 바뀐 것인지 알 수 있게 라인 추가
 - [ ] 카테고리 늘리기 ( 아키텍쳐, 데브옵스, 인프라 등등... )
 
