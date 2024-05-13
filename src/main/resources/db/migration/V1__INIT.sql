@@ -15,8 +15,8 @@ create table customer
 create table customer_authority
 (
     id          bigint auto_increment primary key,
-    role        varchar(255) not null,
-    customer_id bigint       not null
+    customer_id bigint       null,
+    role        varchar(255) not null
 );
 
 create table framework
