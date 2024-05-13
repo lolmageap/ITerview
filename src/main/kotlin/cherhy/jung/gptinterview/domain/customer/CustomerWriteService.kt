@@ -18,8 +18,9 @@ class CustomerWriteService(
         provider: Provider,
     ) =
         with(customer) {
-            password = encodedPassword
+            this.password = encodedPassword
             this.provider = provider
+            customerRepository.save(this)
             CustomerResponseVo.of(this)
         }
 

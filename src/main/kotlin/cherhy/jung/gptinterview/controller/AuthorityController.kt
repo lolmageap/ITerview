@@ -52,8 +52,9 @@ class AuthorityController(
         @Valid @RequestBody request: SignUpRequest,
         httpServletResponse: HttpServletResponse,
     ): ClientResponse<Unit> {
-        signUpUseCase.execute(request.toCustomerRequest())
-        signInUseCase.execute(request.toCustomerRequest()).let {
+        val customer = request.toCustomerRequest()
+        signUpUseCase.execute(customer)
+        signInUseCase.execute(customer).let {
             httpServletResponse.addAccessTokenInHeader(it.accessToken)
             httpServletResponse.addRefreshTokenInCookie(it.refreshToken)
         }
