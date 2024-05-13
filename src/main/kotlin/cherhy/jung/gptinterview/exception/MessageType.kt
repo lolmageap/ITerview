@@ -9,4 +9,5 @@ enum class MessageType(val value: String) {
     REFRESH_TOKEN("리프레시 토큰"),
     ANSWER("답변"),
     FEEDBACK("피드백"),
+    NOTICE("공지사항"),
 }
