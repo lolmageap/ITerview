@@ -36,7 +36,7 @@ data class SignUpRequest(
 
     @field:NotBlank
     @field:Length(min = 8, max = 16)
-    @field:Pattern(regexp = "^[a-zA-Z0-9]+\$")
+    @field:Pattern(regexp = "^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]+$")
     val password: String,
 
     val confirmPassword: String,
@@ -47,9 +47,9 @@ data class SignUpRequest(
 
     fun toCustomerRequest(): CustomerRequestVo {
         return CustomerRequestVo(
-            name = Generator.name(),
-            password = this.password,
             username = this.email,
+            password = this.password,
+            name = Generator.name(),
             salt = Generator.salt(),
         )
     }
