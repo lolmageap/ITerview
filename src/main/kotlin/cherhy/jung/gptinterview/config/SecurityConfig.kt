@@ -26,6 +26,7 @@ class SecurityConfig(val jwtSecurityConfig: JwtSecurityConfig) {
                 .requestMatchers("/authorities/reset-password").authenticated()
                 .requestMatchers("/authorities/password").authenticated()
                 .requestMatchers("/questions/**").authenticated()
+                .requestMatchers("/notice/**").authenticated()
                 .anyRequest().permitAll()
         }
             .csrf {
