@@ -15,7 +15,7 @@ fun Entity.extractFields() =
         field.getAnnotation(LoggingDisable::class.java)
             ?.let { return@mapNotNull null }
 
-        val value = field.get(this)
+        val value = field.get(this)?.toString()
         val description = field.getAnnotation(Description::class.java)?.value
 
         field.name to ChangeValueCollector(value, description)

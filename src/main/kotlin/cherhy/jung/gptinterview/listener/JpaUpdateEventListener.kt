@@ -76,7 +76,7 @@ class JpaUpdateEventListener() {
                     fieldName = fieldName,
                     fieldDescription = updatedField.description,
                     beforeValue = beforeValue.toString(),
-                    afterValue = afterValue.toString(),
+                    afterValue = afterValue,
                 )
 
                 applicationEventPublisher.publishEvent(history)
