@@ -16,6 +16,7 @@ import jakarta.persistence.PostLoad
 import jakarta.persistence.PostUpdate
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Component
+import org.springframework.transaction.support.TransactionSynchronizationManager
 import java.util.concurrent.ConcurrentHashMap
 
 @Component
@@ -40,6 +41,9 @@ class JpaUpdateEventListener() {
 
     @PostLoad
     fun preUpdateEvent(entity: Entity) {
+        val isReadOnlyTransaction = TransactionSynchronizationManager.isCurrentTransactionReadOnly()
+        if (isReadOnlyTransaction) return
+
         val principal = threadLocal.get() ?: return
         val customerId = principal.customerId
         val key = "$customerId-${entity.className}"
