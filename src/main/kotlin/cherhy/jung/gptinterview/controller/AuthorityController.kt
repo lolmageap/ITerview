@@ -14,8 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import jakarta.validation.Valid
-import org.springframework.http.HttpStatus.CREATED
-import org.springframework.http.HttpStatus.NO_CONTENT
+import org.springframework.http.HttpStatus.*
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 
@@ -32,8 +31,8 @@ class AuthorityController(
     private val regenerateAccessTokenUseCase: RegenerateAccessTokenUseCase,
     private val customerReadService: CustomerReadService,
 ) {
-    @PostMapping("/sign-in")
     @ResponseStatus(CREATED)
+    @PostMapping("/sign-in")
     @Operation(summary = "로그인", description = "로그인을 하고 토큰을 발급 받는다.")
     fun signIn(
         @Valid @RequestBody request: SignInRequest,
@@ -45,8 +44,8 @@ class AuthorityController(
             ClientResponse.success<Unit>()
         }
 
-    @PostMapping("/sign-up")
     @ResponseStatus(CREATED)
+    @PostMapping("/sign-up")
     @Operation(summary = "회원가입", description = "회원가입 을 하고 로그인 상태가 되며 토큰을 발급 받는다.")
     fun signUp(
         @Valid @RequestBody request: SignUpRequest,
@@ -62,8 +61,8 @@ class AuthorityController(
         return ClientResponse.success()
     }
 
-    @PostMapping("/sign-out")
     @ResponseStatus(NO_CONTENT)
+    @PostMapping("/sign-out")
     @Operation(summary = "로그 아웃", description = "access token 과 refresh token 을 header, cookie 에서 삭제 한다.")
     fun signOut(
         httpServletResponse: HttpServletResponse,
@@ -73,6 +72,7 @@ class AuthorityController(
         return ClientResponse.success()
     }
 
+    @ResponseStatus(OK)
     @PostMapping("/access-tokens")
     @ApiResponses(
         value = [
@@ -91,15 +91,15 @@ class AuthorityController(
             ClientResponse.success<Unit>()
         }
 
-    @PostMapping("/certificates")
     @ResponseStatus(CREATED)
+    @PostMapping("/certificates")
     @Operation(summary = "이메일 로 인증 번호 전송", description = "이메일 로 인증 번호를 보내고 3분간 인증 번호를 저장 한다.")
     fun sendCertificate(@RequestBody @Valid emailRequest: EmailRequest) =
         sendMailUseCase.execute(emailRequest.email)
             .let(ClientResponse.Companion::success)
 
-    @GetMapping("/certificates")
     @ResponseStatus(NO_CONTENT)
+    @GetMapping("/certificates")
     @Operation(summary = "인증 번호를 검증 한다.", description = "이메일 로 발급 받은 인증번호 를 3분안에 검증 한다.")
     fun getCertificate(
         @RequestParam certificate: String,
@@ -108,8 +108,8 @@ class AuthorityController(
         cacheReadService.checkCertificate(request.email, certificate)
             .let(ClientResponse.Companion::success)
 
-    @PatchMapping("/passwords")
     @ResponseStatus(NO_CONTENT)
+    @PatchMapping("/passwords")
     @Operation(summary = "비밀번호 수정", description = "비밀번호 를 수정 하고 수정된 비밀번호 를 이메일 로 보내 준다.")
     fun editPassword(
         @RequestBody @Valid request: EditPasswordRequest,
@@ -120,8 +120,8 @@ class AuthorityController(
             request.toEditPasswordRequestVo()
         ).let(ClientResponse.Companion::success)
 
-    @DeleteMapping("/passwords")
     @ResponseStatus(NO_CONTENT)
+    @DeleteMapping("/passwords")
     @Operation(summary = "비밀번호 초기화", description = "비밀번호 를 초기화 하고 초기화 한 비밀번호 를 이메일 로 보내 준다.")
     fun resetPassword(
         @RequestBody @Valid request: CertificateRequest,
@@ -131,6 +131,7 @@ class AuthorityController(
         return ClientResponse.success()
     }
 
+    @ResponseStatus(OK)
     @GetMapping("/me")
     @Operation(summary = "내 정보", description = "내 정보를 조회 한다.")
     fun getMe(

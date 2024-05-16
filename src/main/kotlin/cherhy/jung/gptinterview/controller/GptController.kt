@@ -22,8 +22,8 @@ class GptController(
     private val requestAnswerToGptUseCase: RequestAnswerToGptUseCase,
     private val requestReAnswerToGptUseCase: RequestReAnswerToGptUseCase,
 ) {
-    @PostMapping("/answers")
     @ResponseStatus(CREATED)
+    @PostMapping("/answers")
     @Operation(summary = "답변 하기", description = "질문을 풀거나 풀지 않고 답안을 제출한 뒤 점수 및 피드백을 받는다.")
     fun requestAnswer(
         @RequestBody request: GptRequest,
@@ -33,8 +33,8 @@ class GptController(
             .let(GptResponse::of)
             .let(ClientResponse.Companion::success)
 
-    @PostMapping("/re-answers")
     @ResponseStatus(CREATED)
+    @PostMapping("/re-answers")
     @Operation(summary = "피드백에 재답변 하기", description = "피드백 에 대한 답변을 이어서 제출 한다.")
     fun requestReAnswer(
         @RequestBody request: GptReAnswerRequest,

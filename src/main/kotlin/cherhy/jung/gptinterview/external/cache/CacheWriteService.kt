@@ -64,10 +64,11 @@ class CacheWriteService(
         key: String,
         data: Map<String, ChangeValueCollector>,
     ) {
+        val hash = redisTemplate.opsForHash<String, String>()
+
         val mapper = jacksonObjectMapper()
         mapper.registerModule(JavaTimeModule())
 
-        val hash = redisTemplate.opsForHash<String, String>()
         data.forEach { (field, value) ->
             hash.put(CUSTOMER_HISTORY + key, field, mapper.writeValueAsString(value))
         }

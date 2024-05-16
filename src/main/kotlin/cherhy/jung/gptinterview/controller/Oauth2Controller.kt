@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.*
 class Oauth2Controller(
     private val oauth2Client: OAuth2Client,
 ) {
-    @PostMapping("/sign-in/{PROVIDER}")
     @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/sign-in/{PROVIDER}")
     @Operation(summary = "소셜 로그인", description = "소셜 로그인을 하고 토큰을 발급 받는다.")
     fun signInByProvider(
         @PathVariable("PROVIDER") provider: Provider,

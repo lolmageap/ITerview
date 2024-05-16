@@ -10,6 +10,8 @@ import cherhy.jung.gptinterview.external.cache.CacheReadService
 import cherhy.jung.gptinterview.external.cache.CacheWriteService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
+import org.springframework.http.HttpStatus.CREATED
+import org.springframework.http.HttpStatus.OK
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 
@@ -21,6 +23,7 @@ class QuestionController(
     private val cacheReadService: CacheReadService,
     private val cacheWriteService: CacheWriteService,
 ) {
+    @ResponseStatus(OK)
     @GetMapping
     @Operation(summary = "질문 받기 (질문 조회)", description = "요청에 맞게 질문을 반환한다.")
     fun getRandomQuestion(
@@ -37,6 +40,7 @@ class QuestionController(
             }
     }
 
+    @ResponseStatus(CREATED)
     @PostMapping("/attributes")
     @Operation(summary = "마지막에 사용한 질문의 속성", description = "마지막에 사용한 질문의 속성을 캐시에 저장한다.")
     fun getQuestionAttributes(
@@ -46,6 +50,7 @@ class QuestionController(
         cacheWriteService.addQuestionAttributes(principal.customerId, request)
             .let(ClientResponse.Companion::success)
 
+    @ResponseStatus(OK)
     @GetMapping("/attributes")
     @Operation(summary = "마지막에 사용한 질문의 속성", description = "마지막에 사용한 질문의 속성을 캐시에서 가져온다.")
     fun getQuestionAttributes(

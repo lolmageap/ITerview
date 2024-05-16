@@ -14,11 +14,9 @@ import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
+import org.springframework.http.HttpStatus.OK
 import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @Tag(name = "질문")
 @RestController
@@ -29,6 +27,7 @@ class QuestionHistoryController(
     private val getQuestionHistoriesUseCase: GetQuestionHistoriesUseCase,
 ) {
     // TODO : history 를 cache 에 넣지 말고 직접 조회 하는 방식 으로 변경 -> method 에 @Cacheable 추가
+    @ResponseStatus(OK)
     @GetMapping("/histories")
     @Operation(summary = "질문 내역", description = "조회했던 질문들을 확인한다.")
     fun getQuestionHistory(
@@ -46,6 +45,7 @@ class QuestionHistoryController(
             .let(ClientResponse.Companion::success)
     }
 
+    @ResponseStatus(OK)
     @GetMapping("/histories/{token}")
     @Operation(summary = "질문 내역", description = "조회했던 질문의 내용을 포함하여 확인한다.")
     fun getQuestionHistory(
