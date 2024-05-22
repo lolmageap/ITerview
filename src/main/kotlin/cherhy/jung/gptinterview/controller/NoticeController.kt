@@ -1,6 +1,7 @@
 package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.controller.dto.UpdateNoticeRequest
+import cherhy.jung.gptinterview.controller.dto.toUpdateNoticeVo
 import cherhy.jung.gptinterview.domain.notice.NoticeWriteService
 import cherhy.jung.gptinterview.exception.ClientResponse
 import io.swagger.v3.oas.annotations.Operation

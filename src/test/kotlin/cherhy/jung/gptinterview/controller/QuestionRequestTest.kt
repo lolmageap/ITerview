@@ -1,7 +1,7 @@
 package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.controller.dto.QuestionRequest
-import cherhy.jung.gptinterview.controller.dto.toQuestionRequestS
+import cherhy.jung.gptinterview.controller.dto.toQuestionRequestVo
 import cherhy.jung.gptinterview.domain.question.constant.FrameworkType.SPRING
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType.JAVA
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType.*
@@ -20,7 +20,7 @@ class QuestionRequestTest : BehaviorSpec({
         )
 
         When("PROGRAMING 또는 FRAMEWORK 가 포함이 되어 있다면 ") {
-            val question = questionRequest.toQuestionRequestS()
+            val question = questionRequest.toQuestionRequestVo()
 
             Then("제외 시킨다.") {
                 question.questionTypes shouldNotContain PROGRAMING

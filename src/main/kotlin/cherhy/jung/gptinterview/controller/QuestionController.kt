@@ -2,7 +2,8 @@ package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.controller.dto.QuestionRequest
 import cherhy.jung.gptinterview.controller.dto.QuestionResponse
-import cherhy.jung.gptinterview.controller.dto.toQuestionRequestS
+import cherhy.jung.gptinterview.controller.dto.of
+import cherhy.jung.gptinterview.controller.dto.toQuestionRequestVo
 import cherhy.jung.gptinterview.domain.authority.Principal
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.exception.ClientResponse
@@ -32,7 +33,7 @@ class QuestionController(
     ): ClientResponse<QuestionResponse> {
         val alreadyQuestions = cacheReadService.getQuestionTokens(principal.customerId)
 
-        return questionReadService.getQuestion(request.toQuestionRequestS(), alreadyQuestions)
+        return questionReadService.getQuestion(request.toQuestionRequestVo(), alreadyQuestions)
             .let(QuestionResponse::of)
             .let {
                 cacheWriteService.addQuestionToken(principal.customerId, it.token)

@@ -2,6 +2,7 @@ package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.controller.dto.QuestionHistoryDetailResponse
 import cherhy.jung.gptinterview.controller.dto.QuestionResponse
+import cherhy.jung.gptinterview.controller.dto.of
 import cherhy.jung.gptinterview.domain.authority.Principal
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.exception.ClientResponse

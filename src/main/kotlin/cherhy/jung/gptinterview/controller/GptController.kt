@@ -3,6 +3,8 @@ package cherhy.jung.gptinterview.controller
 import cherhy.jung.gptinterview.controller.dto.GptReAnswerRequest
 import cherhy.jung.gptinterview.controller.dto.GptRequest
 import cherhy.jung.gptinterview.controller.dto.GptResponse
+import cherhy.jung.gptinterview.controller.dto.GptResponse.Companion
+import cherhy.jung.gptinterview.controller.dto.of
 import cherhy.jung.gptinterview.domain.authority.Principal
 import cherhy.jung.gptinterview.exception.ClientResponse
 import cherhy.jung.gptinterview.usecase.RequestAnswerToGptUseCase
@@ -30,7 +32,7 @@ class GptController(
         @AuthenticationPrincipal principal: Principal,
     ) =
         requestAnswerToGptUseCase.execute(principal.customerId, request)
-            .let(GptResponse::of)
+            .let(Companion::of)
             .let(ClientResponse.Companion::success)
 
     @ResponseStatus(CREATED)

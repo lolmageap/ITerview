@@ -1,10 +1,6 @@
 package cherhy.jung.gptinterview.controller.dto
 
-import cherhy.jung.gptinterview.domain.customer.vo.CustomerRequestVo
-import cherhy.jung.gptinterview.domain.customer.vo.CustomerResponseVo
-import cherhy.jung.gptinterview.domain.customer.vo.EditPasswordRequestVo
 import cherhy.jung.gptinterview.extension.isNumber
-import cherhy.jung.gptinterview.util.Generator
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
@@ -17,17 +13,7 @@ data class SignInRequest(
 
     @field:NotBlank
     val password: String,
-) {
-    // TODO : CustomerRequestVo 말고 로그인만을 담당하는 SignInRequestVo 를 만들어야 할 것 같습니다.
-    fun toCustomerRequest(): CustomerRequestVo {
-        return CustomerRequestVo(
-            name = Generator.name(),
-            password = this.password,
-            username = this.email,
-            salt = Generator.salt(),
-        )
-    }
-}
+)
 
 data class SignUpRequest(
     @field:Email
@@ -44,15 +30,6 @@ data class SignUpRequest(
     init {
         require(password == confirmPassword) { "동일한 비밀번호 를 입력해주세요." }
     }
-
-    fun toCustomerRequest(): CustomerRequestVo {
-        return CustomerRequestVo(
-            username = this.email,
-            password = this.password,
-            name = Generator.name(),
-            salt = Generator.salt(),
-        )
-    }
 }
 
 data class EditPasswordRequest(
@@ -67,12 +44,6 @@ data class EditPasswordRequest(
     init {
         require(originalPassword != editPassword) { "현재 비밀번호 와 변경 하려는 비밀번호 가 일치 합니다." }
     }
-
-    fun toEditPasswordRequestVo() =
-        EditPasswordRequestVo(
-            originalPassword = originalPassword,
-            editPassword = editPassword,
-        )
 }
 
 data class EmailRequest(
@@ -100,14 +71,4 @@ data class CustomerResponse(
     val image: String,
     val username: String,
     val token: String,
-) {
-    companion object {
-        fun of(response: CustomerResponseVo): CustomerResponse =
-            CustomerResponse(
-                name = response.name,
-                image = "https://source.unsplash.com/random",
-                username = response.username,
-                token = response.token,
-            )
-    }
-}
+) { companion object }
