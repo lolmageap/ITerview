@@ -5,6 +5,7 @@ import cherhy.jung.gptinterview.domain.question.AnswerReadService
 import cherhy.jung.gptinterview.domain.question.FeedbackReadService
 import cherhy.jung.gptinterview.domain.question.QuestionHistoryReadService
 import cherhy.jung.gptinterview.domain.question.vo.QuestionHistoryDetailResponseVo
+import cherhy.jung.gptinterview.domain.question.vo.of
 
 @UseCase
 class GetQuestionHistoriesUseCase(

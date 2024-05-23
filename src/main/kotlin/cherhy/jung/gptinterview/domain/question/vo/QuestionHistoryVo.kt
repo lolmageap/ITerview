@@ -18,19 +18,7 @@ data class QuestionResponseVo(
     val title: String,
     val type: QuestionType,
     val level: QuestionLevel,
-) {
-    companion object {
-        fun of(question: Question): QuestionResponseVo {
-            return QuestionResponseVo(
-                id = question.id,
-                token = question.token,
-                title = question.title,
-                type = question.questionType,
-                level = question.level,
-            )
-        }
-    }
-}
+) { companion object }
 
 data class QuestionHistoryInfoVo(
     val id: Long,
@@ -68,20 +56,7 @@ data class QuestionHistoryResponseVo(
     val questionId: Long,
     val createdAt: ZonedDateTime,
     val updatedAt: ZonedDateTime,
-) {
-    companion object {
-        fun of(questionHistory: QuestionHistory): QuestionHistoryResponseVo {
-            return QuestionHistoryResponseVo(
-                id = questionHistory.id,
-                token = questionHistory.token,
-                question = questionHistory.text,
-                questionId = questionHistory.questionId,
-                createdAt = questionHistory.createdAt,
-                updatedAt = questionHistory.updatedAt,
-            )
-        }
-    }
-}
+) { companion object }
 
 data class QuestionHistoryDetailResponseVo(
     val token: String,
@@ -89,24 +64,4 @@ data class QuestionHistoryDetailResponseVo(
     val text: String,
     val createdAt: ZonedDateTime,
     val updatedAt: ZonedDateTime,
-) {
-    companion object {
-        fun of(answer: AnswerResponseVo) =
-            QuestionHistoryDetailResponseVo(
-                token = answer.token,
-                historyType = HistoryType.ANSWER,
-                text = answer.text,
-                createdAt = answer.createdAt,
-                updatedAt = answer.updatedAt,
-            )
-
-        fun of(feedback: FeedbackResponseVo) =
-            QuestionHistoryDetailResponseVo(
-                token = feedback.token,
-                historyType = HistoryType.FEEDBACK,
-                text = feedback.text,
-                createdAt = feedback.createdAt,
-                updatedAt = feedback.updatedAt,
-            )
-    }
-}
+) { companion object }

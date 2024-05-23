@@ -4,6 +4,7 @@ import cherhy.jung.gptinterview.annotation.UseCase
 import cherhy.jung.gptinterview.domain.question.AnswerReadService
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.domain.question.vo.AnswerDetailResponseVo
+import cherhy.jung.gptinterview.domain.question.vo.of
 
 @UseCase
 class GetAnswerUseCase(

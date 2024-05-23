@@ -14,22 +14,7 @@ data class AnswerResponseVo(
     val token: String,
     val createdAt: ZonedDateTime,
     val updatedAt: ZonedDateTime,
-) {
-    companion object {
-        fun of(
-            answer: Answer,
-        ) =
-            AnswerResponseVo(
-                id = answer.id,
-                customerId = answer.customerId,
-                questionId = answer.questionHistoryId,
-                text = answer.text,
-                token = answer.token,
-                createdAt = answer.createdAt,
-                updatedAt = answer.updatedAt,
-            )
-    }
-}
+) { companion object }
 
 data class AnswerDetailResponseVo(
     val id: Long,
@@ -57,21 +42,5 @@ data class AnswerDetailResponseVo(
         question = question.title,
     )
 
-    companion object {
-        fun of(
-            answer: AnswerResponseVo,
-            question: QuestionResponseVo,
-        ) =
-            AnswerDetailResponseVo(
-                id = answer.id,
-                answer = answer.text,
-                token = answer.token,
-                createdAt = answer.createdAt,
-                modifiedAt = answer.updatedAt,
-
-                question = question.title,
-                type = question.type,
-                level = question.level,
-            )
-    }
+    companion object
 }
