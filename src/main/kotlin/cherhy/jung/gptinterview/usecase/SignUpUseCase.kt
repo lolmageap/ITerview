@@ -5,6 +5,7 @@ import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.CustomerWriteService
 import cherhy.jung.gptinterview.domain.customer.constant.Provider
 import cherhy.jung.gptinterview.domain.customer.vo.CustomerRequestVo
+import cherhy.jung.gptinterview.domain.customer.vo.toCustomer
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 @UseCase

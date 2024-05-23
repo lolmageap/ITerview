@@ -18,7 +18,7 @@ class Customer(
     lateinit var provider: Provider
 
     @Column(unique = true)
-    val token: String = Generator.token()
+    val token: String = Generator.token
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn(name = "customer_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))

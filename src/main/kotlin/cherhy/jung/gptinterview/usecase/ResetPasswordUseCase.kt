@@ -16,7 +16,7 @@ class ResetPasswordUseCase(
 ) {
     fun execute(email: String) {
         val customer = customerReadService.getCustomerByEmail(email)
-        val generatedPassword = Generator.randomPassword()
+        val generatedPassword = Generator.randomPassword
 
         val newPassword = bCryptPasswordEncoder.encode(generatedPassword + customer.salt)
         customerWriteService.editPassword(customer.id, newPassword)

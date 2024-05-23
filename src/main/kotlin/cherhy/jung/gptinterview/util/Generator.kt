@@ -5,23 +5,29 @@ import java.util.*
 import kotlin.random.Random
 
 object Generator {
-    fun token(): String {
-        val now = ZonedDateTime.now().toLocalDate().toString().replace("-", "")
-        val uuid = UUID.randomUUID().toString().replace("-", "").substring(0, 12)
-        return "$now-$uuid"
-    }
+    val token: String
+        get() {
+            val now = ZonedDateTime.now().toLocalDate().toString().replace("-", "")
+            val uuid = UUID.randomUUID().toString().replace("-", "").substring(0, 12)
+            return "$now-$uuid"
+        }
 
-    fun name() =
-        UUID.randomUUID().toString().substring(0, 12)
+    val name
+        get() =
+            UUID.randomUUID().toString().substring(0, 12)
 
-    fun salt() =
-        UUID.randomUUID()
-            .toString()
-            .replace("-", "")
+    val salt
+        get() =
+            UUID.randomUUID()
+                .toString()
+                .replace("-", "")
 
-    fun questionToGpt(question: String, answer: String?) =
+    fun questionToGpt(
+        question: String,
+        answer: String?,
+    ) =
         answer?.let {
-        """
+            """
             아래는 개발자 기술 면접 질문이야.
             
             질문 : $question
@@ -39,8 +45,7 @@ object Generator {
                 "feedback" : 
             }
         """.trimIndent()
-        } ?:
-        """
+        } ?: """
             질문 : $question
             
             위 질문은 개발자 면접 문제야.
@@ -76,19 +81,21 @@ object Generator {
             }
         """.trimIndent()
 
-    fun randomPassword() =
-        UUID.randomUUID()
-            .toString()
-            .replace("-", "")
-            .substring(0, 10)
-            .uppercase()
+    val randomPassword
+        get() =
+            UUID.randomUUID()
+                .toString()
+                .replace("-", "")
+                .substring(0, 10)
+                .uppercase()
 
-    fun certificate() =
-        buildString {
-            repeat(6) {
-                append(
-                    Random.nextInt(10).toString()
-                )
+    val certificate
+        get() =
+            buildString {
+                repeat(6) {
+                    append(
+                        Random.nextInt(10).toString()
+                    )
+                }
             }
-        }
 }

@@ -3,28 +3,23 @@ package cherhy.jung.gptinterview.controller.dto
 import cherhy.jung.gptinterview.domain.customer.vo.CustomerRequestVo
 import cherhy.jung.gptinterview.domain.customer.vo.CustomerResponseVo
 import cherhy.jung.gptinterview.domain.customer.vo.EditPasswordRequestVo
-import cherhy.jung.gptinterview.extension.isNumber
 import cherhy.jung.gptinterview.util.Generator
-import jakarta.validation.constraints.Email
-import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.Pattern
-import org.hibernate.validator.constraints.Length
 
 // TODO : CustomerRequestVo 말고 로그인만을 담당하는 SignInRequestVo 를 만들어야 할 것 같습니다.
 fun SignInRequest.toCustomerRequest() =
     CustomerRequestVo(
-        name = Generator.name(),
+        name = Generator.name,
         password = this.password,
         username = this.email,
-        salt = Generator.salt(),
+        salt = Generator.salt,
     )
 
 fun SignUpRequest.toCustomerRequest() =
     CustomerRequestVo(
-        name = Generator.name(),
+        name = Generator.name,
         password = this.password,
         username = this.email,
-        salt = Generator.salt(),
+        salt = Generator.salt,
     )
 
 fun EditPasswordRequest.toEditPasswordRequestVo() =

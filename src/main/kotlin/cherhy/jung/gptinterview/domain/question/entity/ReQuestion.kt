@@ -16,7 +16,7 @@ class ReQuestion(
     @Column(columnDefinition = "TEXT")
     val text: String,
 ) : BaseEntity() {
-    val token: String = Generator.token()
+    val token: String = Generator.token
     companion object {
         fun of(
             answerId: Long,
