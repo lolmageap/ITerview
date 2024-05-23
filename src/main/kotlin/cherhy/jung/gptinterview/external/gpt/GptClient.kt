@@ -22,7 +22,9 @@ import org.springframework.web.client.RestTemplate
 class GptClient(
     private val gptProperty: GptProperty,
 ) {
-    fun requestAndReceiveFeedback(prompt: String): String {
+    fun requestAndReceiveFeedback(
+        prompt: String,
+    ): String {
         val headers = HttpHeaders().apply {
             contentType = MediaType.APPLICATION_JSON
             set("Authorization", "Bearer ${gptProperty.apiKey}")
@@ -48,6 +50,6 @@ class GptClient(
             it.text
         }.trimIndent()
 
-        return Validator.validateJsonFormat(feedback)
+        return Validator.jsonFormat(feedback)
     }
 }
