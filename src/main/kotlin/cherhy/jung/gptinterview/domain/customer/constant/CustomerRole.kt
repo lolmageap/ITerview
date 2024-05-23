@@ -8,4 +8,5 @@ enum class CustomerRole {
 
     @Description("관리자")
     ADMIN,
+    ;
 }

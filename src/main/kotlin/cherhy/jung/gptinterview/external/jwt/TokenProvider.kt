@@ -39,7 +39,9 @@ class TokenProvider(
         this.key = SecretKeySpec(jwtProperty.secret.toByteArray(), jwtProperty.algorithm)
     }
 
-    fun createAccessToken(principal: Principal): TokenResponseVo {
+    fun createAccessToken(
+        principal: Principal,
+    ): TokenResponseVo {
         val now = Date().time
         val validity = Date(now + jwtProperty.tokenValidityInSeconds.toLong())
 
@@ -57,7 +59,9 @@ class TokenProvider(
         return TokenResponseVo(accessToken, validity)
     }
 
-    fun getPrincipal(token: String): Principal {
+    fun getPrincipal(
+        token: String,
+    ): Principal {
         val signedJWT = SignedJWT.parse(token)
 
         if (signedJWT.verify(MACVerifier(key))) {
@@ -80,7 +84,9 @@ class TokenProvider(
         throw BadJWTException("JWT 토큰이 잘못 되었습니다.")
     }
 
-    fun getAuthentication(token: String): UsernamePasswordAuthenticationToken {
+    fun getAuthentication(
+        token: String,
+    ): UsernamePasswordAuthenticationToken {
         val signedJWT = SignedJWT.parse(token)
 
         if (signedJWT.verify(MACVerifier(key))) {
@@ -100,7 +106,9 @@ class TokenProvider(
         throw BadJWTException("JWT 토큰이 잘못 되었습니다.")
     }
 
-    fun validateToken(token: String): Boolean {
+    fun validateToken(
+        token: String,
+    ): Boolean {
         return try {
             val signedJWT = SignedJWT.parse(token)
             val verifier: JWSVerifier = MACVerifier(key)
@@ -116,7 +124,9 @@ class TokenProvider(
         }
     }
 
-    fun createRefreshToken(principal: Principal): TokenResponseVo {
+    fun createRefreshToken(
+        principal: Principal,
+    ): TokenResponseVo {
         val now = ZonedDateTime.now().toInstant().toEpochMilli()
         val validity = Date(now + jwtProperty.refreshTokenValidityInSeconds.toLong())
 

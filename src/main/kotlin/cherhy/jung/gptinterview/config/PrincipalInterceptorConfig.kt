@@ -8,7 +8,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 class PrincipalInterceptorConfig(
     private val principalInterceptor: PrincipalInterceptor,
 ) : WebMvcConfigurer {
-    override fun addInterceptors(registry: InterceptorRegistry) {
+    override fun addInterceptors(
+        registry: InterceptorRegistry,
+    ) {
         registry.addInterceptor(principalInterceptor)
     }
 }

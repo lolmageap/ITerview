@@ -11,4 +11,5 @@ enum class CustomerHistoryType {
 
     @Description("삭제")
     DELETE,
+    ;
 }

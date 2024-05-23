@@ -3,6 +3,7 @@ package cherhy.jung.gptinterview.external.cache
 import cherhy.jung.gptinterview.annotation.ReadService
 import cherhy.jung.gptinterview.listener.ChangeValueCollector
 import cherhy.jung.gptinterview.controller.dto.QuestionAttributeResponse
+import cherhy.jung.gptinterview.controller.dto.of
 import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
 import cherhy.jung.gptinterview.domain.question.constant.ProgramingType
 import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
@@ -27,7 +28,9 @@ import org.springframework.security.access.AccessDeniedException
 class CacheReadService(
     private val redisTemplate: RedisTemplate<String, Any>,
 ) {
-    fun getEmailByRefreshToken(refreshToken: String?): String {
+    fun getEmailByRefreshToken(
+        refreshToken: String?,
+    ): String {
         if (refreshToken.isNullOrBlank()) {
             throw AccessDeniedException("잘못된 토큰")
         }
@@ -38,13 +41,20 @@ class CacheReadService(
             ?: throw AccessDeniedException("잘못된 토큰")
     }
 
-    fun getQuestionTokens(customerId: Long, start: Long = 0, end: Long = -1) =
+    fun getQuestionTokens(
+        customerId: Long,
+        start: Long = 0,
+        end: Long = -1,
+   ) =
         redisTemplate.opsForList()
             .range(QUESTION_TOKEN + customerId, start, end)
             ?.map { it.toString() }?.toList()
             ?: emptyList()
 
-    fun checkCertificate(email: String, certificateNumber: String) {
+    fun checkCertificate(
+        email: String,
+        certificateNumber: String,
+    ) {
         val certificate = redisTemplate.opsForValue().get(CERTIFICATE + email)
             ?.toString()
             ?: throw NotFoundException(EMAIL)
@@ -53,7 +63,9 @@ class CacheReadService(
         redisTemplate.delete(CERTIFICATE + email)
     }
 
-    fun getQuestionAttributes(customerId: Long): QuestionAttributeResponse {
+    fun getQuestionAttributes(
+        customerId: Long,
+    ): QuestionAttributeResponse {
         val hash = redisTemplate.opsForHash<String, String>()
             .entries(QUESTION_TOKEN + customerId)
             .mapValues {
@@ -85,7 +97,9 @@ class CacheReadService(
         )
     }
 
-    fun getBeforeValue(key: String): Map<String, ChangeValueCollector> {
+    fun getBeforeValue(
+        key: String,
+    ): Map<String, ChangeValueCollector> {
         val mapper = jacksonObjectMapper()
         mapper.registerModule(JavaTimeModule())
         val hash = redisTemplate.opsForHash<String, String>()

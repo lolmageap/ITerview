@@ -13,4 +13,5 @@ enum class ProgramingType {
     CSS,
     GO,
     PHP,
+    ;
 }

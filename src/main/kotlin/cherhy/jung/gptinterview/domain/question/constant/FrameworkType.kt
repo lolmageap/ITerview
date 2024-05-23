@@ -12,4 +12,5 @@ enum class FrameworkType {
     UNITY,
     DOTNET,
     LARAVEL,
+    ;
 }

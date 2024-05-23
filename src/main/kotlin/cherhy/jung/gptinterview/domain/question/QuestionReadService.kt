@@ -3,6 +3,7 @@ package cherhy.jung.gptinterview.domain.question
 import cherhy.jung.gptinterview.annotation.ReadService
 import cherhy.jung.gptinterview.domain.question.vo.QuestionRequestVo
 import cherhy.jung.gptinterview.domain.question.vo.QuestionResponseVo
+import cherhy.jung.gptinterview.domain.question.vo.of
 import cherhy.jung.gptinterview.exception.MessageType.QUESTION
 import cherhy.jung.gptinterview.exception.NotFoundException
 import org.springframework.data.repository.findByIdOrNull
@@ -11,7 +12,9 @@ import org.springframework.data.repository.findByIdOrNull
 class QuestionReadService(
     private val questionRepository: QuestionRepository,
 ) {
-    fun getQuestionByToken(token: String) =
+    fun getQuestionByToken(
+        token: String,
+    ) =
         questionRepository.findByToken(token)
             ?.let(QuestionResponseVo::of)
             ?: throw NotFoundException(QUESTION)
@@ -20,17 +23,21 @@ class QuestionReadService(
         request: QuestionRequestVo,
         alreadyQuestions: List<String> = emptyList(),
     ) =
-        questionRepository.findByQuestionRequestS(request, alreadyQuestions)
+        questionRepository.findAll(request, alreadyQuestions)
             .firstNotNullOfOrNull {
                 it.let(QuestionResponseVo::of)
             }
             ?: throw NotFoundException(QUESTION)
 
-    fun getQuestionHistories(alreadyQuestions: List<String>) =
+    fun getQuestionHistories(
+        alreadyQuestions: List<String>,
+    ) =
         questionRepository.findByTokensIn(alreadyQuestions)
             .map(QuestionResponseVo::of)
 
-    fun getQuestionById(id: Long) =
+    fun getQuestionById(
+        id: Long,
+    ) =
         questionRepository.findByIdOrNull(id)
             ?.let(QuestionResponseVo::of)
             ?: throw NotFoundException(QUESTION)

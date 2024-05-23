@@ -10,4 +10,5 @@ enum class QuestionType {
     VCS,
     PROGRAMING,
     FRAMEWORK,
+    ;
 }

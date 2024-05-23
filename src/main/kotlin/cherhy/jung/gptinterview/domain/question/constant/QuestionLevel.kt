@@ -4,4 +4,5 @@ enum class QuestionLevel {
     LEVEL1,
     LEVEL2,
     LEVEL3,
+    ;
 }

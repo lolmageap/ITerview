@@ -35,4 +35,5 @@ enum class PositionType {
 
     @Description("DBA")
     DBA,
+    ;
 }

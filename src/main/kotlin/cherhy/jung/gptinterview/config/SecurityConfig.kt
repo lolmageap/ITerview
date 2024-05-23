@@ -19,7 +19,9 @@ class SecurityConfig(val jwtSecurityConfig: JwtSecurityConfig) {
     }
 
     @Bean
-    fun securityFilterChain(http: HttpSecurity): SecurityFilterChain? {
+    fun securityFilterChain(
+        http: HttpSecurity,
+    ): SecurityFilterChain? {
         http.authorizeHttpRequests { requests ->
             requests
                 .requestMatchers("/answers/**").authenticated()
