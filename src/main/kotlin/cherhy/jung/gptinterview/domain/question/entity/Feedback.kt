@@ -18,6 +18,7 @@ class Feedback(
 ) : BaseEntity() {
     val token: String = Generator.token
     companion object {
+        @JvmStatic
         fun of(
             customerId: Long,
             questionHistoryId: Long,

@@ -42,6 +42,7 @@ class Principal(
 
     override fun isEnabled(): Boolean = customer.deleted.not()
     companion object {
+        @JvmStatic
         fun of(customer: Customer): Principal {
             return Principal(customer)
         }

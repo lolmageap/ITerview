@@ -15,6 +15,7 @@ class QuestionHistory private constructor(
     val token: String = Generator.token
 
     companion object {
+        @JvmStatic
         fun of(
             customerId: Long,
             questionId: Long,

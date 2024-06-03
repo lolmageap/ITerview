@@ -25,6 +25,7 @@ class CustomerHistory(
     val token: String = Generator.token
 
     companion object {
+        @JvmStatic
         fun of(
             customerId: Long,
             targetCustomerId: Long?,

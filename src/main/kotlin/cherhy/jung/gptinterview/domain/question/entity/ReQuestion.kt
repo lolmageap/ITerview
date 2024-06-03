@@ -18,6 +18,7 @@ class ReQuestion(
 ) : BaseEntity() {
     val token: String = Generator.token
     companion object {
+        @JvmStatic
         fun of(
             answerId: Long,
             customerId: Long,

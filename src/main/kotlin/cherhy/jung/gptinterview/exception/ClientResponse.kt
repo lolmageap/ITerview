@@ -5,11 +5,13 @@ data class ClientResponse<T>(
     val value: T? = null,
 ) {
     companion object {
+        @JvmStatic
         fun <T> success(
             value: T? = null
         ) =
             ClientResponse(value = value)
 
+        @JvmStatic
         fun fail(
             message: String?,
         ): ClientResponse<Nothing> =
