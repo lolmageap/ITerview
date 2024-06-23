@@ -66,7 +66,7 @@ class TokenProvider(
 
         if (signedJWT.verify(MACVerifier(key))) {
             val claims = signedJWT.jwtClaimsSet
-            val authorities: Collection<GrantedAuthority> = claims.getStringClaim(jwtProperty.authorityKey)
+            val authorities = claims.getStringClaim(jwtProperty.authorityKey)
                 .split(",")
                 .map(::SimpleGrantedAuthority)
                 .toList()
@@ -91,7 +91,7 @@ class TokenProvider(
 
         if (signedJWT.verify(MACVerifier(key))) {
             val claims = signedJWT.jwtClaimsSet
-            val authorities: Collection<GrantedAuthority> = claims.getStringClaim(jwtProperty.authorityKey)
+            val authorities = claims.getStringClaim(jwtProperty.authorityKey)
                 .split(",")
                 .map(::SimpleGrantedAuthority)
                 .toList()
@@ -111,7 +111,7 @@ class TokenProvider(
     ): Boolean {
         return try {
             val signedJWT = SignedJWT.parse(token)
-            val verifier: JWSVerifier = MACVerifier(key)
+            val verifier = MACVerifier(key)
 
             signedJWT.verify(verifier)
             true
