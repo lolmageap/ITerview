@@ -3,8 +3,8 @@ package cherhy.jung.gptinterview.controller
 import cherhy.jung.gptinterview.domain.customer.constant.Provider
 import cherhy.jung.gptinterview.domain.customer.constant.Provider.*
 import cherhy.jung.gptinterview.exception.ClientResponse
-import cherhy.jung.gptinterview.extension.addAccessTokenInHeader
-import cherhy.jung.gptinterview.extension.addRefreshTokenInCookie
+import cherhy.jung.gptinterview.extension.accessToken
+import cherhy.jung.gptinterview.extension.refreshToken
 import cherhy.jung.gptinterview.external.oauth2.OAuth2Client
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -37,9 +37,8 @@ class Oauth2Controller(
             LOCAL -> throw IllegalArgumentException("지원하지 않는 소셜 로그인입니다.")
         }
 
-        httpServletResponse.addAccessTokenInHeader(response.accessToken)
-        httpServletResponse.addRefreshTokenInCookie(response.refreshToken)
+        httpServletResponse.accessToken = response.accessToken
+        httpServletResponse.refreshToken = response.refreshToken
         return ClientResponse.success()
     }
 }
-

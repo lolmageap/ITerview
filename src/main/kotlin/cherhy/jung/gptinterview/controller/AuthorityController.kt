@@ -39,8 +39,8 @@ class AuthorityController(
         httpServletResponse: HttpServletResponse,
     ) =
         signInUseCase.execute(request.toCustomerRequest()).let {
-            httpServletResponse.addAccessTokenInHeader(it.accessToken)
-            httpServletResponse.addRefreshTokenInCookie(it.refreshToken)
+            httpServletResponse.accessToken = it.accessToken
+            httpServletResponse.refreshToken = it.refreshToken
             ClientResponse.success<Unit>()
         }
 
@@ -54,8 +54,8 @@ class AuthorityController(
         val customer = request.toCustomerRequest()
         signUpUseCase.execute(customer)
         signInUseCase.execute(customer).let {
-            httpServletResponse.addAccessTokenInHeader(it.accessToken)
-            httpServletResponse.addRefreshTokenInCookie(it.refreshToken)
+            httpServletResponse.accessToken = it.accessToken
+            httpServletResponse.refreshToken = it.refreshToken
         }
 
         return ClientResponse.success()
@@ -67,8 +67,8 @@ class AuthorityController(
     fun signOut(
         httpServletResponse: HttpServletResponse,
     ): ClientResponse<Unit> {
-        httpServletResponse.removeAccessTokenInHeader()
-        httpServletResponse.removeRefreshTokenInCookie()
+        httpServletResponse.removeAccessToken()
+        httpServletResponse.removeRefreshToken()
         return ClientResponse.success()
     }
 
@@ -87,7 +87,7 @@ class AuthorityController(
         httpServletResponse: HttpServletResponse,
     ) =
         regenerateAccessTokenUseCase.execute(httpServletRequest.refreshToken).let {
-            httpServletResponse.addAccessTokenInHeader(it.token)
+            httpServletResponse.accessToken = it.token
             ClientResponse.success<Unit>()
         }
 
