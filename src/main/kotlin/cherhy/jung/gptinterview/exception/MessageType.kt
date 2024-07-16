@@ -1,6 +1,8 @@
 package cherhy.jung.gptinterview.exception
 
-enum class MessageType(val value: String) {
+enum class MessageType(
+    val value: String,
+) {
     CUSTOMER("회원"),
     QUESTION("질문"),
     QUESTION_HISTORY("질문 이력"),
