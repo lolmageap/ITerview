@@ -22,42 +22,30 @@ class CacheWriteService(
     private val redisTemplate: RedisTemplate<String, Any>,
     private val jwtProperty: JwtProperty,
 ) {
-    fun addJwtToken(refreshToken: String, email: String) {
-        redisTemplate.opsForValue().set(REFRESH_TOKEN + refreshToken, email)
-        redisTemplate.expire(
-            REFRESH_TOKEN + refreshToken,
-            jwtProperty.refreshTokenValidityInSeconds.toLong(),
-            TimeUnit.SECONDS,
-        )
-    }
+    fun addJwtToken(refreshToken: String, email: String) =
+        redisTemplate.opsForValue().set(REFRESH_TOKEN + refreshToken, email, jwtProperty.refreshTokenValidityInSeconds.toLong(), TimeUnit.SECONDS)
 
     fun addQuestionToken(customerId: Long, questionToken: String) =
         redisTemplate.opsForList().rightPush(QUESTION_TOKEN + customerId, questionToken)
 
-    fun addCertificate(email: String, certificate: String) {
-        redisTemplate.opsForValue().set(CERTIFICATE + email, certificate)
-        redisTemplate.expire(
-            CERTIFICATE + email,
-            180,
-            TimeUnit.SECONDS,
-        )
-    }
+    fun addCertificate(email: String, certificate: String) =
+        redisTemplate.opsForValue().set(CERTIFICATE + email, certificate, 180, TimeUnit.SECONDS)
 
     fun addQuestionAttributes(
         customerId: Long,
         request: QuestionRequest,
     ) {
-        val opsForHash = redisTemplate.opsForHash<String, String>()
-
         val questionTypes = request.questionTypes.joinToString(", ") { it.name }
         val programingTypes = request.programingTypes.joinToString(", ") { it.name }
         val frameworkTypes = request.frameworkTypes.joinToString(", ") { it.name }
         val levels = request.levels.joinToString(", ") { it.name }
 
-        opsForHash.put(QUESTION_TOKEN + customerId, QUESTION_TYPE, questionTypes)
-        opsForHash.put(QUESTION_TOKEN + customerId, PROGRAMING_TYPE, programingTypes)
-        opsForHash.put(QUESTION_TOKEN + customerId, FRAMEWORK_TYPE, frameworkTypes)
-        opsForHash.put(QUESTION_TOKEN + customerId, QUESTION_LEVEL, levels)
+        redisTemplate.opsForHash<String, String>().apply {
+            put(QUESTION_TOKEN + customerId, QUESTION_TYPE, questionTypes)
+            put(QUESTION_TOKEN + customerId, PROGRAMING_TYPE, programingTypes)
+            put(QUESTION_TOKEN + customerId, FRAMEWORK_TYPE, frameworkTypes)
+            put(QUESTION_TOKEN + customerId, QUESTION_LEVEL, levels)
+        }
     }
 
     fun setBeforeValue(
