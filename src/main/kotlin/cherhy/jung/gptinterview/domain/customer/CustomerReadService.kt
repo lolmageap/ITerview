@@ -16,14 +16,14 @@ class CustomerReadService(
 ) {
     fun getCustomerById(
         id: Long,
-    ): CustomerResponseVo =
+    ) =
         customerRepository.findByIdOrNull(id)
             ?.let(CustomerResponseVo::of)
             ?: throw NotFoundException(MessageType.CUSTOMER)
 
     fun getCustomerByEmail(
         email: String,
-    ): CustomerResponseVo =
+    ) =
         customerRepository.findByUsername(email)
             ?.let(CustomerResponseVo::of)
             ?: throw NotFoundException(MessageType.CUSTOMER)
