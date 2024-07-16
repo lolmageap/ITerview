@@ -2,6 +2,7 @@ package cherhy.jung.gptinterview.external.oauth2
 
 import cherhy.jung.gptinterview.domain.authority.Oauth2WriteService
 import cherhy.jung.gptinterview.domain.authority.OauthRequest
+import cherhy.jung.gptinterview.domain.authority.of
 import cherhy.jung.gptinterview.domain.customer.constant.Provider
 import cherhy.jung.gptinterview.extension.*
 import cherhy.jung.gptinterview.external.jwt.TokenResponse
@@ -69,7 +70,7 @@ class OAuth2Client(
         )
 
         val token = objectMapper.readTree(userResponse.body)
-        val oauthRequest = OauthRequest(
+        val oauthRequest = OauthRequest.of(
             providerId = token.id,
             provider = Provider.KAKAO,
         )
@@ -121,7 +122,7 @@ class OAuth2Client(
 
         val token = objectMapper.readTree(userResponse.body)
 
-        val oauthRequest = OauthRequest(
+        val oauthRequest = OauthRequest.of(
             providerId = token.id,
             provider = Provider.GOOGLE,
         )

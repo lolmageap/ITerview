@@ -8,4 +8,5 @@ data class OauthRequest(
     val provider: Provider,
 ) {
     val salt = Generator.salt
+    companion object
 }
