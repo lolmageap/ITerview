@@ -8,6 +8,7 @@ import cherhy.jung.gptinterview.domain.question.entity.Answer
 import cherhy.jung.gptinterview.domain.question.entity.Feedback
 import cherhy.jung.gptinterview.external.gpt.GptClient
 import cherhy.jung.gptinterview.external.gpt.GptResponseVo
+import cherhy.jung.gptinterview.external.gpt.of
 import cherhy.jung.gptinterview.util.Generator
 
 @UseCase
@@ -34,6 +35,6 @@ class RequestReAnswerToGptUseCase(
         val feedbackEntity = Feedback.of(customer.id, history.id, savedAnswer.id, newFeedback)
         feedbackWriteService.addFeedback(feedbackEntity)
 
-        return GptResponseVo(feedback.token, newFeedback)
+        return GptResponseVo.of(feedback.token, newFeedback)
     }
 }

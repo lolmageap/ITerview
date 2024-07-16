@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class GptResponseVo(
     val token: String,
     val body: String,
-)
+) { companion object }
 
 data class GptApiResponseVo(
     val id: String,
