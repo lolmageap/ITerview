@@ -9,9 +9,9 @@ data class TokenResponse(
     val refreshTokenExpireTime: Date,
     val roles: List<String>,
     val customerToken: String,
-)
+) { companion object }
 
 data class TokenResponseVo(
     val token: String,
     val tokenExpireTime: Date,
-)
+) { companion object }

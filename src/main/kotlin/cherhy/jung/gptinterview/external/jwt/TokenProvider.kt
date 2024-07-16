@@ -56,7 +56,7 @@ class TokenProvider(
             serialize()
         }
 
-        return TokenResponseVo(accessToken, validity)
+        return TokenResponseVo.of(accessToken, validity)
     }
 
     fun getPrincipal(
@@ -74,7 +74,7 @@ class TokenProvider(
             val customer = customerRepository.findByUsername(claims.subject)
                 ?: throw NotFoundException(MessageType.CUSTOMER)
 
-            val principal = Principal(customer)
+            val principal = Principal.of(customer)
             val authenticationToken =
                 UsernamePasswordAuthenticationToken(principal, token, authorities)
 
@@ -141,6 +141,6 @@ class TokenProvider(
             serialize()
         }
 
-        return TokenResponseVo(refreshToken, validity)
+        return TokenResponseVo.of(refreshToken, validity)
     }
 }
