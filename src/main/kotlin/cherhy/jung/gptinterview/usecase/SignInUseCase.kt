@@ -17,7 +17,9 @@ class SignInUseCase(
     private val authenticationManagerBuilder: AuthenticationManagerBuilder,
     private val cacheWriteService: CacheWriteService,
 ) {
-    fun execute(request: CustomerRequestVo): TokenResponse {
+    fun execute(
+        request: CustomerRequestVo,
+    ): TokenResponse {
         val customer = customerReadService.getCustomerByEmail(request.username)
 
         val authenticationToken =

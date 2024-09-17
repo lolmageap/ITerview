@@ -22,7 +22,7 @@ class Customer(
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn(name = "customer_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    var customerAuthorities: List<CustomerAuthority> = mutableListOf(
+    var customerAuthorities = mutableListOf(
         CustomerAuthority(CustomerRole.MEMBER)
     )
 }

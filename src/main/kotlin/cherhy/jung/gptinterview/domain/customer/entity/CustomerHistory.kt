@@ -22,7 +22,7 @@ class CustomerHistory(
     val afterValue: String?,
 ): BaseEntity() {
     @Column(unique = true)
-    val token: String = Generator.token
+    val token = Generator.token
 
     companion object {
         @JvmStatic

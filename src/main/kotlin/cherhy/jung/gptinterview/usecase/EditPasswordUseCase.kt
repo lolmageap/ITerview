@@ -13,7 +13,10 @@ class EditPasswordUseCase(
     private val customerWriteService: CustomerWriteService,
     private val bCryptPasswordEncoder: BCryptPasswordEncoder,
 ) {
-    fun execute(customerId: Long, request: EditPasswordRequestVo) {
+    fun execute(
+        customerId: Long,
+        request: EditPasswordRequestVo,
+    ) {
         val customer = customerReadService.getCustomerById(customerId)
         bCryptPasswordEncoder.matchOrThrow(request.originalPassword, customer.salt, customer.password)
 

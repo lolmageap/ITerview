@@ -13,7 +13,10 @@ class GetQuestionHistoriesUseCase(
     private val questionHistoryReadService: QuestionHistoryReadService,
     private val feedbackReadService: FeedbackReadService,
 ) {
-    fun execute(userId: Long, token: String): List<QuestionHistoryDetailResponseVo> {
+    fun execute(
+        userId: Long,
+        token: String,
+    ): List<QuestionHistoryDetailResponseVo> {
         val questionHistory = questionHistoryReadService.getQuestionHistory(userId, token)
         val answers = answerReadService.getAnswers(questionHistory.id)
         val answerIds = answers.map { it.id }

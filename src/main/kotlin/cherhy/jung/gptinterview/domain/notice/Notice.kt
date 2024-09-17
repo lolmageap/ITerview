@@ -39,5 +39,5 @@ class Notice(
     @Description("uuid")
     @LoggingDisable
     @Column(unique = true)
-    val token: String = Generator.token
+    val token = Generator.token
 }

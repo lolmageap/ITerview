@@ -14,7 +14,9 @@ class ResetPasswordUseCase(
     private val bCryptPasswordEncoder: BCryptPasswordEncoder,
     private val mailService: MailService,
 ) {
-    fun execute(email: String) {
+    fun execute(
+        email: String,
+    ) {
         val customer = customerReadService.getCustomerByEmail(email)
         val generatedPassword = Generator.randomPassword
 

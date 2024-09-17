@@ -22,13 +22,22 @@ class CacheWriteService(
     private val redisTemplate: RedisTemplate<String, Any>,
     private val jwtProperty: JwtProperty,
 ) {
-    fun addJwtToken(refreshToken: String, email: String) =
+    fun addJwtToken(
+        refreshToken: String,
+        email: String,
+    ) =
         redisTemplate.opsForValue().set(REFRESH_TOKEN + refreshToken, email, jwtProperty.refreshTokenValidityInSeconds.toLong(), TimeUnit.SECONDS)
 
-    fun addQuestionToken(customerId: Long, questionToken: String) =
+    fun addQuestionToken(
+        customerId: Long,
+        questionToken: String,
+    ) =
         redisTemplate.opsForList().rightPush(QUESTION_TOKEN + customerId, questionToken)
 
-    fun addCertificate(email: String, certificate: String) =
+    fun addCertificate(
+        email: String,
+        certificate: String,
+    ) =
         redisTemplate.opsForValue().set(CERTIFICATE + email, certificate, 180, TimeUnit.SECONDS)
 
     fun addQuestionAttributes(

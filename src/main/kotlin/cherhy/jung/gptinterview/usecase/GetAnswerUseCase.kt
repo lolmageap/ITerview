@@ -11,7 +11,10 @@ class GetAnswerUseCase(
     private val answerReadService: AnswerReadService,
     private val questionReadService: QuestionReadService,
 ) {
-    fun execute(userId: Long, token: String): AnswerDetailResponseVo {
+    fun execute(
+        userId: Long,
+        token: String,
+    ): AnswerDetailResponseVo {
         val answer = answerReadService.getAnswer(userId, token)
         val question = questionReadService.getQuestionById(answer.questionId)
         return AnswerDetailResponseVo.of(answer, question)

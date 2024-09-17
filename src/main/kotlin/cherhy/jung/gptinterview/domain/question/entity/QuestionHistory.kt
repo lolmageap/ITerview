@@ -12,7 +12,7 @@ class QuestionHistory private constructor(
     val text: String,
 ) : BaseEntity() {
     @Column(unique = true)
-    val token: String = Generator.token
+    val token = Generator.token
 
     companion object {
         @JvmStatic

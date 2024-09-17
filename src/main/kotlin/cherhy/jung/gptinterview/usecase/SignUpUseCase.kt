@@ -14,7 +14,9 @@ class SignUpUseCase(
     private val customerWriteService: CustomerWriteService,
     private val passwordEncoder: BCryptPasswordEncoder,
 ) {
-    fun execute(request: CustomerRequestVo) {
+    fun execute(
+        request: CustomerRequestVo,
+    ) {
         customerReadService.checkDuplicatedEmail(request.username)
         val encodedPassword = passwordEncoder.encode(request.password + request.salt)
         customerWriteService.saveCustomer(request.toCustomer(), encodedPassword, Provider.LOCAL)

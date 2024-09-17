@@ -24,7 +24,10 @@ class RequestAnswerToGptUseCase(
     private val feedbackWriteService: FeedbackWriteService,
     private val questionHistoryWriteService: QuestionHistoryWriteService,
 ) {
-    fun execute(customerId: Long, request: GptRequest): GptResponseVo {
+    fun execute(
+        customerId: Long,
+        request: GptRequest,
+    ): GptResponseVo {
         val customer = customerReadService.getCustomerById(customerId)
         val question = questionReadService.getQuestionByToken(request.questionToken)
 

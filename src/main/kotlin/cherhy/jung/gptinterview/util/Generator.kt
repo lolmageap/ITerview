@@ -22,6 +22,24 @@ object Generator {
                 .toString()
                 .replace("-", "")
 
+    val randomPassword
+        get() =
+            UUID.randomUUID()
+                .toString()
+                .replace("-", "")
+                .substring(0, 10)
+                .uppercase()
+
+    val certificate
+        get() =
+            buildString {
+                repeat(6) {
+                    append(
+                        Random.nextInt(10).toString()
+                    )
+                }
+            }
+
     fun questionToGpt(
         question: String,
         answer: String?,
@@ -74,28 +92,11 @@ object Generator {
             
             점수는 100점이 가장 높은 점수고, 0점이 가장 낮은 점수야.
             답변에 대해 채점을 해서 점수를 매기고 피드백을 해줘.
+            그리고 아래 양식에 맞게 엄격하게 채점한 점수와 피드백을 작성해줘.
             
             {
                 "score" : ,
                 "feedback" : 
             }
         """.trimIndent()
-
-    val randomPassword
-        get() =
-            UUID.randomUUID()
-                .toString()
-                .replace("-", "")
-                .substring(0, 10)
-                .uppercase()
-
-    val certificate
-        get() =
-            buildString {
-                repeat(6) {
-                    append(
-                        Random.nextInt(10).toString()
-                    )
-                }
-            }
 }
