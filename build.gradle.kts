@@ -85,7 +85,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 
     // rest docs
-    implementation("com.github.toss:restdocs-appendix:v0.1.2")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc:3.0.1")
 
     // test
