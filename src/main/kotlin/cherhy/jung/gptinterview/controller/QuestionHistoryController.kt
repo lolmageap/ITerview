@@ -6,8 +6,7 @@ import cherhy.jung.gptinterview.controller.dto.of
 import cherhy.jung.gptinterview.domain.authority.Principal
 import cherhy.jung.gptinterview.domain.question.QuestionReadService
 import cherhy.jung.gptinterview.exception.ClientResponse
-import cherhy.jung.gptinterview.extension.end
-import cherhy.jung.gptinterview.extension.start
+import cherhy.jung.gptinterview.extension.reversedOffset
 import cherhy.jung.gptinterview.external.cache.CacheReadService
 import cherhy.jung.gptinterview.usecase.GetQuestionHistoriesUseCase
 import io.swagger.v3.oas.annotations.Operation
@@ -37,8 +36,8 @@ class QuestionHistoryController(
     ): ClientResponse<List<QuestionResponse>> {
         val alreadyQuestions = cacheReadService.getQuestionTokens(
             customerId = principal.customerId,
-            start = pageable.start,
-            end = pageable.end,
+            reversedOffset = pageable.reversedOffset,
+            size = pageable.pageSize,
         )
 
         return questionReadService.getQuestionHistories(alreadyQuestions)

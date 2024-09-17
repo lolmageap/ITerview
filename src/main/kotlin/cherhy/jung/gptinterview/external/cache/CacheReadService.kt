@@ -43,11 +43,11 @@ class CacheReadService(
 
     fun getQuestionTokens(
         customerId: Long,
-        start: Long = 0,
-        end: Long = -1,
-   ) =
+        reversedOffset: Long = 0,
+        size: Int = 10,
+    ) =
         redisTemplate.opsForList()
-            .range(QUESTION_TOKEN + customerId, start, end)
+            .range(QUESTION_TOKEN + customerId, reversedOffset, reversedOffset - size)
             ?.map { it.toString() }?.toList()
             ?: emptyList()
 
