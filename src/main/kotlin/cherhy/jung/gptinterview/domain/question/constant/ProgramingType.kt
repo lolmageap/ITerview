@@ -1,8 +1,8 @@
 package cherhy.jung.gptinterview.domain.question.constant
 
 enum class ProgramingType {
-    `C++`,
-    `C#`,
+    CPP,
+    CSHARP,
     C,
     JAVA,
     JAVASCRIPT,

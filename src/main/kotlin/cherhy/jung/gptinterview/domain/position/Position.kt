@@ -23,7 +23,7 @@ class GameDeveloper(
         QuestionType.FRAMEWORK,
     ),
     override val programingTypes: List<ProgramingType> = listOf(
-        ProgramingType.`C#`,
+        ProgramingType.CSHARP,
     ),
     override val frameworkTypes: List<FrameworkType> = listOf(
         FrameworkType.UNITY,
@@ -74,7 +74,7 @@ class BackendDeveloper(
         ProgramingType.JAVASCRIPT,
         ProgramingType.KOTLIN,
         ProgramingType.PHP,
-        ProgramingType.`C#`,
+        ProgramingType.CSHARP,
     ),
     override val frameworkTypes: List<FrameworkType> = listOf(
         FrameworkType.DJANGO,
@@ -113,7 +113,7 @@ class InformationSecurity(
     ),
     override val programingTypes: List<ProgramingType> = listOf(
         ProgramingType.C,
-        ProgramingType.`C++`,
+        ProgramingType.CPP,
         ProgramingType.GO,
     ),
     override val frameworkTypes: List<FrameworkType> = emptyList(),

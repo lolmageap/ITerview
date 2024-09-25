@@ -28,7 +28,6 @@ class Oauth2Controller(
         httpServletRequest: HttpServletRequest,
         httpServletResponse: HttpServletResponse,
     ): ClientResponse<Unit> {
-
         val response = when (provider) {
             KAKAO -> oauth2Client.signInByKakao(code)
             GOOGLE -> oauth2Client.signInByGoogle(code)

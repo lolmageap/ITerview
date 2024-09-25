@@ -15,7 +15,7 @@ internal class PositionFactoryTest: FeatureSpec({
         scenario("GAME 을 받으면 Gamer 타입의 스펙과 같아 진다.") {
             val gameDeveloper = PositionFactory.valueOf(GAME) as GameDeveloper
             gameDeveloper.questionTypes shouldContainAll listOf(DATABASE, NETWORK)
-            gameDeveloper.programingTypes shouldContain `C#`
+            gameDeveloper.programingTypes shouldContain CSHARP
             gameDeveloper.frameworkTypes shouldContain UNITY
         }
 
@@ -50,7 +50,7 @@ internal class PositionFactoryTest: FeatureSpec({
         scenario("SECURITY 을 받으면 InformationSecurity 타입의 스펙과 같아 진다.") {
             val informationSecurity = PositionFactory.valueOf(SECURITY) as InformationSecurity
             informationSecurity.questionTypes shouldContainAll listOf(NETWORK, OS)
-            informationSecurity.programingTypes shouldContainAll listOf(C, `C++`, GO)
+            informationSecurity.programingTypes shouldContainAll listOf(C, CPP, GO)
             informationSecurity.frameworkTypes shouldBe emptyList()
         }
 
