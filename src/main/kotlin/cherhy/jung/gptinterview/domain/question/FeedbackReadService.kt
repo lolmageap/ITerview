@@ -10,6 +10,13 @@ import cherhy.jung.gptinterview.exception.NotFoundException
 class FeedbackReadService(
     private val feedbackRepository: FeedbackRepository,
 ) {
+    fun getFeedback(
+        answerId: Long,
+    ) =
+        feedbackRepository.findByAnswerId(answerId)
+            ?.let(FeedbackResponseVo::of)
+            ?: throw NotFoundException(MessageType.FEEDBACK)
+
     fun getFeedbacks(
         answerIds: List<Long>,
     ) =

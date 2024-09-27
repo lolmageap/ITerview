@@ -11,4 +11,8 @@ interface FeedbackRepository: JpaRepository<Feedback, Long> {
     fun findByToken(
         token: String,
     ): Feedback?
+
+    fun findByAnswerId(
+        answerId: Long,
+    ): Feedback?
 }
