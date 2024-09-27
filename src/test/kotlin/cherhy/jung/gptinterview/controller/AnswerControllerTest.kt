@@ -11,17 +11,17 @@ import org.springframework.restdocs.RestDocumentationExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 
-@WebMvcTest(AnswerController::class)
+@WebMvcTest(QuestionHistoryController::class)
 @ExtendWith(RestDocumentationExtension::class)
 class AnswerControllerTest(
     @Autowired private val mockMvc: MockMvc,
 
-    @MockkBean private val answerController: AnswerController,
+    @MockkBean private val questionHistoryController: QuestionHistoryController,
     @MockkBean private val questionHistoryReadService: QuestionHistoryReadService,
 ) : StringSpec({
 
     "test" {
-        val mock = mockMvc.get("/answers/histories")
+        val mock = mockMvc.get("/questions/histories")
             .andExpect {
                 status { isOk() }
                 content { contentType("application/json") }

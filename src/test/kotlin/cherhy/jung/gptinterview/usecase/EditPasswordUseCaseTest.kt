@@ -5,6 +5,7 @@ import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.domain.customer.CustomerWriteService
 import cherhy.jung.gptinterview.domain.customer.vo.CustomerResponseVo
 import cherhy.jung.gptinterview.domain.customer.vo.EditPasswordRequestVo
+import cherhy.jung.gptinterview.domain.customer.vo.of
 import cherhy.jung.gptinterview.external.mail.MailService
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.BehaviorSpec

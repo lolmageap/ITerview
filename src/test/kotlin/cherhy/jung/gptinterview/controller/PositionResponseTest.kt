@@ -1,6 +1,7 @@
 package cherhy.jung.gptinterview.controller
 
 import cherhy.jung.gptinterview.controller.dto.PositionResponse
+import cherhy.jung.gptinterview.controller.dto.of
 import cherhy.jung.gptinterview.domain.position.AndroidDeveloper
 import cherhy.jung.gptinterview.domain.position.BackendDeveloper
 import cherhy.jung.gptinterview.domain.position.FrontendDeveloper

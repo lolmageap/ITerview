@@ -19,12 +19,12 @@ class QuestionHistory private constructor(
         fun of(
             customerId: Long,
             questionId: Long,
-            question: String,
+            questionTitle: String,
         ) =
             QuestionHistory(
                 customerId = customerId,
                 questionId = questionId,
-                text = question,
+                text = questionTitle,
             )
     }
 }
