@@ -4,8 +4,10 @@ import cherhy.jung.gptinterview.domain.customer.entity.Customer
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
 import cherhy.jung.gptinterview.external.mail.MailService
 import cherhy.jung.gptinterview.external.cache.CacheWriteService
+import cherhy.jung.gptinterview.mysqlContainer
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.extensions.testcontainers.perSpec
 import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
@@ -20,6 +22,10 @@ class SendMailUseCaseTest(
     @MockkBean private val mailService: MailService,
     @MockkBean private val cacheWriteService: CacheWriteService,
 ) : BehaviorSpec({
+    beforeTest {
+        mysqlContainer.start()
+        listener(mysqlContainer.perSpec())
+    }
 
     Given("회원이 ") {
         val customer = Customer(

@@ -11,11 +11,13 @@ import cherhy.jung.gptinterview.domain.question.vo.QuestionRequestVo
 import cherhy.jung.gptinterview.domain.question.entity.Programing
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.exception.NotFoundException
+import cherhy.jung.gptinterview.mysqlContainer
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
 import io.kotest.core.test.isRootTest
+import io.kotest.extensions.testcontainers.perSpec
 import io.kotest.matchers.collections.shouldBeOneOf
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
@@ -31,6 +33,10 @@ internal class QuestionReadServiceTest(
     @Autowired private val customerRepository: CustomerRepository,
     @Autowired private val programingRepository: ProgramingRepository,
 ) : BehaviorSpec({
+    beforeTest {
+        mysqlContainer.start()
+        listener(mysqlContainer.perSpec())
+    }
 
     Given("회원과 질문이 존재하고 ") {
 

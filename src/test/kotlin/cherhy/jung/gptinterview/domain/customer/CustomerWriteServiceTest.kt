@@ -1,10 +1,12 @@
 package cherhy.jung.gptinterview.domain.customer
 
 import cherhy.jung.gptinterview.domain.customer.entity.Customer
+import cherhy.jung.gptinterview.mysqlContainer
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
 import io.kotest.core.test.isRootTest
+import io.kotest.extensions.testcontainers.perSpec
 import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
@@ -19,6 +21,10 @@ class CustomerWriteServiceTest(
     @Autowired private val customerWriteService: CustomerWriteService,
     @Autowired private val customerRepository: CustomerRepository,
 ) : BehaviorSpec({
+    beforeTest {
+        mysqlContainer.start()
+        listener(mysqlContainer.perSpec())
+    }
 
     Given("회원이 존재 하고 ") {
         val customer = customerRepository.save(
@@ -40,7 +46,6 @@ class CustomerWriteServiceTest(
             }
         }
     }
-
 }) {
     override suspend fun afterContainer(testCase: TestCase, result: TestResult) {
         if (testCase.isRootTest()) {

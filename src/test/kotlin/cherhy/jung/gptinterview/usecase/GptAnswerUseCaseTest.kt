@@ -15,9 +15,11 @@ import cherhy.jung.gptinterview.domain.question.vo.QuestionHistoryResponseVo
 import cherhy.jung.gptinterview.domain.question.vo.QuestionResponseVo
 import cherhy.jung.gptinterview.domain.question.vo.of
 import cherhy.jung.gptinterview.external.gpt.GptClient
+import cherhy.jung.gptinterview.mysqlContainer
 import cherhy.jung.gptinterview.util.Generator
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.extensions.testcontainers.perSpec
 import io.kotest.matchers.string.shouldContain
 import io.mockk.every
 import io.mockk.verify
@@ -37,6 +39,10 @@ internal class GptAnswerUseCaseTest(
     @MockkBean private val questionReadService: QuestionReadService,
     @MockkBean private val questionHistoryWriteService: QuestionHistoryWriteService,
 ) : BehaviorSpec({
+    beforeTest {
+        mysqlContainer.start()
+        listener(mysqlContainer.perSpec())
+    }
 
     Given("회원이 질문과 답변을 요청 하면 ") {
         val customer = customerRepository.save(

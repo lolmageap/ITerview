@@ -32,9 +32,6 @@ class RedisReadServiceTest(
         redisContainer.start()
         listener(redisContainer.perSpec())
     }
-    afterSpec {
-        redisContainer.stop()
-    }
 
     Given("회원이 client 에 저장 되있는 refresh token 으로 요청을 보내면 ") {
         val email = "ekxk1234@naver.com"

@@ -25,9 +25,6 @@ class RedisWriteServiceTest(
         redisContainer.start()
         listener(redisContainer.perSpec())
     }
-    afterSpec {
-        redisContainer.stop()
-    }
 
     afterEach {
         redisTemplate.execute { connection ->

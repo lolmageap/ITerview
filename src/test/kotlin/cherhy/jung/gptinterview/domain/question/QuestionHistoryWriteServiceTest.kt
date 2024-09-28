@@ -6,10 +6,12 @@ import cherhy.jung.gptinterview.domain.question.constant.QuestionLevel
 import cherhy.jung.gptinterview.domain.question.constant.QuestionType
 import cherhy.jung.gptinterview.domain.question.entity.Question
 import cherhy.jung.gptinterview.domain.question.entity.QuestionHistory
+import cherhy.jung.gptinterview.mysqlContainer
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
 import io.kotest.core.test.isRootTest
+import io.kotest.extensions.testcontainers.perSpec
 import io.kotest.matchers.shouldNotBe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -23,6 +25,10 @@ internal class QuestionHistoryWriteServiceTest(
     @Autowired private val questionRepository: QuestionRepository,
     @Autowired private val questionHistoryRepository: QuestionHistoryRepository,
 ) : BehaviorSpec({
+    beforeTest {
+        mysqlContainer.start()
+        listener(mysqlContainer.perSpec())
+    }
 
     Given("사용자와 질문, 답변, 질문 내역을 생성 한 뒤 ") {
         val customer = customerRepository.save(

@@ -10,7 +10,6 @@ import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldNotContain
 
 class QuestionRequestTest : BehaviorSpec({
-
     Given("사용자 가 category 를 선택 하고 ") {
         val questionRequest = QuestionRequest(
             questionTypes = listOf(PROGRAMING, FRAMEWORK, DATABASE),
@@ -32,5 +31,4 @@ class QuestionRequestTest : BehaviorSpec({
             }
         }
     }
-
 })

@@ -7,8 +7,10 @@ import cherhy.jung.gptinterview.domain.customer.vo.CustomerResponseVo
 import cherhy.jung.gptinterview.domain.customer.vo.EditPasswordRequestVo
 import cherhy.jung.gptinterview.domain.customer.vo.of
 import cherhy.jung.gptinterview.external.mail.MailService
+import cherhy.jung.gptinterview.mysqlContainer
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.extensions.testcontainers.perSpec
 import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
@@ -26,6 +28,10 @@ class EditPasswordUseCaseTest(
     @MockkBean private val bCryptPasswordEncoder: BCryptPasswordEncoder,
     @MockkBean private val mailService: MailService,
 ) : BehaviorSpec({
+    beforeTest {
+        mysqlContainer.start()
+        listener(mysqlContainer.perSpec())
+    }
 
     Given("회원이 존재 하고 ") {
         val customer = Customer(

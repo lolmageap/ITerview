@@ -48,5 +48,4 @@ internal class PositionResponseTest : BehaviorSpec({
             }
         }
     }
-
 })
