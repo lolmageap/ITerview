@@ -88,12 +88,13 @@ dependencies {
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc:3.0.1")
 
     // test
-    testImplementation("com.h2database:h2")
+//    testImplementation("com.h2database:h2")
     testImplementation("com.ninja-squad:springmockk:4.0.2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.kotest:kotest-runner-junit5:5.7.2")
     testImplementation("io.kotest:kotest-assertions-core:5.7.2")
     testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.3")
+    testImplementation("org.testcontainers:mysql:1.20.1")
     testImplementation("io.kotest.extensions:kotest-extensions-testcontainers:2.0.2")
 }
 

@@ -8,14 +8,14 @@ spring:
     active: test
 
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: jdbc:tc:mysql:8://localhost:13306/iterview
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    username: root
+    password: root
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true
@@ -24,12 +24,6 @@ spring:
         use_sql_comments: true
     open-in-view: true
     defer-datasource-initialization: true
-
-  sql:
-    init:
-      mode: always
-      data-locations:
-        - classpath:db/migration/DROP_FLYWAY_HISTORY.sql
 
   data:
     web:
@@ -68,6 +62,3 @@ jwt:
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor
-
-flyway:
-  enabled: false
