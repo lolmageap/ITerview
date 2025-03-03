@@ -1,9 +1,7 @@
 package cherhy.jung.gptinterview.external.cache
 
 import cherhy.jung.gptinterview.annotation.WriteService
-import cherhy.jung.gptinterview.listener.ChangeValueCollector
 import cherhy.jung.gptinterview.controller.dto.QuestionRequest
-import cherhy.jung.gptinterview.property.JwtProperty
 import cherhy.jung.gptinterview.external.cache.CacheKey.CERTIFICATE
 import cherhy.jung.gptinterview.external.cache.CacheKey.CUSTOMER_HISTORY
 import cherhy.jung.gptinterview.external.cache.CacheKey.FRAMEWORK_TYPE
@@ -12,8 +10,9 @@ import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_LEVEL
 import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_TOKEN
 import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_TYPE
 import cherhy.jung.gptinterview.external.cache.CacheKey.REFRESH_TOKEN
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import cherhy.jung.gptinterview.listener.ChangeValueCollector
+import cherhy.jung.gptinterview.property.JwtProperty
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.data.redis.core.RedisTemplate
 import java.util.concurrent.TimeUnit
 
@@ -21,6 +20,7 @@ import java.util.concurrent.TimeUnit
 class CacheWriteService(
     private val redisTemplate: RedisTemplate<String, Any>,
     private val jwtProperty: JwtProperty,
+    private val objectMapper: ObjectMapper,
 ) {
     fun addJwtToken(
         refreshToken: String,
@@ -63,11 +63,8 @@ class CacheWriteService(
     ) {
         val hash = redisTemplate.opsForHash<String, String>()
 
-        val mapper = jacksonObjectMapper()
-        mapper.registerModule(JavaTimeModule())
-
         data.forEach { (field, value) ->
-            hash.put(CUSTOMER_HISTORY + key, field, mapper.writeValueAsString(value))
+            hash.put(CUSTOMER_HISTORY + key, field, objectMapper.writeValueAsString(value))
         }
 
         redisTemplate.expire(key, 1, TimeUnit.SECONDS)

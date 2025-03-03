@@ -1,7 +1,6 @@
 package cherhy.jung.gptinterview.external.cache
 
 import cherhy.jung.gptinterview.annotation.ReadService
-import cherhy.jung.gptinterview.listener.ChangeValueCollector
 import cherhy.jung.gptinterview.controller.dto.QuestionAttributeResponse
 import cherhy.jung.gptinterview.controller.dto.of
 import cherhy.jung.gptinterview.domain.question.constant.FrameworkType
@@ -19,14 +18,15 @@ import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_LEVEL
 import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_TOKEN
 import cherhy.jung.gptinterview.external.cache.CacheKey.QUESTION_TYPE
 import cherhy.jung.gptinterview.external.cache.CacheKey.REFRESH_TOKEN
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import cherhy.jung.gptinterview.listener.ChangeValueCollector
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.security.access.AccessDeniedException
 
 @ReadService
 class CacheReadService(
     private val redisTemplate: RedisTemplate<String, Any>,
+    private val objectMapper: ObjectMapper,
 ) {
     fun getEmailByRefreshToken(
         refreshToken: String?,
@@ -100,13 +100,11 @@ class CacheReadService(
     fun getBeforeValue(
         key: String,
     ): Map<String, ChangeValueCollector> {
-        val mapper = jacksonObjectMapper()
-        mapper.registerModule(JavaTimeModule())
         val hash = redisTemplate.opsForHash<String, String>()
         val entries = hash.entries(CUSTOMER_HISTORY + key)
 
         return entries.mapValues { entry ->
-            mapper.readValue(entry.value, ChangeValueCollector::class.java)
+            objectMapper.readValue(entry.value, ChangeValueCollector::class.java)
         }
     }
 }
