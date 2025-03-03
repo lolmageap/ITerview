@@ -1,10 +1,13 @@
 package cherhy.jung.gptinterview.domain.customer.vo
 
-data class CustomerRequestVo(
+import cherhy.jung.gptinterview.domain.customer.constant.Provider
+
+data class CreateCustomerRequestVo(
     val name: String,
     val username: String,
     var password: String,
     val salt: String,
+    val provider: Provider = Provider.LOCAL,
 )
 
 data class CustomerResponseVo(

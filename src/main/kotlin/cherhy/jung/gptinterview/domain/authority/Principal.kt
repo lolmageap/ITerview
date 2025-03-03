@@ -15,7 +15,7 @@ class Principal(
     val roles = authorities.map { it.authority }
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        return customer.customerAuthorities.map {
+        return customer.authorities.map {
             SimpleGrantedAuthority("ROLE_${it.role}")
         }.toMutableList()
     }

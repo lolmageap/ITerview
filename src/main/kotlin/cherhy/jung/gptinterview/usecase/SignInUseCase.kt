@@ -2,7 +2,7 @@ package cherhy.jung.gptinterview.usecase
 
 import cherhy.jung.gptinterview.annotation.UseCase
 import cherhy.jung.gptinterview.domain.customer.CustomerReadService
-import cherhy.jung.gptinterview.domain.customer.vo.CustomerRequestVo
+import cherhy.jung.gptinterview.domain.customer.vo.CreateCustomerRequestVo
 import cherhy.jung.gptinterview.extension.convertUserDetails
 import cherhy.jung.gptinterview.external.cache.CacheWriteService
 import cherhy.jung.gptinterview.external.jwt.TokenProvider
@@ -18,7 +18,7 @@ class SignInUseCase(
     private val cacheWriteService: CacheWriteService,
 ) {
     fun execute(
-        request: CustomerRequestVo,
+        request: CreateCustomerRequestVo,
     ): TokenResponse {
         val customer = customerReadService.getCustomerByEmail(request.username)
 

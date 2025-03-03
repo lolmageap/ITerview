@@ -16,11 +16,9 @@ class CustomerWriteService(
     fun saveCustomer(
         customer: Customer,
         encodedPassword: String,
-        provider: Provider,
     ) =
         with(customer) {
             this.password = encodedPassword
-            this.provider = provider
             customerRepository.save(this)
             CustomerResponseVo.of(this)
         }
