@@ -4,7 +4,8 @@ import cherhy.jung.gptinterview.domain.authority.Oauth2WriteService
 import cherhy.jung.gptinterview.domain.authority.OauthRequest
 import cherhy.jung.gptinterview.domain.authority.of
 import cherhy.jung.gptinterview.domain.customer.constant.Provider
-import cherhy.jung.gptinterview.extension.*
+import cherhy.jung.gptinterview.extension.getAccessToken
+import cherhy.jung.gptinterview.extension.id
 import cherhy.jung.gptinterview.external.jwt.TokenResponse
 import cherhy.jung.gptinterview.external.oauth2.OauthKey.CLIENT_ID
 import cherhy.jung.gptinterview.external.oauth2.OauthKey.CLIENT_SECRET
@@ -14,8 +15,13 @@ import cherhy.jung.gptinterview.external.oauth2.OauthKey.REDIRECT_URI
 import cherhy.jung.gptinterview.property.GoogleProperty
 import cherhy.jung.gptinterview.property.KakaoClientProperty
 import cherhy.jung.gptinterview.property.KakaoProviderProperty
+import cherhy.jung.gptinterview.util.JwtKey.BEARER
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.springframework.http.*
+import org.apache.http.HttpHeaders.AUTHORIZATION
+import org.springframework.http.HttpEntity
+import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpMethod
+import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
@@ -27,13 +33,12 @@ class OAuth2Client(
     private val kakaoProviderProperty: KakaoProviderProperty,
     private val oauth2WriteService: Oauth2WriteService,
     private val googleProperty: GoogleProperty,
+    private val objectMapper: ObjectMapper,
+    private val restTemplate: RestTemplate,
 ) {
     fun signInByKakao(
         code: String,
     ): TokenResponse {
-        val restTemplate = RestTemplate()
-        val objectMapper = ObjectMapper()
-
         val parameters = LinkedMultiValueMap<String, String>().apply {
             add(GRANT_TYPE, kakaoClientProperty.authorizationGrantType)
             add(CLIENT_ID, kakaoClientProperty.clientId)
@@ -57,7 +62,7 @@ class OAuth2Client(
         val accessToken = objectMapper.getAccessToken(response.body)
 
         val userInfoHeaders = HttpHeaders().apply {
-            add("Authorization", "Bearer $accessToken")
+            add(AUTHORIZATION, BEARER + accessToken)
         }
 
         val userInfoRequest = HttpEntity(null, userInfoHeaders)
@@ -81,9 +86,6 @@ class OAuth2Client(
     fun signInByGoogle(
         code: String,
     ): TokenResponse {
-        val restTemplate = RestTemplate()
-        val objectMapper = ObjectMapper()
-
         val headers = HttpHeaders().apply {
             contentType = MediaType.APPLICATION_FORM_URLENCODED
             charset(Charsets.UTF_8.name())
@@ -108,7 +110,7 @@ class OAuth2Client(
         val accessToken = objectMapper.getAccessToken(response.body)
 
         val userInfoHeaders = HttpHeaders().apply {
-            add("Authorization", "Bearer $accessToken")
+            add(AUTHORIZATION, BEARER + accessToken)
         }
 
         val userInfoRequest = HttpEntity(null, userInfoHeaders)

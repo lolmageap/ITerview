@@ -7,7 +7,9 @@ import cherhy.jung.gptinterview.external.gpt.GptKey.MODEL
 import cherhy.jung.gptinterview.external.gpt.GptKey.PROMPT
 import cherhy.jung.gptinterview.external.gpt.GptKey.TEMPERATURE
 import cherhy.jung.gptinterview.property.GptProperty
+import cherhy.jung.gptinterview.util.JwtKey.BEARER
 import cherhy.jung.gptinterview.util.Validator
+import org.apache.http.HttpHeaders.AUTHORIZATION
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
@@ -21,13 +23,14 @@ import org.springframework.web.client.RestTemplate
 @Component
 class GptClient(
     private val gptProperty: GptProperty,
+    private val restTemplate: RestTemplate,
 ) {
     fun requestAndReceiveFeedback(
         prompt: String,
     ): String {
         val headers = HttpHeaders().apply {
             contentType = MediaType.APPLICATION_JSON
-            set("Authorization", "Bearer ${gptProperty.apiKey}")
+            set(AUTHORIZATION, BEARER + gptProperty.apiKey)
         }
 
         val requestBody = mapOf(
@@ -40,7 +43,7 @@ class GptClient(
         val requestEntity = HttpEntity(requestBody, headers)
 
         val response =
-            RestTemplate().postForEntity(GPT_ENDPOINT, requestEntity, GptApiResponseVo::class.java)
+            restTemplate.postForEntity(GPT_ENDPOINT, requestEntity, GptApiResponseVo::class.java)
 
         val choices = response.body
             ?.choices
